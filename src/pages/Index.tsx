@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -9,7 +8,7 @@ import ExpertCard from '@/components/ExpertCard';
 import EventFormat from '@/components/EventFormat';
 import StatCard from '@/components/StatCard';
 import GradientButton from '@/components/GradientButton';
-import { Brain, CheckCircle, Code, FileText, Hiking, LinkedinIcon, MessageCircle, Mountains, PuzzlePiece, RefreshCw, Target, Tent, Trophy, TwitterIcon, Users } from 'lucide-react';
+import { Brain, CheckCircle, Code, FileText, Mountain, LinkedinIcon, MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, Users, RefreshCw } from 'lucide-react';
 
 const Index = () => {
   const [email, setEmail] = useState('');
@@ -159,7 +158,7 @@ const Index = () => {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           <EventFormat 
-            icon={<Mountains size={24} />}
+            icon={<Mountain size={24} />}
             title="Hikes"
           />
           <EventFormat 
@@ -171,7 +170,7 @@ const Index = () => {
             title="Workshops"
           />
           <EventFormat 
-            icon={<PuzzlePiece size={24} />}
+            icon={<Puzzle size={24} />}
             title="Partner Collaborations"
           />
         </div>
