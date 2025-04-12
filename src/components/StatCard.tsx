@@ -16,7 +16,7 @@ const StatCard = ({ value, label, description, className, compact = false }: Sta
     <motion.div 
       className={cn(
         "text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-gray-100 shadow-md hover:shadow-lg transition-all",
-        compact && "flex-1 md:min-w-44",
+        compact && "flex-1 md:min-w-44 w-full",
         className
       )}
       whileHover={{ scale: 1.05, y: -5 }}

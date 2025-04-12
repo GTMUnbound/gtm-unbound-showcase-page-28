@@ -399,7 +399,7 @@ const Index = () => {
           
           <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
             <h3 className="text-xl font-semibold text-gtm-dark mb-4 text-center">
-              Want to hear about upcoming events?
+              Want to be a part of upcoming events?
             </h3>
             <form onSubmit={handleEmailSubmit} className="space-y-4">
               <div>
