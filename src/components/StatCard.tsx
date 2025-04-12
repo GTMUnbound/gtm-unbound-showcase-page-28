@@ -8,13 +8,15 @@ interface StatCardProps {
   label: string;
   description?: string;
   className?: string;
+  compact?: boolean;
 }
 
-const StatCard = ({ value, label, description, className }: StatCardProps) => {
+const StatCard = ({ value, label, description, className, compact = false }: StatCardProps) => {
   return (
     <motion.div 
       className={cn(
         "text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-gray-100 shadow-md hover:shadow-lg transition-all",
+        compact && "flex-1 md:min-w-44",
         className
       )}
       whileHover={{ scale: 1.05, y: -5 }}

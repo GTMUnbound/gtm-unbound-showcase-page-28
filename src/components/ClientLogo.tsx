@@ -9,9 +9,18 @@ interface ClientLogoProps {
   description: string;
   className?: string;
   inverted?: boolean;
+  bgColor?: string;
 }
 
-const ClientLogo = ({ src, alt, name, description, className, inverted = false }: ClientLogoProps) => {
+const ClientLogo = ({ 
+  src, 
+  alt, 
+  name, 
+  description, 
+  className, 
+  inverted = false,
+  bgColor
+}: ClientLogoProps) => {
   return (
     <motion.div 
       className={cn(
@@ -22,12 +31,15 @@ const ClientLogo = ({ src, alt, name, description, className, inverted = false }
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 400, damping: 10 }}
     >
-      <div className="mb-4 px-4 py-6 flex items-center justify-center h-28">
+      <div className={cn(
+        "mb-4 px-4 py-6 flex items-center justify-center h-28 w-full rounded-lg",
+        bgColor
+      )}>
         <img 
           src={src} 
           alt={alt} 
           className={cn(
-            "h-16 md:h-20 object-contain mx-auto",
+            "h-20 md:h-24 object-contain mx-auto max-w-[80%]",
             inverted && "brightness-0 invert"
           )} 
         />

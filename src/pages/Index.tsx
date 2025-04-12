@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -83,7 +82,7 @@ const Index = () => {
       description: "Practical workshop on navigating the US market for Indian startups."
     }
   ];
-
+  
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar sections={sections} />
@@ -105,31 +104,36 @@ const Index = () => {
                   GTM Unbound is a curated platform for startup founders and GTM leaders.
                   We help you scale go-to-market execution through real operators, deep community, and structured systems.
                 </p>
+                
+                {/* Stats in one row */}
                 <motion.div 
-                  className="flex flex-wrap gap-4 md:gap-8 mt-8"
+                  className="flex flex-row gap-4 mt-8 overflow-x-auto pb-4 md:overflow-visible md:flex-nowrap"
                   variants={containerVariants}
                   initial="hidden"
                   animate="visible"
                 >
-                  <motion.div variants={itemVariants}>
+                  <motion.div variants={itemVariants} className="min-w-44">
                     <StatCard 
                       value="20+" 
                       label="Startups Supported" 
                       description="Diverse range of startups from pre-seed to Series B across SaaS, Fintech, DevTools, and AI."
+                      compact
                     />
                   </motion.div>
-                  <motion.div variants={itemVariants}>
+                  <motion.div variants={itemVariants} className="min-w-44">
                     <StatCard 
                       value="50+" 
                       label="Curated Events" 
                       description="Exclusive gatherings designed for meaningful connections and actionable insights."
+                      compact
                     />
                   </motion.div>
-                  <motion.div variants={itemVariants}>
+                  <motion.div variants={itemVariants} className="min-w-44">
                     <StatCard 
                       value="10+" 
                       label="Expert Collaborators" 
                       description="Seasoned operators with experience at top-tier companies who provide hands-on support."
+                      compact
                     />
                   </motion.div>
                 </motion.div>
@@ -166,12 +170,13 @@ const Index = () => {
           <div className="container mx-auto">
             <h3 className="text-2xl font-bold text-center text-gtm-dark mb-10">Our Success Stories</h3>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
               <ClientLogo 
                 src="/lovable-uploads/0e281ef4-b0d5-4345-bbc2-148c9944f302.png" 
                 alt="Omnify" 
                 name="Omnify" 
                 description="SaaS Platform" 
+                bgColor="bg-gray-50"
               />
               
               <ClientLogo 
@@ -179,6 +184,7 @@ const Index = () => {
                 alt="ECL" 
                 name="ECL" 
                 description="Capital Solutions" 
+                bgColor="bg-gray-50"
               />
               
               <ClientLogo 
@@ -187,6 +193,7 @@ const Index = () => {
                 name="Paddle" 
                 description="Payment Infrastructure" 
                 inverted={true}
+                bgColor="bg-gray-900"
               />
             </div>
           </div>
@@ -328,21 +335,25 @@ const Index = () => {
               icon={<Mountain size={28} />}
               title="Hikes"
               description="Connect with peers in nature while discussing your biggest GTM challenges."
+              highlightColor="bg-green-500"
             />
             <EventFormat 
               icon={<RefreshCw size={28} />}
               title="Roundtables"
               description="Intimate discussions with 6-8 founders facing similar GTM challenges."
+              highlightColor="bg-blue-500"
             />
             <EventFormat 
               icon={<Target size={28} />}
               title="Workshops"
               description="Hands-on sessions to build specific GTM assets for your business."
+              highlightColor="bg-orange-500"
             />
             <EventFormat 
               icon={<Puzzle size={28} />}
               title="Partner Events"
               description="Collaborations with complementary platforms to expand your network."
+              highlightColor="bg-purple-500"
             />
           </div>
           
@@ -357,7 +368,11 @@ const Index = () => {
                   whileHover={{ y: -5 }}
                   transition={{ type: "spring", stiffness: 300, damping: 10 }}
                 >
-                  <div className="bg-gradient-gtm h-2"></div>
+                  <div className={`bg-gradient-to-r ${
+                    index === 0 ? "from-green-400 to-green-600" : 
+                    index === 1 ? "from-blue-400 to-blue-600" : 
+                    "from-purple-400 to-purple-600"
+                  } h-2`}></div>
                   <div className="p-6">
                     <div className="flex items-center text-gray-500 mb-2">
                       <Calendar size={16} className="mr-2" />

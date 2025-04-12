@@ -8,19 +8,21 @@ interface EventFormatProps {
   title: string;
   description?: string;
   className?: string;
+  highlightColor?: string;
 }
 
-const EventFormat = ({ icon, title, description, className }: EventFormatProps) => {
+const EventFormat = ({ icon, title, description, className, highlightColor = "bg-gtm-light" }: EventFormatProps) => {
   return (
     <motion.div 
       className={cn(
-        "flex flex-col items-center p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition-all",
+        "flex flex-col items-center p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition-all overflow-hidden relative",
         className
       )}
       whileHover={{ scale: 1.03, y: -5 }}
       transition={{ type: "spring", stiffness: 300, damping: 15 }}
     >
-      <div className="text-gtm-pink bg-gtm-light p-4 rounded-full mb-4">
+      <div className={cn("absolute h-1 w-full top-0 left-0", highlightColor)}></div>
+      <div className="text-gtm-pink bg-gtm-light p-4 rounded-full mb-4 z-10">
         {icon}
       </div>
       <h3 className="text-gtm-dark font-bold text-lg mb-2">{title}</h3>
