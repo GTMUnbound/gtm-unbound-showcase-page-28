@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -8,7 +9,9 @@ import ExpertCard from '@/components/ExpertCard';
 import EventFormat from '@/components/EventFormat';
 import StatCard from '@/components/StatCard';
 import GradientButton from '@/components/GradientButton';
-import { Brain, CheckCircle, Code, FileText, Mountain, LinkedinIcon, MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, Users, RefreshCw } from 'lucide-react';
+import { Brain, CheckCircle, Code, FileText, Mountain, LinkedinIcon, MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, Users, RefreshCw, Rocket, TrendingUp, Award } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const Index = () => {
   const [email, setEmail] = useState('');
@@ -31,6 +34,29 @@ const Index = () => {
     { id: 'about', label: 'About' },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 24
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar sections={sections} />
@@ -39,87 +65,192 @@ const Index = () => {
       <Section id="home" className="pt-32 pb-20 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-3/5 mb-10 md:mb-0 animate-fade-in">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gtm-dark mb-6 leading-tight">
-                Helping Startups Scale Smarter, Not Louder
-              </h1>
-              <p className="text-xl text-gray-600 mb-8 max-w-2xl">
-                GTM Unbound is a curated platform for startup founders and GTM leaders.
-                We help you scale go-to-market execution through real operators, deep community, and structured systems.
-              </p>
-              <div className="flex flex-wrap gap-4 md:gap-8 mt-8">
-                <StatCard value="20+" label="Startups Supported" />
-                <StatCard value="50+" label="Curated Events" />
-                <StatCard value="10+" label="Expert Collaborators" />
-              </div>
+            <div className="md:w-3/5 mb-10 md:mb-0">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gtm-dark mb-6 leading-tight">
+                  Helping Startups Scale Smarter, Not Louder
+                </h1>
+                <p className="text-xl text-gray-600 mb-8 max-w-2xl">
+                  GTM Unbound is a curated platform for startup founders and GTM leaders.
+                  We help you scale go-to-market execution through real operators, deep community, and structured systems.
+                </p>
+                <motion.div 
+                  className="flex flex-wrap gap-4 md:gap-8 mt-8"
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  <motion.div variants={itemVariants}>
+                    <StatCard value="20+" label="Startups Supported" />
+                  </motion.div>
+                  <motion.div variants={itemVariants}>
+                    <StatCard value="50+" label="Curated Events" />
+                  </motion.div>
+                  <motion.div variants={itemVariants}>
+                    <StatCard value="10+" label="Expert Collaborators" />
+                  </motion.div>
+                </motion.div>
+              </motion.div>
             </div>
             <div className="md:w-2/5 flex justify-center md:justify-end">
-              <div className="relative">
+              <motion.div 
+                className="relative"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 <div className="absolute inset-0 bg-gradient-gtm opacity-10 rounded-full blur-3xl"></div>
                 <img 
                   src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png" 
                   alt="GTM Unbound" 
                   className="w-64 h-64 relative z-10"
                 />
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
       </Section>
       
       {/* Startups Section */}
-      <Section id="startups" className="bg-gray-50">
+      <Section id="startups" className="bg-gray-50 py-24">
         <SectionHeader 
           title="Startups Scaling with GTM Unbound"
           subtitle="We've worked with breakout teams across SaaS, Fintech, DevTools, and AI — building from India, the US, and beyond."
           centered
         />
         
-        <div className="mb-16 flex flex-wrap justify-center gap-10 py-8">
-          <div className="text-2xl font-bold text-gray-400">Omnify</div>
-          <div className="text-2xl font-bold text-gray-400">ECL</div>
-          <div className="text-2xl font-bold text-gray-400">Paddle</div>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
-          <TestimonialCard 
-            quote="We built a US launch plan in 6 weeks with GTM Sprints — what would've taken us 6 months."
-            author="Vikram"
-            company="CEO @ Omnify"
-          />
-          <TestimonialCard 
-            quote="GTM Unbound gave us rituals we still use across GTM teams."
-            author="Alex"
-            company="GTM Lead @ Paddle"
-          />
-        </div>
-        
-        <div className="mb-12">
-          <h3 className="text-2xl font-bold text-gtm-dark mb-6 text-center">What We Offer Founders</h3>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            We support teams at all stages of GTM maturity — whether you're building the system, scaling it, or fine-tuning it.
-          </p>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <FeatureCard 
-              icon={<Brain size={24} />}
-              title="Expert Collaboration"
-              description="Strategy, playbooks, and feedback from domain specialists who've done it before — in PLG, pricing, positioning, and more."
-            />
-            <FeatureCard 
-              icon={<CheckCircle size={24} />}
-              title="Done-for-You Execution"
-              description="Access vetted executors to build GTM assets — landing pages, email workflows, experiments, and more."
-            />
-            <FeatureCard 
-              icon={<FileText size={24} />}
-              title="DIY Tools & Templates"
-              description="Explore curated playbooks, blueprints, and GTM guides. Built for doers. Not blog readers."
-            />
+        <div className="mb-16 py-12 bg-white rounded-xl shadow-sm">
+          <div className="container mx-auto">
+            <h3 className="text-2xl font-bold text-center text-gtm-dark mb-10">Our Success Stories</h3>
+            
+            <div className="flex flex-wrap justify-center gap-12 items-center">
+              <motion.div 
+                className="text-center"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <img src="/lovable-uploads/47d41dfa-b548-46e1-9254-b500a8667252.png" alt="Omnify" className="h-16 mx-auto mb-3" />
+                <div className="text-lg font-medium text-gray-700">Omnify</div>
+                <div className="text-sm text-gray-500">SaaS Platform</div>
+              </motion.div>
+              
+              <motion.div 
+                className="text-center"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <img src="/lovable-uploads/4f65b418-cdf9-4c7f-b16e-0d3fac29bef2.png" alt="ECL" className="h-16 mx-auto mb-3" />
+                <div className="text-lg font-medium text-gray-700">ECL</div>
+                <div className="text-sm text-gray-500">Capital Solutions</div>
+              </motion.div>
+              
+              <motion.div 
+                className="text-center"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <img src="/lovable-uploads/e5ca321f-aac8-45f5-be2b-2df7f7605d36.png" alt="Paddle" className="h-16 mx-auto mb-3 brightness-0 invert" />
+                <div className="text-lg font-medium text-gray-700">Paddle</div>
+                <div className="text-sm text-gray-500">Payment Infrastructure</div>
+              </motion.div>
+            </div>
           </div>
         </div>
         
-        <p className="text-center text-gray-600 italic">Whatever your stage or style, we give you GTM structure — your way.</p>
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-5xl mx-auto">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="mb-16"
+            >
+              <CarouselContent>
+                <CarouselItem className="md:basis-1/2">
+                  <TestimonialCard 
+                    quote="We built a US launch plan in 6 weeks with GTM Sprints — what would've taken us 6 months."
+                    author="Vikram"
+                    company="CEO @ Omnify"
+                  />
+                </CarouselItem>
+                <CarouselItem className="md:basis-1/2">
+                  <TestimonialCard 
+                    quote="GTM Unbound gave us rituals we still use across GTM teams."
+                    author="Alex"
+                    company="GTM Lead @ Paddle"
+                  />
+                </CarouselItem>
+                <CarouselItem className="md:basis-1/2">
+                  <TestimonialCard 
+                    quote="Their guidance helped us double our conversion rate in just two months."
+                    author="Priya"
+                    company="Founder @ ECL"
+                  />
+                </CarouselItem>
+              </CarouselContent>
+              <div className="flex justify-center mt-4">
+                <CarouselPrevious className="static transform-none mx-2" />
+                <CarouselNext className="static transform-none mx-2" />
+              </div>
+            </Carousel>
+            
+            <div className="mb-12">
+              <h3 className="text-2xl font-bold text-gtm-dark mb-6 text-center">What We Offer Founders</h3>
+              <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                We support teams at all stages of GTM maturity — whether you're building the system, scaling it, or fine-tuning it.
+              </p>
+              
+              <motion.div 
+                className="grid md:grid-cols-3 gap-8"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                <motion.div variants={itemVariants}>
+                  <FeatureCard 
+                    icon={<Brain size={24} />}
+                    title="Expert Collaboration"
+                    description="Strategy, playbooks, and feedback from domain specialists who've done it before — in PLG, pricing, positioning, and more."
+                  />
+                </motion.div>
+                <motion.div variants={itemVariants}>
+                  <FeatureCard 
+                    icon={<CheckCircle size={24} />}
+                    title="Done-for-You Execution"
+                    description="Access vetted executors to build GTM assets — landing pages, email workflows, experiments, and more."
+                  />
+                </motion.div>
+                <motion.div variants={itemVariants}>
+                  <FeatureCard 
+                    icon={<FileText size={24} />}
+                    title="DIY Tools & Templates"
+                    description="Explore curated playbooks, blueprints, and GTM guides. Built for doers. Not blog readers."
+                  />
+                </motion.div>
+              </motion.div>
+            </div>
+            
+            <div className="text-center">
+              <motion.div
+                className="inline-block"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <GradientButton className="px-8 py-3">
+                  <Rocket size={18} />
+                  <span>Start Your GTM Journey</span>
+                </GradientButton>
+              </motion.div>
+              <p className="text-center text-gray-600 italic mt-6">Whatever your stage or style, we give you GTM structure — your way.</p>
+            </div>
+          </div>
+        </div>
       </Section>
       
       {/* Experts Section */}
