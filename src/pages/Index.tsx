@@ -8,8 +8,14 @@ import FeatureCard from '@/components/FeatureCard';
 import ExpertCard from '@/components/ExpertCard';
 import EventFormat from '@/components/EventFormat';
 import StatCard from '@/components/StatCard';
+import ClientLogo from '@/components/ClientLogo';
 import GradientButton from '@/components/GradientButton';
-import { Brain, CheckCircle, Code, FileText, Mountain, LinkedinIcon, MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, Users, RefreshCw, Rocket, TrendingUp, Award } from 'lucide-react';
+import { 
+  Brain, CheckCircle, Code, FileText, Mountain, LinkedinIcon, 
+  MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, 
+  Users, RefreshCw, Rocket, TrendingUp, Award, Calendar,
+  ArrowRight, MessageSquare, Globe 
+} from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
@@ -57,6 +63,27 @@ const Index = () => {
     }
   };
 
+  const upcomingEvents = [
+    {
+      title: "GTM Strategy Hike",
+      date: "May 15, 2025",
+      location: "Marin Headlands, SF",
+      description: "Connect with founders while hiking the beautiful trails of Marin Headlands."
+    },
+    {
+      title: "PLG Roundtable",
+      date: "June 2, 2025",
+      location: "Virtual",
+      description: "Deep dive into product-led growth strategies with experts from leading SaaS companies."
+    },
+    {
+      title: "India → US Expansion Workshop",
+      date: "June 20, 2025",
+      location: "Bangalore",
+      description: "Practical workshop on navigating the US market for Indian startups."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar sections={sections} />
@@ -85,13 +112,25 @@ const Index = () => {
                   animate="visible"
                 >
                   <motion.div variants={itemVariants}>
-                    <StatCard value="20+" label="Startups Supported" />
+                    <StatCard 
+                      value="20+" 
+                      label="Startups Supported" 
+                      description="Diverse range of startups from pre-seed to Series B across SaaS, Fintech, DevTools, and AI."
+                    />
                   </motion.div>
                   <motion.div variants={itemVariants}>
-                    <StatCard value="50+" label="Curated Events" />
+                    <StatCard 
+                      value="50+" 
+                      label="Curated Events" 
+                      description="Exclusive gatherings designed for meaningful connections and actionable insights."
+                    />
                   </motion.div>
                   <motion.div variants={itemVariants}>
-                    <StatCard value="10+" label="Expert Collaborators" />
+                    <StatCard 
+                      value="10+" 
+                      label="Expert Collaborators" 
+                      description="Seasoned operators with experience at top-tier companies who provide hands-on support."
+                    />
                   </motion.div>
                 </motion.div>
               </motion.div>
@@ -123,69 +162,65 @@ const Index = () => {
           centered
         />
         
-        <div className="mb-16 py-12 bg-white rounded-xl shadow-sm">
+        <div className="mb-16 py-12 bg-white rounded-xl shadow-md">
           <div className="container mx-auto">
             <h3 className="text-2xl font-bold text-center text-gtm-dark mb-10">Our Success Stories</h3>
             
-            <div className="flex flex-wrap justify-center gap-12 items-center">
-              <motion.div 
-                className="text-center"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                <img src="/lovable-uploads/47d41dfa-b548-46e1-9254-b500a8667252.png" alt="Omnify" className="h-16 mx-auto mb-3" />
-                <div className="text-lg font-medium text-gray-700">Omnify</div>
-                <div className="text-sm text-gray-500">SaaS Platform</div>
-              </motion.div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+              <ClientLogo 
+                src="/lovable-uploads/0e281ef4-b0d5-4345-bbc2-148c9944f302.png" 
+                alt="Omnify" 
+                name="Omnify" 
+                description="SaaS Platform" 
+              />
               
-              <motion.div 
-                className="text-center"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                <img src="/lovable-uploads/4f65b418-cdf9-4c7f-b16e-0d3fac29bef2.png" alt="ECL" className="h-16 mx-auto mb-3" />
-                <div className="text-lg font-medium text-gray-700">ECL</div>
-                <div className="text-sm text-gray-500">Capital Solutions</div>
-              </motion.div>
+              <ClientLogo 
+                src="/lovable-uploads/4f65b418-cdf9-4c7f-b16e-0d3fac29bef2.png" 
+                alt="ECL" 
+                name="ECL" 
+                description="Capital Solutions" 
+              />
               
-              <motion.div 
-                className="text-center"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                <img src="/lovable-uploads/e5ca321f-aac8-45f5-be2b-2df7f7605d36.png" alt="Paddle" className="h-16 mx-auto mb-3 brightness-0 invert" />
-                <div className="text-lg font-medium text-gray-700">Paddle</div>
-                <div className="text-sm text-gray-500">Payment Infrastructure</div>
-              </motion.div>
+              <ClientLogo 
+                src="/lovable-uploads/cfd8dbf8-6129-468b-a981-bce5f586869f.png" 
+                alt="Paddle" 
+                name="Paddle" 
+                description="Payment Infrastructure" 
+                inverted={true}
+              />
             </div>
           </div>
         </div>
         
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-5xl mx-auto">
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold text-gtm-dark mb-4 text-center">What Our Clients Say</h3>
+            </div>
+            
             <Carousel
               opts={{
-                align: "start",
+                align: "center",
                 loop: true,
               }}
               className="mb-16"
             >
               <CarouselContent>
-                <CarouselItem className="md:basis-1/2">
+                <CarouselItem className="md:basis-3/4 lg:basis-1/2">
                   <TestimonialCard 
                     quote="We built a US launch plan in 6 weeks with GTM Sprints — what would've taken us 6 months."
                     author="Vikram"
                     company="CEO @ Omnify"
                   />
                 </CarouselItem>
-                <CarouselItem className="md:basis-1/2">
+                <CarouselItem className="md:basis-3/4 lg:basis-1/2">
                   <TestimonialCard 
                     quote="GTM Unbound gave us rituals we still use across GTM teams."
                     author="Alex"
                     company="GTM Lead @ Paddle"
                   />
                 </CarouselItem>
-                <CarouselItem className="md:basis-1/2">
+                <CarouselItem className="md:basis-3/4 lg:basis-1/2">
                   <TestimonialCard 
                     quote="Their guidance helped us double our conversion rate in just two months."
                     author="Priya"
@@ -193,7 +228,7 @@ const Index = () => {
                   />
                 </CarouselItem>
               </CarouselContent>
-              <div className="flex justify-center mt-4">
+              <div className="flex justify-center mt-6">
                 <CarouselPrevious className="static transform-none mx-2" />
                 <CarouselNext className="static transform-none mx-2" />
               </div>
@@ -280,58 +315,96 @@ const Index = () => {
       </Section>
       
       {/* Events Section */}
-      <Section id="events" className="bg-gtm-light">
+      <Section id="events" className="bg-gtm-light pb-32">
         <SectionHeader 
           title="Where Founders and Operators Actually Connect"
           subtitle="We design events where real conversations happen — not panel noise. From IRL hikes to focused roundtables, we connect people solving the same GTM problems."
           centered
         />
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          <EventFormat 
-            icon={<Mountain size={24} />}
-            title="Hikes"
-          />
-          <EventFormat 
-            icon={<RefreshCw size={24} />}
-            title="Roundtables"
-          />
-          <EventFormat 
-            icon={<Target size={24} />}
-            title="Workshops"
-          />
-          <EventFormat 
-            icon={<Puzzle size={24} />}
-            title="Partner Collaborations"
-          />
-        </div>
-        
-        <p className="text-center text-gray-600 mb-12">
-          We've hosted 50+ GTM experiences — and we're just getting started.
-        </p>
-        
-        <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
-          <h3 className="text-xl font-semibold text-gtm-dark mb-4 text-center">
-            Want to hear about upcoming events?
-          </h3>
-          <form onSubmit={handleEmailSubmit} className="space-y-4">
-            <div>
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gtm-pink"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <EventFormat 
+              icon={<Mountain size={28} />}
+              title="Hikes"
+              description="Connect with peers in nature while discussing your biggest GTM challenges."
+            />
+            <EventFormat 
+              icon={<RefreshCw size={28} />}
+              title="Roundtables"
+              description="Intimate discussions with 6-8 founders facing similar GTM challenges."
+            />
+            <EventFormat 
+              icon={<Target size={28} />}
+              title="Workshops"
+              description="Hands-on sessions to build specific GTM assets for your business."
+            />
+            <EventFormat 
+              icon={<Puzzle size={28} />}
+              title="Partner Events"
+              description="Collaborations with complementary platforms to expand your network."
+            />
+          </div>
+          
+          <div className="mt-20 mb-16">
+            <h3 className="text-2xl font-bold text-gtm-dark mb-8 text-center">Upcoming Events</h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              {upcomingEvents.map((event, index) => (
+                <motion.div 
+                  key={index}
+                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all"
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                >
+                  <div className="bg-gradient-gtm h-2"></div>
+                  <div className="p-6">
+                    <div className="flex items-center text-gray-500 mb-2">
+                      <Calendar size={16} className="mr-2" />
+                      <span className="text-sm">{event.date}</span>
+                    </div>
+                    <div className="flex items-center text-gray-500 mb-4">
+                      <Globe size={16} className="mr-2" />
+                      <span className="text-sm">{event.location}</span>
+                    </div>
+                    <h4 className="text-lg font-bold text-gtm-dark mb-2">{event.title}</h4>
+                    <p className="text-gray-600 text-sm mb-4">{event.description}</p>
+                    <button className="text-gtm-pink flex items-center text-sm font-medium hover:underline">
+                      Learn More <ArrowRight size={14} className="ml-1" />
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-            <GradientButton type="submit" className="w-full">
-              Get Event Updates
-            </GradientButton>
-            <p className="text-xs text-gray-500 text-center">
-              No spam, just high-signal invites.
-            </p>
-          </form>
+          </div>
+          
+          <p className="text-center text-gray-700 mb-12 font-medium">
+            We've hosted 50+ GTM experiences — and we're just getting started.
+          </p>
+          
+          <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold text-gtm-dark mb-4 text-center">
+              Want to hear about upcoming events?
+            </h3>
+            <form onSubmit={handleEmailSubmit} className="space-y-4">
+              <div>
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gtm-pink"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <GradientButton type="submit" className="w-full">
+                Get Event Updates
+              </GradientButton>
+              <p className="text-xs text-gray-500 text-center">
+                No spam, just high-signal invites.
+              </p>
+            </form>
+          </div>
         </div>
       </Section>
       
