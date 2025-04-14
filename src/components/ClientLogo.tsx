@@ -32,14 +32,14 @@ const ClientLogo = ({
       transition={{ type: "spring", stiffness: 400, damping: 10 }}
     >
       <div className={cn(
-        "mb-4 px-4 py-6 flex items-center justify-center h-28 w-full rounded-lg",
+        "mb-4 px-4 py-6 flex items-center justify-center h-32 w-full rounded-lg",
         bgColor
       )}>
         <img 
           src={src} 
           alt={alt} 
           className={cn(
-            "h-20 md:h-24 object-contain mx-auto max-w-[80%]",
+            "h-24 md:h-28 object-contain mx-auto max-w-[80%]",
             inverted && "brightness-0 invert"
           )} 
         />

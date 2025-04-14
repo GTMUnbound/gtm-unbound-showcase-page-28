@@ -21,7 +21,7 @@ const EventFormat = ({ icon, title, description, className, highlightColor = "bg
       whileHover={{ scale: 1.03, y: -5 }}
       transition={{ type: "spring", stiffness: 300, damping: 15 }}
     >
-      <div className={cn("absolute h-1 w-full top-0 left-0", highlightColor)}></div>
+      <div className={cn("absolute h-2 w-full top-0 left-0", highlightColor)}></div>
       <div className="text-gtm-pink bg-gtm-light p-4 rounded-full mb-4 z-10">
         {icon}
       </div>

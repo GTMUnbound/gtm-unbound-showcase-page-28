@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -9,17 +10,19 @@ import EventFormat from '@/components/EventFormat';
 import StatCard from '@/components/StatCard';
 import ClientLogo from '@/components/ClientLogo';
 import GradientButton from '@/components/GradientButton';
+import PricingCard from '@/components/PricingCard';
 import { 
   Brain, CheckCircle, Code, FileText, Mountain, LinkedinIcon, 
   MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, 
   Users, RefreshCw, Rocket, TrendingUp, Award, Calendar,
-  ArrowRight, MessageSquare, Globe 
+  ArrowRight, MessageSquare, Globe, Check 
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const Index = () => {
   const [email, setEmail] = useState('');
+  const [newsletterEmail, setNewsletterEmail] = useState('');
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,6 +32,16 @@ const Index = () => {
     setEmail('');
     // Show success notification
     alert('Thanks for signing up! We\'ll keep you updated on upcoming events.');
+  };
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle newsletter subscription
+    console.log('Newsletter subscription:', newsletterEmail);
+    // Clear the form
+    setNewsletterEmail('');
+    // Show success notification
+    alert('Thanks for subscribing to our newsletter!');
   };
 
   const sections = [
@@ -80,6 +93,61 @@ const Index = () => {
       date: "June 20, 2025",
       location: "Bangalore",
       description: "Practical workshop on navigating the US market for Indian startups."
+    }
+  ];
+  
+  const pricingPlans = [
+    {
+      name: "Basic Plan",
+      price: {
+        monthly: "$99",
+        yearly: "$1,000"
+      },
+      description: "For early-stage teams looking to establish GTM motion.",
+      features: [
+        "1 expert session annually",
+        "Access to curated events",
+        "Full GTM playbook",
+        "On-demand content & resources"
+      ],
+      cta: "Get Started",
+      highlight: false,
+      icon: <TrendingUp className="h-6 w-6" />
+    },
+    {
+      name: "Plus Plan",
+      price: {
+        monthly: "$600",
+        yearly: "$5,999"
+      },
+      description: "For founders and GTM leads scaling actively, with structured support and self-led execution.",
+      features: [
+        "2 expert sessions per month (tailored to your team)",
+        "Full GTM playbook + advanced templates",
+        "Access to all GTM Unbound content and tools",
+        "Invitations to every GTM Unbound event"
+      ],
+      cta: "Choose Plus",
+      highlight: true,
+      icon: <Rocket className="h-6 w-6" />
+    },
+    {
+      name: "Pro Plan",
+      price: {
+        monthly: "$999",
+        yearly: "$10,000"
+      },
+      description: "For GTM teams that want execution help alongside strategy.",
+      features: [
+        "Everything in Plus plan",
+        "Access to curated executors (freelancers, specialists, PMMs)",
+        "Hands-on help to run campaigns, build assets, and launch experiments",
+        "Weekly reviews with strategist + executor alignment"
+      ],
+      footnote: "Ideal for teams ready to grow faster without waiting to hire.",
+      cta: "Choose Pro",
+      highlight: false,
+      icon: <Award className="h-6 w-6" />
     }
   ];
   
@@ -215,7 +283,7 @@ const Index = () => {
               <CarouselContent>
                 <CarouselItem className="md:basis-3/4 lg:basis-1/2">
                   <TestimonialCard 
-                    quote="We built a US launch plan in 6 weeks with GTM Sprints — what would've taken us 6 months."
+                    quote="We built a US launch plan in 8 weeks with GTM Sprints — what would've taken us 6 months."
                     author="Vikram"
                     company="CEO @ Omnify"
                   />
@@ -258,48 +326,65 @@ const Index = () => {
                   <FeatureCard 
                     icon={<Brain size={24} />}
                     title="Expert Collaboration"
-                    description="Strategy, playbooks, and feedback from domain specialists who've done it before — in PLG, pricing, positioning, and more."
+                    description="Get paired with GTM operators for strategy, feedback, playbooks, and ongoing reviews."
                   />
                 </motion.div>
                 <motion.div variants={itemVariants}>
                   <FeatureCard 
                     icon={<CheckCircle size={24} />}
                     title="Done-for-You Execution"
-                    description="Access vetted executors to build GTM assets — landing pages, email workflows, experiments, and more."
+                    description="We match you with vetted executors — PMs, growth freelancers, RevOps specialists — who implement GTM strategy end-to-end."
                   />
                 </motion.div>
                 <motion.div variants={itemVariants}>
                   <FeatureCard 
                     icon={<FileText size={24} />}
-                    title="DIY Tools & Templates"
-                    description="Explore curated playbooks, blueprints, and GTM guides. Built for doers. Not blog readers."
+                    title="DIY GTM Support"
+                    description="Access curated templates, GTM blueprints, and expert-built content. No fluff. No filler. Just execution frameworks that work."
                   />
                 </motion.div>
               </motion.div>
             </div>
             
             <div className="text-center">
-              <motion.div
-                className="inline-block"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                <GradientButton className="px-8 py-3">
-                  <Rocket size={18} />
-                  <span>Start Your GTM Journey</span>
-                </GradientButton>
-              </motion.div>
-              <p className="text-center text-gray-600 italic mt-6">Whatever your stage or style, we give you GTM structure — your way.</p>
+              <p className="text-center text-gray-600 italic mb-6">Whether you want expert help, execution support, or tools to do it yourself — we meet you where you are.</p>
             </div>
           </div>
         </div>
       </Section>
       
+      {/* Pricing Section */}
+      <Section id="pricing" className="bg-white py-24">
+        <SectionHeader 
+          title="Plans & Pricing"
+          subtitle="We offer three flexible tiers based on your team's capacity and growth stage."
+          centered
+        />
+        
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {pricingPlans.map((plan, index) => (
+              <PricingCard 
+                key={index}
+                name={plan.name}
+                price={plan.price}
+                description={plan.description}
+                features={plan.features}
+                cta={plan.cta}
+                highlight={plan.highlight}
+                icon={plan.icon}
+                footnote={plan.footnote}
+              />
+            ))}
+          </div>
+        </div>
+      </Section>
+      
       {/* Experts Section */}
-      <Section id="experts" className="bg-white">
+      <Section id="experts" className="bg-gray-50">
         <SectionHeader 
           title="Built by Operators. Backed by Execution."
-          subtitle="Our expert network spans across PLG, brand, sales, and growth — helping you unblock bottlenecks and build momentum."
+          subtitle="Our network includes proven GTM leaders — not generic mentors. We match you with experts who've scaled startups at every stage."
           centered
         />
         
@@ -307,17 +392,17 @@ const Index = () => {
           <ExpertCard 
             name="Jane D."
             role="Ex-VP Marketing @ Notion"
-            expertise="PLG, Positioning"
+            expertise="PLG, Positioning, US Expansion"
           />
           <ExpertCard 
             name="Arjun M."
             role="Growth @ Razorpay"
-            expertise="Sales Ops, India–US GTM"
+            expertise="Sales Ops, India–US GTM, Pricing Strategy"
           />
         </div>
         
         <p className="text-center text-gray-600 italic">
-          You don't need 10 advisors. You need the right one, at the right time — and we find them for you.
+          You don't need more advice. You need people who've actually done it — and still do.
         </p>
       </Section>
       
@@ -325,7 +410,7 @@ const Index = () => {
       <Section id="events" className="bg-gtm-light pb-32">
         <SectionHeader 
           title="Where Founders and Operators Actually Connect"
-          subtitle="We design events where real conversations happen — not panel noise. From IRL hikes to focused roundtables, we connect people solving the same GTM problems."
+          subtitle="We design events that drive depth — not noise."
           centered
         />
         
@@ -334,25 +419,25 @@ const Index = () => {
             <EventFormat 
               icon={<Mountain size={28} />}
               title="Hikes"
-              description="Connect with peers in nature while discussing your biggest GTM challenges."
+              description="IRL founder retreats"
               highlightColor="bg-green-500"
             />
             <EventFormat 
               icon={<RefreshCw size={28} />}
               title="Roundtables"
-              description="Intimate discussions with 6-8 founders facing similar GTM challenges."
+              description="Functional deep dives"
               highlightColor="bg-blue-500"
             />
             <EventFormat 
               icon={<Target size={28} />}
               title="Workshops"
-              description="Hands-on sessions to build specific GTM assets for your business."
+              description="Experiments, pricing, OKRs"
               highlightColor="bg-orange-500"
             />
             <EventFormat 
               icon={<Puzzle size={28} />}
-              title="Partner Events"
-              description="Collaborations with complementary platforms to expand your network."
+              title="Partner Collabs"
+              description="Ecosystem-driven events"
               highlightColor="bg-purple-500"
             />
           </div>
@@ -394,7 +479,7 @@ const Index = () => {
           </div>
           
           <p className="text-center text-gray-700 mb-12 font-medium">
-            We've hosted 50+ GTM experiences — and we're just getting started.
+            50+ events hosted globally. Built to solve real GTM problems — not for stage time.
           </p>
           
           <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
@@ -426,42 +511,60 @@ const Index = () => {
       {/* About Section */}
       <Section id="about" className="bg-white">
         <SectionHeader 
-          title="Why We Exist"
-          subtitle="Too many early-stage teams are left guessing at GTM. GTM Unbound exists to change that — by embedding execution support where it matters most."
+          title="Why GTM Unbound Exists"
+          subtitle="Most early-stage teams figure out GTM alone — through blog posts, Slack groups, and scattered advice. We built GTM Unbound to change that."
           centered
         />
         
         <div className="max-w-3xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            <div className="flex items-start space-x-3">
-              <div className="text-gtm-pink mt-1">
-                <CheckCircle size={20} />
+          <p className="text-center text-gray-600 mb-8">
+            Our goal: To make high-leverage go-to-market systems accessible to early- and growth-stage founders — through real operators, curated playbooks, and high-trust events.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
+              <div className="text-gtm-pink bg-gtm-light p-3 rounded-full mb-4">
+                <Rocket size={24} />
               </div>
-              <p className="text-gray-700">Clear strategy</p>
+              <p className="text-gray-700 font-medium text-center">Launch faster</p>
             </div>
-            <div className="flex items-start space-x-3">
-              <div className="text-gtm-pink mt-1">
-                <CheckCircle size={20} />
+            <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
+              <div className="text-gtm-pink bg-gtm-light p-3 rounded-full mb-4">
+                <Brain size={24} />
               </div>
-              <p className="text-gray-700">Repeatable systems</p>
+              <p className="text-gray-700 font-medium text-center">Scale smarter</p>
             </div>
-            <div className="flex items-start space-x-3">
-              <div className="text-gtm-pink mt-1">
-                <CheckCircle size={20} />
+            <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
+              <div className="text-gtm-pink bg-gtm-light p-3 rounded-full mb-4">
+                <Trophy size={24} />
               </div>
-              <p className="text-gray-700">Trusted expert support</p>
-            </div>
-            <div className="flex items-start space-x-3">
-              <div className="text-gtm-pink mt-1">
-                <CheckCircle size={20} />
-              </div>
-              <p className="text-gray-700">Global expansion readiness (India ⇆ US)</p>
+              <p className="text-gray-700 font-medium text-center">Build GTM muscle for the long run</p>
             </div>
           </div>
           
-          <p className="text-center text-gray-600 italic">
-            Whether you're pre-revenue or post-Product Market Fit, we're building infrastructure to support your next stage of growth.
-          </p>
+          <div className="max-w-md mx-auto bg-gtm-light p-8 rounded-lg mt-16">
+            <h3 className="text-xl font-semibold text-gtm-dark mb-4 text-center">
+              Subscribe to the Unbound Newsletter
+            </h3>
+            <p className="text-gray-600 text-center mb-6">
+              Get weekly GTM insights from operators in your inbox. Templates, frameworks, and ideas that actually move the needle.
+            </p>
+            <form onSubmit={handleNewsletterSubmit} className="space-y-4">
+              <div>
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gtm-pink"
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <GradientButton type="submit" className="w-full">
+                Subscribe
+              </GradientButton>
+            </form>
+          </div>
         </div>
       </Section>
       
