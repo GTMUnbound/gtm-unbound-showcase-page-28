@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -11,6 +10,7 @@ import StatCard from '@/components/StatCard';
 import ClientLogo from '@/components/ClientLogo';
 import GradientButton from '@/components/GradientButton';
 import PricingCard from '@/components/PricingCard';
+import HeroBackground from '@/components/HeroBackground';
 import { 
   Brain, CheckCircle, Code, FileText, Mountain, LinkedinIcon, 
   MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, 
@@ -157,8 +157,11 @@ const Index = () => {
       
       {/* Hero Section */}
       <Section id="home" className="pt-32 pb-20 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row items-center">
+        <div className="container mx-auto px-4 md:px-6 relative">
+          {/* Add the background component here - using image for now, can be switched to video */}
+          <HeroBackground type="image" />
+          
+          <div className="flex flex-col md:flex-row items-center relative z-10">
             <div className="md:w-3/5 mb-10 md:mb-0">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -175,12 +178,12 @@ const Index = () => {
                 
                 {/* Stats in one row */}
                 <motion.div 
-                  className="flex flex-row gap-4 mt-8 overflow-x-auto pb-4 md:overflow-visible md:flex-nowrap"
+                  className="flex flex-row gap-6 mt-8 overflow-x-auto pb-4 md:overflow-visible md:flex-nowrap"
                   variants={containerVariants}
                   initial="hidden"
                   animate="visible"
                 >
-                  <motion.div variants={itemVariants} className="min-w-44">
+                  <motion.div variants={itemVariants} className="min-w-[160px] max-w-[200px] flex-1">
                     <StatCard 
                       value="20+" 
                       label="Startups Supported" 
@@ -188,7 +191,7 @@ const Index = () => {
                       compact
                     />
                   </motion.div>
-                  <motion.div variants={itemVariants} className="min-w-44">
+                  <motion.div variants={itemVariants} className="min-w-[160px] max-w-[200px] flex-1">
                     <StatCard 
                       value="50+" 
                       label="Curated Events" 
@@ -196,10 +199,10 @@ const Index = () => {
                       compact
                     />
                   </motion.div>
-                  <motion.div variants={itemVariants} className="min-w-44">
+                  <motion.div variants={itemVariants} className="min-w-[160px] max-w-[200px] flex-1">
                     <StatCard 
                       value="10+" 
-                      label="Expert Collaborators" 
+                      label="GTM Experts" 
                       description="Seasoned operators with experience at top-tier companies who provide hands-on support."
                       compact
                     />

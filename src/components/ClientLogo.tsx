@@ -33,14 +33,14 @@ const ClientLogo = ({
     >
       <div className={cn(
         "mb-4 px-4 py-6 flex items-center justify-center h-32 w-full rounded-lg",
-        bgColor
+        bgColor || "bg-white"
       )}>
         <img 
           src={src} 
           alt={alt} 
           className={cn(
             "h-24 md:h-28 object-contain mx-auto max-w-[80%]",
-            inverted && "brightness-0 invert"
+            inverted ? "brightness-0 invert" : "contrast-125"
           )} 
         />
       </div>
