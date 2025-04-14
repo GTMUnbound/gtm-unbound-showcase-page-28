@@ -11,6 +11,7 @@ import ClientLogo from '@/components/ClientLogo';
 import GradientButton from '@/components/GradientButton';
 import PricingCard from '@/components/PricingCard';
 import HeroBackground from '@/components/HeroBackground';
+import ProcessVisualization from '@/components/ProcessVisualization';
 import { 
   Brain, CheckCircle, Code, FileText, Mountain, LinkedinIcon, 
   MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, 
@@ -158,11 +159,11 @@ const Index = () => {
       {/* Hero Section */}
       <Section id="home" className="pt-32 pb-20 bg-white">
         <div className="container mx-auto px-4 md:px-6 relative">
-          {/* Using the process visualization instead of image/video */}
-          <HeroBackground type="process" />
+          {/* Using regular image background */}
+          <HeroBackground type="image" />
           
           <div className="flex flex-col md:flex-row items-center relative z-10">
-            <div className="w-full mb-10 md:mb-0">
+            <div className="w-full md:w-3/5 mb-10 md:mb-0">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -209,6 +210,11 @@ const Index = () => {
                   </motion.div>
                 </motion.div>
               </motion.div>
+            </div>
+            
+            {/* Process Visualization in right column */}
+            <div className="w-full md:w-2/5 flex justify-center items-center">
+              <ProcessVisualization />
             </div>
           </div>
         </div>
