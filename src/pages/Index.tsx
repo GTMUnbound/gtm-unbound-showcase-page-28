@@ -158,11 +158,11 @@ const Index = () => {
       {/* Hero Section */}
       <Section id="home" className="pt-32 pb-20 bg-white">
         <div className="container mx-auto px-4 md:px-6 relative">
-          {/* Add the background component here - using image for now, can be switched to video */}
-          <HeroBackground type="image" />
+          {/* Using the process visualization instead of image/video */}
+          <HeroBackground type="process" />
           
           <div className="flex flex-col md:flex-row items-center relative z-10">
-            <div className="md:w-3/5 mb-10 md:mb-0">
+            <div className="w-full mb-10 md:mb-0">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -208,21 +208,6 @@ const Index = () => {
                     />
                   </motion.div>
                 </motion.div>
-              </motion.div>
-            </div>
-            <div className="md:w-2/5 flex justify-center md:justify-end">
-              <motion.div 
-                className="relative"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <div className="absolute inset-0 bg-gradient-gtm opacity-10 rounded-full blur-3xl"></div>
-                <img 
-                  src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png" 
-                  alt="GTM Unbound" 
-                  className="w-64 h-64 relative z-10"
-                />
               </motion.div>
             </div>
           </div>
