@@ -335,32 +335,45 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* Experts Section - with reduced spacing */}
+      {/* Experts Section */}
       <Section id="experts" className="bg-gray-50 py-12">
         <SectionHeader 
-          title="Built by Operators. Backed by Execution."
-          subtitle="Our network includes proven GTM leaders — not generic mentors. We match you with experts who've scaled startups at every stage."
+          title="Meet Our GTM Sherpas"
+          subtitle="Top GTM experts helping you move faster."
           centered
         />
         
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <ExpertCard 
-            name="Jane D."
-            role="Ex-VP Marketing @ Notion"
-            expertise="PLG, Positioning, US Expansion"
+            name="Anil Advani"
+            role="Founder & Managing Partner, Inventus Law"
+            expertise={["Legal", "US Market", "Fundraising"]}
+            imageSrc="/lovable-uploads/6b86fecb-a25f-41ee-8e42-a42440048546.png"
           />
           <ExpertCard 
-            name="Arjun M."
-            role="Growth @ Razorpay"
-            expertise="Sales Ops, India–US GTM, Pricing Strategy"
+            name="Manik M"
+            role="Co-Founder and MD, Omnify"
+            expertise={["SaaS", "B2B", "India"]}
+          />
+          <ExpertCard 
+            name="Prabhu D Gupta"
+            role="Entrepreneur in Residence, GTM Unbound"
+            expertise={["Strategy", "GTM", "Sales"]}
+          />
+          <ExpertCard 
+            name="Aditi Aggarwal Mehta"
+            role="Founder, GTM Unbound"
+            expertise={["Strategy", "Global", "Product"]}
           />
         </div>
         
-        <p className="text-center text-gray-600 italic">
-          You don't need more advice. You need people who've actually done it — and still do.
-        </p>
+        <div className="flex justify-center">
+          <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md transition-colors">
+            See All Experts
+          </button>
+        </div>
       </Section>
-      
+
       {/* Events Section */}
       <Section id="events" className="bg-gtm-light pb-32">
         <SectionHeader 
