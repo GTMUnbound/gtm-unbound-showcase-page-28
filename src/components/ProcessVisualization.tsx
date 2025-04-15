@@ -8,31 +8,31 @@ const ProcessVisualization: React.FC = () => {
 
   const steps = [
     {
-      icon: <Brain className="w-12 h-12 text-gtm-pink" />,
+      image: "/lovable-uploads/47d41dfa-b548-46e1-9254-b500a8667252.png",
       title: "Facing the GTM Fog",
       description: "Founders feel stuck on their go-to-market strategy",
       className: "bg-soft-blue"
     },
     {
-      icon: <Users className="w-12 h-12 text-gtm-pink" />,
+      image: "/lovable-uploads/e5ca321f-aac8-45f5-be2b-2df7f7605d36.png",
       title: "Expert Match",
       description: "Matched with proven GTM experts",
       className: "bg-soft-green"
     },
     {
-      icon: <BookOpen className="w-12 h-12 text-gtm-pink" />,
+      image: "/lovable-uploads/47d41dfa-b548-46e1-9254-b500a8667252.png",
       title: "Playbook",
       description: "Create a customized GTM strategy",
       className: "bg-soft-yellow"
     },
     {
-      icon: <Users className="w-12 h-12 text-gtm-pink" />,
+      image: "/lovable-uploads/e5ca321f-aac8-45f5-be2b-2df7f7605d36.png",
       title: "Execution",
       description: "Assemble the right team to execute",
       className: "bg-soft-orange"
     },
     {
-      icon: <Globe className="w-12 h-12 text-gtm-pink" />,
+      image: "/lovable-uploads/47d41dfa-b548-46e1-9254-b500a8667252.png",
       title: "Launch",
       description: "Scale across borders with confidence",
       className: "bg-soft-purple"
@@ -48,7 +48,7 @@ const ProcessVisualization: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-full md:max-w-md mx-auto relative h-[400px] flex items-center justify-center">
+    <div className="w-full md:max-w-md mx-auto relative h-[500px] flex items-center justify-center">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -56,11 +56,15 @@ const ProcessVisualization: React.FC = () => {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -50 }}
           transition={{ duration: 0.5 }}
-          className={`w-full p-6 rounded-xl shadow-lg ${steps[currentIndex].className} border border-gray-100`}
+          className={`w-full p-6 rounded-xl shadow-md ${steps[currentIndex].className} border border-gray-100`}
         >
           <div className="flex flex-col items-center text-center space-y-4">
-            <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-sm">
-              {steps[currentIndex].icon}
+            <div className="w-full h-48 mb-4 overflow-hidden rounded-lg">
+              <img 
+                src={steps[currentIndex].image} 
+                alt={steps[currentIndex].title}
+                className="w-full h-full object-cover"
+              />
             </div>
             <h3 className="text-xl font-bold text-gtm-dark">
               {steps[currentIndex].title}
