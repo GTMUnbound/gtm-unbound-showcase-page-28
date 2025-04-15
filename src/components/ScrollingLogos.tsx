@@ -26,15 +26,15 @@ const ScrollingLogos = () => {
             alt="Omnify" 
             name="Omnify" 
             description="SaaS Platform" 
-            bgColor="bg-gray-50"
+            bgColor="bg-white"
           />
           
           <ClientLogo 
-            src="/lovable-uploads/64124847-58f5-4601-9a54-3544fa2436b1.png" 
+            src="/lovable-uploads/9d40c806-060c-4d80-b3c8-f9fd5f977ebc.png" 
             alt="ECL" 
             name="ECL" 
             description="Capital Solutions" 
-            bgColor="bg-gray-50"
+            bgColor="bg-white"
           />
           
           <ClientLogo 
@@ -43,7 +43,7 @@ const ScrollingLogos = () => {
             name="Paddle" 
             description="Payment Infrastructure" 
             inverted={true}
-            bgColor="bg-gray-900"
+            bgColor="bg-white"
           />
           
           {/* Duplicate logos for seamless scrolling */}
@@ -52,15 +52,15 @@ const ScrollingLogos = () => {
             alt="Omnify" 
             name="Omnify" 
             description="SaaS Platform" 
-            bgColor="bg-gray-50"
+            bgColor="bg-white"
           />
           
           <ClientLogo 
-            src="/lovable-uploads/64124847-58f5-4601-9a54-3544fa2436b1.png" 
+            src="/lovable-uploads/9d40c806-060c-4d80-b3c8-f9fd5f977ebc.png" 
             alt="ECL" 
             name="ECL" 
             description="Capital Solutions" 
-            bgColor="bg-gray-50"
+            bgColor="bg-white"
           />
         </div>
       </motion.div>
