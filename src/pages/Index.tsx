@@ -90,10 +90,29 @@ const Index = () => {
       description: "Deep dive into product-led growth strategies with experts from leading SaaS companies."
     },
     {
-      title: "India → US Expansion Workshop",
+      title: "Mixers",
       date: "June 20, 2025",
       location: "Bangalore",
-      description: "Practical workshop on navigating the US market for Indian startups."
+      description: "Curated founder + expert gatherings for signal-rich conversations"
+    }
+  ];
+
+  // Update the stats content
+  const stats = [
+    {
+      value: "20+",
+      label: "Startups Supported",
+      description: "High-growth SaaS and AI startups across India and the US are building with GTM Unbound — from early GTM to international expansion."
+    },
+    {
+      value: "50+",
+      label: "Curated Events",
+      description: "Curated gatherings where founders exchange real playbooks, battle-tested insights, and build together — not just network."
+    },
+    {
+      value: "10+",
+      label: "GTM Experts",
+      description: "GTM Unbound connects you with industry leaders who've cracked markets, built categories, and deliver real execution support — not just advice."
     }
   ];
   
@@ -184,30 +203,16 @@ const Index = () => {
                   initial="hidden"
                   animate="visible"
                 >
-                  <motion.div variants={itemVariants} className="min-w-[160px] max-w-[200px] flex-1">
-                    <StatCard 
-                      value="20+" 
-                      label="Startups Supported" 
-                      description="Diverse range of startups from pre-seed to Series B across SaaS, Fintech, DevTools, and AI."
-                      compact
-                    />
-                  </motion.div>
-                  <motion.div variants={itemVariants} className="min-w-[160px] max-w-[200px] flex-1">
-                    <StatCard 
-                      value="50+" 
-                      label="Curated Events" 
-                      description="Exclusive gatherings designed for meaningful connections and actionable insights."
-                      compact
-                    />
-                  </motion.div>
-                  <motion.div variants={itemVariants} className="min-w-[160px] max-w-[200px] flex-1">
-                    <StatCard 
-                      value="10+" 
-                      label="GTM Experts" 
-                      description="Seasoned operators with experience at top-tier companies who provide hands-on support."
-                      compact
-                    />
-                  </motion.div>
+                  {stats.map((stat, index) => (
+                    <motion.div variants={itemVariants} className="min-w-[160px] max-w-[200px] flex-1" key={index}>
+                      <StatCard 
+                        value={stat.value} 
+                        label={stat.label} 
+                        description={stat.description}
+                        compact
+                      />
+                    </motion.div>
+                  ))}
                 </motion.div>
               </motion.div>
             </div>

@@ -1,88 +1,90 @@
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Brain, Rocket, BookOpen, Users, Globe } from 'lucide-react';
 
 const ProcessVisualization: React.FC = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const steps = [
     {
-      icon: <Brain className="w-6 h-6 text-gtm-pink" />,
-      title: "GTM Problem",
-      description: "Founders feel stuck on their go-to-market strategy"
+      icon: <Brain className="w-12 h-12 text-gtm-pink" />,
+      title: "Facing the GTM Fog",
+      description: "Founders feel stuck on their go-to-market strategy",
+      className: "bg-soft-blue"
     },
     {
-      icon: <Users className="w-6 h-6 text-gtm-pink" />,
+      icon: <Users className="w-12 h-12 text-gtm-pink" />,
       title: "Expert Match",
-      description: "Matched with proven GTM experts"
+      description: "Matched with proven GTM experts",
+      className: "bg-soft-green"
     },
     {
-      icon: <BookOpen className="w-6 h-6 text-gtm-pink" />,
+      icon: <BookOpen className="w-12 h-12 text-gtm-pink" />,
       title: "Playbook",
-      description: "Create a customized GTM strategy"
+      description: "Create a customized GTM strategy",
+      className: "bg-soft-yellow"
     },
     {
-      icon: <Rocket className="w-6 h-6 text-gtm-pink" />,
+      icon: <Users className="w-12 h-12 text-gtm-pink" />,
       title: "Execution",
-      description: "Assemble the right team to execute"
+      description: "Assemble the right team to execute",
+      className: "bg-soft-orange"
     },
     {
-      icon: <Globe className="w-6 h-6 text-gtm-pink" />,
+      icon: <Globe className="w-12 h-12 text-gtm-pink" />,
       title: "Launch",
-      description: "Scale across borders with confidence"
+      description: "Scale across borders with confidence",
+      className: "bg-soft-purple"
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.3 }
-    }
-  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % steps.length);
+    }, 3000);
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5 }
-    }
-  };
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <motion.div 
-      className="relative w-full md:max-w-md mx-auto"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-    >
-      <div className="flex flex-col gap-5 md:gap-6">
-        {steps.map((step, index) => (
-          <motion.div 
+    <div className="w-full md:max-w-md mx-auto relative h-[400px] flex items-center justify-center">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.5 }}
+          className={`w-full p-6 rounded-xl shadow-lg ${steps[currentIndex].className} border border-gray-100`}
+        >
+          <div className="flex flex-col items-center text-center space-y-4">
+            <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-sm">
+              {steps[currentIndex].icon}
+            </div>
+            <h3 className="text-xl font-bold text-gtm-dark">
+              {steps[currentIndex].title}
+            </h3>
+            <p className="text-gray-600">
+              {steps[currentIndex].description}
+            </p>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+      
+      <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+        {steps.map((_, index) => (
+          <button
             key={index}
-            className="flex items-center bg-white rounded-xl p-4 shadow-sm border border-gray-100"
-            variants={itemVariants}
-          >
-            <div className="flex-shrink-0 w-12 h-12 bg-gtm-light rounded-full flex items-center justify-center mr-4">
-              {step.icon}
-            </div>
-            <div>
-              <h4 className="font-semibold text-gtm-dark">{step.title}</h4>
-              <p className="text-sm text-gray-600">{step.description}</p>
-            </div>
-            {index < steps.length - 1 && (
-              <motion.div 
-                className="absolute left-6 -bottom-5 h-5 w-0.5 bg-gtm-pink"
-                initial={{ scaleY: 0 }}
-                animate={{ scaleY: 1 }}
-                transition={{ duration: 0.3, delay: 0.5 + (index * 0.3) }}
-                style={{ top: `calc(100% - ${(index + 1) * 100}%)` }}
-              />
-            )}
-          </motion.div>
+            onClick={() => setCurrentIndex(index)}
+            className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+              index === currentIndex ? 'bg-gtm-pink' : 'bg-gray-300'
+            }`}
+            aria-label={`Go to step ${index + 1}`}
+          />
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 };
 
