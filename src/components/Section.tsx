@@ -14,7 +14,7 @@ const Section = ({ id, children, className, fullWidth = false }: SectionProps) =
     <section 
       id={id} 
       className={cn(
-        "py-8", // Reduced from py-12 to py-8
+        "py-8", // Reduced from py-12
         className
       )}
     >
