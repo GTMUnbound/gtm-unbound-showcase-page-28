@@ -14,7 +14,7 @@ const Section = ({ id, children, className, fullWidth = false }: SectionProps) =
     <section 
       id={id} 
       className={cn(
-        "py-20 scroll-mt-20", 
+        "py-12 scroll-mt-16", // Reduced vertical spacing
         className
       )}
     >
