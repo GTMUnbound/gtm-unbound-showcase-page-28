@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import ScrollingLogos from '@/components/ScrollingLogos';
 
 const Index = () => {
   const [email, setEmail] = useState('');
@@ -225,8 +226,8 @@ const Index = () => {
         </div>
       </Section>
       
-      {/* Startups Section - Reordered */}
-      <Section id="startups" className="bg-gray-50 py-24">
+      {/* Startups Section - with adjusted spacing */}
+      <Section id="startups" className="bg-gray-50 py-16">
         <SectionHeader 
           title="Startups Scaling with GTM Unbound"
           subtitle="We've worked with breakout teams across SaaS, Fintech, DevTools, and AI — building from India, the US, and beyond."
@@ -285,37 +286,11 @@ const Index = () => {
           </div>
         </div>
 
-        {/* 3. Startups We Work With */}
-        <div className="mb-16 py-12 bg-white rounded-xl shadow-md">
+        {/* 3. Startups We Work With - with reduced spacing */}
+        <div className="mb-12 py-8 bg-white rounded-xl shadow-md">
           <div className="container mx-auto">
-            <h3 className="text-2xl font-bold text-center text-gtm-dark mb-10">Our Success Stories</h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
-              <ClientLogo 
-                src="/lovable-uploads/0e281ef4-b0d5-4345-bbc2-148c9944f302.png" 
-                alt="Omnify" 
-                name="Omnify" 
-                description="SaaS Platform" 
-                bgColor="bg-gray-50"
-              />
-              
-              <ClientLogo 
-                src="/lovable-uploads/4f65b418-cdf9-4c7f-b16e-0d3fac29bef2.png" 
-                alt="ECL" 
-                name="ECL" 
-                description="Capital Solutions" 
-                bgColor="bg-gray-50"
-              />
-              
-              <ClientLogo 
-                src="/lovable-uploads/cfd8dbf8-6129-468b-a981-bce5f586869f.png" 
-                alt="Paddle" 
-                name="Paddle" 
-                description="Payment Infrastructure" 
-                inverted={true}
-                bgColor="bg-gray-900"
-              />
-            </div>
+            <h3 className="text-2xl font-bold text-center text-gtm-dark mb-8">Our Success Stories</h3>
+            <ScrollingLogos />
           </div>
         </div>
 
@@ -360,8 +335,8 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* Rest of the sections */}
-      <Section id="experts" className="bg-gray-50">
+      {/* Experts Section - with reduced spacing */}
+      <Section id="experts" className="bg-gray-50 py-12">
         <SectionHeader 
           title="Built by Operators. Backed by Execution."
           subtitle="Our network includes proven GTM leaders — not generic mentors. We match you with experts who've scaled startups at every stage."

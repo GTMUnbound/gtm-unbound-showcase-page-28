@@ -1,67 +1,76 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
+import { Brain, Rocket, BarChart4, Users, Laptop } from 'lucide-react';
 
-const generateStepImage = (prompt: string) => {
-  // Generate gradients that match the brand theme better
-  const gradients = {
-    'fog': 'linear-gradient(135deg, #FF8A8A 0%, #FFF0F5 100%)',
-    'match': 'linear-gradient(135deg, #FF6B9D 0%, #FFE4E1 100%)',
-    'playbook': 'linear-gradient(135deg, #FF1493 0%, #FFF0F5 100%)',
-    'execution': 'linear-gradient(135deg, #DB7093 0%, #FFE4E1 100%)',
-    'launch': 'linear-gradient(135deg, #FF69B4 0%, #FFE4E1 100%)'
+const generateStepVisual = (type: string) => {
+  const visuals = {
+    'fog': (
+      <div className="relative w-full h-full bg-gradient-to-br from-pink-100 to-gray-100">
+        <Laptop className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 text-pink-500 opacity-50" />
+        <div className="absolute inset-0 bg-white/40 backdrop-blur-sm" />
+      </div>
+    ),
+    'match': (
+      <div className="relative w-full h-full bg-gradient-to-br from-pink-200 to-purple-100">
+        <Brain className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 text-pink-500" />
+      </div>
+    ),
+    'playbook': (
+      <div className="relative w-full h-full bg-gradient-to-br from-pink-100 to-blue-50">
+        <BarChart4 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 text-pink-500" />
+      </div>
+    ),
+    'execution': (
+      <div className="relative w-full h-full bg-gradient-to-br from-pink-50 to-indigo-50">
+        <Users className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 text-pink-500" />
+      </div>
+    ),
+    'launch': (
+      <div className="relative w-full h-full bg-gradient-to-br from-pink-100 to-orange-50">
+        <Rocket className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 text-pink-500" />
+      </div>
+    )
   };
   
-  if (prompt.includes('fog')) return gradients.fog;
-  if (prompt.includes('match')) return gradients.match;
-  if (prompt.includes('playbook')) return gradients.playbook;
-  if (prompt.includes('execution')) return gradients.execution;
-  return gradients.launch;
+  return visuals[type as keyof typeof visuals];
 };
+
+const steps = [
+  {
+    title: "Facing the GTM Fog",
+    description: "Founders feel stuck on their go-to-market strategy",
+    imagePrompt: "fog",
+    imageDescription: "A solo founder sitting at desk with messy notes and foggy whiteboard"
+  },
+  {
+    title: "Expert Match",
+    description: "Matched with proven GTM experts",
+    imagePrompt: "match",
+    imageDescription: "Two people connected by dotted line with lightbulb"
+  },
+  {
+    title: "Playbook",
+    description: "Create a customized GTM strategy",
+    imagePrompt: "playbook",
+    imageDescription: "Digital GTM dashboard with charts and timelines"
+  },
+  {
+    title: "Execution",
+    description: "Assemble the right team to execute",
+    imagePrompt: "execution",
+    imageDescription: "Team collaborating on screens and whiteboards"
+  },
+  {
+    title: "Launch",
+    description: "Scale across borders with confidence",
+    imagePrompt: "launch",
+    imageDescription: "Rocket launch with celebrating team"
+  }
+];
 
 const ProcessVisualization: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const steps = [
-    {
-      title: "Facing the GTM Fog",
-      description: "Founders feel stuck on their go-to-market strategy",
-      imagePrompt: "fog",
-      imageDescription: "A solo founder sitting at desk with messy notes and foggy whiteboard"
-    },
-    {
-      title: "Expert Match",
-      description: "Matched with proven GTM experts",
-      imagePrompt: "match",
-      imageDescription: "Two people connected by dotted line with lightbulb"
-    },
-    {
-      title: "Playbook",
-      description: "Create a customized GTM strategy",
-      imagePrompt: "playbook",
-      imageDescription: "Digital GTM dashboard with charts and timelines"
-    },
-    {
-      title: "Execution",
-      description: "Assemble the right team to execute",
-      imagePrompt: "execution",
-      imageDescription: "Team collaborating on screens and whiteboards"
-    },
-    {
-      title: "Launch",
-      description: "Scale across borders with confidence",
-      imagePrompt: "launch",
-      imageDescription: "Rocket launch with celebrating team"
-    }
-  ];
-
-  const { data: stepImages } = useQuery({
-    queryKey: ['stepImages'],
-    queryFn: () => {
-      return steps.map(step => generateStepImage(step.imagePrompt));
-    }
-  });
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -82,18 +91,13 @@ const ProcessVisualization: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="w-full rounded-2xl overflow-hidden shadow-lg bg-white"
         >
-          {/* Image Section */}
+          {/* Visual Section */}
           <motion.div 
             className="w-full h-80 relative"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            style={{
-              background: stepImages?.[currentIndex],
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/10" />
+            {generateStepVisual(steps[currentIndex].imagePrompt)}
           </motion.div>
           
           {/* Content Section */}
