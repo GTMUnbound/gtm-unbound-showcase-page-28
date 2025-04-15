@@ -178,6 +178,7 @@ const Index = () => {
       {/* Hero Section */}
       <Section id="home" className="pt-32 pb-20 bg-white">
         <div className="container mx-auto px-4 md:px-6 relative">
+          {/* Using regular image background */}
           <HeroBackground type="image" />
           
           <div className="flex flex-col md:flex-row items-center relative z-10">
@@ -188,28 +189,28 @@ const Index = () => {
                 transition={{ duration: 0.5 }}
               >
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gtm-dark mb-6 leading-tight">
-                  Go-To-Market, Without Guesswork
+                  Helping Startups Scale Smarter, Not Louder
                 </h1>
                 <p className="text-xl text-gray-600 mb-8 max-w-2xl">
-                  A curated platform for startup founders and GTM leaders to scale smarter — with expert guidance, execution support, and GTM systems that work.
+                  GTM Unbound is a curated platform for startup founders and GTM leaders.
+                  We help you scale go-to-market execution through real operators, deep community, and structured systems.
                 </p>
                 
                 {/* Stats in one row */}
                 <motion.div 
-                  className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8"
+                  className="flex flex-row gap-6 mt-8 overflow-x-auto pb-4 md:overflow-visible md:flex-nowrap"
                   variants={containerVariants}
                   initial="hidden"
                   animate="visible"
                 >
                   {stats.map((stat, index) => (
-                    <motion.div 
-                      key={index}
-                      variants={itemVariants}
-                      className="p-6 rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow duration-300 cursor-default"
-                    >
-                      <div className="text-3xl font-bold text-gtm-pink mb-2">{stat.value}</div>
-                      <div className="font-medium text-gtm-dark mb-2">{stat.label}</div>
-                      <p className="text-sm text-gray-600">{stat.description}</p>
+                    <motion.div variants={itemVariants} className="min-w-[160px] max-w-[200px] flex-1" key={index}>
+                      <StatCard 
+                        value={stat.value} 
+                        label={stat.label} 
+                        description={stat.description}
+                        compact
+                      />
                     </motion.div>
                   ))}
                 </motion.div>
