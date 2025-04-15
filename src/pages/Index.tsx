@@ -225,7 +225,7 @@ const Index = () => {
         </div>
       </Section>
       
-      {/* Startups Section */}
+      {/* Startups Section - Reordered */}
       <Section id="startups" className="bg-gray-50 py-24">
         <SectionHeader 
           title="Startups Scaling with GTM Unbound"
@@ -233,6 +233,59 @@ const Index = () => {
           centered
         />
         
+        {/* 1. What We Offer Founders */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-gtm-dark mb-6 text-center">What We Offer Founders</h3>
+          <div className="grid md:grid-cols-3 gap-8">
+            <motion.div variants={itemVariants}>
+              <FeatureCard 
+                icon={<Brain size={24} />}
+                title="Expert Collaboration"
+                description="Get paired with GTM operators for strategy, feedback, playbooks, and ongoing reviews."
+              />
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <FeatureCard 
+                icon={<CheckCircle size={24} />}
+                title="Done-for-You Execution"
+                description="We match you with vetted executors — PMs, growth freelancers, RevOps specialists — who implement GTM strategy end-to-end."
+              />
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <FeatureCard 
+                icon={<FileText size={24} />}
+                title="DIY GTM Support"
+                description="Access curated templates, GTM blueprints, and expert-built content. No fluff. No filler. Just execution frameworks that work."
+              />
+            </motion.div>
+          </div>
+        </div>
+
+        {/* 2. Plans & Pricing */}
+        <div className="mb-16">
+          <SectionHeader 
+            title="Plans & Pricing"
+            subtitle="We offer three flexible tiers based on your team's capacity and growth stage."
+            centered
+          />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {pricingPlans.map((plan, index) => (
+              <PricingCard 
+                key={index}
+                name={plan.name}
+                price={plan.price}
+                description={plan.description}
+                features={plan.features}
+                cta={plan.cta}
+                highlight={plan.highlight}
+                icon={plan.icon}
+                footnote={plan.footnote}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* 3. Startups We Work With */}
         <div className="mb-16 py-12 bg-white rounded-xl shadow-md">
           <div className="container mx-auto">
             <h3 className="text-2xl font-bold text-center text-gtm-dark mb-10">Our Success Stories</h3>
@@ -265,121 +318,49 @@ const Index = () => {
             </div>
           </div>
         </div>
-        
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-gtm-dark mb-4 text-center">What Our Clients Say</h3>
+
+        {/* 4. What Our Clients Say */}
+        <div className="max-w-5xl mx-auto">
+          <h3 className="text-2xl font-bold text-gtm-dark mb-8 text-center">What Our Clients Say</h3>
+          <Carousel
+            opts={{
+              align: "center",
+              loop: true,
+            }}
+            className="mb-16"
+          >
+            <CarouselContent>
+              <CarouselItem className="md:basis-3/4 lg:basis-1/2">
+                <TestimonialCard 
+                  quote="We built a US launch plan in 8 weeks with GTM Sprints — what would've taken us 6 months."
+                  author="Vikram"
+                  company="CEO @ Omnify"
+                />
+              </CarouselItem>
+              <CarouselItem className="md:basis-3/4 lg:basis-1/2">
+                <TestimonialCard 
+                  quote="GTM Unbound gave us rituals we still use across GTM teams."
+                  author="Alex"
+                  company="GTM Lead @ Paddle"
+                />
+              </CarouselItem>
+              <CarouselItem className="md:basis-3/4 lg:basis-1/2">
+                <TestimonialCard 
+                  quote="Their guidance helped us double our conversion rate in just two months."
+                  author="Priya"
+                  company="Founder @ ECL"
+                />
+              </CarouselItem>
+            </CarouselContent>
+            <div className="flex justify-center mt-6">
+              <CarouselPrevious className="static transform-none mx-2" />
+              <CarouselNext className="static transform-none mx-2" />
             </div>
-            
-            <Carousel
-              opts={{
-                align: "center",
-                loop: true,
-              }}
-              className="mb-16"
-            >
-              <CarouselContent>
-                <CarouselItem className="md:basis-3/4 lg:basis-1/2">
-                  <TestimonialCard 
-                    quote="We built a US launch plan in 8 weeks with GTM Sprints — what would've taken us 6 months."
-                    author="Vikram"
-                    company="CEO @ Omnify"
-                  />
-                </CarouselItem>
-                <CarouselItem className="md:basis-3/4 lg:basis-1/2">
-                  <TestimonialCard 
-                    quote="GTM Unbound gave us rituals we still use across GTM teams."
-                    author="Alex"
-                    company="GTM Lead @ Paddle"
-                  />
-                </CarouselItem>
-                <CarouselItem className="md:basis-3/4 lg:basis-1/2">
-                  <TestimonialCard 
-                    quote="Their guidance helped us double our conversion rate in just two months."
-                    author="Priya"
-                    company="Founder @ ECL"
-                  />
-                </CarouselItem>
-              </CarouselContent>
-              <div className="flex justify-center mt-6">
-                <CarouselPrevious className="static transform-none mx-2" />
-                <CarouselNext className="static transform-none mx-2" />
-              </div>
-            </Carousel>
-            
-            <div className="mb-12">
-              <h3 className="text-2xl font-bold text-gtm-dark mb-6 text-center">What We Offer Founders</h3>
-              <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-                We support teams at all stages of GTM maturity — whether you're building the system, scaling it, or fine-tuning it.
-              </p>
-              
-              <motion.div 
-                className="grid md:grid-cols-3 gap-8"
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <motion.div variants={itemVariants}>
-                  <FeatureCard 
-                    icon={<Brain size={24} />}
-                    title="Expert Collaboration"
-                    description="Get paired with GTM operators for strategy, feedback, playbooks, and ongoing reviews."
-                  />
-                </motion.div>
-                <motion.div variants={itemVariants}>
-                  <FeatureCard 
-                    icon={<CheckCircle size={24} />}
-                    title="Done-for-You Execution"
-                    description="We match you with vetted executors — PMs, growth freelancers, RevOps specialists — who implement GTM strategy end-to-end."
-                  />
-                </motion.div>
-                <motion.div variants={itemVariants}>
-                  <FeatureCard 
-                    icon={<FileText size={24} />}
-                    title="DIY GTM Support"
-                    description="Access curated templates, GTM blueprints, and expert-built content. No fluff. No filler. Just execution frameworks that work."
-                  />
-                </motion.div>
-              </motion.div>
-            </div>
-            
-            <div className="text-center">
-              <p className="text-center text-gray-600 italic mb-6">Whether you want expert help, execution support, or tools to do it yourself — we meet you where you are.</p>
-            </div>
-          </div>
+          </Carousel>
         </div>
       </Section>
-      
-      {/* Pricing Section */}
-      <Section id="pricing" className="bg-white py-24">
-        <SectionHeader 
-          title="Plans & Pricing"
-          subtitle="We offer three flexible tiers based on your team's capacity and growth stage."
-          centered
-        />
-        
-        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {pricingPlans.map((plan, index) => (
-              <PricingCard 
-                key={index}
-                name={plan.name}
-                price={plan.price}
-                description={plan.description}
-                features={plan.features}
-                cta={plan.cta}
-                highlight={plan.highlight}
-                icon={plan.icon}
-                footnote={plan.footnote}
-              />
-            ))}
-          </div>
-        </div>
-      </Section>
-      
-      {/* Experts Section */}
+
+      {/* Rest of the sections */}
       <Section id="experts" className="bg-gray-50">
         <SectionHeader 
           title="Built by Operators. Backed by Execution."
