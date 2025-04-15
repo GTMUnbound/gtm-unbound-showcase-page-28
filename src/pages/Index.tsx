@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import StatHighlightCard from '@/components/StatHighlightCard';
 
 const Index = () => {
   const [email, setEmail] = useState('');
@@ -100,18 +101,15 @@ const Index = () => {
   // Update the stats content
   const stats = [
     {
-      value: "20+",
-      label: "Startups Supported",
+      stat: "20+ Startups Supported",
       description: "High-growth SaaS and AI startups across India and the US are building with GTM Unbound — from early GTM to international expansion."
     },
     {
-      value: "50+",
-      label: "Curated Events",
+      stat: "50+ Curated Events",
       description: "Curated gatherings where founders exchange real playbooks, battle-tested insights, and build together — not just network."
     },
     {
-      value: "10+",
-      label: "GTM Experts",
+      stat: "10+ GTM Experts",
       description: "GTM Unbound connects you with industry leaders who've cracked markets, built categories, and deliver real execution support — not just advice."
     }
   ];
@@ -194,29 +192,18 @@ const Index = () => {
                   A curated platform for startup founders and GTM leaders to scale smarter — with expert guidance, execution support, and GTM systems that work.
                 </p>
                 
-                {/* Stats in one row */}
-                <motion.div 
-                  className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8"
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                   {stats.map((stat, index) => (
-                    <motion.div 
+                    <StatHighlightCard
                       key={index}
-                      variants={itemVariants}
-                      className="p-6 rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow duration-300 cursor-default"
-                    >
-                      <div className="text-3xl font-bold text-gtm-pink mb-2">{stat.value}</div>
-                      <div className="font-medium text-gtm-dark mb-2">{stat.label}</div>
-                      <p className="text-sm text-gray-600">{stat.description}</p>
-                    </motion.div>
+                      stat={stat.stat}
+                      description={stat.description}
+                    />
                   ))}
-                </motion.div>
+                </div>
               </motion.div>
             </div>
             
-            {/* Process Visualization in right column */}
             <div className="w-full md:w-2/5 flex justify-center items-center">
               <ProcessVisualization />
             </div>
