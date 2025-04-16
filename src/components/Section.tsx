@@ -14,14 +14,14 @@ const Section = ({ id, children, className, fullWidth = false }: SectionProps) =
     <section 
       id={id} 
       className={cn(
-        "py-8", // Reduced from py-12
+        "py-10 sm:py-16 md:py-24", // Adjusted padding for responsive design
         className
       )}
     >
       {fullWidth ? (
         children
       ) : (
-        <div className="container mx-auto px-4 md:px-6">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-[1200px]">
           {children}
         </div>
       )}

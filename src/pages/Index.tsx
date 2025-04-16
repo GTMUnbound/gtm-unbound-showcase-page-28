@@ -173,7 +173,7 @@ const Index = () => {
   ];
   
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#F4F5F7]">
       <Navbar sections={sections} />
       
       {/* Hero Section */}
@@ -336,41 +336,41 @@ const Index = () => {
       </Section>
 
       {/* Experts Section */}
-      <Section id="experts" className="bg-gray-50 py-12">
+      <Section id="experts" className="py-24 sm:py-32">
         <SectionHeader 
-          title="Meet Our GTM Sherpas"
-          subtitle="Top GTM experts helping you move faster."
+          title="Meet Our Growth Architects"
+          subtitle="Connect with operators who've scaled startups from zero to category leaders. Real playbooks, proven results."
           centered
         />
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-7xl mx-auto px-4">
           <ExpertCard 
-            name="Anil Advani"
-            role="Founder & Managing Partner, Inventus Law"
-            expertise={["Legal", "US Market", "Fundraising"]}
-            imageSrc="/lovable-uploads/6b86fecb-a25f-41ee-8e42-a42440048546.png"
+            name="Sarah Chen"
+            role="Ex-Head of Growth @ Stripe"
+            expertise={["Product-Led Growth", "Global Expansion", "B2B SaaS"]}
+            imageSrc="/lovable-uploads/47d41dfa-b548-46e1-9254-b500a8667252.png"
           />
           <ExpertCard 
-            name="Manik M"
-            role="Co-Founder and MD, Omnify"
-            expertise={["SaaS", "B2B", "India"]}
+            name="Alex Rivera"
+            role="VP Marketing @ Scale AI"
+            expertise={["AI/ML GTM", "Enterprise Sales", "Brand Strategy"]}
+            imageSrc="/lovable-uploads/4f65b418-cdf9-4c7f-b16e-0d3fac29bef2.png"
           />
           <ExpertCard 
-            name="Prabhu D Gupta"
-            role="Entrepreneur in Residence, GTM Unbound"
-            expertise={["Strategy", "GTM", "Sales"]}
-          />
-          <ExpertCard 
-            name="Aditi Aggarwal Mehta"
-            role="Founder, GTM Unbound"
-            expertise={["Strategy", "Global", "Product"]}
+            name="Raj Mehta"
+            role="Growth Lead @ Razorpay"
+            expertise={["Fintech", "APAC Markets", "Revenue Ops"]}
+            imageSrc="/lovable-uploads/e5ca321f-aac8-45f5-be2b-2df7f7605d36.png"
           />
         </div>
         
         <div className="flex justify-center">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md transition-colors">
-            See All Experts
-          </button>
+          <motion.button 
+            whileHover={{ scale: 1.02 }}
+            className="bg-gradient-to-r from-gtm-pink to-pink-600 text-white px-8 py-3 rounded-xl font-medium shadow-md hover:shadow-lg transition-all"
+          >
+            See How We Work Together
+          </motion.button>
         </div>
       </Section>
 
