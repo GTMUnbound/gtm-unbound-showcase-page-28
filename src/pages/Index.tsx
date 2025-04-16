@@ -343,26 +343,32 @@ const Index = () => {
           centered
         />
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-7xl mx-auto px-4">
-          <ExpertCard 
-            name="Sarah Chen"
-            role="Ex-Head of Growth @ Stripe"
-            expertise={["Product-Led Growth", "Global Expansion", "B2B SaaS"]}
-            imageSrc="/lovable-uploads/47d41dfa-b548-46e1-9254-b500a8667252.png"
-          />
-          <ExpertCard 
-            name="Alex Rivera"
-            role="VP Marketing @ Scale AI"
-            expertise={["AI/ML GTM", "Enterprise Sales", "Brand Strategy"]}
-            imageSrc="/lovable-uploads/4f65b418-cdf9-4c7f-b16e-0d3fac29bef2.png"
-          />
-          <ExpertCard 
-            name="Raj Mehta"
-            role="Growth Lead @ Razorpay"
-            expertise={["Fintech", "APAC Markets", "Revenue Ops"]}
-            imageSrc="/lovable-uploads/e5ca321f-aac8-45f5-be2b-2df7f7605d36.png"
-          />
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-7xl mx-auto px-4">
+            <ExpertCard 
+              name="Emma Chen"
+              role="Product-Led Growth Strategy"
+              company="Notion"
+              expertise={["PLG Strategy", "Launch Playbooks", "Global GTM"]}
+              imageSrc="/lovable-uploads/47d41dfa-b548-46e1-9254-b500a8667252.png"
+              bio="Emma led Notion's PLG initiatives across APAC, driving 300% YoY growth. She specializes in building self-serve GTM motions that scale."
+            />
+            <ExpertCard 
+              name="Marcus Rivera"
+              role="AI/ML Go-to-Market Lead"
+              company="Scale AI"
+              expertise={["Enterprise AI/ML", "Product Strategy", "B2B Sales"]}
+              imageSrc="/lovable-uploads/4f65b418-cdf9-4c7f-b16e-0d3fac29bef2.png"
+              bio="At Scale AI, Marcus built the go-to-market strategy for their ML products, working with enterprises across finance and healthcare verticals."
+            />
+            <ExpertCard 
+              name="Priya Mehta"
+              role="Growth & Revenue Operations"
+              company="Razorpay"
+              expertise={["Fintech GTM", "Revenue Ops", "APAC Markets"]}
+              imageSrc="/lovable-uploads/e5ca321f-aac8-45f5-be2b-2df7f7605d36.png"
+              bio="Priya scaled Razorpay's revenue operations from Series B to D, establishing GTM processes that became industry standard in Indian fintech."
+            />
+          </div>
         
         <div className="flex justify-center">
           <motion.button 
