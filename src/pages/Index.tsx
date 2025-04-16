@@ -16,7 +16,7 @@ import {
   Brain, CheckCircle, Code, FileText, Mountain, LinkedinIcon, 
   MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, 
   Users, RefreshCw, Rocket, TrendingUp, Award, Calendar,
-  ArrowRight, MessageSquare, Globe, Check, Mail 
+  ArrowRight, MessageSquare, Globe, Check 
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -169,30 +169,6 @@ const Index = () => {
       cta: "Choose Pro",
       highlight: false,
       icon: <Award className="h-6 w-6" />
-    }
-  ];
-  
-  const experts = [
-    {
-      name: "Emma Chen",
-      role: "Ex-Notion, PLG Strategy",
-      expertise: ["Product-Led Growth", "SaaS Strategy", "User Acquisition"],
-      imageSrc: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&h=200&auto=format&fit=crop",
-      bio: "Former Head of Growth at Notion. Helped scale from Series B to $10B valuation through PLG initiatives."
-    },
-    {
-      name: "Marcus Rodriguez",
-      role: "Ex-Stripe, Growth Lead",
-      expertise: ["B2B SaaS", "Global Expansion", "Revenue Ops"],
-      imageSrc: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&h=200&auto=format&fit=crop",
-      bio: "Scaled Stripe's European expansion, driving 300% YoY growth across 12 markets."
-    },
-    {
-      name: "Priya Sharma",
-      role: "Ex-Slack, GTM Expert",
-      expertise: ["Enterprise Sales", "Product Marketing", "Go-To-Market"],
-      imageSrc: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&h=200&auto=format&fit=crop",
-      bio: "Led Slack's enterprise GTM strategy, focusing on Fortune 500 acquisition and retention."
     }
   ];
   
@@ -368,18 +344,26 @@ const Index = () => {
         />
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-7xl mx-auto px-4">
-          {experts.map((expert, index) => (
-            <ExpertCard 
-              key={index}
-              name={expert.name}
-              role={expert.role}
-              expertise={expert.expertise}
-              imageSrc={expert.imageSrc}
-              bio={expert.bio}
-            />
-          ))}
+          <ExpertCard 
+            name="Sarah Chen"
+            role="Ex-Head of Growth @ Stripe"
+            expertise={["Product-Led Growth", "Global Expansion", "B2B SaaS"]}
+            imageSrc="/lovable-uploads/47d41dfa-b548-46e1-9254-b500a8667252.png"
+          />
+          <ExpertCard 
+            name="Alex Rivera"
+            role="VP Marketing @ Scale AI"
+            expertise={["AI/ML GTM", "Enterprise Sales", "Brand Strategy"]}
+            imageSrc="/lovable-uploads/4f65b418-cdf9-4c7f-b16e-0d3fac29bef2.png"
+          />
+          <ExpertCard 
+            name="Raj Mehta"
+            role="Growth Lead @ Razorpay"
+            expertise={["Fintech", "APAC Markets", "Revenue Ops"]}
+            imageSrc="/lovable-uploads/e5ca321f-aac8-45f5-be2b-2df7f7605d36.png"
+          />
         </div>
-
+        
         <div className="flex justify-center">
           <motion.button 
             whileHover={{ scale: 1.02 }}
@@ -390,41 +374,107 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* Newsletter Banner */}
-      <div className="max-w-5xl mx-auto bg-white rounded-xl shadow-sm p-6 mb-16">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <Mail className="h-5 w-5 text-gtm-pink" />
-            <p className="text-lg font-medium">Get weekly GTM playbooks from real operators.</p>
-          </div>
-          <form onSubmit={handleNewsletterSubmit} className="flex gap-2 w-full md:w-auto">
-            <input
-              type="email"
-              placeholder="Your email"
-              className="flex-1 md:w-64 px-4 py-2 rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gtm-pink"
-              value={newsletterEmail}
-              onChange={(e) => setNewsletterEmail(e.target.value)}
-              required
+      {/* Events Section */}
+      <Section id="events" className="bg-gtm-light pb-32">
+        <SectionHeader 
+          title="Where Founders and Operators Actually Connect"
+          subtitle="We design events that drive depth — not noise."
+          centered
+        />
+        
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <EventFormat 
+              icon={<Mountain size={28} />}
+              title="Hikes"
+              description="IRL founder retreats"
+              highlightColor="bg-green-500"
             />
-            <GradientButton type="submit">
-              Subscribe
-            </GradientButton>
-          </form>
-        </div>
-      </div>
-
-      {/* Events Banner */}
-      <div className="max-w-5xl mx-auto bg-white rounded-xl shadow-sm p-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <Calendar className="h-5 w-5 text-gtm-pink" />
-            <p className="text-lg font-medium">Join our founder-only GTM events — from hikes to roundtables.</p>
+            <EventFormat 
+              icon={<RefreshCw size={28} />}
+              title="Roundtables"
+              description="Functional deep dives"
+              highlightColor="bg-blue-500"
+            />
+            <EventFormat 
+              icon={<Target size={28} />}
+              title="Workshops"
+              description="Experiments, pricing, OKRs"
+              highlightColor="bg-orange-500"
+            />
+            <EventFormat 
+              icon={<Puzzle size={28} />}
+              title="Partner Collabs"
+              description="Ecosystem-driven events"
+              highlightColor="bg-purple-500"
+            />
           </div>
-          <GradientButton onClick={() => document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' })}>
-            View Upcoming Events
-          </GradientButton>
+          
+          <div className="mt-20 mb-16">
+            <h3 className="text-2xl font-bold text-gtm-dark mb-8 text-center">Upcoming Events</h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              {upcomingEvents.map((event, index) => (
+                <motion.div 
+                  key={index}
+                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all"
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                >
+                  <div className={`bg-gradient-to-r ${
+                    index === 0 ? "from-green-400 to-green-600" : 
+                    index === 1 ? "from-blue-400 to-blue-600" : 
+                    "from-purple-400 to-purple-600"
+                  } h-2`}></div>
+                  <div className="p-6">
+                    <div className="flex items-center text-gray-500 mb-2">
+                      <Calendar size={16} className="mr-2" />
+                      <span className="text-sm">{event.date}</span>
+                    </div>
+                    <div className="flex items-center text-gray-500 mb-4">
+                      <Globe size={16} className="mr-2" />
+                      <span className="text-sm">{event.location}</span>
+                    </div>
+                    <h4 className="text-lg font-bold text-gtm-dark mb-2">{event.title}</h4>
+                    <p className="text-gray-600 text-sm mb-4">{event.description}</p>
+                    <button className="text-gtm-pink flex items-center text-sm font-medium hover:underline">
+                      Learn More <ArrowRight size={14} className="ml-1" />
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          
+          <p className="text-center text-gray-700 mb-12 font-medium">
+            50+ events hosted globally. Built to solve real GTM problems — not for stage time.
+          </p>
+          
+          <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold text-gtm-dark mb-4 text-center">
+              Want to be a part of upcoming events?
+            </h3>
+            <form onSubmit={handleEmailSubmit} className="space-y-4">
+              <div>
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gtm-pink"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <GradientButton type="submit" className="w-full">
+                Get Event Updates
+              </GradientButton>
+              <p className="text-xs text-gray-500 text-center">
+                No spam, just high-signal invites.
+              </p>
+            </form>
+          </div>
         </div>
-      </div>
+      </Section>
       
       {/* About Section */}
       <Section id="about" className="bg-white">
