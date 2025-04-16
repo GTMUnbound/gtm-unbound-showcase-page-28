@@ -171,6 +171,33 @@ const Index = () => {
       icon: <Award className="h-6 w-6" />
     }
   ];
+
+  const experts = [
+    {
+      name: "Sarah Chen",
+      role: "Product-Led Growth Strategy",
+      company: "Notion",
+      expertise: ["PLG Strategy", "Launch Playbooks", "Global GTM"],
+      imageSrc: "/lovable-uploads/47d41dfa-b548-46e1-9254-b500a8667252.png",
+      bio: "Previously led Notion's PLG initiatives across APAC, driving 300% YoY growth through innovative self-serve GTM motions. Now helps early-stage startups build scalable growth engines."
+    },
+    {
+      name: "Michael Rivera",
+      role: "AI/ML Go-to-Market Lead",
+      company: "Scale AI",
+      expertise: ["Enterprise AI/ML", "Product Strategy", "B2B Sales"],
+      imageSrc: "/lovable-uploads/4f65b418-cdf9-4c7f-b16e-0d3fac29bef2.png",
+      bio: "Ex-Scale AI GTM leader who built the go-to-market strategy for ML products from $0 to $50M ARR. Specializes in enterprise AI sales and product-market fit for technical products."
+    },
+    {
+      name: "Priya Mehta",
+      role: "Growth & Revenue Operations",
+      company: "Razorpay",
+      expertise: ["Fintech GTM", "Revenue Ops", "APAC Markets"],
+      imageSrc: "/lovable-uploads/e5ca321f-aac8-45f5-be2b-2df7f7605d36.png",
+      bio: "Scaled Razorpay's revenue operations from Series B to D. Built GTM processes that became industry standard in Indian fintech. Helps startups navigate hypergrowth with operational excellence."
+    }
+  ];
   
   return (
     <div className="min-h-screen bg-[#F4F5F7]">
@@ -343,32 +370,19 @@ const Index = () => {
           centered
         />
         
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-7xl mx-auto px-4">
+          {experts.map((expert, index) => (
             <ExpertCard 
-              name="Emma Chen"
-              role="Product-Led Growth Strategy"
-              company="Notion"
-              expertise={["PLG Strategy", "Launch Playbooks", "Global GTM"]}
-              imageSrc="/lovable-uploads/47d41dfa-b548-46e1-9254-b500a8667252.png"
-              bio="Emma led Notion's PLG initiatives across APAC, driving 300% YoY growth. She specializes in building self-serve GTM motions that scale."
+              key={index}
+              name={expert.name}
+              role={expert.role}
+              company={expert.company}
+              expertise={expert.expertise}
+              imageSrc={expert.imageSrc}
+              bio={expert.bio}
             />
-            <ExpertCard 
-              name="Marcus Rivera"
-              role="AI/ML Go-to-Market Lead"
-              company="Scale AI"
-              expertise={["Enterprise AI/ML", "Product Strategy", "B2B Sales"]}
-              imageSrc="/lovable-uploads/4f65b418-cdf9-4c7f-b16e-0d3fac29bef2.png"
-              bio="At Scale AI, Marcus built the go-to-market strategy for their ML products, working with enterprises across finance and healthcare verticals."
-            />
-            <ExpertCard 
-              name="Priya Mehta"
-              role="Growth & Revenue Operations"
-              company="Razorpay"
-              expertise={["Fintech GTM", "Revenue Ops", "APAC Markets"]}
-              imageSrc="/lovable-uploads/e5ca321f-aac8-45f5-be2b-2df7f7605d36.png"
-              bio="Priya scaled Razorpay's revenue operations from Series B to D, establishing GTM processes that became industry standard in Indian fintech."
-            />
-          </div>
+          ))}
+        </div>
         
         <div className="flex justify-center">
           <motion.button 
