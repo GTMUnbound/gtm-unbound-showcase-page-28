@@ -40,11 +40,11 @@ const ScrollingLogos = () => {
           />
           
           <ClientLogo 
-            src="/lovable-uploads/cfd8dbf8-6129-468b-a981-bce5f586869f.png" 
+            src="/lovable-uploads/c7235eb5-75b3-4b4a-af50-a08d5ef3e81f.png" 
             alt="Paddle" 
             name="Paddle" 
             description="Payment Infrastructure" 
-            inverted={true}
+            inverted={false}
             className="w-[280px]"
             bgColor="bg-white"
           />
