@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -6,7 +5,6 @@ import SectionHeader from '@/components/SectionHeader';
 import TestimonialCard from '@/components/TestimonialCard';
 import FeatureCard from '@/components/FeatureCard';
 import ExpertCard from '@/components/ExpertCard';
-import EventFormat from '@/components/EventFormat';
 import StatCard from '@/components/StatCard';
 import ClientLogo from '@/components/ClientLogo';
 import GradientButton from '@/components/GradientButton';
@@ -22,6 +20,8 @@ import {
 import { motion } from 'framer-motion';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import ScrollingLogos from '@/components/ScrollingLogos';
+import EventTypeCard from '@/components/EventTypeCard';
+import NewsletterSubscription from '@/components/NewsletterSubscription';
 
 const Index = () => {
   const [email, setEmail] = useState('');
@@ -220,7 +220,69 @@ const Index = () => {
       "/lovable-uploads/bb153975-6bf6-4c36-b3b4-c3b1dc7ba7e1.png"
     ]
   };
-  
+
+  const eventTypes = [
+    {
+      title: "Hikes",
+      description: "IRL founder retreats",
+      bullets: [
+        "Network Naturally",
+        "Inspire Innovation",
+        "Lead Together"
+      ],
+      images: [
+        "/lovable-uploads/42e25656-2f31-43d6-818b-a3e560d61acf.png",
+        "/lovable-uploads/dfb3ee41-c6ba-41de-b97c-53e2d684717f.png",
+        "/lovable-uploads/d47f9a8a-12d2-4062-9bce-b8b525a109ae.png",
+        "/lovable-uploads/a6239e49-b350-49dd-8fc1-e124f0a2cadd.png"
+      ],
+      highlightColor: "border-green-500"
+    },
+    {
+      title: "Roundtables",
+      description: "Functional deep dives",
+      bullets: [
+        "Focused Expertise",
+        "Collaborative Solutions",
+        "Accelerate Growth"
+      ],
+      images: [
+        "/lovable-uploads/f8d73ba1-e6a4-41ef-84f6-ea8d59ae20d4.png",
+        "/lovable-uploads/40fe0852-dba5-4ead-91ce-aa788e369c88.png",
+        "/lovable-uploads/50e271b6-1838-4900-86f0-f861667c271a.png"
+      ],
+      highlightColor: "border-blue-500"
+    },
+    {
+      title: "Workshops",
+      description: "Experiments, pricing, OKRs",
+      bullets: [
+        "Hands-On Learning",
+        "Test & Iterate",
+        "Measure What Matters"
+      ],
+      images: [
+        "/lovable-uploads/abc900fc-4b17-4abe-b2b1-21e5611b1ea7.png",
+        "/lovable-uploads/15f99e9a-66af-40b6-8677-cb9f40a31f1a.png"
+      ],
+      highlightColor: "border-orange-500"
+    },
+    {
+      title: "Partner Collabs",
+      description: "Ecosystem-driven events",
+      bullets: [
+        "Amplify Your Reach",
+        "Curated Connections",
+        "Build Together"
+      ],
+      images: [
+        "/lovable-uploads/052e4048-e391-41c9-ae8b-4e32c89c285c.png",
+        "/lovable-uploads/077b3880-fbe9-4e45-a34e-81b28052f42b.png"
+      ],
+      highlightColor: "border-purple-500"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-[#F4F5F7]">
       <Navbar sections={sections} />
@@ -425,108 +487,24 @@ const Index = () => {
           centered
         />
         
-        {/* Newsletter CTA as a horizontal banner */}
-        <div className="bg-white rounded-lg shadow-md p-6 max-w-5xl mx-auto mb-12 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-3">
-            <div className="bg-gtm-light text-gtm-pink p-2 rounded-full">
-              <MessageCircle size={20} />
-            </div>
-            <p className="font-medium text-gtm-dark">Get weekly GTM playbooks from real operators.</p>
-          </div>
-          <form onSubmit={handleNewsletterSubmit} className="flex w-full md:w-auto gap-2">
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gtm-pink w-full md:w-auto"
-              value={newsletterEmail}
-              onChange={(e) => setNewsletterEmail(e.target.value)}
-              required
-            />
-            <GradientButton type="submit" className="whitespace-nowrap">
-              Subscribe
-            </GradientButton>
-          </form>
-        </div>
-        
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            <EventFormat 
-              icon={<Mountain size={28} />}
-              title="Hikes"
-              description="IRL founder retreats"
-              highlightColor="bg-green-500"
-            />
-            <EventFormat 
-              icon={<RefreshCw size={28} />}
-              title="Roundtables"
-              description="Functional deep dives"
-              highlightColor="bg-blue-500"
-            />
-            <EventFormat 
-              icon={<Target size={28} />}
-              title="Workshops"
-              description="Experiments, pricing, OKRs"
-              highlightColor="bg-orange-500"
-            />
-            <EventFormat 
-              icon={<Puzzle size={28} />}
-              title="Partner Collabs"
-              description="Ecosystem-driven events"
-              highlightColor="bg-purple-500"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+            {eventTypes.map((eventType, index) => (
+              <EventTypeCard
+                key={index}
+                title={eventType.title}
+                description={eventType.description}
+                bullets={eventType.bullets}
+                images={eventType.images}
+                highlightColor={eventType.highlightColor}
+              />
+            ))}
           </div>
           
-          <div className="mt-20 mb-16">
-            <h3 className="text-2xl font-bold text-gtm-dark mb-8 text-center">Upcoming Events</h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              {upcomingEvents.map((event, index) => (
-                <motion.div 
-                  key={index}
-                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all"
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 10 }}
-                >
-                  <div className={`bg-gradient-to-r ${
-                    index === 0 ? "from-green-400 to-green-600" : 
-                    index === 1 ? "from-blue-400 to-blue-600" : 
-                    "from-purple-400 to-purple-600"
-                  } h-2`}></div>
-                  <div className="p-6">
-                    <div className="flex items-center text-gray-500 mb-2">
-                      <Calendar size={16} className="mr-2" />
-                      <span className="text-sm">{event.date}</span>
-                    </div>
-                    <div className="flex items-center text-gray-500 mb-4">
-                      <Globe size={16} className="mr-2" />
-                      <span className="text-sm">{event.location}</span>
-                    </div>
-                    <h4 className="text-lg font-bold text-gtm-dark mb-2">{event.title}</h4>
-                    <p className="text-gray-600 text-sm mb-4">{event.description}</p>
-                    <button className="text-gtm-pink flex items-center text-sm font-medium hover:underline">
-                      Learn More <ArrowRight size={14} className="ml-1" />
-                    </button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-          
-          {/* Event CTA as a horizontal banner */}
-          <div className="bg-blue-50 rounded-lg shadow-sm p-6 mb-12 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-3">
-              <div className="bg-blue-100 text-blue-600 p-2 rounded-full">
-                <Calendar size={20} />
-              </div>
-              <p className="font-medium text-gtm-dark">Join our founder-only GTM events — from hikes to roundtables.</p>
-            </div>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors whitespace-nowrap">
-              View Upcoming Events
-            </button>
-          </div>
+          <NewsletterSubscription />
         </div>
       </Section>
-      
+
       {/* About Section */}
       <Section id="about" className="bg-white">
         <SectionHeader 
