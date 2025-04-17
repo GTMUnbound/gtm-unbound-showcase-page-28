@@ -6,9 +6,15 @@ interface AnimatedHeadlineProps {
   title: string;
   subtitle?: string;
   className?: string;
+  highlightWords?: string[];
 }
 
-const AnimatedHeadline = ({ title, subtitle, className }: AnimatedHeadlineProps) => {
+const AnimatedHeadline = ({ 
+  title, 
+  subtitle, 
+  className, 
+  highlightWords = [] 
+}: AnimatedHeadlineProps) => {
   const titleWords = title.split(' ');
   
   const container = {
@@ -28,8 +34,19 @@ const AnimatedHeadline = ({ title, subtitle, className }: AnimatedHeadlineProps)
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.5
+        duration: 0.5,
+        type: "spring",
+        stiffness: 100,
+        damping: 12
       }
+    }
+  };
+
+  const highlightVariant = {
+    initial: { backgroundSize: "0% 100%" },
+    animate: { 
+      backgroundSize: "100% 100%",
+      transition: { duration: 0.8, delay: 1.2 }
     }
   };
   
@@ -40,18 +57,33 @@ const AnimatedHeadline = ({ title, subtitle, className }: AnimatedHeadlineProps)
         variants={container}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-50px" }}
       >
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gtm-dark leading-tight">
-          {titleWords.map((word, i) => (
-            <motion.span 
-              key={i} 
-              className="inline-block mr-3"
-              variants={item}
-            >
-              {word}
-            </motion.span>
-          ))}
+          {titleWords.map((word, i) => {
+            const isHighlighted = highlightWords.includes(word);
+            
+            return (
+              <motion.span 
+                key={i} 
+                className={`inline-block mr-3 ${
+                  isHighlighted 
+                    ? "bg-gradient-to-r from-gtm-pink to-gtm-coral bg-no-repeat bg-bottom" 
+                    : ""
+                }`}
+                style={isHighlighted ? { backgroundSize: "0% 15%", backgroundPosition: "0 88%" } : {}}
+                variants={item}
+                {...(isHighlighted && {
+                  initial: "initial",
+                  whileInView: "animate",
+                  viewport: { once: true, margin: "-50px" },
+                  ...highlightVariant
+                })}
+              >
+                {word}
+              </motion.span>
+            );
+          })}
         </h1>
       </motion.div>
       
@@ -60,8 +92,14 @@ const AnimatedHeadline = ({ title, subtitle, className }: AnimatedHeadlineProps)
           className="text-xl text-gray-600 max-w-2xl"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6, duration: 0.5 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ 
+            delay: 0.6, 
+            duration: 0.5,
+            type: "spring",
+            stiffness: 50,
+            damping: 20
+          }}
         >
           {subtitle}
         </motion.p>

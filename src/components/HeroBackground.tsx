@@ -7,14 +7,16 @@ interface HeroBackgroundProps {
 }
 
 const HeroBackground: React.FC<HeroBackgroundProps> = ({ type }) => {
-  // Create animated particles for background effect
-  const particles = Array.from({ length: 20 }).map((_, index) => ({
+  // Create animated particles for background effect with enhanced variety
+  const particles = Array.from({ length: 30 }).map((_, index) => ({
     id: index,
-    size: Math.random() * 20 + 10,
+    size: Math.random() * 30 + 10,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    duration: Math.random() * 20 + 20,
-    delay: Math.random() * 10,
+    duration: Math.random() * 25 + 20,
+    delay: Math.random() * 15,
+    blur: Math.random() > 0.6 ? 'lg' : 'md',
+    opacity: Math.random() * 0.2 + 0.1
   }));
 
   if (type === 'video') {
@@ -32,22 +34,24 @@ const HeroBackground: React.FC<HeroBackgroundProps> = ({ type }) => {
         </video>
         <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/80"></div>
         
-        {/* Animated particles in background */}
+        {/* Enhanced animated particles in background */}
         {particles.map((particle) => (
           <motion.div
             key={particle.id}
-            className="absolute rounded-full bg-gradient-to-br from-pink-200/20 to-blue-200/10 blur-md"
+            className={`absolute rounded-full bg-gradient-to-br from-pink-200/20 to-blue-200/10 blur-${particle.blur}`}
             style={{
               width: particle.size,
               height: particle.size,
               left: `${particle.x}%`,
               top: `${particle.y}%`,
+              opacity: particle.opacity,
             }}
             animate={{
-              x: [0, 20, 0, -20, 0],
-              y: [0, -30, 10, -10, 0],
-              opacity: [0.1, 0.3, 0.1],
+              x: [0, 30, 0, -30, 0],
+              y: [0, -40, 15, -15, 0],
+              opacity: [particle.opacity, particle.opacity * 2, particle.opacity],
               scale: [1, 1.2, 1],
+              rotate: [0, 10, 0, -10, 0],
             }}
             transition={{
               duration: particle.duration,
@@ -77,24 +81,41 @@ const HeroBackground: React.FC<HeroBackgroundProps> = ({ type }) => {
         }}
       ></div>
       
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-white/95 to-white/90"></div>
+      {/* Enhanced gradient overlay with animation */}
+      <motion.div 
+        className="absolute inset-0 bg-gradient-to-b from-white via-white/95 to-white/90"
+        animate={{
+          background: [
+            'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.97) 50%, rgba(255,255,255,0.92) 100%)',
+            'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0.9) 100%)',
+            'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.97) 50%, rgba(255,255,255,0.92) 100%)'
+          ],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "easeInOut"
+        }}
+      ></motion.div>
       
-      {/* Animated particles in background */}
+      {/* Enhanced animated particles in background */}
       {particles.map((particle) => (
         <motion.div
           key={particle.id}
-          className="absolute rounded-full bg-gradient-to-br from-pink-100/30 to-blue-100/20 blur-lg"
+          className={`absolute rounded-full bg-gradient-to-br from-pink-100/30 to-blue-100/20 blur-${particle.blur}`}
           style={{
             width: particle.size,
             height: particle.size,
             left: `${particle.x}%`,
             top: `${particle.y}%`,
+            opacity: particle.opacity,
           }}
           animate={{
-            x: [0, 40, 0, -40, 0],
-            y: [0, -30, 20, -20, 0],
-            opacity: [0.2, 0.4, 0.2],
+            x: [0, 50, 0, -50, 0],
+            y: [0, -40, 25, -25, 0],
+            opacity: [particle.opacity, particle.opacity * 1.5, particle.opacity],
+            rotate: [0, 15, 0, -15, 0],
           }}
           transition={{
             duration: particle.duration,
@@ -105,14 +126,28 @@ const HeroBackground: React.FC<HeroBackgroundProps> = ({ type }) => {
         />
       ))}
       
-      {/* Additional design elements */}
+      {/* Additional floating design elements */}
       <motion.div
-        className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-gray-50/50 to-transparent"
+        className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-50/70 to-transparent"
         animate={{
-          opacity: [0.3, 0.5, 0.3],
+          opacity: [0.3, 0.6, 0.3],
+          height: ['24px', '36px', '24px']
         }}
         transition={{
-          duration: 10,
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      
+      {/* Subtle radial gradient */}
+      <motion.div
+        className="absolute inset-0 bg-radial-gradient from-transparent to-white/30 mix-blend-overlay"
+        animate={{
+          opacity: [0.1, 0.3, 0.1],
+        }}
+        transition={{
+          duration: 20,
           repeat: Infinity,
           ease: "easeInOut",
         }}
