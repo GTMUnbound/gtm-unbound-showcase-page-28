@@ -7,6 +7,16 @@ interface HeroBackgroundProps {
 }
 
 const HeroBackground: React.FC<HeroBackgroundProps> = ({ type }) => {
+  // Create animated particles for background effect
+  const particles = Array.from({ length: 20 }).map((_, index) => ({
+    id: index,
+    size: Math.random() * 20 + 10,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    duration: Math.random() * 20 + 20,
+    delay: Math.random() * 10,
+  }));
+
   if (type === 'video') {
     return (
       <div className="absolute inset-0 overflow-hidden z-0">
@@ -21,11 +31,37 @@ const HeroBackground: React.FC<HeroBackgroundProps> = ({ type }) => {
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/80"></div>
+        
+        {/* Animated particles in background */}
+        {particles.map((particle) => (
+          <motion.div
+            key={particle.id}
+            className="absolute rounded-full bg-gradient-to-br from-pink-200/20 to-blue-200/10 blur-md"
+            style={{
+              width: particle.size,
+              height: particle.size,
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+            }}
+            animate={{
+              x: [0, 20, 0, -20, 0],
+              y: [0, -30, 10, -10, 0],
+              opacity: [0.1, 0.3, 0.1],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: particle.duration,
+              repeat: Infinity,
+              delay: particle.delay,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
       </div>
     );
   }
   
-  // Default image background
+  // Enhanced image background with animated gradients
   return (
     <motion.div 
       className="absolute inset-0 z-0"
@@ -40,7 +76,47 @@ const HeroBackground: React.FC<HeroBackgroundProps> = ({ type }) => {
           filter: 'blur(1px)'
         }}
       ></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-white/90 to-white/80"></div>
+      
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-white/95 to-white/90"></div>
+      
+      {/* Animated particles in background */}
+      {particles.map((particle) => (
+        <motion.div
+          key={particle.id}
+          className="absolute rounded-full bg-gradient-to-br from-pink-100/30 to-blue-100/20 blur-lg"
+          style={{
+            width: particle.size,
+            height: particle.size,
+            left: `${particle.x}%`,
+            top: `${particle.y}%`,
+          }}
+          animate={{
+            x: [0, 40, 0, -40, 0],
+            y: [0, -30, 20, -20, 0],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: particle.duration,
+            repeat: Infinity,
+            delay: particle.delay,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+      
+      {/* Additional design elements */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-gray-50/50 to-transparent"
+        animate={{
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
     </motion.div>
   );
 };

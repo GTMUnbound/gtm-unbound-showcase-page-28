@@ -32,20 +32,39 @@ const ClientLogo = ({
       transition={{ type: "spring", stiffness: 400, damping: 10 }}
     >
       <div className={cn(
-        "mb-4 px-4 py-6 flex items-center justify-center h-32 w-full rounded-lg",
+        "mb-4 px-4 py-6 flex items-center justify-center h-32 w-full rounded-lg overflow-hidden",
         bgColor || "bg-white"
       )}>
-        <img 
+        <motion.img 
           src={src} 
           alt={alt} 
           className={cn(
             "h-24 md:h-28 object-contain mx-auto max-w-[80%]",
-            inverted ? "brightness-0 invert" : "contrast-125"
-          )} 
+            inverted ? "brightness-0 invert" : ""
+          )}
+          initial={{ filter: "contrast(100%)" }}
+          whileHover={{ 
+            filter: "contrast(125%)",
+            scale: 1.1,
+            transition: { duration: 0.3 }
+          }}
+          transition={{ duration: 0.3 }}
         />
       </div>
-      <div className="text-lg font-semibold text-gtm-dark">{name}</div>
-      <div className="text-sm text-gray-500">{description}</div>
+      <motion.div 
+        className="text-lg font-semibold text-gtm-dark"
+        initial={{ opacity: 0.8 }}
+        whileHover={{ opacity: 1 }}
+      >
+        {name}
+      </motion.div>
+      <motion.div 
+        className="text-sm text-gray-500"
+        initial={{ opacity: 0.7 }}
+        whileHover={{ opacity: 1 }}
+      >
+        {description}
+      </motion.div>
     </motion.div>
   );
 };

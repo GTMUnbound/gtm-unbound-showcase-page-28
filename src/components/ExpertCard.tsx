@@ -32,59 +32,93 @@ const ExpertCard = ({
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
           whileHover={{ 
-            y: -5, 
+            y: -10, 
             filter: 'brightness(1.05)',
-            boxShadow: '0 12px 30px rgba(0,0,0,0.12)'
+            boxShadow: '0 20px 40px rgba(0,0,0,0.15)'
           }}
           className={cn(
-            "p-6 rounded-2xl bg-[#F9FAFB] shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer backdrop-blur-sm backdrop-filter",
+            "p-6 rounded-2xl bg-[#F9FAFB] shadow-sm transition-all duration-300 cursor-pointer backdrop-blur-sm backdrop-filter",
             className
           )}
         >
           <div className="flex flex-col items-center text-center space-y-4">
-            <Avatar className="h-28 w-28 ring-2 ring-[#E0E0E0] shadow-md">
-              <AvatarImage src={imageSrc} alt={name} className="object-cover" />
-              <AvatarFallback className="bg-gradient-to-r from-gtm-pink to-pink-600 text-white text-3xl">
-                {name.charAt(0)}
-              </AvatarFallback>
-            </Avatar>
+            <motion.div
+              whileHover={{ scale: 1.08, rotate: 3 }}
+              transition={{ type: "spring", stiffness: 300, damping: 10 }}
+            >
+              <Avatar className="h-28 w-28 ring-2 ring-[#E0E0E0] shadow-md">
+                <AvatarImage src={imageSrc} alt={name} className="object-cover" />
+                <AvatarFallback className="bg-gradient-to-r from-gtm-pink to-pink-600 text-white text-3xl">
+                  {name.charAt(0)}
+                </AvatarFallback>
+              </Avatar>
+            </motion.div>
             
             <div className="space-y-2">
-              <h3 className="text-xl font-bold text-gtm-dark">{name}</h3>
-              <p className="text-gray-600 text-sm mb-1">{role}</p>
-              <p className="text-gray-500 text-xs">Ex-{company}</p>
+              <motion.h3 
+                className="text-xl font-bold text-gtm-dark"
+                whileHover={{ scale: 1.05 }}
+              >
+                {name}
+              </motion.h3>
+              <motion.p 
+                className="text-gray-600 text-sm mb-1"
+                initial={{ opacity: 0.8 }}
+                whileHover={{ opacity: 1 }}
+              >
+                {role}
+              </motion.p>
+              <motion.p 
+                className="text-gray-500 text-xs"
+                initial={{ opacity: 0.7 }}
+                whileHover={{ opacity: 1 }}
+              >
+                Ex-{company}
+              </motion.p>
             </div>
             
             <div className="flex flex-wrap gap-2 justify-center">
               {expertise.map((tag, index) => (
-                <span 
-                  key={index} 
-                  className="text-xs px-3 py-1 rounded-full bg-white text-gray-700 shadow-sm border border-gray-100"
+                <motion.span 
+                  key={index}
+                  initial={{ opacity: 0.8 }}
+                  whileHover={{ 
+                    scale: 1.1, 
+                    opacity: 1,
+                    backgroundColor: "white",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
+                  }}
+                  className="text-xs px-3 py-1 rounded-full bg-white text-gray-700 shadow-sm border border-gray-100 transition-all"
                 >
                   {tag}
-                </span>
+                </motion.span>
               ))}
             </div>
             
             {linkedIn && (
-              <a 
+              <motion.a 
                 href={linkedIn} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 transition-colors"
+                className="text-blue-600 hover:text-blue-800 transition-colors p-2 rounded-full"
                 onClick={(e) => e.stopPropagation()}
+                whileHover={{ 
+                  scale: 1.2, 
+                  backgroundColor: "rgba(59, 130, 246, 0.1)" 
+                }}
+                whileTap={{ scale: 0.95 }}
               >
                 <LinkedinIcon size={18} />
-              </a>
+              </motion.a>
             )}
           </div>
         </motion.div>
       </HoverCardTrigger>
       {bio && (
-        <HoverCardContent className="w-80 bg-white/95 backdrop-blur-sm p-6 shadow-xl">
+        <HoverCardContent className="w-80 bg-white/95 backdrop-blur-sm p-6 shadow-xl border border-gray-100">
           <div className="space-y-3">
             <div className="flex items-center gap-3">
               <Avatar className="h-10 w-10">
