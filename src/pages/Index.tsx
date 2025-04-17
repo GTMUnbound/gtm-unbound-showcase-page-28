@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -172,32 +173,53 @@ const Index = () => {
     }
   ];
 
+  // Updated experts profiles with real information and images
   const experts = [
     {
-      name: "Sarah Chen",
-      role: "Product-Led Growth Strategy",
-      company: "Notion",
-      expertise: ["PLG Strategy", "Launch Playbooks", "Global GTM"],
-      imageSrc: "/lovable-uploads/47d41dfa-b548-46e1-9254-b500a8667252.png",
-      bio: "Previously led Notion's PLG initiatives across APAC, driving 300% YoY growth through innovative self-serve GTM motions. Now helps early-stage startups build scalable growth engines."
+      name: "Aditi Agarwal",
+      role: "Founder & GTM Strategist",
+      company: "Commenda",
+      expertise: ["SaaS GTM", "Market Expansion", "AI Go-to-Market"],
+      imageSrc: "/lovable-uploads/1b9d407a-6505-49b0-aaca-8206b2237132.png",
+      bio: "Founded GTM Unbound to help SaaS startups scale internationally. Previously led market expansion at Commenda, helping B2B SaaS companies enter new markets and achieve 3x growth. Specializes in US-India corridor strategies.",
+      linkedIn: "https://linkedin.com/in/aditi-agarwal"
     },
     {
-      name: "Michael Rivera",
-      role: "AI/ML Go-to-Market Lead",
-      company: "Scale AI",
-      expertise: ["Enterprise AI/ML", "Product Strategy", "B2B Sales"],
-      imageSrc: "/lovable-uploads/4f65b418-cdf9-4c7f-b16e-0d3fac29bef2.png",
-      bio: "Ex-Scale AI GTM leader who built the go-to-market strategy for ML products from $0 to $50M ARR. Specializes in enterprise AI sales and product-market fit for technical products."
+      name: "Manoj Agrawal",
+      role: "AI Strategy & Growth",
+      company: "DevRev",
+      expertise: ["AI/ML GTM", "Product Strategy", "Enterprise Sales"],
+      imageSrc: "/lovable-uploads/f75e2f45-2e9c-4734-9e50-8c05598290ec.png",
+      bio: "AI trailblazer and co-founder at DevRev. Scaled multiple AI products from $0 to $50M ARR through innovative GTM strategies. Deep expertise in enterprise AI positioning and technical product marketing.",
+      linkedIn: "https://linkedin.com/in/manoj-agrawal"
     },
     {
-      name: "Priya Mehta",
-      role: "Growth & Revenue Operations",
-      company: "Razorpay",
-      expertise: ["Fintech GTM", "Revenue Ops", "APAC Markets"],
-      imageSrc: "/lovable-uploads/e5ca321f-aac8-45f5-be2b-2df7f7605d36.png",
-      bio: "Scaled Razorpay's revenue operations from Series B to D. Built GTM processes that became industry standard in Indian fintech. Helps startups navigate hypergrowth with operational excellence."
+      name: "Gaganpreet Luthra",
+      role: "Growth & Investment",
+      company: "Leo Capital",
+      expertise: ["Fintech GTM", "Venture Capital", "APAC Markets"],
+      imageSrc: "/lovable-uploads/87cd4fed-f07f-4d2c-b119-894c0bbb1ab5.png",
+      bio: "Partner at Leo Capital with deep expertise in scaling fintech operations across India and Southeast Asia. Helps founders build innovative GTM strategies that drive sustainable growth and attract investment.",
+      linkedIn: "https://linkedin.com/in/gaganpreet-luthra"
     }
   ];
+  
+  // Event images for the various formats
+  const eventImages = {
+    hikes: [
+      "/lovable-uploads/992ae0f5-e7f2-4a13-b6e2-6abf64235f8e.png",
+      "/lovable-uploads/5357b31d-8b3a-4fa0-ba9c-ff5f8e684772.png",
+      "/lovable-uploads/06e4979f-ff8b-40dd-89c4-da209de6d784.png"
+    ],
+    roundtables: [
+      "/lovable-uploads/0f2dbce9-403f-49a1-aa6a-fb8013763183.png",
+      "/lovable-uploads/56cc17c5-72fc-4f91-bb41-ae48f9ee9e0e.png",
+      "/lovable-uploads/82620397-3052-44d0-ad65-2ce482674dc3.png"
+    ],
+    workshops: [
+      "/lovable-uploads/bb153975-6bf6-4c36-b3b4-c3b1dc7ba7e1.png"
+    ]
+  };
   
   return (
     <div className="min-h-screen bg-[#F4F5F7]">
@@ -380,6 +402,7 @@ const Index = () => {
               expertise={expert.expertise}
               imageSrc={expert.imageSrc}
               bio={expert.bio}
+              linkedIn={expert.linkedIn}
             />
           ))}
         </div>
@@ -401,6 +424,29 @@ const Index = () => {
           subtitle="We design events that drive depth — not noise."
           centered
         />
+        
+        {/* Newsletter CTA as a horizontal banner */}
+        <div className="bg-white rounded-lg shadow-md p-6 max-w-5xl mx-auto mb-12 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-3">
+            <div className="bg-gtm-light text-gtm-pink p-2 rounded-full">
+              <MessageCircle size={20} />
+            </div>
+            <p className="font-medium text-gtm-dark">Get weekly GTM playbooks from real operators.</p>
+          </div>
+          <form onSubmit={handleNewsletterSubmit} className="flex w-full md:w-auto gap-2">
+            <input
+              type="email"
+              placeholder="Your email address"
+              className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gtm-pink w-full md:w-auto"
+              value={newsletterEmail}
+              onChange={(e) => setNewsletterEmail(e.target.value)}
+              required
+            />
+            <GradientButton type="submit" className="whitespace-nowrap">
+              Subscribe
+            </GradientButton>
+          </form>
+        </div>
         
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
@@ -466,32 +512,17 @@ const Index = () => {
             </div>
           </div>
           
-          <p className="text-center text-gray-700 mb-12 font-medium">
-            50+ events hosted globally. Built to solve real GTM problems — not for stage time.
-          </p>
-          
-          <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold text-gtm-dark mb-4 text-center">
-              Want to be a part of upcoming events?
-            </h3>
-            <form onSubmit={handleEmailSubmit} className="space-y-4">
-              <div>
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gtm-pink"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
+          {/* Event CTA as a horizontal banner */}
+          <div className="bg-blue-50 rounded-lg shadow-sm p-6 mb-12 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex items-center gap-3">
+              <div className="bg-blue-100 text-blue-600 p-2 rounded-full">
+                <Calendar size={20} />
               </div>
-              <GradientButton type="submit" className="w-full">
-                Get Event Updates
-              </GradientButton>
-              <p className="text-xs text-gray-500 text-center">
-                No spam, just high-signal invites.
-              </p>
-            </form>
+              <p className="font-medium text-gtm-dark">Join our founder-only GTM events — from hikes to roundtables.</p>
+            </div>
+            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors whitespace-nowrap">
+              View Upcoming Events
+            </button>
           </div>
         </div>
       </Section>
@@ -528,30 +559,6 @@ const Index = () => {
               </div>
               <p className="text-gray-700 font-medium text-center">Build GTM muscle for the long run</p>
             </div>
-          </div>
-          
-          <div className="max-w-md mx-auto bg-gtm-light p-8 rounded-lg mt-16">
-            <h3 className="text-xl font-semibold text-gtm-dark mb-4 text-center">
-              Subscribe to the Unbound Newsletter
-            </h3>
-            <p className="text-gray-600 text-center mb-6">
-              Get weekly GTM insights from operators in your inbox. Templates, frameworks, and ideas that actually move the needle.
-            </p>
-            <form onSubmit={handleNewsletterSubmit} className="space-y-4">
-              <div>
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gtm-pink"
-                  value={newsletterEmail}
-                  onChange={(e) => setNewsletterEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <GradientButton type="submit" className="w-full">
-                Subscribe
-              </GradientButton>
-            </form>
           </div>
         </div>
       </Section>
