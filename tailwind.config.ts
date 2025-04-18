@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -94,15 +95,45 @@ export default {
 				'fade-in': {
 					'0%': { opacity: '0', transform: 'translateY(10px)' },
 					'100%': { opacity: '1', transform: 'translateY(0)' }
-				}
+				},
+        'shimmer': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' }
+        },
+        'scale-up': {
+          '0%': { transform: 'scale(0.95)' },
+          '100%': { transform: 'scale(1)' }
+        },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' }
+        },
+        'draw': {
+          '0%': { 'stroke-dashoffset': '100%' },
+          '100%': { 'stroke-dashoffset': '0%' }
+        },
+        'gradient-x': {
+          '0%, 100%': {
+            'background-position': '0% 50%'
+          },
+          '50%': {
+            'background-position': '100% 50%'
+          }
+        }
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 0.5s ease-out'
+				'fade-in': 'fade-in 0.5s ease-out',
+        'shimmer': 'shimmer 2s infinite',
+        'scale-up': 'scale-up 0.5s ease-out',
+        'float': 'float 6s ease-in-out infinite',
+        'draw': 'draw 2.5s forwards',
+        'gradient-x': 'gradient-x 15s ease infinite'
 			},
 			backgroundImage: {
-				'gradient-gtm': 'linear-gradient(to right, #FF8A8A, #FF6B9D)'
+				'gradient-gtm': 'linear-gradient(to right, #FF8A8A, #FF6B9D)',
+        'gradient-shimmer': 'linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent)'
 			}
 		}
 	},
