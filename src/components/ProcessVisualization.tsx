@@ -119,18 +119,18 @@ const ProcessVisualization: React.FC = () => {
     delay: Math.random() * 2
   }));
 
-  // Updated step-specific icons configuration with pink-toned colors
+  // Removed emoji icons from stepIcons configuration
   const stepIcons = [
-    { icon: CloudFog, color: "text-gtm-pink/70", label: "GTM Fog" },
-    { icon: Handshake, color: "text-gtm-pink/80", label: "Expert Match" },
-    { icon: BookOpen, color: "text-gtm-pink/90", label: "Playbook" },
-    { icon: Target, color: "text-gtm-pink/80", label: "Execution" },
+    { icon: Laptop, color: "text-gtm-pink/70", label: "GTM Fog" },
+    { icon: Brain, color: "text-gtm-pink/80", label: "Expert Match" },
+    { icon: BarChart4, color: "text-gtm-pink/90", label: "Playbook" },
+    { icon: Users, color: "text-gtm-pink/80", label: "Execution" },
     { icon: Rocket, color: "text-gtm-pink/70", label: "Launch" }
   ];
 
   return (
     <motion.div 
-      className="w-full max-w-md mx-auto relative h-[520px] flex items-center justify-center"
+      className="w-full max-w-md mx-auto relative h-[520px] flex items-center justify-center ml-12" // Added ml-12 for spacing
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -176,11 +176,10 @@ const ProcessVisualization: React.FC = () => {
           }}
           className="w-full rounded-2xl overflow-hidden shadow-lg bg-white/80 backdrop-blur-sm relative z-10"
         >
-          {/* Visual Section with centered step icon */}
+          {/* Visual Section with centered icon - removed emoji */}
           <motion.div className="w-full h-80 relative">
             {generateStepVisual(steps[currentIndex].imagePrompt)}
             
-            {/* Centered Icon with Animated Ring */}
             <div className="absolute inset-0 flex items-center justify-center z-10">
               <motion.div 
                 className="relative"

@@ -287,13 +287,12 @@ const Index = () => {
     <div className="min-h-screen bg-[#F4F5F7]">
       <Navbar sections={sections} />
       
-      {/* Hero Section */}
+      {/* Hero Section with improved spacing */}
       <Section id="home" className="pt-32 pb-20 bg-white">
         <div className="container mx-auto px-4 md:px-6 relative">
-          {/* Using regular image background */}
           <HeroBackground type="image" />
           
-          <div className="flex flex-col md:flex-row items-center relative z-10">
+          <div className="flex flex-col md:flex-row items-start relative z-10 gap-12"> {/* Added gap-12 for spacing */}
             <div className="w-full md:w-3/5 mb-10 md:mb-0">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -303,14 +302,14 @@ const Index = () => {
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gtm-dark mb-6 leading-tight">
                   Helping Startups Scale Smarter, Not Louder
                 </h1>
-                <p className="text-xl text-gray-600 mb-8 max-w-2xl">
+                <p className="text-xl text-gray-600 mb-12 max-w-2xl"> {/* Increased margin bottom */}
                   GTM Unbound is a curated platform for startup founders and GTM leaders.
                   We help you scale go-to-market execution through real operators, deep community, and structured systems.
                 </p>
                 
-                {/* Stats in one row */}
+                {/* Stats in one row with increased bottom margin */}
                 <motion.div 
-                  className="flex flex-row gap-6 mt-8 overflow-x-auto pb-4 md:overflow-visible md:flex-nowrap"
+                  className="flex flex-row gap-6 mb-10 overflow-x-auto pb-4 md:overflow-visible md:flex-nowrap" // Added mb-10
                   variants={containerVariants}
                   initial="hidden"
                   animate="visible"
@@ -329,8 +328,8 @@ const Index = () => {
               </motion.div>
             </div>
             
-            {/* Process Visualization in right column */}
-            <div className="w-full md:w-2/5 flex justify-center items-center">
+            {/* Process Visualization with adjusted spacing */}
+            <div className="w-full md:w-2/5 flex justify-center items-center pl-6"> {/* Added pl-6 for left padding */}
               <ProcessVisualization />
             </div>
           </div>
