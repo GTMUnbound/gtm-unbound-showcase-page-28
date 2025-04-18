@@ -108,7 +108,7 @@ const EventDetailModal = ({
                 opts={{
                   align: "start",
                   loop: true,
-                  direction: "y",
+                  axis: "y",
                 }}
                 setApi={setCarouselApi}
                 orientation="vertical"
