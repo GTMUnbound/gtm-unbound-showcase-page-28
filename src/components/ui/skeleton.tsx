@@ -22,8 +22,18 @@ function Skeleton({
     )
   }
 
-  // Separate animation and DOM props to avoid type conflicts
-  const { onAnimationStart, onAnimationComplete, ...otherProps } = props;
+  // Extract all potentially conflicting event handlers
+  // We need to exclude React DOM event handlers that conflict with Framer Motion's props
+  const {
+    onAnimationStart,
+    onAnimationEnd,
+    onAnimationIteration,
+    onDrag,
+    onDragEnd,
+    onDragStart,
+    onTransitionEnd,
+    ...motionProps
+  } = props;
   
   return (
     <motion.div
@@ -39,7 +49,7 @@ function Skeleton({
         duration: 2, 
         ease: "easeInOut" 
       }}
-      {...otherProps}
+      {...motionProps}
     />
   )
 }
