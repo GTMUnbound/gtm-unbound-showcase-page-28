@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Brain, Rocket, BarChart4, Users, Laptop, Sparkles } from 'lucide-react';
+import { Brain, Rocket, BarChart4, Users, Laptop, Sparkles, Star, Heart, Trophy } from 'lucide-react';
 
 const generateStepVisual = (type: string) => {
   const visuals = {
@@ -119,6 +119,13 @@ const ProcessVisualization: React.FC = () => {
     delay: Math.random() * 2
   }));
 
+  // New animated emojis configuration
+  const emojis = [
+    { icon: Star, color: "text-yellow-400" },
+    { icon: Heart, color: "text-pink-400" },
+    { icon: Trophy, color: "text-yellow-500" }
+  ];
+
   return (
     <motion.div 
       className="w-full max-w-md mx-auto relative h-[520px] flex items-center justify-center"
@@ -168,49 +175,69 @@ const ProcessVisualization: React.FC = () => {
           }}
           className="w-full rounded-2xl overflow-hidden shadow-lg bg-white/80 backdrop-blur-sm relative z-10"
         >
-          {/* Visual Section with enhanced interactions */}
-          <motion.div 
-            className="w-full h-80 relative"
-            whileHover={{ 
-              scale: 1.02,
-              transition: { duration: 0.3 }
-            }}
-          >
+          {/* Visual Section with centered logo and emojis */}
+          <motion.div className="w-full h-80 relative">
             {generateStepVisual(steps[currentIndex].imagePrompt)}
             
-            {/* Floating sparkles effect */}
-            <motion.div
-              className="absolute inset-0 pointer-events-none"
-              initial="hidden"
-              animate="visible"
-            >
-              {[...Array(3)].map((_, i) => (
+            {/* Centered Logo with Emojis */}
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <motion.div 
+                className="relative"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", duration: 0.8 }}
+              >
+                <img 
+                  src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
+                  alt="GTM Unbound Logo"
+                  className="w-24 h-24 object-contain relative z-20"
+                />
+                
+                {/* Animated Emoji Ring */}
+                {emojis.map((Emoji, index) => (
+                  <motion.div
+                    key={index}
+                    className={`absolute ${Emoji.color}`}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ 
+                      opacity: 1, 
+                      scale: 1,
+                      rotate: [0, 360],
+                      x: Math.cos(((2 * Math.PI) / emojis.length) * index) * 50,
+                      y: Math.sin(((2 * Math.PI) / emojis.length) * index) * 50
+                    }}
+                    transition={{
+                      duration: 2,
+                      delay: index * 0.2,
+                      rotate: {
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }
+                    }}
+                  >
+                    <Emoji.icon className="w-8 h-8" />
+                  </motion.div>
+                ))}
+                
+                {/* Glowing Effect */}
                 <motion.div
-                  key={i}
-                  className="absolute"
-                  style={{
-                    left: `${30 + i * 30}%`,
-                    top: `${20 + i * 25}%`
-                  }}
+                  className="absolute inset-0 bg-gradient-to-r from-pink-200/30 to-purple-200/30 rounded-full blur-xl"
                   animate={{
-                    y: [0, -15, 0],
-                    opacity: [0.5, 1, 0.5],
-                    scale: [1, 1.2, 1]
+                    scale: [1, 1.2, 1],
+                    opacity: [0.5, 0.8, 0.5]
                   }}
                   transition={{
-                    duration: 2,
-                    delay: i * 0.3,
+                    duration: 3,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
-                >
-                  <Sparkles className="w-4 h-4 text-pink-400/40" />
-                </motion.div>
-              ))}
-            </motion.div>
+                />
+              </motion.div>
+            </div>
           </motion.div>
           
-          {/* Content Section with staggered animations */}
+          {/* Content Section */}
           <motion.div 
             className="p-6 bg-gradient-to-br from-pink-50/80 to-white/90"
             initial={{ opacity: 0, y: 20 }}
