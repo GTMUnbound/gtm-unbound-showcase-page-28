@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Brain, Rocket, BarChart4, Users, Laptop, Sparkles, Star, Heart, Trophy } from 'lucide-react';
+import { Brain, Rocket, BarChart4, Users, Laptop, Sparkles, Star, Heart, Trophy, BookOpen, Target, CloudFog, Handshake } from 'lucide-react';
 
 const generateStepVisual = (type: string) => {
   const visuals = {
@@ -119,11 +119,13 @@ const ProcessVisualization: React.FC = () => {
     delay: Math.random() * 2
   }));
 
-  // New animated emojis configuration
-  const emojis = [
-    { icon: Star, color: "text-yellow-400" },
-    { icon: Heart, color: "text-pink-400" },
-    { icon: Trophy, color: "text-yellow-500" }
+  // Updated step-specific icons configuration
+  const stepIcons = [
+    { icon: CloudFog, color: "text-blue-400", label: "GTM Fog" },
+    { icon: Handshake, color: "text-green-400", label: "Expert Match" },
+    { icon: BookOpen, color: "text-purple-400", label: "Playbook" },
+    { icon: Target, color: "text-pink-400", label: "Execution" },
+    { icon: Rocket, color: "text-orange-400", label: "Launch" }
   ];
 
   return (
@@ -160,7 +162,6 @@ const ProcessVisualization: React.FC = () => {
         />
       ))}
       
-      {/* Main content with enhanced animations */}
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -175,11 +176,11 @@ const ProcessVisualization: React.FC = () => {
           }}
           className="w-full rounded-2xl overflow-hidden shadow-lg bg-white/80 backdrop-blur-sm relative z-10"
         >
-          {/* Visual Section with centered logo and emojis */}
+          {/* Visual Section with centered step icon */}
           <motion.div className="w-full h-80 relative">
             {generateStepVisual(steps[currentIndex].imagePrompt)}
             
-            {/* Centered Logo with Emojis */}
+            {/* Centered Icon with Animated Ring */}
             <div className="absolute inset-0 flex items-center justify-center z-10">
               <motion.div 
                 className="relative"
@@ -187,52 +188,56 @@ const ProcessVisualization: React.FC = () => {
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", duration: 0.8 }}
               >
-                <img 
-                  src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
-                  alt="GTM Unbound Logo"
-                  className="w-24 h-24 object-contain relative z-20"
-                />
+                <motion.div
+                  className={`w-24 h-24 rounded-full bg-white/90 shadow-xl flex items-center justify-center relative z-20 ${stepIcons[currentIndex].color}`}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {React.createElement(stepIcons[currentIndex].icon, { 
+                    size: 48,
+                    className: "transition-all duration-300"
+                  })}
+                </motion.div>
                 
-                {/* Animated Emoji Ring */}
-                {emojis.map((Emoji, index) => (
+                {/* Animated Rings */}
+                {[...Array(3)].map((_, index) => (
                   <motion.div
                     key={index}
-                    className={`absolute ${Emoji.color}`}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ 
-                      opacity: 1, 
-                      scale: 1,
-                      rotate: [0, 360],
-                      x: Math.cos(((2 * Math.PI) / emojis.length) * index) * 50,
-                      y: Math.sin(((2 * Math.PI) / emojis.length) * index) * 50
+                    className="absolute inset-0 rounded-full border-2 border-pink-200/30"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.3, 0.1, 0.3],
+                      rotate: [0, 180, 360]
+                    }}
+                    transition={{
+                      duration: 3,
+                      delay: index * 0.4,
+                      repeat: Infinity,
+                      ease: "linear"
+                    }}
+                  />
+                ))}
+                
+                {/* Floating particles */}
+                {[...Array(6)].map((_, index) => (
+                  <motion.div
+                    key={`particle-${index}`}
+                    className={`absolute w-2 h-2 rounded-full ${stepIcons[currentIndex].color}`}
+                    animate={{
+                      x: [0, Math.cos(index * 60) * 40],
+                      y: [0, Math.sin(index * 60) * 40],
+                      scale: [0.8, 1.2, 0.8],
+                      opacity: [0.3, 0.7, 0.3],
                     }}
                     transition={{
                       duration: 2,
                       delay: index * 0.2,
-                      rotate: {
-                        duration: 20,
-                        repeat: Infinity,
-                        ease: "linear"
-                      }
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      ease: "easeInOut"
                     }}
-                  >
-                    <Emoji.icon className="w-8 h-8" />
-                  </motion.div>
+                  />
                 ))}
-                
-                {/* Glowing Effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-pink-200/30 to-purple-200/30 rounded-full blur-xl"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.5, 0.8, 0.5]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
               </motion.div>
             </div>
           </motion.div>
