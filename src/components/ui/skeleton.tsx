@@ -22,6 +22,9 @@ function Skeleton({
     )
   }
 
+  // Separate animation and DOM props to avoid type conflicts
+  const { onAnimationStart, onAnimationComplete, ...otherProps } = props;
+  
   return (
     <motion.div
       className={cn(
@@ -36,7 +39,7 @@ function Skeleton({
         duration: 2, 
         ease: "easeInOut" 
       }}
-      {...props}
+      {...otherProps}
     />
   )
 }
