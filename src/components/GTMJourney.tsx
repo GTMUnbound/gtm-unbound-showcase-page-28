@@ -1,61 +1,91 @@
+
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { motion } from 'framer-motion';
 import ExpertMatchCard from './ExpertMatchCard';
-import { Brain, CheckCircle, Code, FileText, Mountain, LinkedinIcon, 
-  MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, 
-  Users, RefreshCw, Rocket, TrendingUp, Award, Calendar,
-  ArrowRight, MessageSquare, Globe, Check 
-} from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { cn } from "@/lib/utils";
 
 const GTMJourney = () => {
+  const journeyCards = [
+    {
+      title: "Expert Match",
+      description: "Find your perfect GTM guide",
+      isExpertMatch: true
+    },
+    {
+      title: "GTM Sprints",
+      description: "8-week launch plan",
+      gradient: "from-gtm-coral to-gtm-pink"
+    },
+    {
+      title: "GTM Rituals",
+      description: "Weekly team alignment",
+      gradient: "from-pink-400 to-gtm-pink"
+    },
+    {
+      title: "Conversion Boost",
+      description: "Double your rate in 2 months",
+      gradient: "from-purple-400 to-gtm-pink"
+    }
+  ];
+
   return (
-    <div className="w-full max-w-xl mx-auto">
+    <div className="w-full max-w-4xl mx-auto py-8">
+      <Carousel
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        className="w-full"
+      >
+        <CarouselContent className="-ml-2 md:-ml-4">
+          {journeyCards.map((card, index) => (
+            <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+                className="h-full"
+              >
+                {card.isExpertMatch ? (
+                  <ExpertMatchCard className="w-full h-[220px]" />
+                ) : (
+                  <div className={cn(
+                    "w-full h-[220px] bg-gradient-to-r rounded-xl shadow-md p-6 flex flex-col justify-between group transition-all duration-300",
+                    card.gradient
+                  )}>
+                    <div>
+                      <h3 className="text-xl font-semibold text-white mb-2">{card.title}</h3>
+                      <p className="text-white/90">{card.description}</p>
+                    </div>
+                    <ArrowRight className="text-white self-end transform transition-transform group-hover:translate-x-2" />
+                  </div>
+                )}
+              </motion.div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <div className="hidden md:flex justify-end gap-2 mt-4">
+          <CarouselPrevious />
+          <CarouselNext />
+        </div>
+      </Carousel>
+      
       <motion.div 
-        className="flex gap-4 overflow-x-auto pb-6 px-4 snap-x snap-mandatory"
+        className="flex justify-center gap-2 mt-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        transition={{ delay: 0.5 }}
       >
-        <div className="snap-center shrink-0 first:pl-8 last:pr-8">
-          <ExpertMatchCard className="w-[280px] h-[180px]" />
-        </div>
-        
-        <div className="snap-center shrink-0 first:pl-8 last:pr-8">
-          <div className="w-[280px] h-[180px] bg-white rounded-xl shadow-md p-4 flex flex-col justify-between">
-            <div>
-              <h3 className="text-lg font-semibold text-gtm-dark mb-2">GTM Sprints</h3>
-              <p className="text-sm text-gray-600">8-week launch plan</p>
-            </div>
-            <ArrowRight className="text-gtm-pink self-end" />
-          </div>
-        </div>
-
-        <div className="snap-center shrink-0 first:pl-8 last:pr-8">
-          <div className="w-[280px] h-[180px] bg-white rounded-xl shadow-md p-4 flex flex-col justify-between">
-            <div>
-              <h3 className="text-lg font-semibold text-gtm-dark mb-2">GTM Rituals</h3>
-              <p className="text-sm text-gray-600">Weekly team alignment</p>
-            </div>
-            <ArrowRight className="text-gtm-pink self-end" />
-          </div>
-        </div>
-
-        <div className="snap-center shrink-0 first:pl-8 last:pr-8">
-          <div className="w-[280px] h-[180px] bg-white rounded-xl shadow-md p-4 flex flex-col justify-between">
-            <div>
-              <h3 className="text-lg font-semibold text-gtm-dark mb-2">Conversion Boost</h3>
-              <p className="text-sm text-gray-600">Double your rate in 2 months</p>
-            </div>
-            <ArrowRight className="text-gtm-pink self-end" />
-          </div>
-        </div>
+        {journeyCards.map((_, index) => (
+          <motion.div
+            key={index}
+            className="w-2 h-2 rounded-full bg-gtm-pink/30"
+            whileHover={{ scale: 1.2 }}
+          />
+        ))}
       </motion.div>
-      
-      <div className="flex justify-center gap-2">
-        <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-        <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-        <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-        <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-      </div>
     </div>
   );
 };
