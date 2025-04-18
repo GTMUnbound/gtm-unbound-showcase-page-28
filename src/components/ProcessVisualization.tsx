@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Brain, Rocket, BarChart4, Users, Laptop } from 'lucide-react';
+import { Brain, Rocket, BarChart4, Users, Laptop, Sparkles } from 'lucide-react';
 
 const generateStepVisual = (type: string) => {
   const visuals = {
@@ -110,90 +109,127 @@ const ProcessVisualization: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Particles for background animation
-  const particles = Array.from({ length: 15 }).map((_, i) => ({
+  // Enhanced particles system
+  const particles = Array.from({ length: 20 }).map((_, i) => ({
     id: i,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    size: Math.random() * 15 + 5,
-    duration: Math.random() * 15 + 15
+    size: Math.random() * 20 + 5,
+    duration: Math.random() * 20 + 10,
+    delay: Math.random() * 2
   }));
 
   return (
     <motion.div 
       className="w-full max-w-md mx-auto relative h-[520px] flex items-center justify-center"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      {/* Background particles */}
+      {/* Animated background particles */}
       {particles.map(particle => (
         <motion.div
           key={particle.id}
-          className="absolute rounded-full bg-pink-100/20 pointer-events-none"
+          className="absolute rounded-full bg-gradient-to-br from-pink-100/30 to-purple-100/30 pointer-events-none backdrop-blur-sm"
           style={{
             left: `${particle.x}%`,
             top: `${particle.y}%`,
             width: particle.size,
             height: particle.size
           }}
+          initial={{ opacity: 0, scale: 0 }}
           animate={{
-            x: [0, 20, 0, -20, 0],
-            y: [0, -20, 10, -10, 0],
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.5, 0.3]
+            opacity: [0.2, 0.5, 0.2],
+            scale: [1, 1.2, 1],
+            x: [0, 30, -30, 0],
+            y: [0, -30, 30, 0]
           }}
           transition={{
             duration: particle.duration,
+            delay: particle.delay,
             repeat: Infinity,
             ease: "easeInOut"
           }}
         />
       ))}
       
+      {/* Main content with enhanced animations */}
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
-          initial={{ opacity: 0, x: 50, scale: 0.95 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          exit={{ opacity: 0, x: -50, scale: 0.95 }}
+          initial={{ opacity: 0, x: 50, scale: 0.9, rotateY: -15 }}
+          animate={{ opacity: 1, x: 0, scale: 1, rotateY: 0 }}
+          exit={{ opacity: 0, x: -50, scale: 0.9, rotateY: 15 }}
           transition={{ 
-            duration: 0.5,
+            duration: 0.6,
             type: "spring", 
             stiffness: 100, 
             damping: 20
           }}
-          className="w-full rounded-2xl overflow-hidden shadow-lg bg-white relative z-10"
+          className="w-full rounded-2xl overflow-hidden shadow-lg bg-white/80 backdrop-blur-sm relative z-10"
         >
-          {/* Visual Section */}
+          {/* Visual Section with enhanced interactions */}
           <motion.div 
             className="w-full h-80 relative"
-            whileHover={{ scale: 1.03 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            whileHover={{ 
+              scale: 1.02,
+              transition: { duration: 0.3 }
+            }}
           >
             {generateStepVisual(steps[currentIndex].imagePrompt)}
+            
+            {/* Floating sparkles effect */}
+            <motion.div
+              className="absolute inset-0 pointer-events-none"
+              initial="hidden"
+              animate="visible"
+            >
+              {[...Array(3)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute"
+                  style={{
+                    left: `${30 + i * 30}%`,
+                    top: `${20 + i * 25}%`
+                  }}
+                  animate={{
+                    y: [0, -15, 0],
+                    opacity: [0.5, 1, 0.5],
+                    scale: [1, 1.2, 1]
+                  }}
+                  transition={{
+                    duration: 2,
+                    delay: i * 0.3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <Sparkles className="w-4 h-4 text-pink-400/40" />
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
           
-          {/* Content Section */}
+          {/* Content Section with staggered animations */}
           <motion.div 
-            className="p-6 bg-pink-50"
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.3 }}
+            className="p-6 bg-gradient-to-br from-pink-50/80 to-white/90"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.4 }}
           >
             <motion.h3 
               className="text-2xl font-bold text-gtm-dark mb-2"
-              initial={{ y: 5, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.3 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.3 }}
             >
               {steps[currentIndex].title}
             </motion.h3>
             <motion.p 
               className="text-gray-600"
-              initial={{ y: 5, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.3 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.3 }}
             >
               {steps[currentIndex].description}
             </motion.p>
@@ -201,38 +237,46 @@ const ProcessVisualization: React.FC = () => {
         </motion.div>
       </AnimatePresence>
       
-      {/* Navigation Dots */}
-      <div className="absolute -bottom-8 left-0 right-0 flex justify-center space-x-2">
+      {/* Enhanced navigation dots */}
+      <div className="absolute -bottom-8 left-0 right-0 flex justify-center space-x-3">
         {steps.map((_, index) => (
           <motion.button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+            className={`h-2 rounded-full transition-all duration-300 ${
               index === currentIndex 
-                ? 'bg-pink-500 w-4' 
-                : 'bg-pink-200 hover:bg-pink-300'
+                ? 'bg-pink-500 w-6' 
+                : 'bg-pink-200 w-2 hover:bg-pink-300'
             }`}
-            whileHover={{ scale: 1.5 }}
+            whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 + index * 0.1 }}
             aria-label={`Go to step ${index + 1}`}
           />
         ))}
       </div>
       
-      {/* Preview of coming steps */}
+      {/* Preview cards with enhanced animations */}
       <div className="absolute right-0 top-1/2 transform translate-x-[80%] -translate-y-1/2 flex flex-col space-y-4 pointer-events-none">
         {steps.map((step, idx) => {
-          // Only show the next steps (not current or previous)
           if (idx > currentIndex && idx <= currentIndex + 2) {
             const distance = idx - currentIndex;
             return (
               <motion.div
                 key={idx}
-                className="bg-white w-12 h-12 rounded-full flex items-center justify-center shadow-md"
-                style={{ 
-                  opacity: 0.7 - (distance * 0.2),
+                className="bg-white/80 backdrop-blur-sm w-12 h-12 rounded-full flex items-center justify-center shadow-lg"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ 
+                  opacity: 0.8 - (distance * 0.2),
                   scale: 1 - (distance * 0.2),
-                  translateY: distance * 20
+                  x: 0,
+                  y: distance * 20
+                }}
+                transition={{
+                  duration: 0.4,
+                  delay: distance * 0.1
                 }}
               >
                 {step.imagePrompt === 'fog' && <Laptop size={20} className="text-pink-400" />}
