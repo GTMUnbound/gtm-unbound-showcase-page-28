@@ -1,8 +1,8 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Dialog, DialogContent, DialogOverlay } from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
@@ -31,7 +31,7 @@ const EventDetailModal = ({
   const [isDragging, setIsDragging] = useState(false);
   
   // Prevent background scroll when modal is active
-  React.useEffect(() => {
+  useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -44,7 +44,7 @@ const EventDetailModal = ({
   }, [isOpen]);
   
   // Update image index when carousel changes
-  React.useEffect(() => {
+  useEffect(() => {
     if (!carouselApi) return;
     
     const handleSelect = () => {
@@ -80,30 +80,49 @@ const EventDetailModal = ({
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="p-0 overflow-hidden max-w-4xl w-full mx-auto rounded-xl border-0 shadow-2xl">
-        <div className="relative flex flex-col w-full h-full">
+        <motion.div 
+          className="relative flex flex-col w-full h-full"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, type: "spring", damping: 20 }}
+        >
           {/* Header with title and close button */}
           <div className={cn(
             "px-6 py-4 bg-gradient-to-r text-white",
             getColorClass()
           )}>
             <div className="flex justify-between items-center">
-              <div>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1, duration: 0.3 }}
+              >
                 <h2 className="text-2xl font-bold">{title}</h2>
                 <p className="text-white/90">{description}</p>
-              </div>
-              <button 
+              </motion.div>
+              <motion.button 
                 onClick={onClose}
                 className="rounded-full p-2 bg-white/20 hover:bg-white/30 transition-colors"
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
+                initial={{ opacity: 0, rotate: 45 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                transition={{ duration: 0.2 }}
               >
                 <X className="h-5 w-5" />
-              </button>
+              </motion.button>
             </div>
           </div>
           
           {/* Main content area */}
           <div className="p-6 flex flex-col md:flex-row gap-6">
             {/* Image gallery section with vertical swipe */}
-            <div className="md:w-2/3 h-[350px] md:h-[400px] relative rounded-xl overflow-hidden">
+            <motion.div 
+              className="md:w-2/3 h-[350px] md:h-[400px] relative rounded-xl overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.4 }}
+            >
               <Carousel
                 opts={{
                   align: "start",
@@ -140,6 +159,13 @@ const EventDetailModal = ({
                           alt={`${title} event ${index + 1}`}
                           className="object-cover h-full w-full rounded-xl"
                         />
+                        {/* Liquid motion overlay */}
+                        <motion.div 
+                          className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/20 rounded-xl"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: currentImageIndex === index ? 1 : 0 }}
+                          transition={{ duration: 0.5 }}
+                        />
                       </motion.div>
                     </CarouselItem>
                   ))}
@@ -158,10 +184,25 @@ const EventDetailModal = ({
                   className="h-full"
                 />
               </div>
-            </div>
+              
+              {/* Image counter */}
+              <motion.div 
+                className="absolute left-3 bottom-3 px-3 py-1 bg-black/30 backdrop-blur-sm rounded-full text-white text-sm"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.3 }}
+              >
+                {currentImageIndex + 1} / {images.length}
+              </motion.div>
+            </motion.div>
             
             {/* Content section with bullets */}
-            <div className="md:w-1/3 flex flex-col">
+            <motion.div 
+              className="md:w-1/3 flex flex-col"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+            >
               <h3 className="text-xl font-semibold mb-4">Key Benefits</h3>
               <ul className="space-y-4">
                 {bullets.map((bullet, i) => (
@@ -172,10 +213,15 @@ const EventDetailModal = ({
                     transition={{ delay: i * 0.1 + 0.2 }}
                     className="flex items-start gap-3"
                   >
-                    <div className={cn(
-                      "flex-shrink-0 w-1.5 h-1.5 rounded-full mt-2",
-                      highlightColor.replace('border-', 'bg-')
-                    )} />
+                    <motion.div 
+                      className={cn(
+                        "flex-shrink-0 w-1.5 h-1.5 rounded-full mt-2",
+                        highlightColor.replace('border-', 'bg-')
+                      )}
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: i * 0.1 + 0.3, type: "spring" }}
+                    />
                     <p className="text-gray-700">{bullet}</p>
                   </motion.li>
                 ))}
@@ -191,9 +237,9 @@ const EventDetailModal = ({
                   Swipe up/down or use the slider to browse images
                 </p>
               </motion.div>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </DialogContent>
     </Dialog>
   );
