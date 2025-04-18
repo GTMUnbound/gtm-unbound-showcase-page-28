@@ -288,12 +288,12 @@ const Index = () => {
       <Navbar sections={sections} />
       
       {/* Hero Section with improved spacing */}
-      <Section id="home" className="pt-32 pb-20 bg-white">
+      <Section id="home" className="pt-32 pb-16 bg-white">
         <div className="container mx-auto px-4 md:px-6 relative">
           <HeroBackground type="image" />
           
-          <div className="flex flex-col md:flex-row items-start relative z-10 gap-12"> {/* Added gap-12 for spacing */}
-            <div className="w-full md:w-3/5 mb-10 md:mb-0">
+          <div className="flex flex-col md:flex-row items-start relative z-10 gap-16"> 
+            <div className="w-full md:w-3/5 mb-8 md:mb-0">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -302,14 +302,14 @@ const Index = () => {
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gtm-dark mb-6 leading-tight">
                   Helping Startups Scale Smarter, Not Louder
                 </h1>
-                <p className="text-xl text-gray-600 mb-12 max-w-2xl"> {/* Increased margin bottom */}
+                <p className="text-xl text-gray-600 mb-10 max-w-2xl">
                   GTM Unbound is a curated platform for startup founders and GTM leaders.
                   We help you scale go-to-market execution through real operators, deep community, and structured systems.
                 </p>
                 
-                {/* Stats in one row with increased bottom margin */}
+                {/* Stats with improved spacing */}
                 <motion.div 
-                  className="flex flex-row gap-6 mb-10 overflow-x-auto pb-4 md:overflow-visible md:flex-nowrap" // Added mb-10
+                  className="flex flex-row gap-6 mb-12 overflow-x-auto pb-4 md:overflow-visible md:flex-nowrap"
                   variants={containerVariants}
                   initial="hidden"
                   animate="visible"
@@ -328,8 +328,8 @@ const Index = () => {
               </motion.div>
             </div>
             
-            {/* Process Visualization with adjusted spacing */}
-            <div className="w-full md:w-2/5 flex justify-center items-center pl-6"> {/* Added pl-6 for left padding */}
+            {/* Process Visualization with better spacing */}
+            <div className="w-full md:w-2/5 flex justify-center items-center">
               <ProcessVisualization />
             </div>
           </div>
@@ -344,8 +344,8 @@ const Index = () => {
           centered
         />
         
-        {/* 1. What We Offer Founders */}
-        <div className="mb-16">
+        {/* 1. What We Offer Founders - with improved spacing */}
+        <div className="mb-12">
           <h3 className="text-2xl font-bold text-gtm-dark mb-6 text-center">What We Offer Founders</h3>
           <div className="grid md:grid-cols-3 gap-8">
             <motion.div variants={itemVariants}>
@@ -372,8 +372,8 @@ const Index = () => {
           </div>
         </div>
 
-        {/* 2. Plans & Pricing */}
-        <div className="mb-16">
+        {/* 2. Plans & Pricing - with improved spacing */}
+        <div className="mb-12">
           <SectionHeader 
             title="Plans & Pricing"
             subtitle="We offer three flexible tiers based on your team's capacity and growth stage."
@@ -396,23 +396,25 @@ const Index = () => {
           </div>
         </div>
 
-        {/* 3. Startups We Work With - with reduced spacing */}
-        <div className="mb-12 py-8 bg-white rounded-xl shadow-md">
+        {/* 3. Startups We Work With - with improved spacing */}
+        <div className="mb-10 py-8 bg-white rounded-xl shadow-md">
           <div className="container mx-auto">
-            <h3 className="text-2xl font-bold text-center text-gtm-dark mb-8">Our Success Stories</h3>
+            <h3 className="text-2xl font-bold text-center text-gtm-dark mb-6">Our Success Stories</h3>
             <ScrollingLogos />
           </div>
         </div>
 
-        {/* 4. What Our Clients Say */}
+        {/* 4. What Our Clients Say - with improved spacing and subheading */}
         <div className="max-w-5xl mx-auto">
-          <h3 className="text-2xl font-bold text-gtm-dark mb-8 text-center">What Our Clients Say</h3>
+          <h3 className="text-2xl font-bold text-gtm-dark mb-2 text-center">What Our Clients Say</h3>
+          <p className="text-center text-gray-600 mb-6">Real outcomes. Straight from the founders who've scaled with GTM Unbound.</p>
+          
           <Carousel
             opts={{
               align: "center",
               loop: true,
             }}
-            className="mb-16"
+            className="mb-12"
           >
             <CarouselContent>
               <CarouselItem className="md:basis-3/4 lg:basis-1/2">
@@ -438,22 +440,22 @@ const Index = () => {
               </CarouselItem>
             </CarouselContent>
             <div className="flex justify-center mt-6">
-              <CarouselPrevious className="static transform-none mx-2" />
-              <CarouselNext className="static transform-none mx-2" />
+              <CarouselPrevious className="static transform-none mx-2 bg-white hover:bg-gtm-pink hover:text-white transition-colors duration-300" />
+              <CarouselNext className="static transform-none mx-2 bg-white hover:bg-gtm-pink hover:text-white transition-colors duration-300" />
             </div>
           </Carousel>
         </div>
       </Section>
 
-      {/* Experts Section */}
-      <Section id="experts" className="py-24 sm:py-32">
+      {/* Experts Section - with improved spacing */}
+      <Section id="experts" className="py-20 sm:py-24">
         <SectionHeader 
           title="Meet Our Growth Architects"
           subtitle="Connect with operators who've scaled startups from zero to category leaders. Real playbooks, proven results."
           centered
         />
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10 max-w-7xl mx-auto px-4">
           {experts.map((expert, index) => (
             <ExpertCard 
               key={index}
@@ -478,8 +480,8 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* Events Section */}
-      <Section id="events" className="bg-gtm-light pb-32">
+      {/* Events Section - with improved spacing and glassmorphism */}
+      <Section id="events" className="bg-gtm-light pb-28">
         <SectionHeader 
           title="Where Founders and Operators Actually Connect"
           subtitle="We design events that drive depth — not noise."
@@ -487,7 +489,7 @@ const Index = () => {
         />
         
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             {eventTypes.map((eventType, index) => (
               <EventTypeCard
                 key={index}
@@ -504,8 +506,8 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* About Section */}
-      <Section id="about" className="bg-white">
+      {/* About Section - with improved spacing */}
+      <Section id="about" className="bg-white py-20">
         <SectionHeader 
           title="Why GTM Unbound Exists"
           subtitle="Most early-stage teams figure out GTM alone — through blog posts, Slack groups, and scattered advice. We built GTM Unbound to change that."
@@ -517,7 +519,7 @@ const Index = () => {
             Our goal: To make high-leverage go-to-market systems accessible to early- and growth-stage founders — through real operators, curated playbooks, and high-trust events.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
               <div className="text-gtm-pink bg-gtm-light p-3 rounded-full mb-4">
                 <Rocket size={24} />
@@ -540,7 +542,7 @@ const Index = () => {
         </div>
       </Section>
       
-      {/* Footer */}
+      {/* Footer - with existing spacing */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row justify-between items-center mb-8">

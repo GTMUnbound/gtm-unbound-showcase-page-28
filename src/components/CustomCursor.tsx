@@ -51,42 +51,21 @@ const CustomCursor = () => {
   if (prefersReducedMotion || isMobile) return null;
   
   return (
-    <>
-      {/* Main cursor dot */}
-      <motion.div
-        className="fixed top-0 left-0 w-4 h-4 rounded-full bg-gtm-pink z-[9999] pointer-events-none mix-blend-difference"
-        animate={{
-          x: position.x - 8,
-          y: position.y - 8,
-          scale: hovered ? 1.5 : 1,
-          opacity: visible ? 1 : 0
-        }}
-        transition={{
-          x: { type: "spring", stiffness: 500, damping: 28 },
-          y: { type: "spring", stiffness: 500, damping: 28 },
-          scale: { type: "spring", stiffness: 500, damping: 15 },
-          opacity: { duration: 0.2 }
-        }}
-      />
-      
-      {/* Follower/trailing cursor */}
-      <motion.div
-        className="fixed top-0 left-0 w-10 h-10 rounded-full border-2 border-gtm-pink z-[9998] pointer-events-none"
-        animate={{
-          x: position.x - 20,
-          y: position.y - 20,
-          scale: hovered ? 1.8 : 1,
-          opacity: visible ? 0.5 : 0
-        }}
-        transition={{
-          x: { type: "spring", stiffness: 250, damping: 30 },
-          y: { type: "spring", stiffness: 250, damping: 30 },
-          scale: { type: "spring", stiffness: 500, damping: 15 },
-          opacity: { duration: 0.2 }
-        }}
-        style={{ mixBlendMode: "lighten" }}
-      />
-    </>
+    <motion.div
+      className="fixed top-0 left-0 w-5 h-5 rounded-full bg-gtm-pink/70 z-[9999] pointer-events-none"
+      animate={{
+        x: position.x - 10,
+        y: position.y - 10,
+        scale: hovered ? 1.5 : 1,
+        opacity: visible ? 1 : 0
+      }}
+      transition={{
+        x: { type: "spring", stiffness: 900, damping: 40 },
+        y: { type: "spring", stiffness: 900, damping: 40 },
+        scale: { type: "spring", stiffness: 800, damping: 25 },
+        opacity: { duration: 0.2 }
+      }}
+    />
   );
 };
 

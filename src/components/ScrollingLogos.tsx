@@ -55,10 +55,16 @@ const ScrollingLogos = () => {
                 filter: "brightness(1.1) contrast(1.2)", 
                 transition: { duration: 0.3 } 
               }}
-              initial={{ filter: "grayscale(0.7) opacity(0.8)" }}
-              whileInView={{ filter: "grayscale(0)", opacity: 1 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ 
+                opacity: 1, 
+                scale: 1,
+                transition: {
+                  duration: 0.5,
+                  delay: index * 0.05 % 0.3 // Creates a staggered effect but keeps it short
+                }
+              }}
               viewport={{ once: false, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
             >
               <ClientLogo 
                 src={logo.src} 
@@ -68,6 +74,7 @@ const ScrollingLogos = () => {
                 className="w-[280px]"
                 bgColor="bg-white"
                 inverted={logo.inverted}
+                animate={true} // Enable drawing animation
               />
             </motion.div>
           ))}
