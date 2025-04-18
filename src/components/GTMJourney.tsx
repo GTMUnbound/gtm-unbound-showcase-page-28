@@ -40,9 +40,11 @@ const GTMJourney = () => {
           loop: true,
         }}
         className="w-full"
-        onSelect={(index) => {
-          // Now correctly setting the active index with a number
-          setActiveIndex(index);
+        onSelect={(api) => {
+          if (api && typeof api.selectedScrollSnap === 'function') {
+            const index = api.selectedScrollSnap();
+            setActiveIndex(index);
+          }
         }}
       >
         <CarouselContent className="-ml-2 md:-ml-4">
