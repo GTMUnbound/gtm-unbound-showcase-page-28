@@ -4,10 +4,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ExpertMatchCard from './ExpertMatchCard';
 import { ArrowRight } from 'lucide-react';
 import { cn } from "@/lib/utils";
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import type { CarouselApi } from "@/components/ui/carousel";
 
 const GTMJourney = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
   
   const journeyCards = [
     {
@@ -32,6 +34,24 @@ const GTMJourney = () => {
     }
   ];
 
+  // Update active index when carousel changes
+  useEffect(() => {
+    if (!carouselApi) return;
+    
+    const handleSelect = () => {
+      setActiveIndex(carouselApi.selectedScrollSnap());
+    };
+    
+    carouselApi.on("select", handleSelect);
+    
+    // Initial index
+    handleSelect();
+    
+    return () => {
+      carouselApi.off("select", handleSelect);
+    };
+  }, [carouselApi]);
+
   return (
     <div className="w-full max-w-4xl mx-auto py-8 relative">
       <Carousel
@@ -40,12 +60,7 @@ const GTMJourney = () => {
           loop: true,
         }}
         className="w-full"
-        onSelect={(api) => {
-          if (api && typeof api.selectedScrollSnap === 'function') {
-            const index = api.selectedScrollSnap();
-            setActiveIndex(index);
-          }
-        }}
+        setApi={setCarouselApi}
       >
         <CarouselContent className="-ml-2 md:-ml-4">
           {journeyCards.map((card, index) => (
