@@ -40,7 +40,10 @@ const GTMJourney = () => {
           loop: true,
         }}
         className="w-full"
-        onSelect={(index) => setActiveIndex(index)}
+        onSelect={(index) => {
+          // Now correctly setting the active index with a number
+          setActiveIndex(index);
+        }}
       >
         <CarouselContent className="-ml-2 md:-ml-4">
           {journeyCards.map((card, index) => (
