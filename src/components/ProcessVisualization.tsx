@@ -119,13 +119,13 @@ const ProcessVisualization: React.FC = () => {
     delay: Math.random() * 2
   }));
 
-  // Updated step-specific icons configuration
+  // Updated step-specific icons configuration with pink-toned colors
   const stepIcons = [
-    { icon: CloudFog, color: "text-blue-400", label: "GTM Fog" },
-    { icon: Handshake, color: "text-green-400", label: "Expert Match" },
-    { icon: BookOpen, color: "text-purple-400", label: "Playbook" },
-    { icon: Target, color: "text-pink-400", label: "Execution" },
-    { icon: Rocket, color: "text-orange-400", label: "Launch" }
+    { icon: CloudFog, color: "text-gtm-pink/70", label: "GTM Fog" },
+    { icon: Handshake, color: "text-gtm-pink/80", label: "Expert Match" },
+    { icon: BookOpen, color: "text-gtm-pink/90", label: "Playbook" },
+    { icon: Target, color: "text-gtm-pink/80", label: "Execution" },
+    { icon: Rocket, color: "text-gtm-pink/70", label: "Launch" }
   ];
 
   return (
@@ -203,7 +203,7 @@ const ProcessVisualization: React.FC = () => {
                 {[...Array(3)].map((_, index) => (
                   <motion.div
                     key={index}
-                    className="absolute inset-0 rounded-full border-2 border-pink-200/30"
+                    className="absolute inset-0 rounded-full border-2 border-gtm-pink/20"
                     animate={{
                       scale: [1, 1.2, 1],
                       opacity: [0.3, 0.1, 0.3],
