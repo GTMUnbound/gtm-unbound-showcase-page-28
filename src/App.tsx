@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { AnimationProvider } from "./contexts/AnimationContext";
 import ScrollProgressBar from "./components/ScrollProgressBar";
+import CustomCursor from "./components/CustomCursor";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <ScrollProgressBar />
+        <CustomCursor />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />

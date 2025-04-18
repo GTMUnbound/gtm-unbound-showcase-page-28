@@ -9,10 +9,10 @@ const CustomCursor = () => {
   const [hovered, setHovered] = useState(false);
   const [visible, setVisible] = useState(false);
   
-  // If user prefers reduced motion or is on mobile, don't show custom cursor
-  if (prefersReducedMotion || isMobile) return null;
-  
   useEffect(() => {
+    // If user prefers reduced motion or is on mobile, don't show custom cursor
+    if (prefersReducedMotion || isMobile) return;
+    
     const updateMousePosition = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
       setVisible(true);
@@ -45,7 +45,10 @@ const CustomCursor = () => {
         element.removeEventListener('mouseleave', () => setHovered(false));
       });
     };
-  }, []);
+  }, [prefersReducedMotion, isMobile]);
+  
+  // If user prefers reduced motion or is on mobile, don't render cursor
+  if (prefersReducedMotion || isMobile) return null;
   
   return (
     <>
