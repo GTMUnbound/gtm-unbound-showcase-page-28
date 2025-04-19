@@ -24,6 +24,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import ScrollingLogos from '@/components/ScrollingLogos';
 import EventTypeCard from '@/components/EventTypeCard';
 import NewsletterSubscription from '@/components/NewsletterSubscription';
+import NotificationFeed from '@/components/NotificationFeed';
 
 const Index = () => {
   const [email, setEmail] = useState('');
@@ -305,7 +306,7 @@ const Index = () => {
           <HeroBackground type="image" />
           
           <div className="flex flex-col md:flex-row items-start relative z-10 gap-16"> 
-            <div className="w-full md:w-3/5 mb-8 md:mb-0">
+            <div className="w-full md:w-1/2 mb-8 md:mb-0">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -334,31 +335,12 @@ const Index = () => {
                     Join Now
                   </button>
                 </div>
-                
-                {/* Stats with improved spacing */}
-                <motion.div 
-                  className="flex flex-row gap-6 mb-6 overflow-x-auto pb-4 md:overflow-visible md:flex-nowrap"
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  {stats.map((stat, index) => (
-                    <motion.div variants={itemVariants} className="min-w-[160px] max-w-[200px] flex-1" key={index}>
-                      <StatCard 
-                        value={stat.value} 
-                        label={stat.label} 
-                        description={stat.description}
-                        compact
-                      />
-                    </motion.div>
-                  ))}
-                </motion.div>
               </motion.div>
             </div>
             
-            {/* Founder Desk Visualization */}
-            <div className="w-full md:w-2/5 flex justify-center items-center">
-              <FounderDesk />
+            {/* Right Side - Notification Feed */}
+            <div className="w-full md:w-1/2 flex justify-center items-start">
+              <NotificationFeed />
             </div>
           </div>
         </div>
@@ -713,4 +695,16 @@ const Index = () => {
                   className="h-full w-auto brightness-200"
                 />
               </div>
-              <span className="text-xl font-semibold">
+              <span className="text-xl font-semibold">GTM Unbound</span>
+            </div>
+            
+            <div className="flex flex-wrap gap-6">
+              <a href="#" className="text-gray-300 hover:text-white">Startups</a>
+              <a href="#" className="text-gray-300 hover:text-white">Experts</a>
+              <a href="#" className="text-gray-300 hover:text-white">Events</a>
+              <a href="#" className="text-gray-300 hover:text-white">Terms</a>
+              <a href="#" className="text-gray-300 hover:text-white">Privacy</a>
+            </div>
+          </div>
+          
+          <div className="flex flex-col md:flex-row justify-between items-
