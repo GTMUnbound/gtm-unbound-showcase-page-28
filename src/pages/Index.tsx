@@ -26,6 +26,7 @@ import EventTypeCard from '@/components/EventTypeCard';
 import NewsletterSubscription from '@/components/NewsletterSubscription';
 import NotificationFeed from '@/components/NotificationFeed';
 import GTMSplitView from '@/components/GTMSplitView';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   const [email, setEmail] = useState('');
@@ -201,7 +202,7 @@ const Index = () => {
       role: "Founder",
       company: "Omnify",
       expertise: ["AI/ML GTM", "Product Strategy", "Enterprise Sales"],
-      imageSrc: "/lovable-uploads/7920cd46-719f-4ec8-a9d0-c09bd1960693.png",
+      imageSrc: "/lovable-uploads/773b7ced-a065-49b2-aa64-689bfa01adf8.png",
       bio: "Founder at Omnify with extensive experience in product-led growth. Scaled multiple products from $0 to $50M ARR through innovative GTM strategies and market positioning. Deep expertise in enterprise positioning, technical product marketing, and AI/ML implementation.",
       linkedIn: "https://www.linkedin.com/in/manikm/"
     },
@@ -210,7 +211,7 @@ const Index = () => {
       role: "Founder and Managing Partner",
       company: "Inventus Law and Avatar Advisor",
       expertise: ["Legal GTM", "Startup Law", "International Markets"],
-      imageSrc: "/lovable-uploads/773b7ced-a065-49b2-aa64-689bfa01adf8.png",
+      imageSrc: "/lovable-uploads/7920cd46-719f-4ec8-a9d0-c09bd1960693.png",
       bio: "Managing Partner at Inventus Law and Avatar Advisor. Helps startups navigate complex legal aspects of GTM strategy across global markets. Over 20 years of experience in US-India cross-border business strategy, startup formation, and international expansion.",
       linkedIn: "https://www.linkedin.com/in/aniladvani/"
     }
@@ -661,37 +662,8 @@ const Index = () => {
         </div>
       </Section>
       
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-            <div className="flex items-center mb-6 md:mb-0">
-              <div className="h-10 w-10 mr-3">
-                <img 
-                  src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png" 
-                  alt="GTM Unbound Logo" 
-                  className="h-full w-auto brightness-200"
-                />
-              </div>
-              <span className="text-xl font-semibold">GTM Unbound</span>
-            </div>
-            
-            <div className="flex flex-wrap gap-6">
-              <a href="#" className="text-gray-300 hover:text-white">Startups</a>
-              <a href="#" className="text-gray-300 hover:text-white">Experts</a>
-              <a href="#" className="text-gray-300 hover:text-white">Events</a>
-              <a href="#" className="text-gray-300 hover:text-white">Terms</a>
-              <a href="#" className="text-gray-300 hover:text-white">Privacy</a>
-            </div>
-          </div>
-          
-          <div className="border-t border-gray-800 pt-8 mt-8">
-            <p className="text-gray-400 text-center text-sm">
-              © {new Date().getFullYear()} GTM Unbound. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      {/* Replace the old footer with the new Footer component */}
+      <Footer />
     </div>
   );
 };
