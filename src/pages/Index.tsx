@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -18,7 +17,7 @@ import {
   Brain, CheckCircle, Code, FileText, Mountain, LinkedinIcon, 
   MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, 
   Users, RefreshCw, Rocket, TrendingUp, Award, Calendar,
-  ArrowRight, MessageSquare, Globe, Check, LabFlask, Handshake
+  ArrowRight, MessageSquare, Globe, Check, FlaskConical, Handshake
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -294,7 +293,7 @@ const Index = () => {
         "/lovable-uploads/7e1f87b4-d400-48c1-8271-fde217863871.png"
       ],
       highlightColor: "border-orange-400",
-      icon: <LabFlask className="h-6 w-6" />,
+      icon: <FlaskConical className="h-6 w-6" />,
       label: "Experiments, pricing, OKRs"
     },
     {
