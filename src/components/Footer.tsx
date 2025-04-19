@@ -1,5 +1,4 @@
-
-import { MessageSquare, Linkedin } from 'lucide-react';
+import { MessageSquare, Linkedin, Instagram, Youtube, Twitter } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const Footer = () => {
@@ -74,6 +73,30 @@ const Footer = () => {
               className="text-gray-700 hover:text-gray-900 transition-colors"
             >
               <Linkedin size={24} className="text-[#FDE1D3] hover:text-[#ff9f87] transition-colors" />
+            </a>
+            <a 
+              href="#" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              <Instagram size={24} className="text-[#FDE1D3] hover:text-[#ff9f87] transition-colors" />
+            </a>
+            <a 
+              href="#" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              <Youtube size={24} className="text-[#FDE1D3] hover:text-[#ff9f87] transition-colors" />
+            </a>
+            <a 
+              href="#" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              <Twitter size={24} className="text-[#FDE1D3] hover:text-[#ff9f87] transition-colors" />
             </a>
           </div>
         </div>
