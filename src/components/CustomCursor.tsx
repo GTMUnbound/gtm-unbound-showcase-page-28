@@ -52,20 +52,29 @@ const CustomCursor = () => {
   
   return (
     <motion.div
-      className="fixed top-0 left-0 w-5 h-5 rounded-full bg-gtm-pink/70 z-[9999] pointer-events-none"
-      animate={{
-        x: position.x - 10,
-        y: position.y - 10,
-        scale: hovered ? 1.5 : 1,
-        opacity: visible ? 1 : 0
+      className="fixed top-0 left-0 pointer-events-none z-[9999]"
+      style={{
+        x: position.x,
+        y: position.y,
       }}
-      transition={{
-        x: { type: "spring", stiffness: 900, damping: 40 },
-        y: { type: "spring", stiffness: 900, damping: 40 },
-        scale: { type: "spring", stiffness: 800, damping: 25 },
-        opacity: { duration: 0.2 }
-      }}
-    />
+    >
+      <motion.div 
+        className="relative rounded-full bg-gtm-pink/50"
+        animate={{
+          width: hovered ? 20 : 12,
+          height: hovered ? 20 : 12,
+          opacity: visible ? 1 : 0,
+          x: hovered ? -10 : -6,
+          y: hovered ? -10 : -6,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 300,
+          damping: 30,
+          opacity: { duration: 0.2 }
+        }}
+      />
+    </motion.div>
   );
 };
 

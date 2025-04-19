@@ -1,9 +1,11 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import ClientLogo from './ClientLogo';
 
 const ScrollingLogos = () => {
+  const [isHovered, setIsHovered] = useState(false);
+  
   // Define the logos array for reusability and easier management
   const logos = [
     {
@@ -31,7 +33,11 @@ const ScrollingLogos = () => {
   const allLogos = [...logos, ...logos, ...logos];
   
   return (
-    <div className="overflow-hidden relative w-full py-6">
+    <div 
+      className="overflow-hidden relative w-full py-6"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <motion.div
         className="flex space-x-8"
         animate={{
@@ -41,7 +47,7 @@ const ScrollingLogos = () => {
           x: {
             repeat: Infinity,
             repeatType: "loop",
-            duration: 30,
+            duration: isHovered ? 60 : 30, // Slow down on hover
             ease: "linear",
           },
         }}
@@ -80,6 +86,10 @@ const ScrollingLogos = () => {
           ))}
         </div>
       </motion.div>
+      
+      {/* Add subtle gradient overlays to fade the edges */}
+      <div className="absolute top-0 bottom-0 left-0 w-16 bg-gradient-to-r from-white to-transparent z-10"></div>
+      <div className="absolute top-0 bottom-0 right-0 w-16 bg-gradient-to-l from-white to-transparent z-10"></div>
     </div>
   );
 };

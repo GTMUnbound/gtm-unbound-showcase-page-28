@@ -1,7 +1,6 @@
 
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { motion, AnimatePresence } from 'framer-motion';
-import ExpertMatchCard from './ExpertMatchCard';
 import { ArrowRight } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import { useState, useCallback, useEffect } from 'react';
@@ -13,24 +12,29 @@ const GTMJourney = () => {
   
   const journeyCards = [
     {
-      title: "Expert Match",
-      description: "Find your perfect GTM guide",
-      isExpertMatch: true
+      title: "GTM Fog",
+      description: "Where do I even start?",
+      gradient: "from-gray-400 to-gray-500"
     },
     {
-      title: "GTM Sprints",
-      description: "8-week launch plan",
+      title: "Expert Match",
+      description: "Matched with the right GTM expert",
       gradient: "from-gtm-coral to-gtm-pink"
     },
     {
-      title: "GTM Rituals",
-      description: "Weekly team alignment",
-      gradient: "from-pink-400 to-gtm-pink"
+      title: "Strategy Sprint",
+      description: "Clear roadmap and priorities",
+      gradient: "from-blue-400 to-purple-500"
     },
     {
-      title: "Conversion Boost",
-      description: "Double your rate in 2 months",
-      gradient: "from-purple-400 to-gtm-pink"
+      title: "Execution",
+      description: "Testing channels with structured process",
+      gradient: "from-orange-400 to-pink-500"
+    },
+    {
+      title: "Launch",
+      description: "Scaling what works with confidence",
+      gradient: "from-green-400 to-teal-500"
     }
   ];
 
@@ -94,40 +98,36 @@ const GTMJourney = () => {
                   transformStyle: "preserve-3d",
                 }}
               >
-                {card.isExpertMatch ? (
-                  <ExpertMatchCard className="w-full h-[220px]" />
-                ) : (
-                  <div 
-                    className={cn(
-                      "w-full h-[220px] bg-gradient-to-r rounded-xl shadow-lg p-6 flex flex-col justify-between group transition-all duration-300",
-                      "hover:shadow-2xl",
-                      "transform-gpu backface-hidden",
-                      card.gradient
-                    )}
-                    style={{
-                      transformStyle: "preserve-3d",
-                    }}
+                <div 
+                  className={cn(
+                    "w-full h-[220px] bg-gradient-to-r rounded-xl shadow-lg p-6 flex flex-col justify-between group transition-all duration-300",
+                    "hover:shadow-2xl",
+                    "transform-gpu backface-hidden",
+                    card.gradient
+                  )}
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
                   >
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      <h3 className="text-xl font-semibold text-white mb-2">{card.title}</h3>
-                      <p className="text-white/90">{card.description}</p>
-                    </motion.div>
-                    <motion.div
-                      whileHover={{ x: 10 }}
-                      className="self-end"
-                    >
-                      <ArrowRight className="text-white transform transition-transform group-hover:translate-x-2" />
-                    </motion.div>
-                    
-                    {/* Decorative elements */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl transform -translate-y-1/2 translate-x-1/2" />
-                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full blur-xl transform translate-y-1/2 -translate-x-1/2" />
-                  </div>
-                )}
+                    <h3 className="text-xl font-semibold text-white mb-2">{card.title}</h3>
+                    <p className="text-white/90">{card.description}</p>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ x: 10 }}
+                    className="self-end"
+                  >
+                    <ArrowRight className="text-white transform transition-transform group-hover:translate-x-2" />
+                  </motion.div>
+                  
+                  {/* Decorative elements */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl transform -translate-y-1/2 translate-x-1/2" />
+                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full blur-xl transform translate-y-1/2 -translate-x-1/2" />
+                </div>
               </motion.div>
             </CarouselItem>
           ))}
