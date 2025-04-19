@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -26,6 +25,7 @@ import ScrollingLogos from '@/components/ScrollingLogos';
 import EventTypeCard from '@/components/EventTypeCard';
 import NewsletterSubscription from '@/components/NewsletterSubscription';
 import NotificationFeed from '@/components/NotificationFeed';
+import GTMSplitView from '@/components/GTMSplitView';
 
 const Index = () => {
   const [email, setEmail] = useState('');
@@ -339,9 +339,9 @@ const Index = () => {
               </motion.div>
             </div>
             
-            {/* Right Side - Notification Feed */}
+            {/* Right Side - GTM Split View */}
             <div className="w-full md:w-1/2 flex justify-center items-start">
-              <NotificationFeed />
+              <GTMSplitView />
             </div>
           </div>
         </div>
@@ -707,25 +707,3 @@ const Index = () => {
               <a href="#" className="text-gray-300 hover:text-white">Privacy</a>
             </div>
           </div>
-          
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-4 mb-4 md:mb-0">
-              <a href="#" className="text-gray-300 hover:text-white">
-                <LinkedinIcon className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white">
-                <TwitterIcon className="h-5 w-5" />
-              </a>
-            </div>
-            
-            <p className="text-gray-400 text-sm">
-              &copy; {new Date().getFullYear()} GTM Unbound — Built by Operators, for Founders
-            </p>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-};
-
-export default Index;
