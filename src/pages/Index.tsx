@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -707,4 +708,24 @@ const Index = () => {
             </div>
           </div>
           
-          <div className="flex flex-col md:flex-row justify-between items-
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center space-x-4 mb-4 md:mb-0">
+              <a href="#" className="text-gray-300 hover:text-white">
+                <LinkedinIcon className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-gray-300 hover:text-white">
+                <TwitterIcon className="h-5 w-5" />
+              </a>
+            </div>
+            
+            <p className="text-gray-400 text-sm">
+              &copy; {new Date().getFullYear()} GTM Unbound — Built by Operators, for Founders
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Index;
