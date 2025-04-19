@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -82,24 +83,31 @@ const Index = () => {
     }
   };
 
+  // Updated the events data structure to have a unified upcomingEvents variable
   const upcomingEvents = [
     {
-      title: "GTM Strategy Hike",
-      date: "May 15, 2025",
-      location: "Marin Headlands, SF",
-      description: "Connect with founders while hiking the beautiful trails of Marin Headlands."
-    },
-    {
-      title: "PLG Roundtable",
-      date: "June 2, 2025",
-      location: "Virtual",
-      description: "Deep dive into product-led growth strategies with experts from leading SaaS companies."
-    },
-    {
-      title: "Mixers",
-      date: "June 20, 2025",
+      title: "Founder Hike – Bangalore",
+      date: "May 5, 2025",
       location: "Bangalore",
-      description: "Curated founder + expert gatherings for signal-rich conversations"
+      description: "A 10km walk + chat with founders and operators. Real talk, no slides.",
+      type: "hike",
+      icon: Mountain
+    },
+    {
+      title: "GTM Roundtable: PLG Growth",
+      date: "May 12, 2025",
+      location: "Virtual",
+      description: "Deep-dive on Product-Led GTM motion. 8 founders, 1 expert, no fluff.",
+      type: "roundtable",
+      icon: MessageCircle
+    },
+    {
+      title: "Experiment Sprint Workshop",
+      date: "May 22, 2025",
+      location: "Virtual",
+      description: "Build a 30-day GTM experiment plan with expert guidance.",
+      type: "workshop",
+      icon: Target
     }
   ];
 
@@ -209,6 +217,65 @@ const Index = () => {
     }
   ];
 
+  // Define the missing howItWorksSteps variable
+  const howItWorksSteps = [
+    {
+      number: "01",
+      title: "Discover Your Needs",
+      description: "Complete a diagnostic that helps us understand your GTM challenges and goals."
+    },
+    {
+      number: "02",
+      title: "Match Your Expert",
+      description: "Get paired with the right GTM expert based on your industry and goals."
+    },
+    {
+      number: "03",
+      title: "Build Your Roadmap",
+      description: "Co-create a customized GTM strategy with clear milestones and priorities."
+    },
+    {
+      number: "04",
+      title: "Execute & Grow",
+      description: "Implement with structured support, measure results, and iterate fast."
+    }
+  ];
+
+  // Define the missing eventTypes variable
+  const eventTypes = [
+    {
+      title: "Founder Hikes",
+      description: "IRL offsites that lead to real connections",
+      bullets: [
+        "Network Naturally",
+        "Inspire Innovation",
+        "Lead Together"
+      ],
+      images: [
+        "/lovable-uploads/50e271b6-1838-4900-86f0-f861667c271a.png",
+        "/lovable-uploads/56cc17c5-72fc-4f91-bb41-ae48f9ee9e0e.png",
+        "/lovable-uploads/64124847-58f5-4601-9a54-3544fa2436b1.png",
+        "/lovable-uploads/6b86fecb-a25f-41ee-8e42-a42440048546.png"
+      ],
+      highlightColor: "border-gtm-pink"
+    },
+    {
+      title: "GTM Roundtables",
+      description: "Functional deep dives with founder-expert collabs",
+      bullets: [
+        "Focused Expertise",
+        "Collaborative Solutions",
+        "Accelerate Growth"
+      ],
+      images: [
+        "/lovable-uploads/47d41dfa-b548-46e1-9254-b500a8667252.png",
+        "/lovable-uploads/4f65b418-cdf9-4c7f-b16e-0d3fac29bef2.png",
+        "/lovable-uploads/5357b31d-8b3a-4fa0-ba9c-ff5f8e684772.png"
+      ],
+      highlightColor: "border-blue-400"
+    }
+  ];
+
   // Update the experts section description
   const ExpertsSection = () => (
     <Section id="experts" className="py-20 sm:py-24">
@@ -219,9 +286,7 @@ const Index = () => {
       />
       
       <p className="text-center text-lg text-gray-600 mb-12 max-w-3xl mx-auto">
-        No vague advisors. No marketplaces. No one-size-fits-all templates.
-        We've curated a network of proven GTM specialists — each with deep experience launching categories, 
-        scaling acquisition, driving market entry, and building systems that last.
+        No advisors. No guesswork. Just proven GTM builders who know what moves the needle.
       </p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10 max-w-7xl mx-auto px-4">
@@ -240,34 +305,6 @@ const Index = () => {
       </div>
     </Section>
   );
-
-  // Add the new events section
-  const upcomingEvents = [
-    {
-      title: "Founder Hike – Bangalore",
-      date: "May 5, 2025",
-      location: "Bangalore",
-      description: "A 10km walk + chat with founders and operators. Real talk, no slides.",
-      type: "hike",
-      icon: Mountain
-    },
-    {
-      title: "GTM Roundtable: PLG Growth",
-      date: "May 12, 2025",
-      location: "Virtual",
-      description: "Deep-dive on Product-Led GTM motion. 8 founders, 1 expert, no fluff.",
-      type: "roundtable",
-      icon: MessageCircle
-    },
-    {
-      title: "Experiment Sprint Workshop",
-      date: "May 22, 2025",
-      location: "Virtual",
-      description: "Build a 30-day GTM experiment plan with expert guidance.",
-      type: "workshop",
-      icon: Target
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-[#F4F5F7]">
