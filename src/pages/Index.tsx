@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -333,9 +332,9 @@ const Index = () => {
             key={index}
             name={expert.name}
             role={expert.role}
-            company={expert.company}
             expertise={expert.expertise}
             imageSrc={expert.imageSrc}
+            company={expert.company}
             bio={expert.bio}
             linkedIn={expert.linkedIn}
           />
@@ -702,14 +701,3 @@ const Index = () => {
           <p className="text-xl">
             Clarity. Support. Execution.<br />
             All in one place — when you're ready to scale
-          </p>
-        </div>
-      </Section>
-      
-      {/* Footer */}
-      <Footer />
-    </div>
-  );
-};
-
-export default Index;
