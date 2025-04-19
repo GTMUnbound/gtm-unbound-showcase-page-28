@@ -193,7 +193,7 @@ const Index = () => {
       company: "GTM Unbound",
       expertise: ["SaaS GTM", "Market Expansion", "AI Go-to-Market"],
       imageSrc: "/lovable-uploads/e3a794e3-a086-4777-a3d6-bc8d1b6913a4.png",
-      bio: "Founded GTM Unbound to help SaaS startups scale internationally. Previously led market expansion, helping B2B SaaS companies enter new markets and achieve 3x growth. Specializes in US-India corridor strategies.",
+      bio: "Founded GTM Unbound to help SaaS startups scale internationally. Previously led market expansion at leading tech companies, helping B2B SaaS companies enter new markets and achieve 3x growth. Specializes in US-India corridor strategies and GTM for AI products.",
       linkedIn: "https://www.linkedin.com/in/aditi-aggarwal-mehta/"
     },
     {
@@ -202,7 +202,7 @@ const Index = () => {
       company: "Omnify",
       expertise: ["AI/ML GTM", "Product Strategy", "Enterprise Sales"],
       imageSrc: "/lovable-uploads/773b7ced-a065-49b2-aa64-689bfa01adf8.png",
-      bio: "Founder at Omnify. Scaled multiple products from $0 to $50M ARR through innovative GTM strategies. Deep expertise in enterprise positioning and technical product marketing.",
+      bio: "Founder at Omnify with extensive experience in product-led growth. Scaled multiple products from $0 to $50M ARR through innovative GTM strategies and market positioning. Deep expertise in enterprise positioning, technical product marketing, and AI/ML implementation.",
       linkedIn: "https://www.linkedin.com/in/manikm/"
     },
     {
@@ -211,7 +211,7 @@ const Index = () => {
       company: "Inventus Law and Avatar Advisor",
       expertise: ["Legal GTM", "Startup Law", "International Markets"],
       imageSrc: "/lovable-uploads/7920cd46-719f-4ec8-a9d0-c09bd1960693.png",
-      bio: "Managing Partner at Inventus Law. Helps startups navigate legal aspects of GTM strategy across global markets. Deep expertise in US-India cross-border business strategy.",
+      bio: "Managing Partner at Inventus Law and Avatar Advisor. Helps startups navigate complex legal aspects of GTM strategy across global markets. Over 20 years of experience in US-India cross-border business strategy, startup formation, and international expansion.",
       linkedIn: "https://www.linkedin.com/in/aniladvani/"
     }
   ];
