@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import AnimatedGTMBook from './AnimatedGTMBook';
+import { Focus } from 'lucide-react';
+import LaserFocusEffect from './LaserFocusEffect';
 
 const GTMSplitView = () => {
   return (
@@ -25,11 +26,11 @@ const GTMSplitView = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          There's a Playbook for This. We Wrote It.
+          GTM Focused. Finally.
         </motion.h2>
         
-        {/* Animated Book Component */}
-        <AnimatedGTMBook />
+        {/* Laser Focus Effect Component */}
+        <LaserFocusEffect />
       </motion.div>
     </div>
   );
