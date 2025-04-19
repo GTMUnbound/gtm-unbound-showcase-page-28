@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -707,3 +708,16 @@ const Index = () => {
               <a href="#" className="text-gray-300 hover:text-white">Privacy</a>
             </div>
           </div>
+          
+          <div className="border-t border-gray-800 pt-8 mt-8">
+            <p className="text-gray-400 text-center text-sm">
+              © {new Date().getFullYear()} GTM Unbound. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Index;
