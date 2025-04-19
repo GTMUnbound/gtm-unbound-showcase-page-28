@@ -290,7 +290,8 @@ const Index = () => {
       images: [
         "/lovable-uploads/95469914-ba6c-4624-b5db-c584fff536d8.png",
         "/lovable-uploads/ae1541ff-718c-4751-9dc5-32551b395ddd.png",
-        "/lovable-uploads/7e1f87b4-d400-48c1-8271-fde217863871.png"
+        "/lovable-uploads/7e1f87b4-d400-48c1-8271-fde217863871.png",
+        "/lovable-uploads/47d41dfa-b548-46e1-9254-b500a8667252.png"
       ],
       highlightColor: "border-orange-400",
       icon: <FlaskConical className="h-6 w-6" />,
@@ -307,7 +308,8 @@ const Index = () => {
       images: [
         "/lovable-uploads/0b435467-da50-4dda-9838-cac1a112e946.png",
         "/lovable-uploads/ae1541ff-718c-4751-9dc5-32551b395ddd.png",
-        "/lovable-uploads/c965cdcf-326c-4277-99eb-f630e7e81749.png"
+        "/lovable-uploads/c965cdcf-326c-4277-99eb-f630e7e81749.png",
+        "/lovable-uploads/cfd8dbf8-6129-468b-a981-bce5f586869f.png"
       ],
       highlightColor: "border-purple-400",
       icon: <Handshake className="h-6 w-6" />,
@@ -698,15 +700,4 @@ const Index = () => {
           
           <p className="text-xl">
             Clarity. Support. Execution.<br />
-            All in one place — when you're ready to scale for real.
-          </p>
-        </div>
-      </Section>
-      
-      {/* Replace the old footer with the new Footer component */}
-      <Footer />
-    </div>
-  );
-};
-
-export default Index;
+            All in one place — when you're ready to scale
