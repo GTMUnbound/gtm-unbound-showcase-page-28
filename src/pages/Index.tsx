@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -17,7 +18,7 @@ import {
   Brain, CheckCircle, Code, FileText, Mountain, LinkedinIcon, 
   MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, 
   Users, RefreshCw, Rocket, TrendingUp, Award, Calendar,
-  ArrowRight, MessageSquare, Globe, Check 
+  ArrowRight, MessageSquare, Globe, Check, LabFlask, Handshake
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -187,7 +188,8 @@ const Index = () => {
     }
   ];
 
-const experts = [
+  // Updated experts array with fixed image paths and company format
+  const experts = [
     {
       name: "Aditi Agarwal",
       role: "Founder",
@@ -202,7 +204,7 @@ const experts = [
       role: "Founder",
       company: "Omnify",
       expertise: ["AI/ML GTM", "Product Strategy", "Enterprise Sales"],
-      imageSrc: "/lovable-uploads/7920cd46-719f-4ec8-a9d0-c09bd1960693.png", // Updated to Anil's photo
+      imageSrc: "/lovable-uploads/125c2005-34c0-40c4-bb26-e6bb24548b88.png", // Updated to first photo
       bio: "Founder at Omnify with extensive experience in product-led growth. Scaled multiple products from $0 to $50M ARR through innovative GTM strategies and market positioning. Deep expertise in enterprise positioning, technical product marketing, and AI/ML implementation.",
       linkedIn: "https://www.linkedin.com/in/manikm/"
     },
@@ -211,11 +213,11 @@ const experts = [
       role: "Founder and Managing Partner",
       company: "Inventus Law and Avatar Advisor",
       expertise: ["Legal GTM", "Startup Law", "International Markets"],
-      imageSrc: "/lovable-uploads/773b7ced-a065-49b2-aa64-689bfa01adf8.png", // Updated to Manik's photo
+      imageSrc: "/lovable-uploads/d698be72-374a-4b64-bc65-8ac84270c1de.png", // Updated to second photo
       bio: "Managing Partner at Inventus Law and Avatar Advisor. Helps startups navigate complex legal aspects of GTM strategy across global markets. Over 20 years of experience in US-India cross-border business strategy, startup formation, and international expansion.",
       linkedIn: "https://www.linkedin.com/in/aniladvani/"
     }
-];
+  ];
 
   // Define the missing howItWorksSteps variable
   const howItWorksSteps = [
@@ -241,38 +243,76 @@ const experts = [
     }
   ];
 
-  // Define the missing eventTypes variable
+  // Updated eventTypes with the new structure as per the prompt
   const eventTypes = [
     {
       title: "Founder Hikes",
-      description: "IRL offsites that lead to real connections",
+      description: "IRL founder retreats",
       bullets: [
         "Network Naturally",
         "Inspire Innovation",
         "Lead Together"
       ],
       images: [
-        "/lovable-uploads/50e271b6-1838-4900-86f0-f861667c271a.png",
-        "/lovable-uploads/56cc17c5-72fc-4f91-bb41-ae48f9ee9e0e.png",
-        "/lovable-uploads/64124847-58f5-4601-9a54-3544fa2436b1.png",
-        "/lovable-uploads/6b86fecb-a25f-41ee-8e42-a42440048546.png"
+        "/lovable-uploads/1825e809-6b62-44b4-a444-fcb34e77ea91.png",
+        "/lovable-uploads/a6eb7faf-ca4f-4212-87b1-8d13f7137b60.png",
+        "/lovable-uploads/f3dcc9f9-660d-4b80-bd06-2f8d3870d43b.png",
+        "/lovable-uploads/692b12d8-3e73-482a-8071-1c4b04f9bc9e.png"
       ],
-      highlightColor: "border-gtm-pink"
+      highlightColor: "border-gtm-pink",
+      icon: <Mountain className="h-6 w-6" />,
+      label: "IRL founder retreats"
     },
     {
       title: "GTM Roundtables",
-      description: "Functional deep dives with founder-expert collabs",
+      description: "Functional deep dives",
       bullets: [
         "Focused Expertise",
         "Collaborative Solutions",
         "Accelerate Growth"
       ],
       images: [
-        "/lovable-uploads/47d41dfa-b548-46e1-9254-b500a8667252.png",
-        "/lovable-uploads/4f65b418-cdf9-4c7f-b16e-0d3fac29bef2.png",
-        "/lovable-uploads/5357b31d-8b3a-4fa0-ba9c-ff5f8e684772.png"
+        "/lovable-uploads/25e2003d-8bf4-4128-9488-56de3a22c5fc.png",
+        "/lovable-uploads/c965cdcf-326c-4277-99eb-f630e7e81749.png",
+        "/lovable-uploads/4adca7d0-fbde-4c7d-af2c-b8760b45b790.png"
       ],
-      highlightColor: "border-blue-400"
+      highlightColor: "border-blue-400",
+      icon: <Target className="h-6 w-6" />,
+      label: "Functional deep dives"
+    },
+    {
+      title: "Workshops",
+      description: "Experiments, pricing, OKRs",
+      bullets: [
+        "Hands-On Learning",
+        "Tactical Growth Plays",
+        "Measurable Results"
+      ],
+      images: [
+        "/lovable-uploads/95469914-ba6c-4624-b5db-c584fff536d8.png",
+        "/lovable-uploads/ae1541ff-718c-4751-9dc5-32551b395ddd.png",
+        "/lovable-uploads/7e1f87b4-d400-48c1-8271-fde217863871.png"
+      ],
+      highlightColor: "border-orange-400",
+      icon: <LabFlask className="h-6 w-6" />,
+      label: "Experiments, pricing, OKRs"
+    },
+    {
+      title: "Partner Collabs",
+      description: "Ecosystem-driven events",
+      bullets: [
+        "Amplify Your Reach",
+        "Curated by Experts",
+        "Build Together"
+      ],
+      images: [
+        "/lovable-uploads/0b435467-da50-4dda-9838-cac1a112e946.png",
+        "/lovable-uploads/ae1541ff-718c-4751-9dc5-32551b395ddd.png",
+        "/lovable-uploads/c965cdcf-326c-4277-99eb-f630e7e81749.png"
+      ],
+      highlightColor: "border-purple-400",
+      icon: <Handshake className="h-6 w-6" />,
+      label: "Ecosystem-driven events"
     }
   ];
 
@@ -528,8 +568,8 @@ const experts = [
       {/* Experts Section */}
       <ExpertsSection />
 
-      {/* Community Section */}
-      <Section id="community" className="bg-gtm-light py-16">
+      {/* Community Section - Updated with 2x2 grid layout */}
+      <Section id="community" className="bg-pink-50 py-16">
         <SectionHeader 
           title="Events That Move Conversations — and Founders — Forward"
           subtitle="High-signal, zero-fluff environments for operators to connect, sharpen, and grow."
@@ -546,6 +586,8 @@ const experts = [
                 bullets={eventType.bullets}
                 images={eventType.images}
                 highlightColor={eventType.highlightColor}
+                icon={eventType.icon}
+                label={eventType.label}
               />
             ))}
           </div>
