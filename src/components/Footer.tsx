@@ -1,5 +1,5 @@
 
-import { WhatsappIcon, LinkedinIcon } from 'lucide-react';
+import { Linkedin, MessageSquare } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const Footer = () => {
@@ -18,7 +18,7 @@ const Footer = () => {
               <span className="ml-3 text-xl font-semibold">GTM Unbound</span>
             </div>
             <a href="https://wa.me/919876543210" className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors">
-              <WhatsappIcon size={20} className="text-[#FDE1D3]" />
+              <MessageSquare size={20} className="text-[#FDE1D3]" />
               Chat with us on WhatsApp
             </a>
             <div className="space-y-2 text-gray-700">
@@ -73,7 +73,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-gray-700 hover:text-gray-900 transition-colors"
             >
-              <LinkedinIcon size={24} className="text-[#FDE1D3] hover:text-[#ff9f87] transition-colors" />
+              <Linkedin size={24} className="text-[#FDE1D3] hover:text-[#ff9f87] transition-colors" />
             </a>
           </div>
         </div>
