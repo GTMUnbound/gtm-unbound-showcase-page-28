@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Browser } from 'lucide-react';
+import { Globe } from 'lucide-react';  // Replacing Browser with Globe
 
 const GTMSplitView = () => {
   return (
@@ -54,7 +55,7 @@ const GTMSplitView = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.3 }}
           >
-            <Browser className="w-4 h-4 text-gtm-pink" />
+            <Globe className="w-4 h-4 text-gtm-pink" />
             <span className="text-sm font-medium text-gtm-pink">
               GTM Unbound — The GTM Layer
             </span>
