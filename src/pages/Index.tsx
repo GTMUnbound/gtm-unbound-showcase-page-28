@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -675,12 +674,12 @@ const Index = () => {
       </Section>
       
       {/* Newsletter Section */}
-      <Section className="bg-white py-16">
+      <Section id="newsletter" className="bg-white py-16">
         <NewsletterSubscription />
       </Section>
       
       {/* Final CTA Section */}
-      <Section className="bg-gradient-to-r from-gtm-coral to-gtm-pink text-white py-16">
+      <Section id="cta" className="bg-gradient-to-r from-gtm-coral to-gtm-pink text-white py-16">
         <div className="max-w-3xl mx-auto text-center px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">
             Let's Unblock Your GTM.
@@ -714,36 +713,4 @@ const Index = () => {
                   className="h-full w-auto brightness-200"
                 />
               </div>
-              <span className="text-xl font-semibold">GTM Unbound</span>
-            </div>
-            
-            <div className="flex flex-wrap gap-6">
-              <a href="#" className="text-gray-300 hover:text-white">Startups</a>
-              <a href="#" className="text-gray-300 hover:text-white">Experts</a>
-              <a href="#" className="text-gray-300 hover:text-white">Events</a>
-              <a href="#" className="text-gray-300 hover:text-white">Terms</a>
-              <a href="#" className="text-gray-300 hover:text-white">Privacy</a>
-            </div>
-          </div>
-          
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-400 mb-4 md:mb-0">
-              GTM Unbound © 2025 — Built by Operators, for Founders
-            </div>
-            
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-white">
-                <LinkedinIcon size={20} />
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white">
-                <TwitterIcon size={20} />
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-};
-
-export default Index;
+              <span className="text-xl font-semibold">
