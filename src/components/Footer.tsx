@@ -75,7 +75,7 @@ const Footer = () => {
               <Linkedin size={24} className="text-[#FDE1D3] hover:text-[#ff9f87] transition-colors" />
             </a>
             <a 
-              href="#" 
+              href="https://www.instagram.com/gtmunbound/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-gray-700 hover:text-gray-900 transition-colors"
@@ -83,7 +83,7 @@ const Footer = () => {
               <Instagram size={24} className="text-[#FDE1D3] hover:text-[#ff9f87] transition-colors" />
             </a>
             <a 
-              href="#" 
+              href="https://www.youtube.com/channel/GTMUnbound" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-gray-700 hover:text-gray-900 transition-colors"
@@ -91,7 +91,7 @@ const Footer = () => {
               <Youtube size={24} className="text-[#FDE1D3] hover:text-[#ff9f87] transition-colors" />
             </a>
             <a 
-              href="#" 
+              href="https://twitter.com/gtmunbound" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-gray-700 hover:text-gray-900 transition-colors"
