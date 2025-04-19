@@ -193,7 +193,7 @@ const Index = () => {
       role: "Founder & GTM Strategist",
       company: "GTM Unbound",
       expertise: ["SaaS GTM", "Market Expansion", "AI Go-to-Market"],
-      imageSrc: "/lovable-uploads/1b9d407a-6505-49b0-aaca-8206b2237132.png",
+      imageSrc: "/lovable-uploads/e3a794e3-a086-4777-a3d6-bc8d1b6913a4.png",
       bio: "Founded GTM Unbound to help SaaS startups scale internationally. Previously led market expansion, helping B2B SaaS companies enter new markets and achieve 3x growth. Specializes in US-India corridor strategies.",
       linkedIn: "https://www.linkedin.com/in/aditi-aggarwal-mehta/"
     },
@@ -202,7 +202,7 @@ const Index = () => {
       role: "AI Strategy & Growth",
       company: "Omnify",
       expertise: ["AI/ML GTM", "Product Strategy", "Enterprise Sales"],
-      imageSrc: "/lovable-uploads/f75e2f45-2e9c-4734-9e50-8c05598290ec.png",
+      imageSrc: "/lovable-uploads/773b7ced-a065-49b2-aa64-689bfa01adf8.png",
       bio: "Founder at Omnify. Scaled multiple products from $0 to $50M ARR through innovative GTM strategies. Deep expertise in enterprise positioning and technical product marketing.",
       linkedIn: "https://www.linkedin.com/in/manikm/"
     },
@@ -211,7 +211,7 @@ const Index = () => {
       role: "Growth & Investment",
       company: "Inventus Law",
       expertise: ["Legal GTM", "Startup Law", "International Markets"],
-      imageSrc: "/lovable-uploads/87cd4fed-f07f-4d2c-b119-894c0bbb1ab5.png",
+      imageSrc: "/lovable-uploads/7920cd46-719f-4ec8-a9d0-c09bd1960693.png",
       bio: "Managing Partner at Inventus Law. Helps startups navigate legal aspects of GTM strategy across global markets. Deep expertise in US-India cross-border business strategy.",
       linkedIn: "https://www.linkedin.com/in/aniladvani/"
     }
