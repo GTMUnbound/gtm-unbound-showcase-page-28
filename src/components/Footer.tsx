@@ -1,5 +1,5 @@
 
-import { Linkedin, MessageSquare } from 'lucide-react';
+import { MessageSquare, Linkedin } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const Footer = () => {
