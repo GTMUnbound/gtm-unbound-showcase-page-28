@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -190,7 +189,7 @@ const Index = () => {
   const experts = [
     {
       name: "Aditi Agarwal",
-      role: "Founder & GTM Strategist",
+      role: "Founder",
       company: "GTM Unbound",
       expertise: ["SaaS GTM", "Market Expansion", "AI Go-to-Market"],
       imageSrc: "/lovable-uploads/e3a794e3-a086-4777-a3d6-bc8d1b6913a4.png",
@@ -199,7 +198,7 @@ const Index = () => {
     },
     {
       name: "Manik Mehta",
-      role: "AI Strategy & Growth",
+      role: "Founder",
       company: "Omnify",
       expertise: ["AI/ML GTM", "Product Strategy", "Enterprise Sales"],
       imageSrc: "/lovable-uploads/773b7ced-a065-49b2-aa64-689bfa01adf8.png",
@@ -208,8 +207,8 @@ const Index = () => {
     },
     {
       name: "Anil Advani",
-      role: "Growth & Investment",
-      company: "Inventus Law",
+      role: "Founder and Managing Partner",
+      company: "Inventus Law and Avatar Advisor",
       expertise: ["Legal GTM", "Startup Law", "International Markets"],
       imageSrc: "/lovable-uploads/7920cd46-719f-4ec8-a9d0-c09bd1960693.png",
       bio: "Managing Partner at Inventus Law. Helps startups navigate legal aspects of GTM strategy across global markets. Deep expertise in US-India cross-border business strategy.",
