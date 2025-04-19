@@ -1,7 +1,6 @@
-
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { Cloud, Users, Calendar, ArrowRight, BarChart, Rocket } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import { useState, useCallback, useEffect } from 'react';
 import type { CarouselApi } from "@/components/ui/carousel";
@@ -14,31 +13,40 @@ const GTMJourney = () => {
     {
       title: "GTM Fog",
       description: "Where do I even start?",
-      gradient: "from-gray-400 to-gray-500"
+      gradient: "from-gray-400 to-gray-500",
+      icon: Cloud,
+      hoverEffect: "fog"
     },
     {
       title: "Expert Match",
       description: "Matched with the right GTM expert",
-      gradient: "from-gtm-coral to-gtm-pink"
+      gradient: "from-gtm-coral to-gtm-pink",
+      icon: Users,
+      hoverEffect: "pulse"
     },
     {
       title: "Strategy Sprint",
       description: "Clear roadmap and priorities",
-      gradient: "from-blue-400 to-purple-500"
+      gradient: "from-blue-400 to-purple-500",
+      icon: Calendar,
+      hoverEffect: "checkmark"
     },
     {
       title: "Execution",
       description: "Testing channels with structured process",
-      gradient: "from-orange-400 to-pink-500"
+      gradient: "from-orange-400 to-pink-500",
+      icon: Rocket,
+      hoverEffect: "lightning"
     },
     {
       title: "Launch",
       description: "Scaling what works with confidence",
-      gradient: "from-green-400 to-teal-500"
+      gradient: "from-green-400 to-teal-500",
+      icon: BarChart,
+      hoverEffect: "growth"
     }
   ];
 
-  // Update active index when carousel changes
   useEffect(() => {
     if (!carouselApi) return;
     
@@ -47,14 +55,94 @@ const GTMJourney = () => {
     };
     
     carouselApi.on("select", handleSelect);
-    
-    // Initial index
     handleSelect();
     
     return () => {
       carouselApi.off("select", handleSelect);
     };
   }, [carouselApi]);
+
+  const renderHoverEffect = (effect: string) => {
+    switch (effect) {
+      case "fog":
+        return (
+          <motion.div
+            className="absolute inset-0 bg-white/10"
+            animate={{
+              opacity: [0.1, 0.2, 0.1],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+        );
+      case "pulse":
+        return (
+          <motion.div
+            className="absolute inset-0 border-2 border-white/20 rounded-xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0, 0.3]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+        );
+      case "checkmark":
+        return (
+          <motion.div
+            className="absolute inset-0 bg-green-500/10"
+            animate={{
+              opacity: [0.2, 0.4, 0.2],
+              y: [0, -5, 0]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+        );
+      case "lightning":
+        return (
+          <motion.div
+            className="absolute inset-0 bg-yellow-500/10"
+            animate={{
+              opacity: [0.2, 0.4, 0.2],
+              x: [0, 5, 0]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+        );
+      case "growth":
+        return (
+          <motion.div
+            className="absolute inset-0 bg-blue-500/10"
+            animate={{
+              opacity: [0.2, 0.4, 0.2],
+              scaleY: [1, 1.1, 1]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="w-full max-w-4xl mx-auto py-8 relative">
@@ -101,7 +189,7 @@ const GTMJourney = () => {
                 <div 
                   className={cn(
                     "w-full h-[220px] bg-gradient-to-r rounded-xl shadow-lg p-6 flex flex-col justify-between group transition-all duration-300",
-                    "hover:shadow-2xl",
+                    "hover:shadow-2xl relative overflow-hidden",
                     "transform-gpu backface-hidden",
                     card.gradient
                   )}
@@ -109,17 +197,22 @@ const GTMJourney = () => {
                     transformStyle: "preserve-3d",
                   }}
                 >
+                  {renderHoverEffect(card.hoverEffect)}
+                  
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
+                    className="relative z-10"
                   >
+                    <card.icon className="w-8 h-8 text-white/90 mb-4" />
                     <h3 className="text-xl font-semibold text-white mb-2">{card.title}</h3>
                     <p className="text-white/90">{card.description}</p>
                   </motion.div>
+                  
                   <motion.div
                     whileHover={{ x: 10 }}
-                    className="self-end"
+                    className="self-end relative z-10"
                   >
                     <ArrowRight className="text-white transform transition-transform group-hover:translate-x-2" />
                   </motion.div>

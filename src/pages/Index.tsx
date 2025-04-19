@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -180,121 +179,93 @@ const Index = () => {
     }
   ];
 
-  // Updated experts profiles with real information and images
   const experts = [
     {
       name: "Aditi Agarwal",
       role: "Founder & GTM Strategist",
-      company: "Commenda",
+      company: "GTM Unbound",
       expertise: ["SaaS GTM", "Market Expansion", "AI Go-to-Market"],
       imageSrc: "/lovable-uploads/1b9d407a-6505-49b0-aaca-8206b2237132.png",
-      bio: "Founded GTM Unbound to help SaaS startups scale internationally. Previously led market expansion at Commenda, helping B2B SaaS companies enter new markets and achieve 3x growth. Specializes in US-India corridor strategies.",
-      linkedIn: "https://linkedin.com/in/aditi-agarwal"
+      bio: "Founded GTM Unbound to help SaaS startups scale internationally. Previously led market expansion, helping B2B SaaS companies enter new markets and achieve 3x growth. Specializes in US-India corridor strategies.",
+      linkedIn: "https://www.linkedin.com/in/aditi-aggarwal-mehta/"
     },
     {
-      name: "Manoj Agrawal",
+      name: "Manik Mehta",
       role: "AI Strategy & Growth",
-      company: "DevRev",
+      company: "Omnify",
       expertise: ["AI/ML GTM", "Product Strategy", "Enterprise Sales"],
       imageSrc: "/lovable-uploads/f75e2f45-2e9c-4734-9e50-8c05598290ec.png",
-      bio: "AI trailblazer and co-founder at DevRev. Scaled multiple AI products from $0 to $50M ARR through innovative GTM strategies. Deep expertise in enterprise AI positioning and technical product marketing.",
-      linkedIn: "https://linkedin.com/in/manoj-agrawal"
+      bio: "Founder at Omnify. Scaled multiple products from $0 to $50M ARR through innovative GTM strategies. Deep expertise in enterprise positioning and technical product marketing.",
+      linkedIn: "https://www.linkedin.com/in/manikm/"
     },
     {
-      name: "Gaganpreet Luthra",
+      name: "Anil Advani",
       role: "Growth & Investment",
-      company: "Leo Capital",
-      expertise: ["Fintech GTM", "Venture Capital", "APAC Markets"],
+      company: "Inventus Law",
+      expertise: ["Legal GTM", "Startup Law", "International Markets"],
       imageSrc: "/lovable-uploads/87cd4fed-f07f-4d2c-b119-894c0bbb1ab5.png",
-      bio: "Partner at Leo Capital with deep expertise in scaling fintech operations across India and Southeast Asia. Helps founders build innovative GTM strategies that drive sustainable growth and attract investment.",
-      linkedIn: "https://linkedin.com/in/gaganpreet-luthra"
-    }
-  ];
-  
-  // Event types for "Where Founders and Operators Actually Connect"
-  const eventTypes = [
-    {
-      title: "Founder Hikes",
-      description: "IRL offsites that lead to real connections",
-      bullets: [
-        "Network Naturally",
-        "Inspire Innovation",
-        "Lead Together"
-      ],
-      images: [
-        "/lovable-uploads/42e25656-2f31-43d6-818b-a3e560d61acf.png",
-        "/lovable-uploads/dfb3ee41-c6ba-41de-b97c-53e2d684717f.png",
-        "/lovable-uploads/d47f9a8a-12d2-4062-9bce-b8b525a109ae.png",
-        "/lovable-uploads/a6239e49-b350-49dd-8fc1-e124f0a2cadd.png"
-      ],
-      highlightColor: "border-green-500"
-    },
-    {
-      title: "GTM Roundtables",
-      description: "Functional deep dives with founder-expert collabs",
-      bullets: [
-        "Focused Expertise",
-        "Collaborative Solutions",
-        "Accelerate Growth"
-      ],
-      images: [
-        "/lovable-uploads/f8d73ba1-e6a4-41ef-84f6-ea8d59ae20d4.png",
-        "/lovable-uploads/40fe0852-dba5-4ead-91ce-aa788e369c88.png",
-        "/lovable-uploads/50e271b6-1838-4900-86f0-f861667c271a.png"
-      ],
-      highlightColor: "border-blue-500"
-    },
-    {
-      title: "Workshops",
-      description: "Experiments, frameworks, and shared roadmaps",
-      bullets: [
-        "Hands-On Learning",
-        "Test & Iterate",
-        "Measure What Matters"
-      ],
-      images: [
-        "/lovable-uploads/abc900fc-4b17-4abe-b2b1-21e5611b1ea7.png",
-        "/lovable-uploads/15f99e9a-66af-40b6-8677-cb9f40a31f1a.png"
-      ],
-      highlightColor: "border-orange-500"
-    },
-    {
-      title: "Partner Collabs",
-      description: "Events with VCs, ecosystems, and product partners",
-      bullets: [
-        "Amplify Your Reach",
-        "Curated Connections",
-        "Build Together"
-      ],
-      images: [
-        "/lovable-uploads/052e4048-e391-41c9-ae8b-4e32c89c285c.png",
-        "/lovable-uploads/077b3880-fbe9-4e45-a34e-81b28052f42b.png"
-      ],
-      highlightColor: "border-purple-500"
+      bio: "Managing Partner at Inventus Law. Helps startups navigate legal aspects of GTM strategy across global markets. Deep expertise in US-India cross-border business strategy.",
+      linkedIn: "https://www.linkedin.com/in/aniladvani/"
     }
   ];
 
-  // How it works steps for horizontal layout
-  const howItWorksSteps = [
+  // Update the experts section description
+  const ExpertsSection = () => (
+    <Section id="experts" className="py-20 sm:py-24">
+      <SectionHeader 
+        title="You Don't Know Who Can Guide You?"
+        subtitle="No advisors. No guesswork. Just proven GTM builders who know what moves the needle."
+        centered
+      />
+      
+      <p className="text-center text-lg text-gray-600 mb-12 max-w-3xl mx-auto">
+        No vague advisors. No marketplaces. No one-size-fits-all templates.
+        We've curated a network of proven GTM specialists — each with deep experience launching categories, 
+        scaling acquisition, driving market entry, and building systems that last.
+      </p>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10 max-w-7xl mx-auto px-4">
+        {experts.map((expert, index) => (
+          <ExpertCard 
+            key={index}
+            name={expert.name}
+            role={expert.role}
+            company={expert.company}
+            expertise={expert.expertise}
+            imageSrc={expert.imageSrc}
+            bio={expert.bio}
+            linkedIn={expert.linkedIn}
+          />
+        ))}
+      </div>
+    </Section>
+  );
+
+  // Add the new events section
+  const upcomingEvents = [
     {
-      number: "01",
-      title: "Define Growth Goals",
-      description: "Identify key metrics and opportunities for your startup stage"
+      title: "Founder Hike – Bangalore",
+      date: "May 5, 2025",
+      location: "Bangalore",
+      description: "A 10km walk + chat with founders and operators. Real talk, no slides.",
+      type: "hike",
+      icon: Mountain
     },
     {
-      number: "02",
-      title: "Get Matched to Experts",
-      description: "Connect with GTM specialists who understand your market"
+      title: "GTM Roundtable: PLG Growth",
+      date: "May 12, 2025",
+      location: "Virtual",
+      description: "Deep-dive on Product-Led GTM motion. 8 founders, 1 expert, no fluff.",
+      type: "roundtable",
+      icon: MessageCircle
     },
     {
-      number: "03",
-      title: "Launch GTM Sprint",
-      description: "Execute structured programs with clear deliverables"
-    },
-    {
-      number: "04",
-      title: "Iterate & Scale",
-      description: "Measure results, refine approach, and expand what works"
+      title: "Experiment Sprint Workshop",
+      date: "May 22, 2025",
+      location: "Virtual",
+      description: "Build a 30-day GTM experiment plan with expert guidance.",
+      type: "workshop",
+      icon: Target
     }
   ];
 
@@ -522,34 +493,7 @@ const Index = () => {
       </Section>
 
       {/* Experts Section */}
-      <Section id="experts" className="py-20 sm:py-24">
-        <SectionHeader 
-          title="You Don't Know Who Can Guide You?"
-          subtitle="Work With Operators Who've Done It."
-          centered
-        />
-        
-        <p className="text-center text-lg text-gray-600 mb-12 max-w-3xl mx-auto">
-          No vague advisors. No marketplaces. No one-size-fits-all templates.
-          We've curated a network of proven GTM specialists — each with deep experience launching categories, 
-          scaling acquisition, driving market entry, and building systems that last.
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10 max-w-7xl mx-auto px-4">
-          {experts.map((expert, index) => (
-            <ExpertCard 
-              key={index}
-              name={expert.name}
-              role={expert.role}
-              company={expert.company}
-              expertise={expert.expertise}
-              imageSrc={expert.imageSrc}
-              bio={expert.bio}
-              linkedIn={expert.linkedIn}
-            />
-          ))}
-        </div>
-      </Section>
+      <ExpertsSection />
 
       {/* Community Section */}
       <Section id="community" className="bg-gtm-light py-16">

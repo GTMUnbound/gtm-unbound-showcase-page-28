@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from './ui/button';
 
 interface NavbarProps {
   sections: { id: string; label: string }[];
@@ -50,7 +51,7 @@ const Navbar = ({ sections }: NavbarProps) => {
         </div>
         
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden md:flex items-center space-x-6">
           {sections.map((section) => (
             <button
               key={section.id}
@@ -60,12 +61,29 @@ const Navbar = ({ sections }: NavbarProps) => {
               {section.label}
             </button>
           ))}
+          
+          {/* Talk to Our Team Button */}
+          <Button
+            className="bg-gradient-to-r from-gtm-coral to-gtm-pink text-white hover:opacity-90 transition-opacity"
+            onClick={() => scrollToSection('contact')}
+          >
+            Talk to Our Team
+          </Button>
         </div>
         
         {/* Mobile Menu Button */}
-        <button className="md:hidden" onClick={toggleMenu}>
-          <Menu className="text-gtm-dark" />
-        </button>
+        <div className="md:hidden flex items-center gap-4">
+          <Button
+            className="bg-gradient-to-r from-gtm-coral to-gtm-pink text-white hover:opacity-90 transition-opacity"
+            onClick={() => scrollToSection('contact')}
+            size="sm"
+          >
+            Talk to Us
+          </Button>
+          <button onClick={toggleMenu}>
+            <Menu className="text-gtm-dark" />
+          </button>
+        </div>
       </div>
       
       {/* Mobile Menu */}
