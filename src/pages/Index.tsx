@@ -284,10 +284,6 @@ const Index = () => {
         centered
       />
       
-      <p className="text-center text-lg text-gray-600 mb-12 max-w-3xl mx-auto">
-        No advisors. No guesswork. Just proven GTM builders who know what moves the needle.
-      </p>
-      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10 max-w-7xl mx-auto px-4">
         {experts.map((expert, index) => (
           <ExpertCard 
