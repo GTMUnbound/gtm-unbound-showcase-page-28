@@ -187,7 +187,7 @@ const Index = () => {
     }
   ];
 
-  const experts = [
+const experts = [
     {
       name: "Aditi Agarwal",
       role: "Founder",
@@ -202,7 +202,7 @@ const Index = () => {
       role: "Founder",
       company: "Omnify",
       expertise: ["AI/ML GTM", "Product Strategy", "Enterprise Sales"],
-      imageSrc: "/lovable-uploads/773b7ced-a065-49b2-aa64-689bfa01adf8.png",
+      imageSrc: "/lovable-uploads/7920cd46-719f-4ec8-a9d0-c09bd1960693.png", // Updated to Anil's photo
       bio: "Founder at Omnify with extensive experience in product-led growth. Scaled multiple products from $0 to $50M ARR through innovative GTM strategies and market positioning. Deep expertise in enterprise positioning, technical product marketing, and AI/ML implementation.",
       linkedIn: "https://www.linkedin.com/in/manikm/"
     },
@@ -211,11 +211,11 @@ const Index = () => {
       role: "Founder and Managing Partner",
       company: "Inventus Law and Avatar Advisor",
       expertise: ["Legal GTM", "Startup Law", "International Markets"],
-      imageSrc: "/lovable-uploads/7920cd46-719f-4ec8-a9d0-c09bd1960693.png",
+      imageSrc: "/lovable-uploads/773b7ced-a065-49b2-aa64-689bfa01adf8.png", // Updated to Manik's photo
       bio: "Managing Partner at Inventus Law and Avatar Advisor. Helps startups navigate complex legal aspects of GTM strategy across global markets. Over 20 years of experience in US-India cross-border business strategy, startup formation, and international expansion.",
       linkedIn: "https://www.linkedin.com/in/aniladvani/"
     }
-  ];
+];
 
   // Define the missing howItWorksSteps variable
   const howItWorksSteps = [
