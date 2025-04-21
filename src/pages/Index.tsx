@@ -39,6 +39,10 @@ import TalkToTeamModal from "@/components/TalkToTeamModal";
 import PricingComparison from "@/components/PricingComparison";
 import GTMStructuredMessage from '@/components/GTMStructuredMessage';
 
+import ExpertLedSection from "@/components/ExpertLedSection";
+import StartupsSection from "@/components/StartupsSection";
+import FounderTestimonialsSection from "@/components/FounderTestimonialsSection";
+
 const Index = () => {
   const [email, setEmail] = useState('');
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -442,6 +446,9 @@ const Index = () => {
         <OfferingCards />
       </Section>
 
+// INSERT 🧠 Expert-Led section AFTER DFY/OfferingCards and BEFORE EXPERTS
+      <ExpertLedSection />
+
       <Section id="how-we-help" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16">
         <SectionHeader 
           title="From Signal to Strategy"
@@ -546,6 +553,12 @@ const Index = () => {
           onOpenChange={setTalkToTeamOpen}
         />
       </Section>
+
+// INSERT 🚀 Startups We've Worked With section AFTER PRICING and before next existing section
+      <StartupsSection />
+
+// INSERT 🗣️ Founder Testimonials AFTER StartupsSection and BEFORE WHY GTM UNBOUND
+      <FounderTestimonialsSection />
 
       <Section id="why-gtm" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16">
         <SectionHeader 
