@@ -29,6 +29,7 @@ import GTMSplitView from '@/components/GTMSplitView';
 import Footer from '@/components/Footer';
 
 import GTMOSVisual from "@/components/GTMOSVisual";
+import OfferingCards from "@/components/OfferingCards";
 
 const Index = () => {
   const [email, setEmail] = useState('');
@@ -383,23 +384,7 @@ const Index = () => {
           title="Systems. Strategy. Execution."
           centered
         />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
-          <div className="hover-card bg-white rounded-xl p-8 text-center shadow-md border border-pink-100 hover:border-gtm-pink transition-all group">
-            <div className="text-4xl mb-2">🧰</div>
-            <h3 className="text-xl font-semibold mb-2 group-hover:text-gtm-pink transition-colors">DIY Tools</h3>
-            <p className="text-gray-500 mb-2">Playbooks, templates, async feedback.</p>
-          </div>
-          <div className="hover-card bg-white rounded-xl p-8 text-center shadow-md border border-pink-100 hover:border-gtm-pink transition-all group">
-            <div className="text-4xl mb-2">🛠️</div>
-            <h3 className="text-xl font-semibold mb-2 group-hover:text-gtm-pink transition-colors">DFY Support</h3>
-            <p className="text-gray-500 mb-2">Sprint-based execution — SEO, content, ads.</p>
-          </div>
-          <div className="hover-card bg-white rounded-xl p-8 text-center shadow-md border border-pink-100 hover:border-gtm-pink transition-all group">
-            <div className="text-4xl mb-2">🧠</div>
-            <h3 className="text-xl font-semibold mb-2 group-hover:text-gtm-pink transition-colors">Expert Guidance</h3>
-            <p className="text-gray-500 mb-2">GTM leaders steering biweekly sprints.</p>
-          </div>
-        </div>
+        <OfferingCards />
       </Section>
 
       <Section id="how-we-help" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16">
