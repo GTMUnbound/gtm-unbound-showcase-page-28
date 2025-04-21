@@ -21,7 +21,7 @@ import {
   MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, 
   Users, RefreshCw, Rocket, TrendingUp, Award, Calendar,
   ArrowRight, MessageSquare, Globe, Check as CheckIcon, AlertTriangle, HelpCircle,
-  Flask, HandshakeIcon // Using compatible icons from lucide-react
+  FlaskConical, HandshakeIcon // Use flask-conical icon which exists in lucide-react
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -323,7 +323,7 @@ const Index = () => {
         "/lovable-uploads/47d41dfa-b548-46e1-9254-b500a8667252.png"
       ],
       highlightColor: "border-orange-400",
-      icon: <Flask className="h-6 w-6" />,
+      icon: <FlaskConical className="h-6 w-6" />,
       label: "Experiments, pricing, OKRs"
     },
     {
