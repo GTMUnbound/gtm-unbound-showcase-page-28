@@ -446,6 +446,7 @@ const Index = () => {
         <OfferingCards />
       </Section>
 
+      {/* 🧠 Expert-Led section */}
       <ExpertLedSection />
 
       <Section id="how-we-help" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16">
@@ -553,8 +554,10 @@ const Index = () => {
         />
       </Section>
 
+      {/* 🚀 Startups We've Worked With */}
       <StartupsSection />
 
+      {/* 🗣️ Founder Testimonials */}
       <FounderTestimonialsSection />
 
       <Section id="why-gtm" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16">

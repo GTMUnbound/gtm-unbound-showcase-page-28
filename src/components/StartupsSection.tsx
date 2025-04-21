@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-// Demo logo set (replace with real logos as needed)
+// Display ONLY real logos—no placeholder/photo stock/people/table images!
 const logos = [
   { src: "/lovable-uploads/0e281ef4-b0d5-4345-bbc2-148c9944f302.png", alt: "Omnify", name: "Omnify" },
   { src: "/lovable-uploads/64124847-58f5-4601-9a54-3544fa2436b1.png", alt: "ECL", name: "ECL" },
@@ -53,7 +53,7 @@ const StartupsSection = () => (
         whileInView="show"
         viewport={{ once: true, amount: 0.4 }}
       >
-        {logos.map((logo, i) => (
+        {logos.map((logo) => (
           <motion.div
             key={logo.alt}
             variants={logoAnim}
@@ -64,6 +64,7 @@ const StartupsSection = () => (
               alt={logo.alt}
               className="h-16 w-32 object-contain filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-300"
               draggable={false}
+              style={{ maxHeight: "64px" }}
             />
             <motion.div
               className="absolute bottom-[-2.2rem] left-1/2 -translate-x-1/2 bg-gtm-pink/90 text-white text-xs px-3 py-1.5 rounded-lg shadow opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 pointer-events-none whitespace-nowrap"
@@ -78,3 +79,4 @@ const StartupsSection = () => (
 );
 
 export default StartupsSection;
+
