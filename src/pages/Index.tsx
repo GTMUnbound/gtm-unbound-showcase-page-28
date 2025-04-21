@@ -523,7 +523,10 @@ const Index = () => {
             </div>
             <div className="flex gap-4 mt-4">
               <GradientButton
-                onClick={() => setActivePlan("membership") && setPricingModalOpen(true)}
+                onClick={() => {
+                  setActivePlan("membership");
+                  setPricingModalOpen(true);
+                }}
               >
                 Choose Plan &rarr;
               </GradientButton>
