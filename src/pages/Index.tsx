@@ -585,63 +585,9 @@ const Index = () => {
       </Section>
 
       {/* Updated Footer */}
-      <footer className="bg-[#FFDEE2] py-10">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-6">
-            {/* Brand */}
-            <div className="space-y-4">
-              <div className="flex items-center">
-                <img
-                  src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
-                  alt="GTM Unbound Logo"
-                  className="h-10 w-auto"
-                />
-                <span className="ml-3 text-xl font-semibold">GTM Unbound</span>
-              </div>
-              <a href="https://wa.me/919876543210" className="flex items-center gap-2 text-gray-700 hover:text-gtm-pink transition-colors">
-                <MessageSquare size={20} className="text-[#FDE1D3]" />
-                Chat on WhatsApp
-              </a>
-              <div className="space-y-2 text-gray-700 text-sm">
-                <p>Email: hello@gtmunbound.com</p>
-                <p>Phone: +91-9876543210</p>
-              </div>
-            </div>
-            {/* Product */}
-            <div className="space-y-4">
-              <h3 className="font-semibold text-lg">Product</h3>
-              <div className="space-y-2">
-                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Platform Overview</a>
-                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Experts</a>
-                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Events</a>
-              </div>
-            </div>
-            {/* Support */}
-            <div className="space-y-4">
-              <h3 className="font-semibold text-lg">Support</h3>
-              <div className="space-y-2">
-                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Help Docs</a>
-                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Book a Call</a>
-                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Raise Request</a>
-              </div>
-            </div>
-            {/* Company */}
-            <div className="space-y-4">
-              <h3 className="font-semibold text-lg">Company</h3>
-              <div className="space-y-2">
-                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Blog</a>
-                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">About Us</a>
-                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Careers</a>
-                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Legal</a>
-              </div>
-            </div>
-          </div>
-          <div className="flex justify-between items-center flex-col md:flex-row gap-4 border-t pt-4 border-gray-200">
-            <div className="text-gray-700 text-base">
-              © 2025 GTM Unbound. All Rights Reserved.
-            </div>
-            <div className="flex gap-5 items-center">
-              <a href="https://www.linkedin.com/company/gtm-unbound/" target="_blank" rel="noopener noreferrer" className="text-gtm-pink hover:opacity-70 transition"><LinkedinIcon size={22} /></a>
-              <a href="https://www.youtube.com/channel/GTMUnbound" target="_blank" rel="noopener noreferrer" className="text-gtm-pink hover:opacity-70 transition"><Youtube size={22} /></a>
-              <a href="https://www.instagram.com/gtmunbound/" target="_blank" rel="noopener noreferrer" className="text-gtm-pink hover:opacity-70 transition"><Instagram size={22} /></a>
-              <a href="https://twitter.com/gtmunbound" target="_blank" rel="noopener noreferrer" className="text-gtm-pink hover:opacity-70 transition"><TwitterIcon size={22}
+      <Footer />
+    </div>
+  );
+};
+
+export default Index;
