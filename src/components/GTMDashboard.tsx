@@ -12,207 +12,302 @@ const GTMDashboard = () => {
     controls.start('visible');
   }, [controls]);
 
-  // Dashboard modules with positions in a circular layout
+  // Configuration for circular/hex layout (scaled outward for visibility)
   const modules = [
-    { 
-      icon: <Layers className="h-5 w-5 text-gtm-pink" />, 
+    // Top center
+    {
+      icon: <Layers className="h-6 w-6 text-gtm-pink" />,
       label: "Playbooks",
-      position: { top: '10%', left: '50%' }
+      position: { top: '6%', left: '50%' }
     },
-    { 
-      icon: <Users className="h-5 w-5 text-blue-500" />, 
+    // Top right
+    {
+      icon: <Users className="h-6 w-6 text-blue-500" />,
       label: "Experts",
-      position: { top: '25%', left: '85%' }
+      position: { top: '22%', left: '90%' }
     },
-    { 
-      icon: <BookOpen className="h-5 w-5 text-amber-500" />, 
+    // Bottom right
+    {
+      icon: <BookOpen className="h-6 w-6 text-amber-500" />,
       label: "Tools",
-      position: { top: '75%', left: '85%' }
+      position: { top: '78%', left: '90%' }
     },
-    { 
-      icon: <Play className="h-5 w-5 text-green-500" />, 
+    // Bottom center
+    {
+      icon: <Play className="h-6 w-6 text-green-500" />,
       label: "Execution",
-      position: { top: '90%', left: '50%' }
+      position: { top: '94%', left: '50%' }
     },
-    { 
-      icon: <FileCheck className="h-5 w-5 text-purple-500" />, 
+    // Bottom left
+    {
+      icon: <FileCheck className="h-6 w-6 text-purple-500" />,
       label: "Events",
-      position: { top: '75%', left: '15%' }
+      position: { top: '78%', left: '10%' }
     },
-    { 
-      icon: <Globe className="h-5 w-5 text-cyan-500" />, 
+    // Top left
+    {
+      icon: <Globe className="h-6 w-6 text-cyan-500" />,
       label: "Channels",
-      position: { top: '25%', left: '15%' }
+      position: { top: '22%', left: '10%' }
     },
-    { 
-      icon: <LineChart className="h-5 w-5 text-orange-500" />, 
+    // Mid-right (metrics)
+    {
+      icon: <LineChart className="h-6 w-6 text-orange-500" />,
       label: "Metrics",
-      position: { top: '50%', left: '92%' }
+      position: { top: '50%', left: '98%' }
     },
   ];
 
-  // Animation variants
+  // Animation variants and custom pulse/fade
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3
+        staggerChildren: 0.09,
+        delayChildren: 0.2
       }
     }
   };
 
   const moduleVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 0, scale: 0.85 },
     visible: {
-      opacity: 1,
-      scale: 1,
+      opacity: 1, scale: 1,
       transition: {
         type: "spring",
-        stiffness: 50,
-        damping: 15
+        stiffness: 60,
+        damping: 16
       }
     }
   };
 
-  // Fixed animation objects with proper typing for repeatType
-  const floatAnimation = {
-    y: [0, -8, 0],
+  // Gently floating pulse
+  const floatPulse = {
+    y: [0, -10, 0],
     transition: {
-      duration: 4,
+      duration: 3.4,
       repeat: Infinity,
       repeatType: "reverse" as const,
       ease: "easeInOut"
     }
   };
 
-  const pulseAnimation = {
-    scale: [1, 1.05, 1],
-    boxShadow: [
-      "0 4px 12px rgba(236, 72, 153, 0.1)",
-      "0 6px 16px rgba(236, 72, 153, 0.25)",
-      "0 4px 12px rgba(236, 72, 153, 0.1)"
-    ],
-    transition: {
-      duration: 2.5,
-      repeat: Infinity,
-      repeatType: "reverse" as const,
-      ease: "easeInOut"
-    }
-  };
+  // Responsive scaling
+  const visualScaleClass = "h-[420px] md:h-[440px] w-full max-w-[440px]";
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      <h4 className="text-xs md:text-sm text-gray-500 mb-6 text-center font-medium">
+    <div className="flex flex-col items-center md:items-end">
+      <h4 className="text-xs md:text-sm text-gray-500 mb-5 md:mb-7 text-center font-medium whitespace-nowrap">
         From Product to Traction — Powered by GTM Unbound
       </h4>
-      
       <motion.div
-        className="relative h-[320px] w-full"
+        className={`relative ${visualScaleClass} mx-auto`}
         initial="hidden"
         animate={controls}
         variants={containerVariants}
+        style={{
+          // Align visual with headline by nudging up slightly on larger screens
+          marginTop: '-10px',
+        }}
       >
-        {/* Central Dashboard */}
-        <motion.div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20
-                     w-32 h-32 rounded-xl bg-white shadow-lg border border-pink-100
-                     flex flex-col items-center justify-center"
-          variants={moduleVariants}
-          animate={pulseAnimation}
+        {/* Curved journey path */}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none z-0"
+          viewBox="0 0 440 440"
+          fill="none"
+          preserveAspectRatio="none"
         >
-          <div className="h-12 w-12 rounded-full bg-gradient-to-r from-gtm-pink to-pink-400 
-                        flex items-center justify-center shadow-inner">
-            <span className="text-white font-semibold text-sm">GTM</span>
-          </div>
-          <p className="mt-2 text-xs font-medium text-gtm-dark">GTM System</p>
-        </motion.div>
-
-        {/* Connector lines */}
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 300 300" fill="none">
-          <motion.circle 
-            cx="150" 
-            cy="150" 
-            r="120" 
-            stroke="url(#gradientStroke)" 
-            strokeWidth="1.5" 
-            strokeDasharray="5,5" 
-            strokeOpacity="0.6"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 0.6 }}
-            transition={{ duration: 1.5, delay: 0.5 }}
-          />
           <defs>
-            <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#fbc2eb" />
-              <stop offset="100%" stopColor="#ec4899" />
+            <linearGradient id="pathGradient" x1="0" y1="0" x2="440" y2="440" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#f87171" />
+              <stop offset="10%" stopColor="#fbc2eb" />
+              <stop offset="70%" stopColor="#ec4899" />
+              <stop offset="100%" stopColor="#8b5cf6" />
             </linearGradient>
           </defs>
+          {/* Chaos to GTM Unbound to Traction journey curve */}
+          <motion.path
+            d="M40,340 Q120,390 220,220 Q315,60 400,120"
+            stroke="url(#pathGradient)"
+            strokeWidth="4"
+            strokeLinecap="round"
+            fill="none"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 2.2, delay: 0.8 }}
+            style={{
+              filter: "drop-shadow(0 0 4px #fbc2eb88)"
+            }}
+          />
+          {/* Chaos - Start */}
+          <motion.g
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.3, duration: 0.6 }}
+          >
+            <circle cx="40" cy="340" r="10" fill="#f87171" />
+            <text x="16" y="363" fontSize="14" fontWeight="bold" fill="#e11d48">Chaos</text>
+          </motion.g>
+          {/* Traction - End */}
+          <motion.g
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 2.3, duration: 0.7 }}
+          >
+            <circle cx="400" cy="120" r="10" fill="#8b5cf6" />
+            <text x="377" y="107" fontSize="14" fontWeight="bold" fill="#7c3aed">Traction</text>
+          </motion.g>
         </svg>
+
+        {/* Glowing connector circle */}
+        <motion.circle
+          className="z-[1]"
+          cx="220"
+          cy="220"
+          r="173"
+          stroke="url(#gradientStroke)"
+          strokeWidth="2"
+          strokeDasharray="6,7"
+          strokeOpacity="0.6"
+          style={{ filter: "drop-shadow(0px 4px 32px #fbc2eb33)" }}
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 0.6 }}
+          transition={{ duration: 1.7, delay: 0.44 }}
+        />
+        <defs>
+          <linearGradient id="gradientStroke" x1="0" y1="0" x2="430" y2="430" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#fbc2eb" />
+            <stop offset="100%" stopColor="#ec4899" />
+          </linearGradient>
+        </defs>
+
+        {/* Central GTM Unbound tile with bold/glow */}
+        <motion.div
+          className="absolute top-1/2 left-1/2 z-30 w-40 h-40 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white shadow-2xl border border-pink-100 flex flex-col items-center justify-center"
+          variants={moduleVariants}
+          style={{
+            boxShadow: "0 0 20px 4px #ffb0e7, 0 6px 40px #fbc2eb44"
+          }}
+        >
+          <div className="h-16 w-16 rounded-full bg-gradient-to-r from-gtm-pink to-pink-400 flex items-center justify-center shadow-inner border-4 border-white glow-pulse">
+            <span className="text-white font-extrabold text-xl tracking-tight" style={{
+              textShadow: "0 0 18px #fb429990, 0 1px 1px #fff"
+            }}>
+              GTM
+            </span>
+          </div>
+          <p className="mt-3 text-base font-bold text-gtm-pink tracking-tight drop-shadow-md"
+            style={{
+              textShadow: "0 0 14px #fbc2ebcc"
+            }}
+          >
+            GTM Unbound
+          </p>
+        </motion.div>
 
         {/* Modules */}
         {modules.map((module, index) => (
           <motion.div
             key={index}
-            className="absolute z-10"
-            style={{ 
-              top: module.position.top, 
-              left: module.position.left,
-              transform: 'translate(-50%, -50%)'
+            className="absolute z-20"
+            style={{
+              ...module.position,
+              transform: 'translate(-50%, -50%)',
+              // slight outward spread for visibility
             }}
             variants={moduleVariants}
-            animate={floatAnimation}
+            animate={floatPulse}
+            whileHover={{
+              scale: 1.12,
+              boxShadow: "0 8px 28px #ec4899bb, 0 0px 18px #fbc2eb88",
+              zIndex: 30,
+            }}
           >
-            <motion.div className="bg-white rounded-lg shadow-md px-3 py-2 flex items-center gap-2 border border-gray-100">
+            <motion.div
+              className="bg-white rounded-xl shadow-lg px-4 py-2 flex items-center gap-3 border border-gray-100 transition-all duration-300 group"
+              whileHover={{ scale: 1.08, boxShadow: "0 8px 28px #fbc2eb66" }}
+              style={{
+                minWidth: 82,
+                boxShadow: "0 3px 20px #fbc2eb28"
+              }}
+            >
               {module.icon}
-              <span className="text-xs font-medium text-gray-700">{module.label}</span>
+              <span className="text-xs font-bold text-gray-700">{module.label}</span>
             </motion.div>
           </motion.div>
         ))}
 
-        {/* Path from chaos to traction */}
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 300 300" fill="none" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#feebc8" />
-              <stop offset="30%" stopColor="#f87171" />
-              <stop offset="70%" stopColor="#ec4899" />
-              <stop offset="100%" stopColor="#8b5cf6" />
-            </linearGradient>
-          </defs>
-          <motion.path
-            d="M30,200 Q80,250 150,150 Q220,50 270,100"
-            stroke="url(#pathGradient)"
-            strokeWidth="3"
-            strokeLinecap="round"
-            fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2, delay: 0.8 }}
-          />
-          
-          {/* Start label - Chaos */}
-          <motion.g
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
-          >
-            <circle cx="30" cy="200" r="6" fill="#f87171" />
-            <text x="20" y="220" fontSize="10" fill="#666">Chaos</text>
-          </motion.g>
-          
-          {/* End label - Traction */}
-          <motion.g
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2.8 }}
-          >
-            <circle cx="270" cy="100" r="6" fill="#8b5cf6" />
-            <text x="250" y="85" fontSize="10" fill="#666">Traction</text>
-          </motion.g>
-        </svg>
       </motion.div>
+      {/* MOBILE vertical stacking */}
+      <div className="flex md:hidden flex-col items-center mt-7 w-full gap-4">
+        <div className="w-full flex justify-center">
+          <div className="bg-white rounded-2xl shadow-2xl px-7 py-6 flex flex-col items-center border border-pink-100"
+            style={{
+              boxShadow: "0 0 12px 2px #ffb0e733, 0 6px 30px #fbc2eb22"
+            }}
+          >
+            <div className="h-12 w-12 rounded-full bg-gradient-to-r from-gtm-pink to-pink-400 flex items-center justify-center shadow-inner border-4 border-white glow-pulse mb-2">
+              <span className="text-white font-extrabold text-lg tracking-tight"
+                style={{ textShadow: "0 0 8px #fb429990, 0 1px 1px #fff" }}
+              >GTM</span>
+            </div>
+            <p className="font-bold text-gtm-pink text-base tracking-tight mb-0"
+              style={{ textShadow: "0 0 10px #fbc2ebcc" }}
+            >GTM Unbound</p>
+          </div>
+        </div>
+        <div className="flex flex-wrap items-center justify-center gap-3 w-full mt-3">
+          {modules.map((module, idx) => (
+            <div
+              key={module.label}
+              className="bg-white rounded-xl shadow-md px-4 py-2 flex items-center gap-2 border border-gray-100 hover:shadow-xl transition-all duration-300 min-w-[90px]"
+              style={{ boxShadow: "0 3px 12px #fbc2eb19" }}
+            >
+              {module.icon}
+              <span className="text-xs font-bold text-gray-700">{module.label}</span>
+            </div>
+          ))}
+        </div>
+        {/* Mobile journey line */}
+        <div className="relative w-full flex flex-col items-center mt-6 pb-2">
+          <svg className="w-11/12 h-[86px]" viewBox="0 0 380 70" fill="none" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="gtmJourneyGradientMob" x1="0" y1="0" x2="380" y2="60" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#f87171" />
+                <stop offset="30%" stopColor="#fbc2eb" />
+                <stop offset="80%" stopColor="#ec4899" />
+                <stop offset="100%" stopColor="#8b5cf6" />
+              </linearGradient>
+            </defs>
+            <motion.path
+              d="M30,62 Q90,10 180,42 Q270,75 350,30"
+              stroke="url(#gtmJourneyGradientMob)"
+              strokeWidth="4"
+              strokeLinecap="round"
+              fill="none"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 1.4, ease: [0.42, 0, 0.58, 1] }}
+            />
+            {/* Start and end */}
+            <motion.circle
+              cx="30" cy="62" r="7" fill="#f87171"
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.7 }}
+            />
+            <text x="13" y="78" fontSize="10" fill="#e11d48" fontWeight="bold">Chaos</text>
+            <motion.circle
+              cx="350" cy="30" r="7" fill="#8b5cf6"
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.3 }}
+            />
+            <text x="323" y="23" fontSize="10" fill="#7c3aed" fontWeight="bold">Traction</text>
+          </svg>
+        </div>
+      </div>
     </div>
   );
 };

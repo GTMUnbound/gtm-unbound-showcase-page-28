@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -106,11 +105,7 @@ const Index = () => {
     [
       { text: "But GTM still feels messy.", icon: <AlertTriangle className="h-4 w-4 text-amber-500" /> },
     ],
-    [
-      { text: "Which channel?", icon: <HelpCircle className="h-4 w-4 text-gray-400" /> },
-      { text: "What messaging?", icon: <HelpCircle className="h-4 w-4 text-gray-400" /> },
-      { text: "Who can you actually trust?", icon: <HelpCircle className="h-4 w-4 text-gray-400" /> }
-    ],
+    // REMOVED Question block as requested (was: [Which channel? ...])
     [
       { text: "You don't have to figure it out alone.", icon: <Brain className="h-4 w-4 text-gtm-pink" /> },
       { text: "GTM Unbound brings structure, people, and execution — all under one roof.", icon: <Rocket className="h-4 w-4 text-gtm-pink" /> }
@@ -413,16 +408,15 @@ const Index = () => {
               {/* Enhanced Animated Content with Icons */}
               <div className="hidden md:block mb-8 relative">
                 <div className="absolute left-[-20px] top-0 bottom-0 w-[3px] bg-gradient-to-b from-transparent via-gtm-pink to-transparent opacity-40"></div>
-                
                 {textBlocks.map((block, blockIndex) => (
                   <motion.div
                     key={blockIndex}
                     className="mb-5"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ 
-                      duration: 0.5, 
-                      delay: 0.3 + (blockIndex * 0.2),
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.3 + (blockIndex * 0.25),
                       type: "spring",
                       stiffness: 50
                     }}
@@ -438,7 +432,7 @@ const Index = () => {
                   </motion.div>
                 ))}
               </div>
-              
+
               {/* Mobile Collapsible Block */}
               <div className="block md:hidden mb-8 space-y-4">
                 {/* First block always visible */}
@@ -460,22 +454,10 @@ const Index = () => {
                     </div>
                   ))}
                 </div>
-                
-                {/* Questions collapsed */}
-                <CollapsibleBlock title="Why GTM Still Feels Messy">
-                  <div className="space-y-2 pt-2">
-                    {textBlocks[2].map((item, i) => (
-                      <div key={i} className="flex items-center gap-2">
-                        <div className="flex-shrink-0">{item.icon}</div>
-                        <div className="text-gray-600">{item.text}</div>
-                      </div>
-                    ))}
-                  </div>
-                </CollapsibleBlock>
-                
+                {/* Collapsible for the removed 'questions' block is omitted */}
                 {/* Last block visible */}
                 <div className="space-y-2 pt-2">
-                  {textBlocks[3].map((item, i) => (
+                  {textBlocks[2].map((item, i) => (
                     <div key={i} className="flex items-center gap-2">
                       <div className="flex-shrink-0">{item.icon}</div>
                       <div className="text-gray-600">{item.text}</div>
