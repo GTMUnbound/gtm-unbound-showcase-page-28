@@ -6,7 +6,7 @@ import OfferingModal from "./OfferingModal";
 type OfferingType = "diy" | "dfy" | "expert";
 
 interface OfferingCardProps {
-  emoji: React.ReactNode;
+  emoji: string;
   title: string;
   description: string;
   type: OfferingType;
@@ -21,9 +21,7 @@ const OfferingCard = ({ emoji, title, description, type, onClick }: OfferingCard
       whileHover={{ scale: 1.03 }}
       onClick={() => onClick(type)}
     >
-      <div className="text-4xl mb-2 transition-transform group-hover:scale-110 flex justify-center">
-        {emoji}
-      </div>
+      <div className="text-4xl mb-2 transition-transform group-hover:scale-110">{emoji}</div>
       <h3 className="text-xl font-semibold mb-2 group-hover:text-gtm-pink transition-colors">{title}</h3>
       <p className="text-gray-500 mb-2">{description}</p>
     </motion.div>
@@ -52,14 +50,7 @@ const OfferingCards = () => {
           onClick={handleOpenModal}
         />
         <OfferingCard
-          emoji={
-            <img 
-              src="/lovable-uploads/1580446f-0371-4535-b1d4-69354097db7e.png" 
-              alt="DFY Support" 
-              className="h-10 w-10 object-contain"
-              loading="lazy"
-            />
-          }
+          emoji="🛠️"
           title="DFY Support"
           description="Sprint-based execution — SEO, content, ads."
           type="dfy"
@@ -86,4 +77,3 @@ const OfferingCards = () => {
 };
 
 export default OfferingCards;
-
