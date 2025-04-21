@@ -30,6 +30,8 @@ import Footer from '@/components/Footer';
 
 import GTMOSVisual from "@/components/GTMOSVisual";
 import OfferingCards from "@/components/OfferingCards";
+import PricingModal from "@/components/PricingModal";
+import TalkToTeamModal from "@/components/TalkToTeamModal";
 
 const Index = () => {
   const [email, setEmail] = useState('');
@@ -347,6 +349,12 @@ const Index = () => {
     </Section>
   );
 
+  // Modal state for pricing
+  const [pricingModalOpen, setPricingModalOpen] = useState(false);
+  const [activePlan, setActivePlan] = useState<"membership" | "plus" | "pro" | null>(null);
+
+  const [talkToTeamOpen, setTalkToTeamOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-[#F4F5F7]">
       <Navbar sections={sections} />
@@ -482,7 +490,11 @@ const Index = () => {
                 <li>Tools, templates, playbooks, events, community</li>
               </ul>
             </div>
-            <GradientButton>Choose Plan &rarr;</GradientButton>
+            <GradientButton
+              onClick={() => { setActivePlan("membership"); setPricingModalOpen(true); }}
+            >
+              Choose Plan &rarr;
+            </GradientButton>
           </div>
           <div className="flex flex-col gap-8">
             <div className="rounded-2xl p-8 bg-white border hover:border-gtm-pink transition-all shadow group hover:shadow-pink-100">
@@ -490,21 +502,53 @@ const Index = () => {
               <ul className="text-gray-600 mb-2 list-disc pl-6">
                 <li>DFY execution (content, growth, SEO, RevOps)</li>
               </ul>
+              <GradientButton
+                onClick={() => { setActivePlan("plus"); setPricingModalOpen(true); }}
+                className="mt-6"
+              >
+                Choose Plan &rarr;
+              </GradientButton>
             </div>
             <div className="rounded-2xl p-8 bg-white border hover:border-gtm-pink transition-all shadow group hover:shadow-pink-100">
               <h4 className="text-xl font-bold text-gtm-dark mb-2">Pro <span className="text-gray-500 font-normal">($3000/mo)</span></h4>
               <ul className="text-gray-600 mb-2 list-disc pl-6">
                 <li>Expert strategy, biweekly sprints, roadmap co-creation</li>
               </ul>
+              <GradientButton
+                onClick={() => { setActivePlan("pro"); setPricingModalOpen(true); }}
+                className="mt-6"
+              >
+                Choose Plan &rarr;
+              </GradientButton>
             </div>
             <div className="flex gap-4 mt-4">
-              <GradientButton>Choose Plan &rarr;</GradientButton>
-              <button className="px-6 py-3 bg-white border-2 border-gtm-pink text-gtm-pink rounded-xl hover:bg-gtm-pink/5 transition-colors font-semibold shadow-sm">
+              <GradientButton
+                onClick={() => setActivePlan("membership") && setPricingModalOpen(true)}
+              >
+                Choose Plan &rarr;
+              </GradientButton>
+              <button
+                className="px-6 py-3 bg-white border-2 border-gtm-pink text-gtm-pink rounded-xl hover:bg-gtm-pink/5 transition-colors font-semibold shadow-sm"
+                onClick={() => setTalkToTeamOpen(true)}
+              >
                 Talk to Team &rarr;
               </button>
             </div>
           </div>
         </div>
+        {/* Modals */}
+        <PricingModal
+          open={pricingModalOpen}
+          onOpenChange={(open) => {
+            setPricingModalOpen(open);
+            if (!open) setActivePlan(null);
+          }}
+          plan={activePlan}
+        />
+        <TalkToTeamModal
+          open={talkToTeamOpen}
+          onOpenChange={setTalkToTeamOpen}
+        />
       </Section>
 
       <Section id="why-gtm" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16">
