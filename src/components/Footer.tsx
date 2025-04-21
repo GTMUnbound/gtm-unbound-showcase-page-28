@@ -1,3 +1,4 @@
+
 import { MessageSquare, Linkedin, Instagram, Youtube, Twitter } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
@@ -65,40 +66,46 @@ const Footer = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-700">© 2025 GTM Unbound. Built by Operators, for Founders.</p>
-          <div className="flex items-center gap-4">
-            <a 
-              href="https://www.linkedin.com/company/gtm-unbound/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              <Linkedin size={24} className="text-[#FDE1D3] hover:text-[#ff9f87] transition-colors" />
-            </a>
-            <a 
-              href="https://www.instagram.com/gtmunbound/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              <Instagram size={24} className="text-[#FDE1D3] hover:text-[#ff9f87] transition-colors" />
-            </a>
-            <a 
-              href="https://www.youtube.com/channel/GTMUnbound" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              <Youtube size={24} className="text-[#FDE1D3] hover:text-[#ff9f87] transition-colors" />
-            </a>
-            <a 
-              href="https://twitter.com/gtmunbound" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              <Twitter size={24} className="text-[#FDE1D3] hover:text-[#ff9f87] transition-colors" />
-            </a>
-          </div>
+        </div>
+
+        {/* Social Media icons - new row, small and pinkish */}
+        <div className="mt-4 flex justify-center gap-5">
+          <a
+            href="https://www.linkedin.com/company/gtm-unbound/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="transition-transform hover:scale-110"
+          >
+            <Linkedin size={22} strokeWidth={2.2} className="text-[#FF6B9D]" />
+          </a>
+          <a
+            href="https://x.com/gtmunbound?t=fmTUUK_ObzUPTOy6V4_BFA&s=08"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Twitter"
+            className="transition-transform hover:scale-110"
+          >
+            <Twitter size={22} strokeWidth={2.2} className="text-[#FF6B9D]" />
+          </a>
+          <a
+            href="https://www.youtube.com/channel/GTMUnbound"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="YouTube"
+            className="transition-transform hover:scale-110"
+          >
+            <Youtube size={22} strokeWidth={2.2} className="text-[#FF6B9D]" />
+          </a>
+          <a
+            href="https://www.instagram.com/gtmunbound/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="transition-transform hover:scale-110"
+          >
+            <Instagram size={22} strokeWidth={2.2} className="text-[#FF6B9D]" />
+          </a>
         </div>
       </div>
     </footer>
@@ -106,3 +113,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
