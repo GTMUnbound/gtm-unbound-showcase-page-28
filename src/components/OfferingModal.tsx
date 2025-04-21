@@ -43,7 +43,7 @@ const offeringData = {
       "Pre-scoped deliverables with clear goals",
       "Fast ramp-up, no retainer noise",
     ],
-    image: "/lovable-uploads/7c03b940-09ef-4d5d-b625-85ce0fd33ea0.png",
+    image: "/lovable-uploads/bb153975-6bf6-4c36-b3b4-c3b1dc7ba7e1.png",
     buttonText: "See DFY Plans",
   },
   expert: {
