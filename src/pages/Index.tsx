@@ -28,6 +28,8 @@ import NotificationFeed from '@/components/NotificationFeed';
 import GTMSplitView from '@/components/GTMSplitView';
 import Footer from '@/components/Footer';
 
+import GTMHeroVisualDynamicIntro from '@/components/GTMHeroVisualDynamicIntro';
+
 const Index = () => {
   const [email, setEmail] = useState('');
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -367,8 +369,9 @@ const Index = () => {
                 </button>
               </div>
             </div>
+            {/* Replacing GTMSplitView with the new Intro Visual */}
             <div className="w-full md:w-1/2 flex justify-center items-start">
-              <GTMSplitView />
+              <GTMHeroVisualDynamicIntro />
             </div>
           </div>
         </div>
@@ -641,13 +644,4 @@ const Index = () => {
               <a href="https://www.linkedin.com/company/gtm-unbound/" target="_blank" rel="noopener noreferrer" className="text-gtm-pink hover:opacity-70 transition"><LinkedinIcon size={22} /></a>
               <a href="https://www.youtube.com/channel/GTMUnbound" target="_blank" rel="noopener noreferrer" className="text-gtm-pink hover:opacity-70 transition"><Youtube size={22} /></a>
               <a href="https://www.instagram.com/gtmunbound/" target="_blank" rel="noopener noreferrer" className="text-gtm-pink hover:opacity-70 transition"><Instagram size={22} /></a>
-              <a href="https://twitter.com/gtmunbound" target="_blank" rel="noopener noreferrer" className="text-gtm-pink hover:opacity-70 transition"><TwitterIcon size={22} /></a>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-};
-
-export default Index;
+              <a href="https://twitter.com/gtmunbound" target="_blank" rel="noopener noreferrer" className="text-gtm-pink hover:opacity-70 transition"><TwitterIcon size={22}
