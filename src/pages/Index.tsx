@@ -349,54 +349,51 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-[#F4F5F7]">
       <Navbar sections={sections} />
-      
+
       {/* Hero Section (Updated Layout) */}
-      <Section id="home" className="pt-32 pb-12 bg-white">
+      <Section id="home" className="pt-24 pb-10 bg-white">
         <div className="container mx-auto px-4 md:px-6 relative">
           <HeroBackground type="image" />
-          <div className="flex flex-col md:flex-row items-start relative z-10 gap-16">
-            <div className="w-full md:w-1/2 mb-8 md:mb-0">
+          <div className="flex flex-col md:flex-row items-start md:items-center relative z-10 gap-8 md:gap-16">
+            <div className="w-full md:w-1/2 mb-7 md:mb-0">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gtm-dark mb-4 leading-tight">
                 Go-To-Market, Without Guesswork
               </h1>
               <p className="text-xl text-gray-600 mb-7 max-w-2xl">
                 The GTM engine for startups — structure, support, and execution, all in one place.
               </p>
-              <div className="flex flex-wrap gap-4 mb-10">
+              <div className="flex flex-wrap gap-4 mb-6">
                 <GradientButton>See How It Works</GradientButton>
                 <button className="px-6 py-3 bg-white border-2 border-gtm-pink text-gtm-pink rounded-xl hover:bg-gtm-pink/5 transition-colors font-semibold shadow-sm">
                   Join Now
                 </button>
               </div>
             </div>
-            {/* Replacing GTMSplitView with the new Intro Visual */}
-            <div className="w-full md:w-1/2 flex justify-center items-start">
+            {/* Dynamic GTM Hero Visual, now right-aligned on desktop */}
+            <div className="w-full md:w-1/2 flex justify-center md:justify-end items-start">
               <GTMHeroVisualDynamicIntro />
             </div>
           </div>
         </div>
       </Section>
 
-      {/* Offerings mini-cards Section */}
-      <Section id="offerings" className="bg-white pt-0 pb-16">
+      {/* Offerings Section */}
+      <Section id="offerings" className="bg-white pt-0 pb-14">
         <SectionHeader 
           title="Systems. Strategy. Execution."
           centered
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
-          {/* DIY Tools */}
           <div className="hover-card bg-white rounded-xl p-8 text-center shadow-md border border-pink-100 hover:border-gtm-pink transition-all group">
             <div className="text-4xl mb-2">🧰</div>
             <h3 className="text-xl font-semibold mb-2 group-hover:text-gtm-pink transition-colors">DIY Tools</h3>
             <p className="text-gray-500 mb-2">Playbooks, templates, async feedback.</p>
           </div>
-          {/* DFY Support */}
           <div className="hover-card bg-white rounded-xl p-8 text-center shadow-md border border-pink-100 hover:border-gtm-pink transition-all group">
             <div className="text-4xl mb-2">🛠️</div>
             <h3 className="text-xl font-semibold mb-2 group-hover:text-gtm-pink transition-colors">DFY Support</h3>
             <p className="text-gray-500 mb-2">Sprint-based execution — SEO, content, ads.</p>
           </div>
-          {/* Expert Guidance */}
           <div className="hover-card bg-white rounded-xl p-8 text-center shadow-md border border-pink-100 hover:border-gtm-pink transition-all group">
             <div className="text-4xl mb-2">🧠</div>
             <h3 className="text-xl font-semibold mb-2 group-hover:text-gtm-pink transition-colors">Expert Guidance</h3>
@@ -405,16 +402,16 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* How We Help (Replaces Journey Section) */}
-      <Section id="how-we-help" className="bg-gray-50 py-16">
+      {/* Journey ("How We Help") Section */}
+      <Section id="how-we-help" className="bg-gray-50 py-14 md:py-16">
         <SectionHeader 
           title="From Signal to Strategy"
           centered
         />
-        <div className="text-center text-lg text-gray-600 mb-8 max-w-3xl mx-auto">
+        <div className="text-center text-lg text-gray-600 mb-7 max-w-3xl mx-auto">
           Startups begin with a diagnostic. We match them to GTM experts, launch sprints, and drive clarity.
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-8">
           <div className="bg-white rounded-xl p-6 flex flex-col items-center shadow hover:shadow-lg transition">
             <div className="text-3xl mb-3">📍</div>
             <div className="font-semibold text-gtm-dark mb-1">GTM Diagnostic</div>
@@ -437,14 +434,14 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* Experts Section (shows company ONLY, never "Ex-") */}
-      <Section id="experts" className="py-20 sm:py-24">
+      {/* Experts Section */}
+      <Section id="experts" className="py-14 md:py-20 sm:py-24">
         <SectionHeader 
           title="Work With Operators Who’ve Done It"
           subtitle="Not advisors. Not theory. Just proven specialists with execution credibility."
           centered
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10 max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-9 max-w-7xl mx-auto px-4">
           {experts.map((expert, index) => (
             <ExpertCard 
               key={index}
@@ -460,17 +457,16 @@ const Index = () => {
           ))}
         </div>
       </Section>
-      
-      {/* Community Section untouched except new Navbar label is used above */}
-      <Section id="community" className="bg-pink-50 py-16">
+
+      {/* Community Section */}
+      <Section id="community" className="bg-pink-50 py-14 md:py-16">
         <SectionHeader 
           title="Events That Move Conversations — and Founders — Forward"
           subtitle="High-signal, zero-fluff environments for operators to connect, sharpen, and grow."
           centered
         />
-        
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
             {eventTypes.map((eventType, index) => (
               <EventTypeCard
                 key={index}
@@ -484,21 +480,19 @@ const Index = () => {
               />
             ))}
           </div>
-          
           <div className="flex justify-center">
             <GradientButton>See Upcoming Events</GradientButton>
           </div>
         </div>
       </Section>
       
-      {/* Pricing Section (Outcome-Based, 2-column with accent) */}
-      <Section id="pricing" className="bg-white py-20">
+      {/* Pricing Section */}
+      <Section id="pricing" className="bg-white py-14 md:py-20">
         <SectionHeader 
           title="Outcome-Based Pricing That Scales With You"
           centered
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto px-4">
-          {/* Membership Column */}
           <div className="rounded-2xl p-8 bg-white border hover:border-gtm-pink transition-all shadow group hover:shadow-pink-100 flex flex-col items-start justify-between">
             <div>
               <h3 className="text-2xl font-bold mb-3 text-gtm-dark">Membership</h3>
@@ -509,7 +503,6 @@ const Index = () => {
             </div>
             <GradientButton>Choose Plan &rarr;</GradientButton>
           </div>
-          {/* Plus & Pro Column */}
           <div className="flex flex-col gap-8">
             <div className="rounded-2xl p-8 bg-white border hover:border-gtm-pink transition-all shadow group hover:shadow-pink-100">
               <h4 className="text-xl font-bold text-gtm-dark mb-2">Plus <span className="text-gray-500 font-normal">($1000/mo)</span></h4>
@@ -534,7 +527,7 @@ const Index = () => {
       </Section>
 
       {/* Why GTM Unbound Section */}
-      <Section id="why-gtm" className="bg-gray-50 py-16">
+      <Section id="why-gtm" className="bg-gray-50 py-14 md:py-16">
         <SectionHeader 
           title="Not Advice. Not Fluff. Real GTM Infrastructure."
           centered
@@ -565,7 +558,7 @@ const Index = () => {
       </Section>
 
       {/* Final CTA */}
-      <Section id="cta" className="bg-gradient-to-r from-gtm-coral to-gtm-pink text-white py-16">
+      <Section id="cta" className="bg-gradient-to-r from-gtm-coral to-gtm-pink text-white py-14 md:py-16">
         <div className="max-w-3xl mx-auto text-center px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">
             Let’s Unblock Your GTM
@@ -584,7 +577,7 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* Updated Footer */}
+      {/* Footer */}
       <Footer />
     </div>
   );
