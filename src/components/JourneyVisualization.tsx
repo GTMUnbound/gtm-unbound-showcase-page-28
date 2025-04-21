@@ -1,14 +1,15 @@
+
 import React, { useEffect, useRef } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { 
   Package, AlertTriangle, Zap, Lightbulb, 
-  TrendingUp, BookOpen, Users, Tool, Play, Calendar
+  TrendingUp, BookOpen, Users, Wrench, Play, Calendar
 } from 'lucide-react';
 
 const JourneyVisualization = () => {
   const controls = useAnimation();
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.2 });
+  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (isInView) {
@@ -94,7 +95,7 @@ const JourneyVisualization = () => {
   const floatingElements = [
     { icon: <BookOpen className="h-6 w-6 text-gtm-pink" />, label: "Playbooks", top: "20%", left: "40%" },
     { icon: <Users className="h-6 w-6 text-gtm-pink" />, label: "Experts", top: "60%", left: "45%" },
-    { icon: <Tool className="h-6 w-6 text-gtm-pink" />, label: "Tools", top: "30%", left: "70%" },
+    { icon: <Wrench className="h-6 w-6 text-gtm-pink" />, label: "Tools", top: "30%", left: "70%" },
     { icon: <Play className="h-6 w-6 text-gtm-pink" />, label: "Execution", top: "70%", left: "65%" },
     { icon: <Calendar className="h-6 w-6 text-gtm-pink" />, label: "Events", top: "45%", left: "55%" }
   ];
