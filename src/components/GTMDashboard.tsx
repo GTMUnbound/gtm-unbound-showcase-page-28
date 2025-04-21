@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import {
-  BookOpen, Users, Settings, Target, Globe, Ticket // Only use allowed lucide-react icons
+  BookOpen, Users, Settings, Target, Globe, Ticket
 } from 'lucide-react';
 
 // --- MODULES DATA ---
@@ -39,7 +39,6 @@ const moduleDefs = [
   },
 ];
 
-// Utility: get x/y offset from center using radius and degrees
 function getPos(angle: number, radius: number) {
   const rad = (angle - 90) * (Math.PI / 180); // 0deg is top
   return {
@@ -48,9 +47,10 @@ function getPos(angle: number, radius: number) {
   };
 }
 
-const visualSize = 420; // px, desktop
+// Make diagram larger and modules farther from center for more breathing space
+const visualSize = 460; // px, increased for more white space
 const center = visualSize / 2;
-const moduleRadius = 138; // px, from center to module center
+const moduleRadius = 188; // px, increased for longer connector lines
 
 const GTMDashboard = () => {
   const controls = useAnimation();
@@ -59,7 +59,6 @@ const GTMDashboard = () => {
     controls.start('visible');
   }, [controls]);
 
-  // Animations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -83,8 +82,8 @@ const GTMDashboard = () => {
       }
     }),
     hover: {
-      scale: 1.05,
-      boxShadow: "0 4px 22px #fbc2eb51",
+      scale: 1.06,
+      boxShadow: "0 4px 22px #fbc2eb55, 0 0 17px #e64ba155",
       zIndex: 40,
       transition: { type: "spring", stiffness: 250, damping: 14 }
     }
@@ -127,7 +126,7 @@ const GTMDashboard = () => {
           <defs>
             <radialGradient id="lineGlow" cx="50%" cy="50%" r="80%">
               <stop offset="0%" stopColor="#e0a0d8" stopOpacity="0.18" />
-              <stop offset="85%" stopColor="#e64ba1" stopOpacity="0.39" />
+              <stop offset="85%" stopColor="#e64ba1" stopOpacity="0.29" />
               <stop offset="100%" stopColor="#e64ba100" stopOpacity="0" />
             </radialGradient>
             <linearGradient id="moduleLine" x1="0" y1="0" x2="1" y2="1">
@@ -141,35 +140,42 @@ const GTMDashboard = () => {
               x1={center} y1={center}
               x2={mod.x} y2={mod.y}
               stroke="url(#moduleLine)"
-              strokeWidth="3.2"
+              strokeWidth="3.5"
               strokeLinecap="round"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 0.7 }}
               transition={{ duration: 1.1, delay: 0.16 + i * 0.08 }}
               style={{
-                filter: "drop-shadow(0 0 6px #fbc2eb55)"
+                filter: "drop-shadow(0 0 7px #fbc2eb66)"
               }}
             />
           ))}
         </svg>
-        {/* Center Tile */}
+        {/* Center Tile: GTM Unbound logo + label */}
         <motion.div
-          className="absolute top-1/2 left-1/2 z-30 w-44 h-44 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white shadow-2xl border border-pink-100 flex flex-col items-center justify-center"
+          className="absolute top-1/2 left-1/2 z-30 w-52 h-52 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white/90 shadow-2xl border border-pink-100 flex flex-col items-center justify-center"
           style={{
-            boxShadow: "0 0 32px 2px #ffb0e799, 0 10px 44px #fbc2eb44"
+            boxShadow: "0 0 50px 11px #ffb0e733, 0 12px 60px #fbc2eb33, 0 0 0 7px #f8e8f822, 0 1px 20px #e64ba144"
           }}
           whileHover={{
-            boxShadow: "0 0 50px 8px #E64BA199, 0 8px 40px #fbc2eb44"
+            boxShadow: "0 0 70px 16px #E64BA199, 0 10px 54px #fbc2eb44"
           }}
           initial={{ scale: 0.88, opacity: 0 }}
           animate={{ scale: 1, opacity: 1, transition: { delay: 0.29, duration: 0.44 } }}
         >
-          <div className="h-14 w-14 rounded-full bg-gradient-to-r from-gtm-pink to-pink-400 flex items-center justify-center shadow-inner border-4 border-white mb-1">
-            <span className="text-white font-extrabold text-2xl tracking-tight">
-              GTM
-            </span>
+          <div className="h-20 w-20">
+            {/* Use the GTM Unbound logo as used in navbar, retina crisp */}
+            <img
+              src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
+              alt="GTM Unbound Logo"
+              className="h-full w-full object-contain rounded-full mx-auto shadow-lg bg-white border-4 border-white"
+              style={{
+                filter: "drop-shadow(0 0 14px #e64ba199)"
+              }}
+              draggable={false}
+            />
           </div>
-          <p className="mt-3 text-lg font-bold text-gtm-pink tracking-tight text-center">
+          <p className="mt-4 text-xl font-bold text-gtm-pink tracking-tight text-center drop-shadow-sm">
             GTM Unbound
           </p>
         </motion.div>
@@ -179,10 +185,10 @@ const GTMDashboard = () => {
             key={mod.label}
             className="absolute z-20"
             style={{
-              top: mod.y - 42,
+              top: mod.y - 44,
               left: mod.x - 64,
               width: 128,
-              height: 84,
+              height: 88,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -210,15 +216,23 @@ const GTMDashboard = () => {
         <div className="flex flex-col items-center">
           {/* GTM Unbound hub */}
           <div
-            className="mx-auto mt-2 mb-6 w-24 h-24 rounded-2xl bg-white shadow-lg border border-pink-100 flex flex-col items-center justify-center"
+            className="mx-auto mt-2 mb-6 w-24 h-24 rounded-2xl bg-white/90 shadow-lg border border-pink-100 flex flex-col items-center justify-center"
             style={{
               boxShadow: "0 0 20px 2px #ffb0e777, 0 4px 20px #fbc2eb33"
             }}
           >
-            <div className="h-10 w-10 rounded-full bg-gradient-to-r from-gtm-pink to-pink-400 flex items-center justify-center shadow-inner border-4 border-white">
-              <span className="text-white font-extrabold text-lg tracking-tight">GTM</span>
+            <div className="h-12 w-12 rounded-full bg-white flex items-center justify-center shadow-inner border-4 border-white">
+              <img
+                src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
+                alt="GTM Unbound Logo"
+                className="w-12 h-12 object-contain mx-auto"
+                style={{
+                  filter: "drop-shadow(0 0 7px #e64ba199)"
+                }}
+                draggable={false}
+              />
             </div>
-            <div className="mt-1 text-[17px] font-bold text-gtm-pink text-center">
+            <div className="mt-2 text-lg font-bold text-gtm-pink text-center">
               GTM Unbound
             </div>
           </div>
