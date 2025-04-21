@@ -1,6 +1,6 @@
 
 import React, { useRef, useEffect, useState } from "react";
-import { motion, useAnimation, useCycle } from "framer-motion";
+import { motion } from "framer-motion";
 
 // Cards for orbit, with details for the tooltip/expand
 const ORBIT_CARDS = [
@@ -148,10 +148,11 @@ const GTMOSVisual = () => {
             position: "relative",
           }}
         >
+          {/* New GTM Unbound Logo Image */}
           <motion.img
-            src="/lovable-uploads/7c83d852-3ea6-4b14-a0d3-229a361e978a.png"
-            alt="GTM icon"
-            className="w-12 h-12 mb-1 rounded-full bg-white/60 shadow"
+            src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
+            alt="GTM Unbound Logo"
+            className="w-14 h-14 mb-1 rounded-full bg-white/70 shadow"
             animate={{ rotate: [0, 18, -18, 0] }}
             transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -333,10 +334,11 @@ const GTMOSVisual = () => {
             filter: "blur(0.12px)",
           }}
         >
+          {/* New GTM Unbound Logo Image */}
           <motion.img
-            src="/lovable-uploads/7c83d852-3ea6-4b14-a0d3-229a361e978a.png"
-            alt="GTM icon"
-            className="w-14 h-14 mb-1 rounded-full bg-white/60 shadow"
+            src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
+            alt="GTM Unbound Logo"
+            className="w-14 h-14 mb-1 rounded-full bg-white/70 shadow"
             animate={{ rotate: [0, 18, -18, 0] }}
             transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -350,3 +352,4 @@ const GTMOSVisual = () => {
 };
 
 export default GTMOSVisual;
+
