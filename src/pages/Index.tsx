@@ -446,7 +446,6 @@ const Index = () => {
         <OfferingCards />
       </Section>
 
-// INSERT 🧠 Expert-Led section AFTER DFY/OfferingCards and BEFORE EXPERTS
       <ExpertLedSection />
 
       <Section id="how-we-help" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16">
@@ -554,10 +553,8 @@ const Index = () => {
         />
       </Section>
 
-// INSERT 🚀 Startups We've Worked With section AFTER PRICING and before next existing section
       <StartupsSection />
 
-// INSERT 🗣️ Founder Testimonials AFTER StartupsSection and BEFORE WHY GTM UNBOUND
       <FounderTestimonialsSection />
 
       <Section id="why-gtm" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16">
