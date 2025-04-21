@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -18,7 +17,7 @@ import {
   Brain, CheckCircle, Code, FileText, Mountain, LinkedinIcon, 
   MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, 
   Users, RefreshCw, Rocket, TrendingUp, Award, Calendar,
-  ArrowRight, MessageSquare, Globe, Check, FlaskConical, Handshake
+  ArrowRight, MessageSquare, Globe, Check, FlaskConical, Handshake, Youtube, Instagram
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -53,9 +52,10 @@ const Index = () => {
     alert('Thanks for subscribing to our newsletter!');
   };
 
+  // Updated Navbar sections to match requirements
   const sections = [
     { id: 'home', label: 'Home' },
-    { id: 'how-we-help', label: 'How We Help' },
+    { id: 'offerings', label: 'Offerings' },
     { id: 'experts', label: 'Experts' },
     { id: 'community', label: 'Community' },
     { id: 'pricing', label: 'Pricing' },
@@ -348,229 +348,117 @@ const Index = () => {
     <div className="min-h-screen bg-[#F4F5F7]">
       <Navbar sections={sections} />
       
-      {/* Hero Section with updated content */}
-      <Section id="home" className="pt-32 pb-16 bg-white">
+      {/* Hero Section (Updated Layout) */}
+      <Section id="home" className="pt-32 pb-12 bg-white">
         <div className="container mx-auto px-4 md:px-6 relative">
           <HeroBackground type="image" />
-          
-          <div className="flex flex-col md:flex-row items-start relative z-10 gap-16"> 
+          <div className="flex flex-col md:flex-row items-start relative z-10 gap-16">
             <div className="w-full md:w-1/2 mb-8 md:mb-0">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gtm-dark mb-6 leading-tight">
-                  Go-To-Market, Without Guesswork
-                </h1>
-                <p className="text-xl text-gray-600 mb-6 max-w-2xl">
-                  The complete GTM layer for startups — strategy, execution, and expertise in one place.
-                </p>
-                
-                <div className="space-y-3 mb-8 max-w-2xl">
-                  <p className="text-gray-700">You've built the product.</p>
-                  <p className="text-gray-700">You've validated the market.</p>
-                  <p className="text-gray-700">You're ready to scale.</p>
-                  <p className="text-gray-700">But GTM still feels messy.</p>
-                  <p className="text-gray-700">Which channel? What messaging? Who can you actually trust?</p>
-                  <p className="text-gray-700">You don't have to figure it out alone.</p>
-                  <p className="text-gray-700">GTM Unbound brings structure, people, and execution — all under one roof.</p>
-                </div>
-                
-                <div className="flex flex-wrap gap-4 mb-10">
-                  <GradientButton>See How It Works</GradientButton>
-                  <button className="px-6 py-3 bg-white border-2 border-gtm-pink text-gtm-pink rounded-xl hover:bg-gtm-pink/5 transition-colors">
-                    Join Now
-                  </button>
-                </div>
-              </motion.div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gtm-dark mb-4 leading-tight">
+                Go-To-Market, Without Guesswork
+              </h1>
+              <p className="text-xl text-gray-600 mb-7 max-w-2xl">
+                The GTM engine for startups — structure, support, and execution, all in one place.
+              </p>
+              <div className="flex flex-wrap gap-4 mb-10">
+                <GradientButton>See How It Works</GradientButton>
+                <button className="px-6 py-3 bg-white border-2 border-gtm-pink text-gtm-pink rounded-xl hover:bg-gtm-pink/5 transition-colors font-semibold shadow-sm">
+                  Join Now
+                </button>
+              </div>
             </div>
-            
-            {/* Right Side - GTM Split View */}
             <div className="w-full md:w-1/2 flex justify-center items-start">
               <GTMSplitView />
             </div>
           </div>
         </div>
       </Section>
-      
-      {/* How We Help Section */}
-      <Section id="how-we-help" className="bg-gray-50 py-16">
+
+      {/* Offerings mini-cards Section */}
+      <Section id="offerings" className="bg-white pt-0 pb-16">
         <SectionHeader 
-          title="Wanna Know How It's Done?"
-          subtitle="Here's How We Actually Help You Crack GTM."
+          title="Systems. Strategy. Execution."
           centered
         />
-        
-        <p className="text-center text-lg text-gray-600 mb-12 max-w-3xl mx-auto">
-          You don't need more noise. You need systems, support, and people who've done it before.
-        </p>
-        
-        {/* 1. DIY Section */}
-        <div className="mb-16">
-          <div className="bg-white rounded-xl shadow-md p-8 max-w-5xl mx-auto">
-            <div className="flex flex-col md:flex-row gap-8">
-              <div className="md:w-1/3">
-                <div className="text-gtm-pink text-6xl font-bold mb-2">🧰</div>
-                <h3 className="text-2xl font-bold text-gtm-dark mb-3">DIY — Build It Yourself, Without Doing It Blind</h3>
-              </div>
-              <div className="md:w-2/3">
-                <p className="text-gray-700 mb-6">
-                  For founders who want to learn, test, and grow GTM with real structure — not a random stack of PDFs.
-                  This is a living system of curated playbooks, frameworks, and founder-tested tools — supported by people who've seen it all before.
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <Check className="text-gtm-pink mt-1 flex-shrink-0" />
-                    <p>Actionable Playbooks & Strategy Frameworks</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Check className="text-gtm-pink mt-1 flex-shrink-0" />
-                    <p>Templates from real startup GTM stacks</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Check className="text-gtm-pink mt-1 flex-shrink-0" />
-                    <p>Access to GTM Tools</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Check className="text-gtm-pink mt-1 flex-shrink-0" />
-                    <p>Founder AMAs + Expert Feedback</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Check className="text-gtm-pink mt-1 flex-shrink-0" />
-                    <p>Curated Community + Private Events</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
+          {/* DIY Tools */}
+          <div className="hover-card bg-white rounded-xl p-8 text-center shadow-md border border-pink-100 hover:border-gtm-pink transition-all group">
+            <div className="text-4xl mb-2">🧰</div>
+            <h3 className="text-xl font-semibold mb-2 group-hover:text-gtm-pink transition-colors">DIY Tools</h3>
+            <p className="text-gray-500 mb-2">Playbooks, templates, async feedback.</p>
           </div>
-        </div>
-        
-        {/* 2. DFY Section */}
-        <div className="mb-16">
-          <div className="bg-white rounded-xl shadow-md p-8 max-w-5xl mx-auto">
-            <div className="flex flex-col md:flex-row gap-8">
-              <div className="md:w-1/3">
-                <div className="text-gtm-pink text-6xl font-bold mb-2">🛠️</div>
-                <h3 className="text-2xl font-bold text-gtm-dark mb-3">DFY — Get It Done, Without Hiring or Guessing</h3>
-              </div>
-              <div className="md:w-2/3">
-                <p className="text-gray-700 mb-6">
-                  You already know what needs to get done.
-                  Instead of hiring full-time or struggling through agencies, plug into structured GTM programs designed and delivered by execution specialists.
-                  These aren't open-ended retainers — they're sprint-style engagements designed around clarity, cadence, and contribution.
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <Check className="text-gtm-pink mt-1 flex-shrink-0" />
-                    <p>Program-based engagements across GTM functions (Outbound, Content, Growth, RevOps, etc.)</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Check className="text-gtm-pink mt-1 flex-shrink-0" />
-                    <p>Access to pre-vetted contributors with deep domain context</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Check className="text-gtm-pink mt-1 flex-shrink-0" />
-                    <p>Pre-scoped deliverables, aligned with startup-stage priorities</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Check className="text-gtm-pink mt-1 flex-shrink-0" />
-                    <p>Faster ramp-up, less trial-and-error, no agency noise</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* DFY Support */}
+          <div className="hover-card bg-white rounded-xl p-8 text-center shadow-md border border-pink-100 hover:border-gtm-pink transition-all group">
+            <div className="text-4xl mb-2">🛠️</div>
+            <h3 className="text-xl font-semibold mb-2 group-hover:text-gtm-pink transition-colors">DFY Support</h3>
+            <p className="text-gray-500 mb-2">Sprint-based execution — SEO, content, ads.</p>
           </div>
-        </div>
-        
-        {/* 3. Expert-Led Section */}
-        <div className="mb-16">
-          <div className="bg-white rounded-xl shadow-md p-8 max-w-5xl mx-auto">
-            <div className="flex flex-col md:flex-row gap-8">
-              <div className="md:w-1/3">
-                <div className="text-gtm-pink text-6xl font-bold mb-2">🧠</div>
-                <h3 className="text-2xl font-bold text-gtm-dark mb-3">Expert-Led — Go Further, With GTM That Compounds</h3>
-              </div>
-              <div className="md:w-2/3">
-                <p className="text-gray-700 mb-6">
-                  You don't need another opinion.
-                  You need someone who will go deep, stay close, and bring clarity over time.
-                  We pair you with GTM experts who guide biweekly strategy sessions, co-own experiments, and evolve your roadmap with you — month after month.
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <Check className="text-gtm-pink mt-1 flex-shrink-0" />
-                    <p>Matched GTM Expert based on your company, market, and goals</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Check className="text-gtm-pink mt-1 flex-shrink-0" />
-                    <p>Recurring GTM sessions (strategy breakdowns, experiment design, narrative testing)</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Check className="text-gtm-pink mt-1 flex-shrink-0" />
-                    <p>Live roadmap with OKRs, hypotheses, positioning updates</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Check className="text-gtm-pink mt-1 flex-shrink-0" />
-                    <p>Shared context over time — no starting over every call</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Check className="text-gtm-pink mt-1 flex-shrink-0" />
-                    <p>Strategic depth that compounds</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Expert Guidance */}
+          <div className="hover-card bg-white rounded-xl p-8 text-center shadow-md border border-pink-100 hover:border-gtm-pink transition-all group">
+            <div className="text-4xl mb-2">🧠</div>
+            <h3 className="text-xl font-semibold mb-2 group-hover:text-gtm-pink transition-colors">Expert Guidance</h3>
+            <p className="text-gray-500 mb-2">GTM leaders steering biweekly sprints.</p>
           </div>
-        </div>
-        
-        {/* How It Works Section - Horizontal Steps */}
-        <div className="mt-20 mb-16">
-          <SectionHeader 
-            title="How It Works"
-            centered
-          />
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {howItWorksSteps.map((step, index) => (
-              <motion.div 
-                key={index}
-                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all relative"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-              >
-                <div className="text-4xl font-bold text-gtm-pink/20 mb-3">{step.number}</div>
-                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
-                
-                {index < howItWorksSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 z-10">
-                    <ArrowRight className="text-gtm-pink/30 w-6 h-6" />
-                  </div>
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        
-        {/* GTM Journey Section */}
-        <div className="mt-16">
-          <SectionHeader 
-            title="GTM Journey"
-            subtitle="From fog to clarity, see how your GTM evolves with us"
-            centered
-          />
-          
-          <GTMJourney />
         </div>
       </Section>
 
-      {/* Experts Section */}
-      <ExpertsSection />
+      {/* How We Help (Replaces Journey Section) */}
+      <Section id="how-we-help" className="bg-gray-50 py-16">
+        <SectionHeader 
+          title="From Signal to Strategy"
+          centered
+        />
+        <div className="text-center text-lg text-gray-600 mb-8 max-w-3xl mx-auto">
+          Startups begin with a diagnostic. We match them to GTM experts, launch sprints, and drive clarity.
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-10">
+          <div className="bg-white rounded-xl p-6 flex flex-col items-center shadow hover:shadow-lg transition">
+            <div className="text-3xl mb-3">📍</div>
+            <div className="font-semibold text-gtm-dark mb-1">GTM Diagnostic</div>
+          </div>
+          <div className="bg-white rounded-xl p-6 flex flex-col items-center shadow hover:shadow-lg transition">
+            <div className="text-3xl mb-3">🔗</div>
+            <div className="font-semibold text-gtm-dark mb-1">Matched Expert Onboarding</div>
+          </div>
+          <div className="bg-white rounded-xl p-6 flex flex-col items-center shadow hover:shadow-lg transition">
+            <div className="text-3xl mb-3">🚀</div>
+            <div className="font-semibold text-gtm-dark mb-1">Sprint Launch & Tracking</div>
+          </div>
+          <div className="bg-white rounded-xl p-6 flex flex-col items-center shadow hover:shadow-lg transition">
+            <div className="text-3xl mb-3">📊</div>
+            <div className="font-semibold text-gtm-dark mb-1">Roadmap Co-Ownership</div>
+          </div>
+        </div>
+        <div className="flex justify-center">
+          <GradientButton>Start With Your GTM Match &rarr;</GradientButton>
+        </div>
+      </Section>
 
-      {/* Community Section - Updated with 2x2 grid layout */}
+      {/* Experts Section (shows company ONLY, never "Ex-") */}
+      <Section id="experts" className="py-20 sm:py-24">
+        <SectionHeader 
+          title="Work With Operators Who’ve Done It"
+          subtitle="Not advisors. Not theory. Just proven specialists with execution credibility."
+          centered
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10 max-w-7xl mx-auto px-4">
+          {experts.map((expert, index) => (
+            <ExpertCard 
+              key={index}
+              name={expert.name}
+              role={expert.role}
+              expertise={expert.expertise}
+              imageSrc={expert.imageSrc}
+              // Just display `company` as written (should be "GTM Unbound", "Omnify", etc)
+              company={expert.company}
+              bio={expert.bio}
+              linkedIn={expert.linkedIn}
+            />
+          ))}
+        </div>
+      </Section>
+      
+      {/* Community Section untouched except new Navbar label is used above */}
       <Section id="community" className="bg-pink-50 py-16">
         <SectionHeader 
           title="Events That Move Conversations — and Founders — Forward"
@@ -600,96 +488,85 @@ const Index = () => {
         </div>
       </Section>
       
-      {/* Pricing Section */}
+      {/* Pricing Section (Outcome-Based, 2-column with accent) */}
       <Section id="pricing" className="bg-white py-20">
         <SectionHeader 
-          title="One Membership. Add What You Need."
-          subtitle="Start with core access — then level up when you're ready for sprints or strategic leadership."
+          title="Outcome-Based Pricing That Scales With You"
           centered
         />
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
-          {pricingPlans.map((plan, index) => (
-            <PricingCard 
-              key={index}
-              name={plan.name}
-              price={plan.price}
-              description={plan.description}
-              features={plan.features}
-              cta={plan.cta}
-              highlight={plan.highlight}
-              icon={plan.icon}
-            />
-          ))}
-        </div>
-        
-        <div className="flex justify-center mt-10 gap-4">
-          <GradientButton>Choose Your Plan</GradientButton>
-          <button className="px-6 py-3 bg-white border-2 border-gtm-pink text-gtm-pink rounded-xl hover:bg-gtm-pink/5 transition-colors">
-            Talk to Our Team
-          </button>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto px-4">
+          {/* Membership Column */}
+          <div className="rounded-2xl p-8 bg-white border hover:border-gtm-pink transition-all shadow group hover:shadow-pink-100 flex flex-col items-start justify-between">
+            <div>
+              <h3 className="text-2xl font-bold mb-3 text-gtm-dark">Membership</h3>
+              <div className="text-3xl font-bold text-gtm-dark mb-2">$99/mo</div>
+              <ul className="text-gray-600 mb-4 list-disc pl-6">
+                <li>Tools, templates, playbooks, events, community</li>
+              </ul>
+            </div>
+            <GradientButton>Choose Plan &rarr;</GradientButton>
+          </div>
+          {/* Plus & Pro Column */}
+          <div className="flex flex-col gap-8">
+            <div className="rounded-2xl p-8 bg-white border hover:border-gtm-pink transition-all shadow group hover:shadow-pink-100">
+              <h4 className="text-xl font-bold text-gtm-dark mb-2">Plus <span className="text-gray-500 font-normal">($1000/mo)</span></h4>
+              <ul className="text-gray-600 mb-2 list-disc pl-6">
+                <li>DFY execution (content, growth, SEO, RevOps)</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl p-8 bg-white border hover:border-gtm-pink transition-all shadow group hover:shadow-pink-100">
+              <h4 className="text-xl font-bold text-gtm-dark mb-2">Pro <span className="text-gray-500 font-normal">($3000/mo)</span></h4>
+              <ul className="text-gray-600 mb-2 list-disc pl-6">
+                <li>Expert strategy, biweekly sprints, roadmap co-creation</li>
+              </ul>
+            </div>
+            <div className="flex gap-4 mt-4">
+              <GradientButton>Choose Plan &rarr;</GradientButton>
+              <button className="px-6 py-3 bg-white border-2 border-gtm-pink text-gtm-pink rounded-xl hover:bg-gtm-pink/5 transition-colors font-semibold shadow-sm">
+                Talk to Team &rarr;
+              </button>
+            </div>
+          </div>
         </div>
       </Section>
-      
+
       {/* Why GTM Unbound Section */}
       <Section id="why-gtm" className="bg-gray-50 py-16">
         <SectionHeader 
-          title="Not Just Advice. Not Just People. The Whole GTM Engine."
+          title="Not Advice. Not Fluff. Real GTM Infrastructure."
           centered
         />
-        
         <div className="max-w-3xl mx-auto px-4">
-          <p className="text-center text-lg text-gray-600 mb-10">
-            You've seen the PDFs, the panels, the Slack groups.<br />
-            You've tried the playbooks, the marketplaces, and the advice threads.<br />
-            Now it's time for something that actually works.
+          <p className="text-center text-lg text-gray-600 mb-8">
+            You’ve seen the threads. The PDFs. The panels.<br />
+            Now get the GTM system that founders stick with:
           </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            <motion.div 
-              className="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-sm transition-all"
-              whileHover={{ y: -5, boxShadow: '0 8px 30px rgba(0,0,0,0.08)' }}
-            >
-              <div className="text-3xl mb-4">🔍</div>
-              <p className="font-semibold text-gtm-dark">Real systems, not noise</p>
-            </motion.div>
-            
-            <motion.div 
-              className="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-sm transition-all"
-              whileHover={{ y: -5, boxShadow: '0 8px 30px rgba(0,0,0,0.08)' }}
-            >
-              <div className="text-3xl mb-4">👩‍💼</div>
-              <p className="font-semibold text-gtm-dark">Real operators, not vague advisors</p>
-            </motion.div>
-            
-            <motion.div 
-              className="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-sm transition-all"
-              whileHover={{ y: -5, boxShadow: '0 8px 30px rgba(0,0,0,0.08)' }}
-            >
-              <div className="text-3xl mb-4">📈</div>
-              <p className="font-semibold text-gtm-dark">Real traction, not wasted time</p>
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-8">
+            <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover-card">
+              <span className="text-2xl mb-4">🔄</span>
+              <div className="font-semibold">Systems <span className="text-gray-400">&rarr;</span> not noise</div>
+            </div>
+            <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover-card">
+              <span className="text-2xl mb-4">👥</span>
+              <div className="font-semibold">Operators <span className="text-gray-400">&rarr;</span> not theory</div>
+            </div>
+            <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover-card">
+              <span className="text-2xl mb-4">🚀</span>
+              <div className="font-semibold">Execution <span className="text-gray-400">&rarr;</span> not guesswork</div>
+            </div>
           </div>
-          
-          <p className="text-center text-lg font-medium text-gtm-dark mt-10">
-            You don't have to guess anymore.<br />
-            Let's build your GTM — for real.
-          </p>
+          <div className="flex justify-center mt-8">
+            <GradientButton>Start Building &rarr;</GradientButton>
+          </div>
         </div>
       </Section>
-      
-      {/* Newsletter Section */}
-      <Section id="newsletter" className="bg-white py-16">
-        <NewsletterSubscription />
-      </Section>
-      
-      {/* Final CTA Section */}
+
+      {/* Final CTA */}
       <Section id="cta" className="bg-gradient-to-r from-gtm-coral to-gtm-pink text-white py-16">
         <div className="max-w-3xl mx-auto text-center px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">
-            Let's Unblock Your GTM.
+            Let’s Unblock Your GTM
           </h2>
-          
           <div className="flex flex-wrap justify-center gap-4 mb-10">
             <button className="px-6 py-3 bg-white text-gtm-pink font-medium rounded-xl hover:bg-gray-100 transition-colors">
               Join GTM Unbound
@@ -698,16 +575,77 @@ const Index = () => {
               Book a Call
             </button>
           </div>
-          
           <p className="text-xl">
-            Clarity. Support. Execution.<br />
-            All in one place — when you're ready to scale
+            Real traction starts with real GTM help.
           </p>
         </div>
       </Section>
-      
-      {/* Footer */}
-      <Footer />
+
+      {/* Updated Footer */}
+      <footer className="bg-[#FFDEE2] py-10">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-6">
+            {/* Brand */}
+            <div className="space-y-4">
+              <div className="flex items-center">
+                <img
+                  src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
+                  alt="GTM Unbound Logo"
+                  className="h-10 w-auto"
+                />
+                <span className="ml-3 text-xl font-semibold">GTM Unbound</span>
+              </div>
+              <a href="https://wa.me/919876543210" className="flex items-center gap-2 text-gray-700 hover:text-gtm-pink transition-colors">
+                <MessageSquare size={20} className="text-[#FDE1D3]" />
+                Chat on WhatsApp
+              </a>
+              <div className="space-y-2 text-gray-700 text-sm">
+                <p>Email: hello@gtmunbound.com</p>
+                <p>Phone: +91-9876543210</p>
+              </div>
+            </div>
+            {/* Product */}
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg">Product</h3>
+              <div className="space-y-2">
+                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Platform Overview</a>
+                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Experts</a>
+                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Events</a>
+              </div>
+            </div>
+            {/* Support */}
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg">Support</h3>
+              <div className="space-y-2">
+                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Help Docs</a>
+                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Book a Call</a>
+                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Raise Request</a>
+              </div>
+            </div>
+            {/* Company */}
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg">Company</h3>
+              <div className="space-y-2">
+                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Blog</a>
+                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">About Us</a>
+                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Careers</a>
+                <a href="#" className="block text-gray-700 hover:text-gtm-pink transition-colors">Legal</a>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-between items-center flex-col md:flex-row gap-4 border-t pt-4 border-gray-200">
+            <div className="text-gray-700 text-base">
+              © 2025 GTM Unbound. All Rights Reserved.
+            </div>
+            <div className="flex gap-5 items-center">
+              <a href="https://www.linkedin.com/company/gtm-unbound/" target="_blank" rel="noopener noreferrer" className="text-gtm-pink hover:opacity-70 transition"><LinkedinIcon size={22} /></a>
+              <a href="https://www.youtube.com/channel/GTMUnbound" target="_blank" rel="noopener noreferrer" className="text-gtm-pink hover:opacity-70 transition"><Youtube size={22} /></a>
+              <a href="https://www.instagram.com/gtmunbound/" target="_blank" rel="noopener noreferrer" className="text-gtm-pink hover:opacity-70 transition"><Instagram size={22} /></a>
+              <a href="https://twitter.com/gtmunbound" target="_blank" rel="noopener noreferrer" className="text-gtm-pink hover:opacity-70 transition"><TwitterIcon size={22} /></a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
