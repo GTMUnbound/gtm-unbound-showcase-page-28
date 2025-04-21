@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -121,7 +120,7 @@ const GTMOSVisual = () => {
             </motion.div>
           ))}
         </div>
-        {/* Center GTM OS below */}
+        {/* Center GTM OS below: Show only the logo image without "GTM OS" text */}
         <motion.div
           className="flex flex-col items-center mt-6"
           initial={{ scale: 0.75, opacity: 0 }}
@@ -148,17 +147,14 @@ const GTMOSVisual = () => {
             position: "relative",
           }}
         >
-          {/* New GTM Unbound Logo Image */}
+          {/* New GTM Unbound Logo Image only */}
           <motion.img
             src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
             alt="GTM Unbound Logo"
-            className="w-14 h-14 mb-1 rounded-full bg-white/70 shadow"
+            className="w-14 h-14 rounded-full bg-white/70 shadow"
             animate={{ rotate: [0, 18, -18, 0] }}
             transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
           />
-          <span className="block font-bold text-base md:text-lg text-gtm-dark opacity-90">
-            GTM OS
-          </span>
         </motion.div>
       </div>
     );
@@ -334,17 +330,14 @@ const GTMOSVisual = () => {
             filter: "blur(0.12px)",
           }}
         >
-          {/* New GTM Unbound Logo Image */}
+          {/* New GTM Unbound Logo Image Only */}
           <motion.img
             src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
             alt="GTM Unbound Logo"
-            className="w-14 h-14 mb-1 rounded-full bg-white/70 shadow"
+            className="w-14 h-14 rounded-full bg-white/70 shadow"
             animate={{ rotate: [0, 18, -18, 0] }}
             transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
           />
-          <span className="block font-bold text-base md:text-lg text-gtm-dark opacity-90">
-            GTM OS
-          </span>
         </motion.div>
       </motion.div>
     </div>
@@ -352,4 +345,3 @@ const GTMOSVisual = () => {
 };
 
 export default GTMOSVisual;
-
