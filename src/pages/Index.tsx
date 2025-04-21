@@ -384,59 +384,59 @@ const Index = () => {
       {/* Redesigned Hero Section */}
       <Section id="home" className="pt-24 pb-14 bg-white">
         <div className="container mx-auto px-4 md:px-6 relative">
-          <HeroBackground type="image" />
-          <div className="flex flex-col md:flex-row items-start relative z-10 gap-10 md:gap-16">
-            <div className="w-full md:w-1/2 mb-7 md:mb-0">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gtm-dark mb-4 leading-tight">
-                  Go-To-Market, Without Guesswork
-                </h1>
-                <p className="text-xl text-gray-600 mb-7 max-w-2xl">
-                  The complete GTM layer for startups — strategy, execution, and expertise in one place.
-                </p>
-
-                {/* Desktop: Show animated text blocks */}
-                <div className="hidden md:block mb-8">
-                  <AnimatedTextBlocks blocks={textBlocks} delayBetweenBlocks={1} />
-                </div>
-
-                {/* Mobile: Show collapsible block */}
-                <div className="block md:hidden mb-8">
-                  <CollapsibleBlock title="Why GTM Still Feels Messy" className="mb-4">
-                    <div className="space-y-4">
-                      {textBlocks.map((block, blockIndex) => (
-                        <div key={blockIndex} className="space-y-1">
-                          {block.map((line, lineIndex) => (
-                            <p key={lineIndex} className="text-gray-600">{line}</p>
-                          ))}
-                        </div>
-                      ))}
+          <div className="relative flex flex-col md:flex-row items-start md:items-center gap-12">
+            {/* LEFT COLUMN */}
+            <div className="w-full md:w-3/5">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gtm-dark mb-4 leading-tight">
+                Go-To-Market, Without Guesswork
+              </h1>
+              <p className="text-lg md:text-xl text-gray-600 mb-5 max-w-2xl font-normal">
+                The complete GTM layer for startups — strategy, execution, and expertise in one place.
+              </p>
+              
+              {/* Animated Structured Copy */}
+              <div className="hidden md:block mb-8">
+                <AnimatedTextBlocks
+                  blocks={[
+                    ["You've built the product.", "You've validated the market.", "You're ready to scale."],
+                    ["But GTM still feels messy."],
+                    ["You don't have to figure it out alone.", "GTM Unbound brings structure, people, and execution — all under one roof."]
+                  ]}
+                  delayBetweenBlocks={1}
+                />
+              </div>
+              {/* Mobile Collapsible */}
+              <div className="block md:hidden mb-8">
+                <CollapsibleBlock title="Why GTM Feels Messy">
+                  <div className="space-y-4 text-gray-600">
+                    <div>
+                      <div>{"You've built the product."}</div>
+                      <div>{"You've validated the market."}</div>
+                      <div>{"You're ready to scale."}</div>
                     </div>
-                  </CollapsibleBlock>
-                </div>
+                    <div>{"But GTM still feels messy."}</div>
+                    <div>
+                      <div>{"You don't have to figure it out alone."}</div>
+                      <div>{"GTM Unbound brings structure, people, and execution — all under one roof."}</div>
+                    </div>
+                  </div>
+                </CollapsibleBlock>
+              </div>
 
-                <div className="flex flex-wrap gap-4 mb-6">
-                  <GradientButton>See How It Works</GradientButton>
-                  <button className="px-6 py-3 bg-white border-2 border-gtm-pink text-gtm-pink rounded-xl hover:bg-gtm-pink/5 transition-colors font-semibold shadow-sm">
-                    Join Now
-                  </button>
-                </div>
-              </motion.div>
+              {/* CTA BUTTONS */}
+              <div className="flex flex-wrap gap-4 mb-6">
+                <GradientButton className="rounded-2xl shadow-pink-100 shadow-md hover:shadow-gtm-pink/40 transition-shadow">
+                  See How It Works
+                </GradientButton>
+                <button className="px-6 py-3 rounded-2xl bg-gradient-to-r from-gtm-pink to-pink-400 text-white font-semibold shadow-pink-100 shadow-md hover:shadow-gtm-pink/40 transition-shadow border-0">
+                  Join Now
+                </button>
+              </div>
             </div>
-            
-            {/* Journey Visualization */}
-            <motion.div 
-              className="w-full md:w-1/2 flex justify-center md:justify-end items-start"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
+            {/* RIGHT COLUMN — Journey Visual */}
+            <div className="w-full md:w-2/5 flex justify-center items-start">
               <JourneyVisualization />
-            </motion.div>
+            </div>
           </div>
         </div>
       </Section>

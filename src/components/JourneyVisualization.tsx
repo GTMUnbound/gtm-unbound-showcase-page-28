@@ -1,9 +1,9 @@
 
 import React, { useEffect, useRef } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
-import { 
-  Package, AlertTriangle, Zap, Lightbulb, 
-  TrendingUp, BookOpen, Users, Wrench, Play, Calendar
+import {
+  Package, AlertTriangle, Wrench, Handshake, TrendingUp,
+  BookOpen, Users, Play, Calendar
 } from 'lucide-react';
 
 const JourneyVisualization = () => {
@@ -12,161 +12,102 @@ const JourneyVisualization = () => {
   const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
-    if (isInView) {
-      controls.start('visible');
-    }
+    if (isInView) controls.start('visible');
   }, [controls, isInView]);
 
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 50,
-        damping: 20
-      }
-    }
-  };
-
-  const lineVariants = {
-    hidden: { pathLength: 0 },
-    visible: {
-      pathLength: 1,
-      transition: {
-        duration: 1.5,
-        ease: "easeInOut"
-      }
-    }
-  };
-
-  const floatingIconVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        delay: 1,
-        duration: 0.5
-      }
-    }
-  };
-
-  // Journey stages
+  // Stages: icon, positioning %, and stagger delay for animation
   const stages = [
-    { 
-      title: "Product", 
-      icon: <Package className="h-8 w-8 text-gtm-dark" />,
-      color: "bg-white"
-    },
-    { 
-      title: "Chaos", 
-      icon: <AlertTriangle className="h-8 w-8 text-amber-500" />,
-      color: "bg-amber-50"
-    },
-    { 
-      title: "GTM Unbound", 
-      icon: <Zap className="h-8 w-8 text-gtm-pink" />,
-      color: "bg-pink-50"
-    },
-    { 
-      title: "Strategy + Support", 
-      icon: <Lightbulb className="h-8 w-8 text-blue-500" />,
-      color: "bg-blue-50"
-    },
-    { 
-      title: "Traction", 
-      icon: <TrendingUp className="h-8 w-8 text-green-500" />,
-      color: "bg-green-50"
-    }
+    { icon: <Package className="h-8 w-8 text-gtm-dark" />, key: 'product', percent: '0%', delay: 0 },
+    { icon: <AlertTriangle className="h-8 w-8 text-amber-500" />, key: 'chaos', percent: '22%', delay: 0.1 },
+    { icon: <Wrench className="h-8 w-8 text-gtm-pink" />, key: 'system', percent: '44%', delay: 0.2 },
+    { icon: <Handshake className="h-8 w-8 text-blue-500" />, key: 'support', percent: '68%', delay: 0.3 },
+    { icon: <TrendingUp className="h-8 w-8 text-green-500" />, key: 'traction', percent: '100%', delay: 0.4 }
   ];
 
-  // GTM elements that float around the journey line
-  const floatingElements = [
-    { icon: <BookOpen className="h-6 w-6 text-gtm-pink" />, label: "Playbooks", top: "20%", left: "40%" },
-    { icon: <Users className="h-6 w-6 text-gtm-pink" />, label: "Experts", top: "60%", left: "45%" },
-    { icon: <Wrench className="h-6 w-6 text-gtm-pink" />, label: "Tools", top: "30%", left: "70%" },
-    { icon: <Play className="h-6 w-6 text-gtm-pink" />, label: "Execution", top: "70%", left: "65%" },
-    { icon: <Calendar className="h-6 w-6 text-gtm-pink" />, label: "Events", top: "45%", left: "55%" }
+  // Minimal floating icons above/below (can fade in)
+  const floating = [
+    { icon: <BookOpen className="h-6 w-6 text-gtm-pink" />, top: '14%', left: '23%' },
+    { icon: <Users className="h-6 w-6 text-gtm-pink" />, top: '53%', left: '56%' },
+    { icon: <Wrench className="h-6 w-6 text-gtm-pink" />, top: '20%', left: '75%' },
+    { icon: <Play className="h-6 w-6 text-gtm-pink" />, top: '75%', left: '42%' },
+    { icon: <Calendar className="h-6 w-6 text-gtm-pink" />, top: '41%', left: '89%' }
   ];
 
   return (
-    <div className="w-full">
-      <h4 className="text-sm text-gray-500 mb-4 text-center">From Product to Traction — Powered by GTM Unbound</h4>
-      
+    <div className="w-full max-w-md mx-auto">
+      <h4 className="text-xs md:text-sm text-gray-500 mb-2 text-center font-medium">
+        From Product to Traction — Powered by GTM Unbound
+      </h4>
+      {/* Journey line and icons */}
       <motion.div
         ref={ref}
-        className="relative h-[300px] w-full"
-        variants={containerVariants}
+        className="relative h-[132px] w-full"
         initial="hidden"
         animate={controls}
       >
-        {/* Background path/line */}
-        <svg 
-          className="absolute inset-0 w-full h-full"
-          viewBox="0 0 800 300"
-          fill="none"
-          preserveAspectRatio="xMidYMid meet"
-        >
+        {/* Gradient line */}
+        <svg className="absolute inset-0 w-full h-28" viewBox="0 0 400 70" fill="none" preserveAspectRatio="none">
           <defs>
-            <linearGradient id="journeyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#e2e8f0" />
-              <stop offset="40%" stopColor="#f472b6" />
-              <stop offset="100%" stopColor="#ec4899" />
+            <linearGradient id="gtmJourneyGradient" x1="0" y1="0" x2="400" y2="0" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#fff" />
+              <stop offset="0.18" stopColor="#fbc2eb" />
+              <stop offset="0.4" stopColor="#ff6b9d" />
+              <stop offset="0.67" stopColor="#ec4899" />
+              <stop offset="0.95" stopColor="#fee2f8" />
+              <stop offset="1" stopColor="#FFF" />
             </linearGradient>
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
           </defs>
           <motion.path
-            d="M 50,150 C 150,50 250,250 400,150 S 650,50 750,150"
-            stroke="url(#journeyGradient)"
-            strokeWidth="4"
+            d="M20,60 Q80,10 150,40 Q220,70 320,32 Q380,18 380,45"
+            stroke="url(#gtmJourneyGradient)"
+            strokeWidth="6"
             strokeLinecap="round"
-            strokeDasharray="0"
-            fill="transparent"
-            variants={lineVariants}
+            fill="none"
+            filter="url(#glow)"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 1.3, ease: [0.42, 0, 0.58, 1] }}
           />
         </svg>
-
-        {/* Journey stages */}
-        <div className="absolute inset-0 flex justify-between items-center px-8">
-          {stages.map((stage, index) => (
-            <motion.div
-              key={index}
-              className="flex flex-col items-center"
-              variants={itemVariants}
-            >
-              <motion.div 
-                className={`w-16 h-16 rounded-full flex items-center justify-center shadow-md ${stage.color}`}
-                whileHover={{ scale: 1.1, boxShadow: "0 0 15px rgba(255, 105, 180, 0.5)" }}
-              >
-                {stage.icon}
-              </motion.div>
-              <span className="mt-2 text-sm font-medium text-gray-700">{stage.title}</span>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Floating elements */}
-        {floatingElements.map((element, index) => (
+        {/* Stage Icons */}
+        {stages.map((stage, idx) => (
           <motion.div
-            key={index}
-            className="absolute flex flex-col items-center"
-            style={{ top: element.top, left: element.left }}
-            variants={floatingIconVariants}
+            key={stage.key}
+            className="absolute flex justify-center items-center"
+            style={{
+              left: stage.percent,
+              top: `48%`,
+              transform: 'translate(-50%,-50%)'
+            }}
+            initial={{ opacity: 0, scale: 0.9, y: 14 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ delay: 0.5 + stage.delay, type: "spring", duration: 0.7, stiffness: 70 }}
           >
-            <div className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center">
-              {element.icon}
+            <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white shadow-md flex items-center justify-center border-2 border-pink-100">
+              {stage.icon}
             </div>
-            <span className="mt-1 text-xs font-medium text-gray-600">{element.label}</span>
+          </motion.div>
+        ))}
+        {/* Floating Elements */}
+        {floating.map((el, i) => (
+          <motion.div
+            key={i}
+            className="absolute z-10"
+            style={{ top: el.top, left: el.left }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1 + i * 0.07, duration: 0.55, type: "tween" }}
+          >
+            <div className="bg-white rounded-full shadow px-2 py-2 flex items-center">
+              {el.icon}
+            </div>
           </motion.div>
         ))}
       </motion.div>
