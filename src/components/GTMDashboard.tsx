@@ -76,12 +76,13 @@ const GTMDashboard = () => {
     }
   };
 
+  // Fixed animation objects with proper typing for repeatType
   const floatAnimation = {
     y: [0, -8, 0],
     transition: {
       duration: 4,
       repeat: Infinity,
-      repeatType: "reverse",
+      repeatType: "reverse" as const,
       ease: "easeInOut"
     }
   };
@@ -96,7 +97,7 @@ const GTMDashboard = () => {
     transition: {
       duration: 2.5,
       repeat: Infinity,
-      repeatType: "reverse",
+      repeatType: "reverse" as const,
       ease: "easeInOut"
     }
   };

@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
@@ -21,7 +22,8 @@ import {
   Brain, CheckCircle, Code, FileText, Mountain, LinkedinIcon, 
   MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, 
   Users, RefreshCw, Rocket, TrendingUp, Award, Calendar,
-  ArrowRight, MessageSquare, Globe, Check as CheckIcon, AlertTriangle, HelpCircle
+  ArrowRight, MessageSquare, Globe, Check as CheckIcon, AlertTriangle, HelpCircle,
+  FlaskConical, Handshake  // Added the missing icons
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
