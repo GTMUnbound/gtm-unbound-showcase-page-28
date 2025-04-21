@@ -16,11 +16,12 @@ import FounderDesk from '@/components/FounderDesk';
 import AnimatedTextBlocks from '@/components/AnimatedTextBlocks';
 import CollapsibleBlock from '@/components/CollapsibleBlock';
 import JourneyVisualization from '@/components/JourneyVisualization';
+import GTMDashboard from '@/components/GTMDashboard';
 import { 
   Brain, CheckCircle, Code, FileText, Mountain, LinkedinIcon, 
   MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, 
   Users, RefreshCw, Rocket, TrendingUp, Award, Calendar,
-  ArrowRight, MessageSquare, Globe, Check, FlaskConical, Handshake, Youtube, Instagram
+  ArrowRight, MessageSquare, Globe, Check as CheckIcon, AlertTriangle, HelpCircle
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -93,22 +94,24 @@ const Index = () => {
     }
   };
 
-  // Define text blocks for animated reveal
+  // Define text blocks for animated reveal with icons
   const textBlocks = [
     [
-      "You've built the product.",
-      "You've validated the market.",
-      "You're ready to scale."
+      { text: "You've built the product.", icon: <CheckIcon className="h-4 w-4 text-green-500" /> },
+      { text: "You've validated the market.", icon: <CheckIcon className="h-4 w-4 text-green-500" /> },
+      { text: "You're ready to scale.", icon: <CheckIcon className="h-4 w-4 text-green-500" /> }
     ],
     [
-      "But GTM still feels messy.",
-      "Which channel?",
-      "What messaging?",
-      "Who can you actually trust?"
+      { text: "But GTM still feels messy.", icon: <AlertTriangle className="h-4 w-4 text-amber-500" /> },
     ],
     [
-      "You don't have to figure it out alone.",
-      "GTM Unbound brings structure, people, and execution — all under one roof."
+      { text: "Which channel?", icon: <HelpCircle className="h-4 w-4 text-gray-400" /> },
+      { text: "What messaging?", icon: <HelpCircle className="h-4 w-4 text-gray-400" /> },
+      { text: "Who can you actually trust?", icon: <HelpCircle className="h-4 w-4 text-gray-400" /> }
+    ],
+    [
+      { text: "You don't have to figure it out alone.", icon: <Brain className="h-4 w-4 text-gtm-pink" /> },
+      { text: "GTM Unbound brings structure, people, and execution — all under one roof.", icon: <Rocket className="h-4 w-4 text-gtm-pink" /> }
     ]
   ];
 
@@ -387,55 +390,117 @@ const Index = () => {
           <div className="relative flex flex-col md:flex-row items-start md:items-center gap-12">
             {/* LEFT COLUMN */}
             <div className="w-full md:w-3/5">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gtm-dark mb-4 leading-tight">
+              <motion.h1 
+                className="text-4xl md:text-5xl lg:text-6xl font-bold text-gtm-dark mb-4 leading-tight"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
                 Go-To-Market, Without Guesswork
-              </h1>
-              <p className="text-lg md:text-xl text-gray-600 mb-5 max-w-2xl font-normal">
-                The complete GTM layer for startups — strategy, execution, and expertise in one place.
-              </p>
+              </motion.h1>
               
-              {/* Animated Structured Copy */}
-              <div className="hidden md:block mb-8">
-                <AnimatedTextBlocks
-                  blocks={[
-                    ["You've built the product.", "You've validated the market.", "You're ready to scale."],
-                    ["But GTM still feels messy."],
-                    ["You don't have to figure it out alone.", "GTM Unbound brings structure, people, and execution — all under one roof."]
-                  ]}
-                  delayBetweenBlocks={1}
-                />
+              <motion.p 
+                className="text-lg md:text-xl text-gray-600 mb-7 max-w-2xl font-normal"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                The complete GTM layer for startups — strategy, execution, and expertise in one place.
+              </motion.p>
+              
+              {/* Enhanced Animated Content with Icons */}
+              <div className="hidden md:block mb-8 relative">
+                <div className="absolute left-[-20px] top-0 bottom-0 w-[3px] bg-gradient-to-b from-transparent via-gtm-pink to-transparent opacity-40"></div>
+                
+                {textBlocks.map((block, blockIndex) => (
+                  <motion.div
+                    key={blockIndex}
+                    className="mb-5"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ 
+                      duration: 0.5, 
+                      delay: 0.3 + (blockIndex * 0.2),
+                      type: "spring",
+                      stiffness: 50
+                    }}
+                  >
+                    {block.map((item, itemIndex) => (
+                      <div key={itemIndex} className="flex items-center gap-2 mb-2">
+                        <div className="flex-shrink-0">
+                          {item.icon}
+                        </div>
+                        <div className="text-gray-600">{item.text}</div>
+                      </div>
+                    ))}
+                  </motion.div>
+                ))}
               </div>
-              {/* Mobile Collapsible */}
-              <div className="block md:hidden mb-8">
-                <CollapsibleBlock title="Why GTM Feels Messy">
-                  <div className="space-y-4 text-gray-600">
-                    <div>
-                      <div>{"You've built the product."}</div>
-                      <div>{"You've validated the market."}</div>
-                      <div>{"You're ready to scale."}</div>
+              
+              {/* Mobile Collapsible Block */}
+              <div className="block md:hidden mb-8 space-y-4">
+                {/* First block always visible */}
+                <div className="space-y-2">
+                  {textBlocks[0].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <div className="flex-shrink-0">{item.icon}</div>
+                      <div className="text-gray-600">{item.text}</div>
                     </div>
-                    <div>{"But GTM still feels messy."}</div>
-                    <div>
-                      <div>{"You don't have to figure it out alone."}</div>
-                      <div>{"GTM Unbound brings structure, people, and execution — all under one roof."}</div>
+                  ))}
+                </div>
+                
+                {/* Second block visible */}
+                <div className="space-y-2">
+                  {textBlocks[1].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <div className="flex-shrink-0">{item.icon}</div>
+                      <div className="text-gray-600">{item.text}</div>
                     </div>
+                  ))}
+                </div>
+                
+                {/* Questions collapsed */}
+                <CollapsibleBlock title="Why GTM Still Feels Messy">
+                  <div className="space-y-2 pt-2">
+                    {textBlocks[2].map((item, i) => (
+                      <div key={i} className="flex items-center gap-2">
+                        <div className="flex-shrink-0">{item.icon}</div>
+                        <div className="text-gray-600">{item.text}</div>
+                      </div>
+                    ))}
                   </div>
                 </CollapsibleBlock>
+                
+                {/* Last block visible */}
+                <div className="space-y-2 pt-2">
+                  {textBlocks[3].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <div className="flex-shrink-0">{item.icon}</div>
+                      <div className="text-gray-600">{item.text}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* CTA BUTTONS */}
-              <div className="flex flex-wrap gap-4 mb-6">
+              <motion.div 
+                className="flex flex-wrap gap-4 mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.2 }}
+              >
                 <GradientButton className="rounded-2xl shadow-pink-100 shadow-md hover:shadow-gtm-pink/40 transition-shadow">
                   See How It Works
                 </GradientButton>
                 <button className="px-6 py-3 rounded-2xl bg-gradient-to-r from-gtm-pink to-pink-400 text-white font-semibold shadow-pink-100 shadow-md hover:shadow-gtm-pink/40 transition-shadow border-0">
                   Join Now
                 </button>
-              </div>
+              </motion.div>
             </div>
-            {/* RIGHT COLUMN — Journey Visual */}
+            
+            {/* RIGHT COLUMN — GTM Dashboard Visual */}
             <div className="w-full md:w-2/5 flex justify-center items-start">
-              <JourneyVisualization />
+              <GTMDashboard />
             </div>
           </div>
         </div>

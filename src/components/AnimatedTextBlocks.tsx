@@ -3,8 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAnimation } from '@/contexts/AnimationContext';
 
+interface TextBlockItem {
+  text: string;
+  icon?: React.ReactNode;
+}
+
+type TextBlock = TextBlockItem[] | string[];
+
 interface AnimatedTextBlocksProps {
-  blocks: string[][];
+  blocks: TextBlock[];
   delayBetweenBlocks?: number;
 }
 
@@ -35,14 +42,28 @@ const AnimatedTextBlocks: React.FC<AnimatedTextBlocksProps> = ({
     return () => clearInterval(timer);
   }, [blocks.length, delayBetweenBlocks, prefersReducedMotion]);
   
+  // Determine if the block contains objects with icons or just strings
+  const hasIcons = (block: TextBlock): block is TextBlockItem[] => {
+    return typeof block[0] !== 'string';
+  };
+
   if (prefersReducedMotion) {
     return (
       <div className="space-y-4 text-gray-600">
         {blocks.map((block, blockIndex) => (
           <div key={blockIndex} className="space-y-1">
-            {block.map((line, lineIndex) => (
-              <p key={lineIndex}>{line}</p>
-            ))}
+            {hasIcons(block) ? (
+              block.map((item, itemIndex) => (
+                <div key={itemIndex} className="flex items-center gap-2">
+                  {item.icon && <div className="flex-shrink-0">{item.icon}</div>}
+                  <p>{item.text}</p>
+                </div>
+              ))
+            ) : (
+              block.map((line, lineIndex) => (
+                <p key={lineIndex}>{line}</p>
+              ))
+            )}
           </div>
         ))}
       </div>
@@ -64,9 +85,18 @@ const AnimatedTextBlocks: React.FC<AnimatedTextBlocksProps> = ({
           }}
           className="space-y-1"
         >
-          {block.map((line, lineIndex) => (
-            <p key={lineIndex}>{line}</p>
-          ))}
+          {hasIcons(block) ? (
+            block.map((item, itemIndex) => (
+              <div key={itemIndex} className="flex items-center gap-2">
+                {item.icon && <div className="flex-shrink-0">{item.icon}</div>}
+                <p>{item.text}</p>
+              </div>
+            ))
+          ) : (
+            block.map((line, lineIndex) => (
+              <p key={lineIndex}>{line}</p>
+            ))
+          )}
         </motion.div>
       ))}
     </div>
