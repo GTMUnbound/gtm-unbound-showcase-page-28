@@ -28,7 +28,7 @@ import NotificationFeed from '@/components/NotificationFeed';
 import GTMSplitView from '@/components/GTMSplitView';
 import Footer from '@/components/Footer';
 
-import GTMHeroVisualDynamicIntro from '@/components/GTMHeroVisualDynamicIntro';
+import GTMOSVisual from "@/components/GTMOSVisual";
 
 const Index = () => {
   const [email, setEmail] = useState('');
@@ -350,11 +350,11 @@ const Index = () => {
     <div className="min-h-screen bg-[#F4F5F7]">
       <Navbar sections={sections} />
 
-      {/* Hero Section (Updated Layout) */}
-      <Section id="home" className="pt-24 pb-10 bg-white">
+      {/* Hero Section */}
+      <Section id="home" className="pt-24 pb-14 bg-white">
         <div className="container mx-auto px-4 md:px-6 relative">
           <HeroBackground type="image" />
-          <div className="flex flex-col md:flex-row items-start md:items-center relative z-10 gap-8 md:gap-16">
+          <div className="flex flex-col md:flex-row items-start md:items-center relative z-10 gap-10 md:gap-16">
             <div className="w-full md:w-1/2 mb-7 md:mb-0">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gtm-dark mb-4 leading-tight">
                 Go-To-Market, Without Guesswork
@@ -369,15 +369,15 @@ const Index = () => {
                 </button>
               </div>
             </div>
-            {/* Dynamic GTM Hero Visual, now right-aligned on desktop */}
+            {/* GTM OS Circular Animated Visual (refined and imported) */}
             <div className="w-full md:w-1/2 flex justify-center md:justify-end items-start">
-              <GTMHeroVisualDynamicIntro />
+              <GTMOSVisual />
             </div>
           </div>
         </div>
       </Section>
 
-      {/* Offerings Section */}
+      {/* Consistent Section Gap: pt-0 pb-14 */}
       <Section id="offerings" className="bg-white pt-0 pb-14">
         <SectionHeader 
           title="Systems. Strategy. Execution."
@@ -402,8 +402,7 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* Journey ("How We Help") Section */}
-      <Section id="how-we-help" className="bg-gray-50 py-14 md:py-16">
+      <Section id="how-we-help" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16">
         <SectionHeader 
           title="From Signal to Strategy"
           centered
@@ -434,8 +433,7 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* Experts Section */}
-      <Section id="experts" className="py-14 md:py-20 sm:py-24">
+      <Section id="experts" className="py-14 md:py-20">
         <SectionHeader 
           title="Work With Operators Who’ve Done It"
           subtitle="Not advisors. Not theory. Just proven specialists with execution credibility."
@@ -458,8 +456,7 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* Community Section */}
-      <Section id="community" className="bg-pink-50 py-14 md:py-16">
+      <Section id="community" className="bg-pink-50 pt-14 pb-14 md:pt-16 md:pb-16">
         <SectionHeader 
           title="Events That Move Conversations — and Founders — Forward"
           subtitle="High-signal, zero-fluff environments for operators to connect, sharpen, and grow."
@@ -486,8 +483,7 @@ const Index = () => {
         </div>
       </Section>
       
-      {/* Pricing Section */}
-      <Section id="pricing" className="bg-white py-14 md:py-20">
+      <Section id="pricing" className="bg-white pt-14 pb-14 md:pt-20 md:pb-20">
         <SectionHeader 
           title="Outcome-Based Pricing That Scales With You"
           centered
@@ -526,8 +522,7 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* Why GTM Unbound Section */}
-      <Section id="why-gtm" className="bg-gray-50 py-14 md:py-16">
+      <Section id="why-gtm" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16">
         <SectionHeader 
           title="Not Advice. Not Fluff. Real GTM Infrastructure."
           centered
@@ -557,8 +552,7 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* Final CTA */}
-      <Section id="cta" className="bg-gradient-to-r from-gtm-coral to-gtm-pink text-white py-14 md:py-16">
+      <Section id="cta" className="bg-gradient-to-r from-gtm-coral to-gtm-pink text-white pt-14 pb-14 md:pt-16 md:pb-16">
         <div className="max-w-3xl mx-auto text-center px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">
             Let’s Unblock Your GTM
@@ -577,7 +571,6 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* Footer */}
       <Footer />
     </div>
   );
