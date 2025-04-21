@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import {
-  Layers, Users, BookOpen, Play, FileCheck, LineChart, Globe
+  BookOpen, Users, Wrench, Target, BarChart2, Globe, Calendar
 } from 'lucide-react';
 
 const GTMDashboard = () => {
@@ -12,53 +12,53 @@ const GTMDashboard = () => {
     controls.start('visible');
   }, [controls]);
 
-  // Configuration for circular/hex layout (scaled outward for visibility)
+  // Configuration for circular layout
   const modules = [
-    // Top center
+    // Top
     {
-      icon: <Layers className="h-6 w-6 text-gtm-pink" />,
+      icon: <BookOpen className="h-6 w-6 text-gtm-pink" />,
       label: "Playbooks",
-      position: { top: '6%', left: '50%' }
+      position: { top: '5%', left: '50%' }
     },
     // Top right
     {
       icon: <Users className="h-6 w-6 text-blue-500" />,
       label: "Experts",
-      position: { top: '22%', left: '90%' }
+      position: { top: '20%', left: '85%' }
     },
     // Bottom right
     {
-      icon: <BookOpen className="h-6 w-6 text-amber-500" />,
+      icon: <Wrench className="h-6 w-6 text-amber-500" />,
       label: "Tools",
-      position: { top: '78%', left: '90%' }
+      position: { top: '80%', left: '85%' }
     },
-    // Bottom center
+    // Bottom
     {
-      icon: <Play className="h-6 w-6 text-green-500" />,
+      icon: <Target className="h-6 w-6 text-green-500" />,
       label: "Execution",
-      position: { top: '94%', left: '50%' }
+      position: { top: '95%', left: '50%' }
     },
     // Bottom left
     {
-      icon: <FileCheck className="h-6 w-6 text-purple-500" />,
+      icon: <Calendar className="h-6 w-6 text-purple-500" />,
       label: "Events",
-      position: { top: '78%', left: '10%' }
+      position: { top: '80%', left: '15%' }
     },
     // Top left
     {
       icon: <Globe className="h-6 w-6 text-cyan-500" />,
       label: "Channels",
-      position: { top: '22%', left: '10%' }
+      position: { top: '20%', left: '15%' }
     },
-    // Mid-right (metrics)
+    // Middle right
     {
-      icon: <LineChart className="h-6 w-6 text-orange-500" />,
+      icon: <BarChart2 className="h-6 w-6 text-orange-500" />,
       label: "Metrics",
-      position: { top: '50%', left: '98%' }
+      position: { top: '50%', left: '95%' }
     },
   ];
 
-  // Animation variants and custom pulse/fade
+  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -94,7 +94,7 @@ const GTMDashboard = () => {
   };
 
   // Responsive scaling
-  const visualScaleClass = "h-[420px] md:h-[440px] w-full max-w-[440px]";
+  const visualScaleClass = "h-[450px] md:h-[480px] w-full max-w-[480px]";
 
   return (
     <div className="flex flex-col items-center md:items-end">
@@ -107,19 +107,18 @@ const GTMDashboard = () => {
         animate={controls}
         variants={containerVariants}
         style={{
-          // Align visual with headline by nudging up slightly on larger screens
           marginTop: '-10px',
         }}
       >
         {/* Curved journey path */}
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none z-0"
-          viewBox="0 0 440 440"
+          viewBox="0 0 480 480"
           fill="none"
           preserveAspectRatio="none"
         >
           <defs>
-            <linearGradient id="pathGradient" x1="0" y1="0" x2="440" y2="440" gradientUnits="userSpaceOnUse">
+            <linearGradient id="pathGradient" x1="0" y1="0" x2="480" y2="480" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stopColor="#f87171" />
               <stop offset="10%" stopColor="#fbc2eb" />
               <stop offset="70%" stopColor="#ec4899" />
@@ -128,7 +127,7 @@ const GTMDashboard = () => {
           </defs>
           {/* Chaos to GTM Unbound to Traction journey curve */}
           <motion.path
-            d="M40,340 Q120,390 220,220 Q315,60 400,120"
+            d="M60,350 Q140,400 240,240 Q335,80 420,130"
             stroke="url(#pathGradient)"
             strokeWidth="4"
             strokeLinecap="round"
@@ -146,8 +145,8 @@ const GTMDashboard = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.3, duration: 0.6 }}
           >
-            <circle cx="40" cy="340" r="10" fill="#f87171" />
-            <text x="16" y="363" fontSize="14" fontWeight="bold" fill="#e11d48">Chaos</text>
+            <circle cx="60" cy="350" r="12" fill="#f87171" />
+            <text x="36" y="380" fontSize="16" fontWeight="bold" fill="#e11d48">Chaos</text>
           </motion.g>
           {/* Traction - End */}
           <motion.g
@@ -155,17 +154,17 @@ const GTMDashboard = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 2.3, duration: 0.7 }}
           >
-            <circle cx="400" cy="120" r="10" fill="#8b5cf6" />
-            <text x="377" y="107" fontSize="14" fontWeight="bold" fill="#7c3aed">Traction</text>
+            <circle cx="420" cy="130" r="12" fill="#8b5cf6" />
+            <text x="397" y="110" fontSize="16" fontWeight="bold" fill="#7c3aed">Traction</text>
           </motion.g>
         </svg>
 
         {/* Glowing connector circle */}
         <motion.circle
           className="z-[1]"
-          cx="220"
-          cy="220"
-          r="173"
+          cx="240"
+          cy="240"
+          r="180"
           stroke="url(#gradientStroke)"
           strokeWidth="2"
           strokeDasharray="6,7"
@@ -176,7 +175,7 @@ const GTMDashboard = () => {
           transition={{ duration: 1.7, delay: 0.44 }}
         />
         <defs>
-          <linearGradient id="gradientStroke" x1="0" y1="0" x2="430" y2="430" gradientUnits="userSpaceOnUse">
+          <linearGradient id="gradientStroke" x1="0" y1="0" x2="480" y2="480" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="#fbc2eb" />
             <stop offset="100%" stopColor="#ec4899" />
           </linearGradient>
@@ -184,24 +183,29 @@ const GTMDashboard = () => {
 
         {/* Central GTM Unbound tile with bold/glow */}
         <motion.div
-          className="absolute top-1/2 left-1/2 z-30 w-40 h-40 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white shadow-2xl border border-pink-100 flex flex-col items-center justify-center"
+          className="absolute top-1/2 left-1/2 z-30 w-44 h-44 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white shadow-2xl border border-pink-100 flex flex-col items-center justify-center"
           variants={moduleVariants}
-          style={{
-            boxShadow: "0 0 20px 4px #ffb0e7, 0 6px 40px #fbc2eb44"
+          animate={{
+            scale: [1, 1.04, 1],
+            boxShadow: [
+              "0 0 20px 4px #ffb0e7, 0 6px 40px #fbc2eb44",
+              "0 0 25px 8px #ffb0e790, 0 6px 40px #fbc2eb55",
+              "0 0 20px 4px #ffb0e7, 0 6px 40px #fbc2eb44"
+            ],
+            transition: {
+              duration: 3.5,
+              repeat: Infinity,
+              repeatType: "reverse" as const,
+              ease: "easeInOut"
+            }
           }}
         >
-          <div className="h-16 w-16 rounded-full bg-gradient-to-r from-gtm-pink to-pink-400 flex items-center justify-center shadow-inner border-4 border-white glow-pulse">
-            <span className="text-white font-extrabold text-xl tracking-tight" style={{
-              textShadow: "0 0 18px #fb429990, 0 1px 1px #fff"
-            }}>
+          <div className="h-16 w-16 rounded-full bg-gradient-to-r from-gtm-pink to-pink-400 flex items-center justify-center shadow-inner border-4 border-white">
+            <span className="text-white font-extrabold text-xl tracking-tight">
               GTM
             </span>
           </div>
-          <p className="mt-3 text-base font-bold text-gtm-pink tracking-tight drop-shadow-md"
-            style={{
-              textShadow: "0 0 14px #fbc2ebcc"
-            }}
-          >
+          <p className="mt-3 text-base font-bold text-gtm-pink tracking-tight">
             GTM Unbound
           </p>
         </motion.div>
@@ -214,7 +218,6 @@ const GTMDashboard = () => {
             style={{
               ...module.position,
               transform: 'translate(-50%, -50%)',
-              // slight outward spread for visibility
             }}
             variants={moduleVariants}
             animate={floatPulse}
@@ -228,12 +231,12 @@ const GTMDashboard = () => {
               className="bg-white rounded-xl shadow-lg px-4 py-2 flex items-center gap-3 border border-gray-100 transition-all duration-300 group"
               whileHover={{ scale: 1.08, boxShadow: "0 8px 28px #fbc2eb66" }}
               style={{
-                minWidth: 82,
+                minWidth: 100,
                 boxShadow: "0 3px 20px #fbc2eb28"
               }}
             >
               {module.icon}
-              <span className="text-xs font-bold text-gray-700">{module.label}</span>
+              <span className="text-sm font-bold text-gray-700">{module.label}</span>
             </motion.div>
           </motion.div>
         ))}
@@ -247,25 +250,23 @@ const GTMDashboard = () => {
               boxShadow: "0 0 12px 2px #ffb0e733, 0 6px 30px #fbc2eb22"
             }}
           >
-            <div className="h-12 w-12 rounded-full bg-gradient-to-r from-gtm-pink to-pink-400 flex items-center justify-center shadow-inner border-4 border-white glow-pulse mb-2">
-              <span className="text-white font-extrabold text-lg tracking-tight"
-                style={{ textShadow: "0 0 8px #fb429990, 0 1px 1px #fff" }}
-              >GTM</span>
+            <div className="h-12 w-12 rounded-full bg-gradient-to-r from-gtm-pink to-pink-400 flex items-center justify-center shadow-inner border-4 border-white mb-2">
+              <span className="text-white font-extrabold text-lg tracking-tight">GTM</span>
             </div>
-            <p className="font-bold text-gtm-pink text-base tracking-tight mb-0"
-              style={{ textShadow: "0 0 10px #fbc2ebcc" }}
-            >GTM Unbound</p>
+            <p className="font-bold text-gtm-pink text-base tracking-tight mb-0">
+              GTM Unbound
+            </p>
           </div>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-3 w-full mt-3">
           {modules.map((module, idx) => (
             <div
               key={module.label}
-              className="bg-white rounded-xl shadow-md px-4 py-2 flex items-center gap-2 border border-gray-100 hover:shadow-xl transition-all duration-300 min-w-[90px]"
+              className="bg-white rounded-xl shadow-md px-4 py-2 flex items-center gap-2 border border-gray-100 hover:shadow-xl transition-all duration-300 min-w-[100px]"
               style={{ boxShadow: "0 3px 12px #fbc2eb19" }}
             >
               {module.icon}
-              <span className="text-xs font-bold text-gray-700">{module.label}</span>
+              <span className="text-sm font-bold text-gray-700">{module.label}</span>
             </div>
           ))}
         </div>

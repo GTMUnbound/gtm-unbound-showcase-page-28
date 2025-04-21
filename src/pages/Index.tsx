@@ -13,7 +13,6 @@ import HeroBackground from '@/components/HeroBackground';
 import ProcessVisualization from '@/components/ProcessVisualization';
 import GTMJourney from '@/components/GTMJourney';
 import FounderDesk from '@/components/FounderDesk';
-import AnimatedTextBlocks from '@/components/AnimatedTextBlocks';
 import CollapsibleBlock from '@/components/CollapsibleBlock';
 import JourneyVisualization from '@/components/JourneyVisualization';
 import GTMDashboard from '@/components/GTMDashboard';
@@ -38,6 +37,7 @@ import OfferingCards from "@/components/OfferingCards";
 import PricingModal from "@/components/PricingModal";
 import TalkToTeamModal from "@/components/TalkToTeamModal";
 import PricingComparison from "@/components/PricingComparison";
+import GTMStructuredMessage from '@/components/GTMStructuredMessage';
 
 const Index = () => {
   const [email, setEmail] = useState('');
@@ -405,65 +405,9 @@ const Index = () => {
                 The complete GTM layer for startups — strategy, execution, and expertise in one place.
               </motion.p>
               
-              {/* Enhanced Animated Content with Icons */}
-              <div className="hidden md:block mb-8 relative">
-                <div className="absolute left-[-20px] top-0 bottom-0 w-[3px] bg-gradient-to-b from-transparent via-gtm-pink to-transparent opacity-40"></div>
-                {textBlocks.map((block, blockIndex) => (
-                  <motion.div
-                    key={blockIndex}
-                    className="mb-5"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0.3 + (blockIndex * 0.25),
-                      type: "spring",
-                      stiffness: 50
-                    }}
-                  >
-                    {block.map((item, itemIndex) => (
-                      <div key={itemIndex} className="flex items-center gap-2 mb-2">
-                        <div className="flex-shrink-0">
-                          {item.icon}
-                        </div>
-                        <div className="text-gray-600">{item.text}</div>
-                      </div>
-                    ))}
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Mobile Collapsible Block */}
-              <div className="block md:hidden mb-8 space-y-4">
-                {/* First block always visible */}
-                <div className="space-y-2">
-                  {textBlocks[0].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2">
-                      <div className="flex-shrink-0">{item.icon}</div>
-                      <div className="text-gray-600">{item.text}</div>
-                    </div>
-                  ))}
-                </div>
-                
-                {/* Second block visible */}
-                <div className="space-y-2">
-                  {textBlocks[1].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2">
-                      <div className="flex-shrink-0">{item.icon}</div>
-                      <div className="text-gray-600">{item.text}</div>
-                    </div>
-                  ))}
-                </div>
-                {/* Collapsible for the removed 'questions' block is omitted */}
-                {/* Last block visible */}
-                <div className="space-y-2 pt-2">
-                  {textBlocks[2].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2">
-                      <div className="flex-shrink-0">{item.icon}</div>
-                      <div className="text-gray-600">{item.text}</div>
-                    </div>
-                  ))}
-                </div>
+              {/* Enhanced Structured Messaging with GTMStructuredMessage Component */}
+              <div className="mb-8">
+                <GTMStructuredMessage />
               </div>
 
               {/* CTA BUTTONS */}
@@ -490,7 +434,6 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* Consistent Section Gap: pt-0 pb-14 */}
       <Section id="offerings" className="bg-white pt-0 pb-14">
         <SectionHeader 
           title="Systems. Strategy. Execution."
