@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import GTMDashboard from './GTMDashboard';
+import GTMHeroVisualDynamicIntro from './GTMHeroVisualDynamicIntro';
 
 const GTMHeroSection = () => {
   return (
@@ -44,9 +45,9 @@ const GTMHeroSection = () => {
             </motion.div>
           </div>
           
-          {/* RIGHT COLUMN — GTM Dashboard Visual */}
+          {/* RIGHT COLUMN — Enhanced GTM System Visual */}
           <div className="w-full md:w-2/5 flex justify-center items-start">
-            <GTMDashboard />
+            <GTMHeroVisualDynamicIntro />
           </div>
         </div>
       </div>
