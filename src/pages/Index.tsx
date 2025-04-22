@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
 import SectionHeader from '@/components/SectionHeader';
@@ -39,9 +39,9 @@ import TalkToTeamModal from "@/components/TalkToTeamModal";
 import PricingComparison from "@/components/PricingComparison";
 import GTMStructuredMessage from '@/components/GTMStructuredMessage';
 
-import ExpertLedSection from "@/components/ExpertLedSection";
 import StartupsSection from "@/components/StartupsSection";
 import FounderTestimonialsSection from "@/components/FounderTestimonialsSection";
+import GTMJourneyModal from '@/components/GTMJourneyModal';
 
 const Index = () => {
   const offeringsRef = useRef<HTMLDivElement>(null);
@@ -386,6 +386,31 @@ const Index = () => {
   const [pricingModalOpen, setPricingModalOpen] = useState(false);
   const [activePlan, setActivePlan] = useState<"membership" | "plus" | "pro" | null>(null);
   const [talkToTeamOpen, setTalkToTeamOpen] = useState(false);
+  
+  const [selectedJourneyStep, setSelectedJourneyStep] = useState<number | null>(null);
+
+  const journeySteps = [
+    {
+      icon: "📍",
+      title: "GTM Diagnostic",
+      description: "We begin with a signal-based diagnostic to assess your funnel, channels, ICP, and current growth stack — all within 7 days. This gives us a real-time map of your GTM health and focus areas before diving into execution."
+    },
+    {
+      icon: "🔗",
+      title: "Matched Expert Onboarding",
+      description: "Based on your company's stage, market, and GTM challenges, we match you with a vetted expert who's actually built GTM systems before — not just advised. This expert plugs in from day one."
+    },
+    {
+      icon: "🚀",
+      title: "Sprint Launch & Tracking",
+      description: "We kick off fast, focused GTM sprints aligned with your OKRs — whether that's SEO, outbound, growth loops, or narrative testing. These are tactical builds, not abstract recommendations."
+    },
+    {
+      icon: "📊",
+      title: "Roadmap Co-Ownership",
+      description: "Your expert doesn't disappear after one call. We work together to co-own your GTM roadmap — updating it with insights from tests, evolving positioning, and driving traction over time."
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-[#F4F5F7]">
@@ -452,9 +477,6 @@ const Index = () => {
         <OfferingCards />
       </Section>
 
-      {/* 🧠 Expert-Led section */}
-      <ExpertLedSection />
-
       <Section id="how-we-help" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16">
         <SectionHeader 
           title="From Signal to Strategy"
@@ -464,23 +486,24 @@ const Index = () => {
           Startups begin with a diagnostic. We match them to GTM experts, launch sprints, and drive clarity.
         </div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-8">
-          <div className="bg-white rounded-xl p-6 flex flex-col items-center shadow hover:shadow-lg transition">
-            <div className="text-3xl mb-3">📍</div>
-            <div className="font-semibold text-gtm-dark mb-1">GTM Diagnostic</div>
-          </div>
-          <div className="bg-white rounded-xl p-6 flex flex-col items-center shadow hover:shadow-lg transition">
-            <div className="text-3xl mb-3">🔗</div>
-            <div className="font-semibold text-gtm-dark mb-1">Matched Expert Onboarding</div>
-          </div>
-          <div className="bg-white rounded-xl p-6 flex flex-col items-center shadow hover:shadow-lg transition">
-            <div className="text-3xl mb-3">🚀</div>
-            <div className="font-semibold text-gtm-dark mb-1">Sprint Launch & Tracking</div>
-          </div>
-          <div className="bg-white rounded-xl p-6 flex flex-col items-center shadow hover:shadow-lg transition">
-            <div className="text-3xl mb-3">📊</div>
-            <div className="font-semibold text-gtm-dark mb-1">Roadmap Co-Ownership</div>
-          </div>
+          {journeySteps.map((step, index) => (
+            <div 
+              key={index}
+              onClick={() => setSelectedJourneyStep(index)}
+              className="bg-white rounded-xl p-6 flex flex-col items-center shadow hover:shadow-lg transition cursor-pointer"
+            >
+              <div className="text-3xl mb-3">{step.icon}</div>
+              <div className="font-semibold text-gtm-dark mb-1">{step.title}</div>
+            </div>
+          ))}
         </div>
+        <GTMJourneyModal 
+          open={selectedJourneyStep !== null}
+          onOpenChange={() => setSelectedJourneyStep(null)}
+          title={selectedJourneyStep !== null ? journeySteps[selectedJourneyStep].title : ""}
+          icon={selectedJourneyStep !== null ? journeySteps[selectedJourneyStep].icon : ""}
+          description={selectedJourneyStep !== null ? journeySteps[selectedJourneyStep].description : ""}
+        />
         <div className="flex justify-center">
           <GradientButton>Start With Your GTM Match &rarr;</GradientButton>
         </div>
