@@ -1,82 +1,46 @@
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
-import { moduleCardW, moduleCardH } from '../../utils/geometryUtils';
+import { getPos, center, moduleCardW, moduleCardH } from '@/utils/geometryUtils';
 
 interface GTMModuleCardProps {
-  x: number;
-  y: number;
+  icon: LucideIcon;
   label: string;
   description: string;
-  Icon: LucideIcon;
+  angle: number;
   color: string;
-  index: number;
+  radius: number;
 }
 
-const moduleVariants = {
-  hidden: { opacity: 0, scale: 0.93, y: 10 },
-  visible: (i: number) => ({
-    opacity: 1, scale: 1, y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 61,
-      damping: 21,
-      delay: 0.12 + i * 0.07,
-    }
-  }),
-  hover: {
-    scale: 1.06,
-    boxShadow: "0 4px 27px #fbc2eb29, 0 0 18px #e64ba122",
-    zIndex: 30,
-    transition: { type: "spring", stiffness: 180, damping: 17 }
-  }
-};
-
-const GTMModuleCard = ({ x, y, label, description, Icon, color, index }: GTMModuleCardProps) => {
+const GTMModuleCard = ({ icon: Icon, label, description, angle, color, radius }: GTMModuleCardProps) => {
+  const { x, y } = getPos(angle, radius);
+  
   return (
     <motion.div
-      className="absolute z-20"
+      className="absolute flex flex-col justify-center items-center"
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ 
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+        delay: angle / 1000 // Stagger based on angle
+      }}
       style={{
-        top: y - moduleCardH/2,
-        left: x - moduleCardW/2,
+        left: center + x,
+        top: center + y,
         width: moduleCardW,
         height: moduleCardH,
+        transform: 'translate(-50%, -50%)',
       }}
-      variants={moduleVariants}
-      custom={index}
-      whileHover="hover"
+      whileHover={{ scale: 1.08, zIndex: 10 }}
     >
-      <motion.div
-        className="bg-white rounded-xl shadow-lg px-4 py-2.5 flex flex-col items-center gap-2 border border-gray-100/80 backdrop-blur-sm"
-        style={{
-          minWidth: 90,
-          boxShadow: "0 2px 14px #e64ba12A"
-        }}
-      >
-        <Icon className={`h-7 w-7 ${color}`} />
-        <span className="text-sm font-semibold text-gray-700 text-center">
-          {label}
-        </span>
-      </motion.div>
-      <motion.div
-        className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-black/80 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 translate-y-2 pointer-events-none whitespace-nowrap"
-        initial={false}
-        animate={{ 
-          opacity: 0,
-          y: 10,
-          scale: 0.95
-        }}
-        whileHover={{
-          opacity: 1,
-          y: 0,
-          scale: 1
-        }}
-        transition={{
-          duration: 0.2
-        }}
-      >
-        {description}
-      </motion.div>
+      <div className="bg-white/90 backdrop-blur-sm w-full h-full rounded-xl shadow-md px-2 py-2 flex flex-col items-center justify-center border border-gray-100">
+        <Icon className={`w-5 h-5 ${color} mb-1`} />
+        <h3 className="text-xs font-semibold text-center text-gray-800">{label}</h3>
+        <p className="text-[9px] text-center text-gray-500 mt-0.5 leading-tight">{description}</p>
+      </div>
     </motion.div>
   );
 };
