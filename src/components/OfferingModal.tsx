@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import Image from "next/image";
 
 interface OfferingModalProps {
   isOpen: boolean;
@@ -34,9 +35,11 @@ const OfferingModal = ({ isOpen, onClose, type }: OfferingModalProps) => {
       <DialogContent className="sm:max-w-[600px] bg-white rounded-xl">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold mb-4">{content.title}</DialogTitle>
-          <img 
+          <Image 
             src={content.image} 
             alt={`${content.title} illustration`} 
+            width={500} 
+            height={300} 
             className="w-full h-auto mb-6 rounded-lg"
           />
           <DialogDescription className="text-gray-600 text-base">
