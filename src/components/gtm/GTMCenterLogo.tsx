@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Target } from 'lucide-react';
 import { center, centerTileSize } from '@/utils/geometryUtils';
 
 const GTMCenterLogo = () => {
@@ -25,8 +24,14 @@ const GTMCenterLogo = () => {
       }}
       whileHover={{ scale: 1.05 }}
     >
-      <Target className="h-8 w-8 text-gtm-pink" />
-      <span className="text-sm font-semibold text-gray-800 mt-1">GTM OS</span>
+      <motion.img
+        src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
+        alt="GTM Unbound Logo"
+        className="h-10 w-10 rounded-full bg-white/70 shadow-sm"
+        animate={{ rotate: [0, 18, -18, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <span className="text-sm font-semibold text-gray-800 mt-2">GTM Unbound</span>
     </motion.div>
   );
 };

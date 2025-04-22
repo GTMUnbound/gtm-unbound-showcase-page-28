@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
 import SectionHeader from '@/components/SectionHeader';
@@ -44,6 +44,12 @@ import StartupsSection from "@/components/StartupsSection";
 import FounderTestimonialsSection from "@/components/FounderTestimonialsSection";
 
 const Index = () => {
+  const offeringsRef = useRef<HTMLDivElement>(null);
+  
+  const scrollToOfferings = () => {
+    offeringsRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const [email, setEmail] = useState('');
   const [newsletterEmail, setNewsletterEmail] = useState('');
 
@@ -414,31 +420,31 @@ const Index = () => {
                 <GTMStructuredMessage />
               </div>
 
-              {/* CTA BUTTONS */}
+              {/* SINGLE CTA BUTTON */}
               <motion.div 
                 className="flex flex-wrap gap-4 mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.2 }}
               >
-                <GradientButton className="rounded-2xl shadow-pink-100 shadow-md hover:shadow-gtm-pink/40 transition-shadow">
+                <button 
+                  onClick={scrollToOfferings}
+                  className="px-6 py-3 rounded-2xl bg-gradient-to-r from-gtm-pink to-pink-400 text-white font-semibold shadow-pink-100 shadow-md hover:shadow-gtm-pink/40 transition-shadow border-0"
+                >
                   See How It Works
-                </GradientButton>
-                <button className="px-6 py-3 rounded-2xl bg-gradient-to-r from-gtm-pink to-pink-400 text-white font-semibold shadow-pink-100 shadow-md hover:shadow-gtm-pink/40 transition-shadow border-0">
-                  Join Now
                 </button>
               </motion.div>
             </div>
             
             {/* RIGHT COLUMN — GTM Dashboard Visual */}
-            <div className="w-full md:w-2/5 flex justify-center items-start">
+            <div className="w-full md:w-2/5 flex justify-center items-start -mt-6 md:mt-0">
               <GTMDashboard />
             </div>
           </div>
         </div>
       </Section>
 
-      <Section id="offerings" className="bg-white pt-0 pb-14">
+      <Section ref={offeringsRef} id="offerings" className="bg-white pt-0 pb-14">
         <SectionHeader 
           title="Systems. Strategy. Execution."
           centered
