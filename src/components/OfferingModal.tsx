@@ -23,11 +23,11 @@ const offeringData = {
     description:
       "For founders who want to learn, test, and grow GTM with real structure — not a random stack of PDFs.",
     listItems: [
-      "Actionable Playbooks & Strategy Frameworks",
-      "Templates from real startup GTM stacks",
-      "Access to GTM Tools",
-      "Founder AMAs + Expert Feedback",
-      "Curated Community + Private Events",
+      { emoji: "📘", text: "Actionable Playbooks & Strategy Frameworks" },
+      { emoji: "🧾", text: "Templates from real startup GTM stacks" },
+      { emoji: "🛠️", text: "Access to GTM Tools" },
+      { emoji: "🎙️", text: "Founder AMAs + Expert Feedback" },
+      { emoji: "🫱🏻‍🫲🏽", text: "Curated Community + Private Events" }
     ],
     image: "/lovable-uploads/a88a9ff7-2677-4e8f-bef7-0ffbfb950c96.png",
     buttonText: "Browse DIY Library",
@@ -38,10 +38,10 @@ const offeringData = {
     description:
       "Plug into structured GTM programs delivered by execution specialists — without the chaos of hiring.",
     listItems: [
-      "Sprint-style programs: Outbound, Growth, RevOps",
-      "Pre-vetted contributors with startup experience",
-      "Pre-scoped deliverables with clear goals",
-      "Fast ramp-up, no retainer noise",
+      { emoji: "🏁", text: "Sprint-style programs: Outbound, Growth, RevOps" },
+      { emoji: "🤖", text: "Pre-vetted contributors with startup experience" },
+      { emoji: "📦", text: "Pre-scoped deliverables with clear goals" },
+      { emoji: "⚡", text: "Fast ramp-up, no retainer noise" }
     ],
     image: "/lovable-uploads/79d42dcd-d8ed-4c23-bf5c-c881aa334315.png",
     buttonText: "See DFY Plans",
@@ -52,10 +52,10 @@ const offeringData = {
     description:
       "Work with GTM experts who go deep, co-own strategy, and grow with you every step of the way.",
     listItems: [
-      "Matched based on stage, market, goals",
-      "Recurring biweekly GTM sessions",
-      "Live roadmap with experiments + positioning updates",
-      "Strategic depth over time",
+      { emoji: "🔗", text: "Matched based on stage, market, goals" },
+      { emoji: "📆", text: "Recurring biweekly GTM sessions" },
+      { emoji: "🧪", text: "Live roadmap with experiments + positioning updates" },
+      { emoji: "🪜", text: "Strategic depth over time" }
     ],
     image: "/lovable-uploads/4bebd1cb-761b-4cd8-95b8-19347428afc1.png",
     buttonText: "Meet Our Experts",
@@ -147,19 +147,19 @@ function ModalContent({
         {offering.description}
       </motion.p>
 
-      {/* List items with staggered animation */}
+      {/* List items with staggered animation and emojis */}
       <div className="mb-6">
         {offering.listItems.map((item, index) => (
           <motion.div
             key={index}
-            className="flex items-start gap-2 mb-3"
+            className="flex items-start gap-3 mb-3"
             custom={index + 2}
             initial="hidden"
             animate="visible"
             variants={fadeIn}
           >
-            <Check className="w-5 h-5 text-gtm-pink mt-0.5 flex-shrink-0" />
-            <span className="text-gray-700">{item}</span>
+            <span className="text-xl flex-shrink-0">{item.emoji}</span>
+            <span className="text-gray-700">{item.text}</span>
           </motion.div>
         ))}
       </div>
