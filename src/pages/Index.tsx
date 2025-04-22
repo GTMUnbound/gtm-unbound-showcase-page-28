@@ -415,12 +415,11 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-[#F4F5F7]">
       <Navbar sections={sections} />
-
-      {/* Redesigned Hero Section */}
+      {/* Hero Section */}
       <Section id="home" className="pt-24 pb-14 bg-white">
         <div className="container mx-auto px-4 md:px-6 relative">
+          {/* Refined HERO: Two columns, right column perfectly centered, with matching GTMDashboard */}
           <div className="relative flex flex-col md:flex-row items-start md:items-center gap-12">
-            {/* LEFT COLUMN */}
             <div className="w-full md:w-3/5">
               <motion.h1 
                 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gtm-dark mb-4 leading-tight"
@@ -430,7 +429,6 @@ const Index = () => {
               >
                 Go-To-Market, Without Guesswork
               </motion.h1>
-              
               <motion.p 
                 className="text-lg md:text-xl text-gray-600 mb-7 max-w-2xl font-normal"
                 initial={{ opacity: 0, y: 20 }}
@@ -439,13 +437,9 @@ const Index = () => {
               >
                 The complete GTM layer for startups — strategy, execution, and expertise in one place.
               </motion.p>
-              
-              {/* Enhanced Structured Messaging with GTMStructuredMessage Component */}
               <div className="mb-8">
                 <GTMStructuredMessage />
               </div>
-
-              {/* SINGLE CTA BUTTON */}
               <motion.div 
                 className="flex flex-wrap gap-4 mb-6"
                 initial={{ opacity: 0, y: 20 }}
@@ -460,14 +454,20 @@ const Index = () => {
                 </button>
               </motion.div>
             </div>
-            
-            {/* RIGHT COLUMN — GTM Dashboard Visual */}
-            <div className="w-full md:w-2/5 flex justify-center items-start -mt-6 md:mt-0">
+            {/* Polished, centered GTMDashboard */}
+            <div className="w-full md:w-2/5 flex justify-center items-center md:items-center">
               <GTMDashboard />
             </div>
           </div>
         </div>
       </Section>
+
+      {/* Anchor sections for GTMDashboard navigation */}
+      <span id="playbooks" />
+      <span id="channels" />
+      <span id="events" />
+      <span id="execution" />
+      <span id="experts" />
 
       <Section ref={offeringsRef} id="offerings" className="bg-white pt-0 pb-14">
         <SectionHeader 
