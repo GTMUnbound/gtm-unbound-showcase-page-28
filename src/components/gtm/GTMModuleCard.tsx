@@ -34,9 +34,20 @@ const GTMModuleCard = ({ icon: Icon, label, description, angle, color, radius }:
         height: moduleCardH,
         transform: 'translate(-50%, -50%)',
       }}
-      whileHover={{ scale: 1.08, zIndex: 10 }}
+      whileHover={{ 
+        scale: 1.12, 
+        zIndex: 10,
+        y: angle > 180 ? 3 : -3, // Move slightly up or down based on position
+        x: angle > 90 && angle < 270 ? -3 : 3, // Move slightly left or right based on position
+      }}
     >
-      <div className="bg-white/90 backdrop-blur-sm w-full h-full rounded-xl shadow-md px-2 py-2 flex flex-col items-center justify-center border border-gray-100">
+      <div 
+        className="bg-white/95 backdrop-blur-sm w-full h-full rounded-xl shadow-md px-3 py-2 flex flex-col items-center justify-center border border-gray-100"
+        style={{
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255, 220, 236, 0.2)',
+          transition: 'box-shadow 0.3s ease-in-out',
+        }}
+      >
         <Icon className={`w-5 h-5 ${color} mb-1`} />
         <h3 className="text-xs font-semibold text-center text-gray-800">{label}</h3>
         <p className="text-[9px] text-center text-gray-500 mt-0.5 leading-tight">{description}</p>

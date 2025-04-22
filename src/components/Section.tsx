@@ -1,32 +1,26 @@
 
-import { cn } from '@/lib/utils';
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-interface SectionProps {
-  id: string;
+export interface SectionProps {
   children: React.ReactNode;
+  id?: string;
   className?: string;
-  fullWidth?: boolean;
 }
 
-const Section = ({ id, children, className, fullWidth = false }: SectionProps) => {
-  return (
-    <section 
-      id={id} 
-      className={cn(
-        "py-10 sm:py-16 md:py-24", // Adjusted padding for responsive design
-        className
-      )}
-    >
-      {fullWidth ? (
-        children
-      ) : (
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-[1200px]">
-          {children}
-        </div>
-      )}
-    </section>
-  );
-};
+const Section = forwardRef<HTMLDivElement, SectionProps>(
+  ({ children, id, className = '' }, ref) => {
+    return (
+      <section
+        ref={ref}
+        id={id}
+        className={`py-12 ${className}`}
+      >
+        {children}
+      </section>
+    );
+  }
+);
+
+Section.displayName = 'Section';
 
 export default Section;

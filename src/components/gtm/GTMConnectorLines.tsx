@@ -22,19 +22,21 @@ const GTMConnectorLines = () => {
         const bufferX = centerX + (x / moduleRadius) * centerRadius;
         const bufferY = centerY + (y / moduleRadius) * centerRadius;
         
+        // Add a subtle curve to the lines for more organic feel
+        const midX = (bufferX + cardX) / 2 + (Math.random() * 2 - 1) * 5;
+        const midY = (bufferY + cardY) / 2 + (Math.random() * 2 - 1) * 5;
+        
         return (
-          <motion.line
+          <motion.path
             key={moduleDef.label}
-            x1={bufferX}
-            y1={bufferY}
-            x2={cardX}
-            y2={cardY}
+            d={`M ${bufferX} ${bufferY} Q ${midX} ${midY} ${cardX} ${cardY}`}
             stroke={moduleDef.color.replace('text-', 'var(--')}
-            strokeWidth="1"
+            strokeWidth="1.2"
             strokeDasharray="3,3"
-            strokeOpacity="0.4"
+            strokeOpacity="0.6"
+            fill="none"
             initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 0.7 }}
+            animate={{ pathLength: 1, opacity: 0.8 }}
             transition={{ duration: 1.5, delay: moduleDef.angle / 1000 }}
           />
         );
