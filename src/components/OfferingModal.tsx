@@ -1,51 +1,189 @@
 
 import React from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { motion } from "framer-motion";
+import { X, Check } from "lucide-react";
+import GradientButton from "@/components/GradientButton";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Drawer, DrawerContent, DrawerClose } from "@/components/ui/drawer";
+import { cn } from "@/lib/utils";
+import { useMediaQuery } from "@/hooks/use-media-query";
+
+type OfferingType = "diy" | "dfy" | "expert";
 
 interface OfferingModalProps {
   isOpen: boolean;
   onClose: () => void;
-  type: "diy" | "dfy" | "expert";
+  type: OfferingType;
 }
 
-const OfferingModal = ({ isOpen, onClose, type }: OfferingModalProps) => {
-  const modalContent = {
-    diy: {
-      title: "DIY Tools",
-      description: "Startup-proven GTM strategies and resources to help you build and execute.",
-      image: "/lovable-uploads/d20fa10b-8e84-4b85-a4b5-845d6552676e.png"
-    },
-    dfy: {
-      title: "DFY Support",
-      description: "Sprint-based execution for SEO, content, and ads to accelerate your growth.",
-      image: "/lovable-uploads/d20fa10b-8e84-4b85-a4b5-845d6552676e.png"
-    },
-    expert: {
-      title: "Expert Guidance",
-      description: "Biweekly strategy sessions with GTM leaders to refine your go-to-market approach.",
-      image: "/lovable-uploads/d20fa10b-8e84-4b85-a4b5-845d6552676e.png"
-    }
-  };
-
-  const content = modalContent[type];
-
-  return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[600px] bg-white rounded-xl">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold mb-4">{content.title}</DialogTitle>
-          <img 
-            src={content.image} 
-            alt={`${content.title} illustration`} 
-            className="w-full h-auto mb-6 rounded-lg"
-          />
-          <DialogDescription className="text-gray-600 text-base">
-            {content.description}
-          </DialogDescription>
-        </DialogHeader>
-      </DialogContent>
-    </Dialog>
-  );
+const offeringData = {
+  diy: {
+    title: "DIY — Build GTM with Structure",
+    emoji: "🧰",
+    description:
+      "For founders who want to learn, test, and grow GTM with real structure — not a random stack of PDFs.",
+    listItems: [
+      "Actionable Playbooks & Strategy Frameworks",
+      "Templates from real startup GTM stacks",
+      "Access to GTM Tools",
+      "Founder AMAs + Expert Feedback",
+      "Curated Community + Private Events",
+    ],
+    image: "/lovable-uploads/a88a9ff7-2677-4e8f-bef7-0ffbfb950c96.png",
+    buttonText: "Browse DIY Library",
+  },
+  dfy: {
+    title: "DFY — Sprint-Based Execution That Works",
+    emoji: "🛠️",
+    description:
+      "Plug into structured GTM programs delivered by execution specialists — without the chaos of hiring.",
+    listItems: [
+      "Sprint-style programs: Outbound, Growth, RevOps",
+      "Pre-vetted contributors with startup experience",
+      "Pre-scoped deliverables with clear goals",
+      "Fast ramp-up, no retainer noise",
+    ],
+    image: "/lovable-uploads/bb153975-6bf6-4c36-b3b4-c3b1dc7ba7e1.png",
+    buttonText: "See DFY Plans",
+  },
+  expert: {
+    title: "Expert-Led — Strategy That Grows With You",
+    emoji: "🧠",
+    description:
+      "Work with GTM experts who go deep, co-own strategy, and grow with you every step of the way.",
+    listItems: [
+      "Matched based on stage, market, goals",
+      "Recurring biweekly GTM sessions",
+      "Live roadmap with experiments + positioning updates",
+      "Strategic depth over time",
+    ],
+    image: "/lovable-uploads/4bebd1cb-761b-4cd8-95b8-19347428afc1.png",
+    buttonText: "Meet Our Experts",
+  },
 };
 
-export default OfferingModal;
+// Animations
+const fadeIn = {
+  hidden: { opacity: 0, y: 10 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  }),
+};
+
+export default function OfferingModal({
+  isOpen,
+  onClose,
+  type,
+}: OfferingModalProps) {
+  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const offering = offeringData[type];
+
+  // Choose between Dialog (desktop) and Drawer (mobile)
+  if (isDesktop) {
+    return (
+      <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+        <DialogContent className="max-w-xl p-0 gap-0 overflow-hidden bg-white/95 backdrop-blur-lg border border-pink-100 shadow-lg">
+          <ModalContent offering={offering} />
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
+  return (
+    <Drawer open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <DrawerContent className="max-h-[85vh] px-0 pt-0 pb-6 rounded-t-[20px] bg-white/95 backdrop-blur-md border-t border-pink-100">
+        <div className="mx-auto mt-2 h-1.5 w-16 rounded-full bg-pink-100/80" />
+        <ModalContent offering={offering} isMobile />
+        <DrawerClose className="absolute right-4 top-4 rounded-full w-8 h-8 flex items-center justify-center bg-gradient-to-r from-gtm-pink to-gtm-coral text-white opacity-90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-gtm-pink focus:ring-offset-2 transition-all">
+          <X className="w-4 h-4" />
+        </DrawerClose>
+      </DrawerContent>
+    </Drawer>
+  );
+}
+
+function ModalContent({
+  offering,
+  isMobile = false,
+}: {
+  offering: typeof offeringData[OfferingType];
+  isMobile?: boolean;
+}) {
+  return (
+    <div
+      className={cn(
+        "flex flex-col w-full overflow-auto",
+        isMobile ? "px-4 pt-6 pb-2" : "p-8"
+      )}
+    >
+      {/* Header section */}
+      <motion.div
+        className="flex items-center gap-4 mb-4"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        <div className="text-3xl">{offering.emoji}</div>
+        <h2 className="text-2xl font-bold text-gtm-dark">{offering.title}</h2>
+      </motion.div>
+
+      {/* Description */}
+      <motion.p
+        className="text-gray-600 mb-5"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+      >
+        {offering.description}
+      </motion.p>
+
+      {/* List items with staggered animation */}
+      <div className="mb-6">
+        {offering.listItems.map((item, index) => (
+          <motion.div
+            key={index}
+            className="flex items-start gap-2 mb-3"
+            custom={index + 2}
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+          >
+            <Check className="w-5 h-5 text-gtm-pink mt-0.5 flex-shrink-0" />
+            <span className="text-gray-700">{item}</span>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Image section */}
+      <motion.div
+        className="relative rounded-lg overflow-hidden mb-6 bg-gray-50 border border-pink-50"
+        initial={{ opacity: 0, scale: 0.92 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+      >
+        <img
+          src={offering.image}
+          alt={offering.title}
+          className="w-full object-cover"
+          style={{ maxHeight: "200px" }}
+        />
+      </motion.div>
+
+      {/* CTA Button */}
+      <motion.div
+        className="mt-auto"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.4 }}
+      >
+        <GradientButton fullWidth>{offering.buttonText}</GradientButton>
+      </motion.div>
+    </div>
+  );
+}
