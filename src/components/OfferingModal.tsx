@@ -19,7 +19,7 @@ interface OfferingModalProps {
 const offeringData = {
   diy: {
     title: "DIY — Build GTM with Structure",
-    emoji: "🧰",
+    emoji: "📋",
     description:
       "For founders who want to learn, test, and grow GTM with real structure — not a random stack of PDFs.",
     listItems: [
@@ -34,7 +34,7 @@ const offeringData = {
   },
   dfy: {
     title: "DFY — Sprint-Based Execution That Works",
-    emoji: "🛠️",
+    emoji: "📦",
     description:
       "Plug into structured GTM programs delivered by execution specialists — without the chaos of hiring.",
     listItems: [
@@ -43,12 +43,12 @@ const offeringData = {
       "Pre-scoped deliverables with clear goals",
       "Fast ramp-up, no retainer noise",
     ],
-    image: "/lovable-uploads/79d42dcd-d8ed-4c23-bf5c-c881aa334315.png", // Updated image
+    image: "/lovable-uploads/79d42dcd-d8ed-4c23-bf5c-c881aa334315.png",
     buttonText: "See DFY Plans",
   },
   expert: {
     title: "Expert-Led — Strategy That Grows With You",
-    emoji: "🧠",
+    emoji: "🎯",
     description:
       "Work with GTM experts who go deep, co-own strategy, and grow with you every step of the way.",
     listItems: [
@@ -122,14 +122,18 @@ function ModalContent({
         isMobile ? "px-4 pt-6 pb-2" : "p-8"
       )}
     >
-      {/* Header section */}
+      {/* Header section with new emoji styling */}
       <motion.div
         className="flex items-center gap-4 mb-4"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
       >
-        <div className="text-3xl">{offering.emoji}</div>
+        <div 
+          className="text-3xl transition-all duration-300 hover:scale-110 hover:shadow-[0_0_15px_rgba(255,93,143,0.3)]"
+        >
+          {offering.emoji}
+        </div>
         <h2 className="text-2xl font-bold text-gtm-dark">{offering.title}</h2>
       </motion.div>
 
