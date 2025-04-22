@@ -9,26 +9,31 @@ const moduleDefs = [
   {
     icon: <BookOpen className="h-7 w-7 text-gtm-pink" />,
     label: "Playbooks",
+    description: "Startup-proven GTM strategies",
     angle: 270,
   },
   {
     icon: <Users className="h-7 w-7 text-blue-500" />,
     label: "Experts",
+    description: "Access vetted GTM minds",
     angle: 198,
   },
   {
     icon: <Target className="h-7 w-7 text-green-500" />,
     label: "Execution",
+    description: "Move from plan to traction",
     angle: 126,
   },
   {
     icon: <Globe className="h-7 w-7 text-cyan-500" />,
     label: "Channels",
+    description: "Figure out what actually converts",
     angle: 54,
   },
   {
     icon: <Ticket className="h-7 w-7 text-purple-500" />,
     label: "Events",
+    description: "Founder circles, mixers & more",
     angle: 342,
   },
 ];
@@ -62,6 +67,7 @@ const GTMDashboard = () => {
       }
     }
   };
+
   const moduleVariants = {
     hidden: { opacity: 0, scale: 0.93, y: 10 },
     visible: (i: number) => ({
@@ -81,6 +87,15 @@ const GTMDashboard = () => {
     }
   };
 
+  const lineVariants = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: {
+      pathLength: 1,
+      opacity: 0.7,
+      transition: { duration: 1.2, ease: "easeInOut" }
+    }
+  };
+
   const modulesWithPos = moduleDefs.map((mod, idx) => {
     const { x, y } = getPos(mod.angle, moduleRadius);
     return {
@@ -93,26 +108,26 @@ const GTMDashboard = () => {
 
   return (
     <div className="flex flex-col items-center md:items-end w-full">
-      {/* Label for system */}
       <div className="hidden md:block mb-2 text-center w-full">
-        <span className="text-xs font-semibold tracking-tight text-gtm-pink/80 uppercase">The GTM System</span>
+        <span className="text-xs font-semibold tracking-wider text-gtm-pink/80 uppercase letter-spacing-wide">
+          The GTM System
+        </span>
       </div>
       <motion.div
-        className="relative hidden md:block mx-auto"
+        className="relative hidden md:block mx-auto bg-white/90 backdrop-blur-sm"
         style={{
           width: `${visualSize}px`,
           height: `${visualSize}px`,
           minWidth: `${visualSize}px`,
           minHeight: `${visualSize}px`,
-          background: "white",
           borderRadius: "36px",
-          boxShadow: "0 2px 24px 0px #fbc2eb22"
+          boxShadow: "0 2px 24px 0px #fbc2eb22, 0 0 40px #fde1d309 inset"
         }}
         initial="hidden"
         animate={controls}
         variants={containerVariants}
       >
-        {/* Connector lines */}
+        {/* Connector lines with gradient and animation */}
         <svg className="absolute inset-0 w-full h-full z-0 pointer-events-none" width={visualSize} height={visualSize}>
           <defs>
             <linearGradient id="moduleLinePink" x1="0" y1="0" x2="1" y2="1">
@@ -128,35 +143,41 @@ const GTMDashboard = () => {
               x2={mod.x}
               y2={mod.y}
               stroke="url(#moduleLinePink)"
-              strokeWidth="2.2"
+              strokeWidth="2"
               strokeLinecap="round"
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 0.7 }}
-              transition={{ duration: 1.0, delay: 0.09 + i * 0.07 }}
-              style={{
-                filter: "drop-shadow(0 0 6px #fbc2eb60)"
-              }}
+              variants={lineVariants}
+              style={{ filter: "drop-shadow(0 0 6px #fbc2eb60)" }}
             />
           ))}
         </svg>
+
         {/* Center: GTM Unbound logo */}
-        <div
+        <motion.div
           className="absolute top-1/2 left-1/2 z-20"
           style={{
             width: centerTileSize,
             height: centerTileSize,
             transform: `translate(-50%,-50%)`,
             borderRadius: "36px",
-            background: "white",
-            boxShadow:
-              "0 0 32px 0 #fbc2eb80, 0 0 8px #e64ba180, 0 0 0 8px #fbc2eb18"
+          }}
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ 
+            type: "spring",
+            duration: 0.8,
+            delay: 0.3
           }}
         >
-          <div className="flex flex-col items-center justify-center h-full w-full">
-            <div
+          <div className="flex flex-col items-center justify-center h-full w-full bg-white rounded-[36px] shadow-lg">
+            <motion.div
               className="h-20 w-20 rounded-full bg-white shadow-inner flex items-center justify-center"
-              style={{
-                boxShadow: "0 0 18px #e64ba199, 0 0 6px #fbe0e6"
+              animate={{ 
+                boxShadow: ["0 0 18px #e64ba199, 0 0 6px #fbe0e6", "0 0 28px #e64ba199, 0 0 12px #fbe0e6"],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatType: "reverse"
               }}
             >
               <img
@@ -168,10 +189,13 @@ const GTMDashboard = () => {
                 }}
                 draggable={false}
               />
-            </div>
-            <p className="mt-2 text-lg font-bold leading-6 text-gtm-pink text-center select-none">GTM Unbound</p>
+            </motion.div>
+            <p className="mt-2 text-lg font-bold leading-6 text-gtm-pink text-center select-none">
+              GTM Unbound
+            </p>
           </div>
-        </div>
+        </motion.div>
+
         {/* Radial modules */}
         {modulesWithPos.map((mod) => (
           <motion.div
@@ -182,29 +206,47 @@ const GTMDashboard = () => {
               left: mod.x - moduleCardW/2,
               width: moduleCardW,
               height: moduleCardH,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
             }}
             variants={moduleVariants}
-            animate={controls}
             custom={mod.idx}
             whileHover="hover"
           >
             <motion.div
-              className="bg-white rounded-xl shadow-lg px-4 py-2 flex items-center gap-3 border border-gray-100 transition-all duration-300 group"
+              className="bg-white rounded-xl shadow-lg px-4 py-2.5 flex flex-col items-center gap-2 border border-gray-100/80 backdrop-blur-sm"
               style={{
                 minWidth: 90,
                 boxShadow: "0 2px 14px #e64ba12A"
               }}
             >
               {mod.icon}
-              <span className="text-base font-bold text-gray-700">{mod.label}</span>
+              <span className="text-sm font-semibold text-gray-700 text-center">
+                {mod.label}
+              </span>
+            </motion.div>
+            <motion.div
+              className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-black/80 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 translate-y-2 pointer-events-none whitespace-nowrap"
+              initial={false}
+              animate={{ 
+                opacity: 0,
+                y: 10,
+                scale: 0.95
+              }}
+              whileHover={{
+                opacity: 1,
+                y: 0,
+                scale: 1
+              }}
+              transition={{
+                duration: 0.2
+              }}
+            >
+              {mod.description}
             </motion.div>
           </motion.div>
         ))}
       </motion.div>
-      {/* Mobile layout: vertical stack/grid */}
+
+      {/* Mobile layout */}
       <div className="block md:hidden w-full">
         <div className="flex flex-col items-center">
           <div
@@ -250,4 +292,3 @@ const GTMDashboard = () => {
 };
 
 export default GTMDashboard;
-
