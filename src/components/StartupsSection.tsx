@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-// Only real company logos - no screenshots or other images
+// Display ONLY real logos—no placeholder/photo stock/people/table images!
 const logos = [
   { src: "/lovable-uploads/0e281ef4-b0d5-4345-bbc2-148c9944f302.png", alt: "Omnify", name: "Omnify" },
   { src: "/lovable-uploads/64124847-58f5-4601-9a54-3544fa2436b1.png", alt: "ECL", name: "ECL" },
@@ -37,16 +37,17 @@ const StartupsSection = () => (
         🚀 Startups We've Worked With
       </motion.h2>
       <motion.p
-        className="text-lg text-gray-700 max-w-2xl mb-12"
+        className="text-lg text-gray-700 max-w-2xl mb-10"
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ delay: 0.18, duration: 0.65 }}
       >
-        From idea to scale, we've plugged into ambitious startups across SaaS, AI, and fintech — unlocking GTM traction with speed and structure.
+        From early traction to repeatable GTM — we’ve supported high-growth startups at key inflection points.<br />
+        <span className="text-gray-500">Trusted by teams backed by Sequoia, Accel, Lightspeed, and more.</span>
       </motion.p>
       <motion.div
-        className="grid grid-cols-2 sm:grid-cols-3 gap-10 md:gap-12 items-center justify-items-center"
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-7 md:gap-10 items-center justify-items-center"
         variants={logoContainerAnim}
         initial="hidden"
         whileInView="show"
@@ -56,16 +57,17 @@ const StartupsSection = () => (
           <motion.div
             key={logo.alt}
             variants={logoAnim}
-            className="relative group cursor-pointer"
+            className="relative group cursor-pointer flex flex-col items-center justify-center"
           >
             <motion.img
               src={logo.src}
               alt={logo.alt}
-              className="h-20 w-40 object-contain filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-300"
+              className="h-16 w-32 object-contain filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-300"
               draggable={false}
+              style={{ maxHeight: "64px" }}
             />
             <motion.div
-              className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gtm-pink/90 text-white text-xs px-3 py-1.5 rounded-lg shadow opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 pointer-events-none whitespace-nowrap"
+              className="absolute bottom-[-2.2rem] left-1/2 -translate-x-1/2 bg-gtm-pink/90 text-white text-xs px-3 py-1.5 rounded-lg shadow opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 pointer-events-none whitespace-nowrap"
             >
               View Case Study &rarr;
             </motion.div>
@@ -77,3 +79,4 @@ const StartupsSection = () => (
 );
 
 export default StartupsSection;
+

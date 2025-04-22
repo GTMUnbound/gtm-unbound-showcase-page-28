@@ -13,7 +13,7 @@ const OfferingModal = ({ isOpen, onClose, type }: OfferingModalProps) => {
     diy: {
       title: "DIY Tools",
       description: "Startup-proven GTM strategies and resources to help you build and execute.",
-      image: "/lovable-uploads/d0d129c8-5457-4c8d-ab05-cdfc232a60ce.png"
+      image: "/lovable-uploads/d20fa10b-8e84-4b85-a4b5-845d6552676e.png"
     },
     dfy: {
       title: "DFY Support",
@@ -23,7 +23,7 @@ const OfferingModal = ({ isOpen, onClose, type }: OfferingModalProps) => {
     expert: {
       title: "Expert Guidance",
       description: "Biweekly strategy sessions with GTM leaders to refine your go-to-market approach.",
-      image: "/lovable-uploads/fcb3517f-9e6e-44db-99cd-3950ba35af4f.png"
+      image: "/lovable-uploads/d20fa10b-8e84-4b85-a4b5-845d6552676e.png"
     }
   };
 
