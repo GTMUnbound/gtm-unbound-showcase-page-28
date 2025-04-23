@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import Section from '@/components/Section';
 import AnimatedSection from '@/components/AnimatedSection';
@@ -46,10 +45,6 @@ import FounderTestimonialsSection from "@/components/FounderTestimonialsSection"
 import GTMJourneyModal from '@/components/GTMJourneyModal';
 import AnimatedJourneySteps from '@/components/AnimatedJourneySteps';
 import { fadeUpVariants, staggerContainer, softScaleVariants } from '@/utils/AnimationUtils';
-import GTMBackgroundVisual from "@/components/GTMBackgroundVisual";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import CommunitySection from "@/components/CommunitySection";
-import FloatingCTA from "@/components/FloatingCTA";
 
 const Index = () => {
   const offeringsRef = useRef<HTMLDivElement>(null);
@@ -425,24 +420,13 @@ const Index = () => {
     }
   ];
 
-  // New handler for the floating CTA
-  const handleTalkToTeamClick = () => {
-    setTalkToTeamOpen(true);
-  };
-
   return (
     <div className="min-h-screen bg-[#F4F5F7]">
       {/* Use our new animated navbar */}
       <AnimatedNavbar sections={sections} />
 
-      {/* Floating CTA */}
-      <FloatingCTA text="Talk to Our Team" onClick={handleTalkToTeamClick} />
-
-      {/* Hero Section with background visual */}
-      <AnimatedSection id="home" className="pt-24 pb-14 bg-white relative overflow-hidden" animation="fadeIn">
-        {/* Add the GTM background visual */}
-        <GTMBackgroundVisual variant="hero" />
-        
+      {/* Hero Section */}
+      <AnimatedSection id="home" className="pt-24 pb-14 bg-white" animation="fadeIn">
         <div className="container mx-auto px-4 md:px-6 relative">
           {/* Refined HERO: Two columns, right column perfectly centered, with matching GTMDashboard */}
           <div className="relative flex flex-col md:flex-row items-start md:items-center gap-12">
@@ -659,9 +643,6 @@ const Index = () => {
         <FounderTestimonialsSection />
       </AnimatedSection>
 
-      {/* Add Testimonials Section before Why GTM */}
-      <TestimonialsSection />
-
       <AnimatedSection id="why-gtm" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16" animation="fadeUp" delay={0.3}>
         <SectionHeader 
           title="Not Advice. Not Fluff. Real GTM Infrastructure."
@@ -715,13 +696,7 @@ const Index = () => {
         </div>
       </AnimatedSection>
 
-      {/* Add Community Section before CTA */}
-      <CommunitySection />
-
-      <AnimatedSection id="cta" className="bg-gradient-to-r from-gtm-coral to-gtm-pink text-white pt-14 pb-14 md:pt-16 md:pb-16 relative" animation="fadeIn" delay={0.1}>
-        {/* Background visual with section variant */}
-        <GTMBackgroundVisual variant="section" />
-        
+      <AnimatedSection id="cta" className="bg-gradient-to-r from-gtm-coral to-gtm-pink text-white pt-14 pb-14 md:pt-16 md:pb-16" animation="fadeIn" delay={0.1}>
         <div className="max-w-3xl mx-auto text-center px-4">
           <motion.h2 
             className="text-3xl md:text-4xl font-bold mb-8"
@@ -757,14 +732,17 @@ const Index = () => {
             </motion.button>
           </motion.div>
           <motion.p 
-            className="text-white/80 text-center mb-0"
+            className="text-xl"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
           >
-            Ready to build a GTM system that delivers measurable results?
+            Real traction starts with real GTM help.
           </motion.p>
         </div>
       </AnimatedSection>
 
-      {/* Footer */}
       <Footer />
     </div>
   );
