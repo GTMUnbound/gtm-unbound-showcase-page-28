@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { moduleDefs } from './GTMModuleDefinitions';
@@ -142,9 +141,10 @@ const GTMDashboard = () => {
         );
       })}
 
-      {/* Center logo */}
+      {/* Center GTM logo with improved positioning and styling */}
       <motion.div
-        className="absolute z-20 bg-white/95 rounded-full shadow-lg flex flex-col items-center justify-center"
+        className="absolute z-20 left-1/2 top-1/2 bg-white/95 rounded-full shadow-lg 
+          flex flex-col items-center justify-center w-32 h-32 sm:w-36 sm:h-36"
         initial={{ scale: 0.72, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{
@@ -154,19 +154,15 @@ const GTMDashboard = () => {
           delay: 0.19,
         }}
         style={{
-          width: centerTileSize,
-          height: centerTileSize,
-          left: center,
-          top: center,
           transform: 'translate(-50%, -50%)',
-          boxShadow: '0 8px 32px rgba(255, 220, 236, 0.30), 0 0 0 1px rgba(255, 220, 236, 0.16)'
+          boxShadow: '0 8px 32px rgba(255, 220, 236, 0.3), 0 0 0 1px rgba(255, 220, 236, 0.5)'
         }}
-        whileHover={{ scale: 1.04 }}
+        whileHover={{ scale: 1.04, transition: { duration: 0.2 } }}
       >
         <motion.img
           src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
           alt="GTM Unbound Logo"
-          className="h-12 w-12 rounded-full bg-white/80 shadow-sm"
+          className="h-12 w-12 rounded-full bg-white/80 shadow-sm rotate-[-6deg]"
           animate={{ rotate: [0, 12, -12, 0] }}
           transition={{
             duration: 16,
