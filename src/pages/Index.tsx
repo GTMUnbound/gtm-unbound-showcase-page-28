@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import Section from '@/components/Section';
 import AnimatedSection from '@/components/AnimatedSection';
@@ -756,4 +757,17 @@ const Index = () => {
             </motion.button>
           </motion.div>
           <motion.p 
-            className="text-
+            className="text-white/80 text-center mb-0"
+          >
+            Ready to build a GTM system that delivers measurable results?
+          </motion.p>
+        </div>
+      </AnimatedSection>
+
+      {/* Footer */}
+      <Footer />
+    </div>
+  );
+};
+
+export default Index;
