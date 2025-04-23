@@ -1,5 +1,5 @@
 
-import React, { ReactNode } from "react";
+import React, { ReactNode, forwardRef } from "react";
 import { motion } from "framer-motion";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { fadeUpVariants } from "@/utils/AnimationUtils";
@@ -13,14 +13,34 @@ interface AnimatedSectionProps {
   animation?: "fadeUp" | "fadeIn" | "scaleIn" | "none";
 }
 
-const AnimatedSection: React.FC<AnimatedSectionProps> = ({ 
+const AnimatedSection = forwardRef<HTMLDivElement, AnimatedSectionProps>(({
   children, 
   className,
   delay = 0,
   id,
   animation = "fadeUp"
-}) => {
-  const [ref, isInView] = useIntersectionObserver();
+}, ref) => {
+  const [internalRef, isInView] = useIntersectionObserver();
+  
+  // Combine the external ref with our internal ref
+  const setRefs = React.useCallback(
+    (element: HTMLDivElement | null) => {
+      // For the internal ref
+      if (typeof internalRef === 'function') {
+        (internalRef as Function)(element);
+      } else if (internalRef) {
+        (internalRef as React.MutableRefObject<HTMLDivElement | null>).current = element;
+      }
+      
+      // For the forwarded ref
+      if (typeof ref === 'function') {
+        ref(element);
+      } else if (ref) {
+        ref.current = element;
+      }
+    },
+    [internalRef, ref]
+  );
   
   // Define animation variants based on the animation prop
   const getVariants = () => {
@@ -61,7 +81,7 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   return (
     <motion.section
       id={id}
-      ref={ref as React.RefObject<HTMLDivElement>}
+      ref={setRefs}
       className={cn(className)}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
@@ -71,6 +91,8 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       {children}
     </motion.section>
   );
-};
+});
+
+AnimatedSection.displayName = 'AnimatedSection';
 
 export default AnimatedSection;

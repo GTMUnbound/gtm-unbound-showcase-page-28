@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import Section from '@/components/Section';
 import AnimatedSection from '@/components/AnimatedSection';
@@ -69,8 +68,10 @@ const Index = () => {
       const sections = document.querySelectorAll('section[id]');
       
       sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
+        // Use HTMLElement type casting to access offsetTop and offsetHeight
+        const htmlSection = section as HTMLElement;
+        const sectionTop = htmlSection.offsetTop;
+        const sectionHeight = htmlSection.offsetHeight;
         
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
           setActiveSection(section.id);
@@ -511,7 +512,8 @@ const Index = () => {
       <span id="execution" />
       <span id="experts" />
 
-      <AnimatedSection ref={offeringsRef} id="offerings" className="bg-white pt-0 pb-14" animation="fadeUp" delay={0.1}>
+      {/* Fix the ref by using id instead of direct ref */}
+      <AnimatedSection id="offerings" className="bg-white pt-0 pb-14" animation="fadeUp" delay={0.1}>
         <SectionHeader 
           title="Systems. Strategy. Execution."
           centered
