@@ -1,4 +1,6 @@
 
+import React from 'react';
+
 // Define orbit modules with precise angular positioning
 export const moduleDefs = [
   {

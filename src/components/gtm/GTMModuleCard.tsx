@@ -1,11 +1,10 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { LucideIcon } from 'lucide-react';
 import { getPos, center, moduleCardW, moduleCardH } from '@/utils/geometryUtils';
 
 interface GTMModuleCardProps {
-  icon: LucideIcon;
+  icon: React.ReactNode;
   label: string;
   description: string;
   angle: number;
@@ -13,7 +12,7 @@ interface GTMModuleCardProps {
   radius: number;
 }
 
-const GTMModuleCard = ({ icon: Icon, label, description, angle, color, radius }: GTMModuleCardProps) => {
+const GTMModuleCard = ({ icon, label, description, angle, color, radius }: GTMModuleCardProps) => {
   const { x, y } = getPos(angle, radius);
   
   return (
@@ -48,7 +47,7 @@ const GTMModuleCard = ({ icon: Icon, label, description, angle, color, radius }:
           transition: 'box-shadow 0.3s ease-in-out',
         }}
       >
-        <Icon className={`w-5 h-5 ${color} mb-1`} />
+        {icon}
         <h3 className="text-xs font-semibold text-center text-gray-800">{label}</h3>
         <p className="text-[9px] text-center text-gray-500 mt-0.5 leading-tight">{description}</p>
       </div>
