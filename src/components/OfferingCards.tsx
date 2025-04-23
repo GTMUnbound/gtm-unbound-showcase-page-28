@@ -1,8 +1,8 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import OfferingModal from "./OfferingModal";
 
+// Types remain unchanged
 type OfferingType = "diy" | "dfy" | "expert";
 
 interface OfferingCardProps {
@@ -13,15 +13,32 @@ interface OfferingCardProps {
   onClick: (type: OfferingType) => void;
 }
 
-const OfferingCard = ({ emoji, title, description, type, onClick }: OfferingCardProps) => {
+// New: Gradient background for emoji, pulse effect on hover
+const OfferingCard = ({
+  emoji,
+  title,
+  description,
+  type,
+  onClick,
+}: OfferingCardProps) => {
   return (
     <motion.div
-      className="hover-card bg-white rounded-xl p-8 text-center shadow-md border border-pink-100 
-                hover:border-gtm-pink transition-all group cursor-pointer"
-      whileHover={{ scale: 1.03 }}
+      className="hover-card bg-white rounded-xl p-8 text-center shadow-md border border-pink-100 hover:border-gtm-pink transition-all group cursor-pointer flex flex-col items-center"
+      whileHover={{ scale: 1.04, y: -6 }}
       onClick={() => onClick(type)}
     >
-      <div className="text-4xl mb-2 transition-transform group-hover:scale-110">{emoji}</div>
+      <motion.div
+        className="flex items-center justify-center mb-3 relative"
+        initial={{ scale: 1 }}
+        whileHover={{ scale: 1.08, rotate: 2 }}
+        transition={{ type: "spring", stiffness: 250, damping: 18 }}
+      >
+        {/* Pink gradient glow behind emoji */}
+        <span className="absolute inset-0 h-16 w-16 rounded-full bg-gradient-to-br from-pink-100 via-gtm-pink/50 to-gtm-coral/80 blur-lg z-0 opacity-80 pointer-events-none" />
+        <span className="relative z-10 text-5xl md:text-5xl select-none" style={{ fontFamily: "apple color emoji,Segoe UI Emoji,NotoColorEmoji,Segoe UI Symbol,sans-serif" }}>
+          {emoji}
+        </span>
+      </motion.div>
       <h3 className="text-xl font-semibold mb-2 group-hover:text-gtm-pink transition-colors">{title}</h3>
       <p className="text-gray-500 mb-2">{description}</p>
     </motion.div>
