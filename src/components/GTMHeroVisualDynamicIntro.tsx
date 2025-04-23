@@ -58,28 +58,28 @@ const GTMHeroVisualDynamicIntro = () => {
     return () => window.removeEventListener("resize", handler);
   }, []);
 
-  // Optimized sizes for better proportions
-  const ORBIT_RADIUS = sm ? 130 : 200;
-  const CENTER_SIZE = sm ? 120 : 160;
-  const PANEL_W = sm ? 110 : 130;
-  const PANEL_H = sm ? 65 : 75;
+  // Optimized sizes for better proportions and balance
+  const ORBIT_RADIUS = sm ? 130 : 200; // Consistent orbit radius
+  const CENTER_SIZE = sm ? 120 : 160;  // Center GTM Unbound size
+  const PANEL_W = sm ? 110 : 130;      // Card width
+  const PANEL_H = sm ? 65 : 75;        // Card height
 
   return (
     <div className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center select-none mx-auto">
-      {/* Enhanced orbital glow */}
+      {/* Enhanced orbital glow with pulsing effect */}
       <motion.div
         className="absolute rounded-full glass-morphism bg-white/10 border-[2.5px] border-pink-100"
         initial={{ scale: 0.8, opacity: 0.7 }}
         animate={{ 
-          scale: [1, 1.02, 1],
+          scale: [1, 1.03, 1],
           opacity: [1, 0.9, 1],
           boxShadow: [
             "0 0 64px 2px rgba(255,180,194,0.22)",
-            "0 0 74px 4px rgba(255,180,194,0.28)",
+            "0 0 74px 5px rgba(255,180,194,0.30)",
             "0 0 64px 2px rgba(255,180,194,0.22)"
           ]
         }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
         style={{
           width: sm ? 340 : 460,
           height: sm ? 340 : 460,
@@ -104,7 +104,7 @@ const GTMHeroVisualDynamicIntro = () => {
             scale: [1, 1.05, 1],
             boxShadow: [
               "0 0 12px 3px #ffd5e7, 0 0 0 #fde1d3",
-              "0 0 22px 8px #ffb4c270, 0 0 3px #fde1d3",
+              "0 0 26px 10px #ffb4c270, 0 0 5px #fde1d3",
               "0 0 12px 3px #ffe8ed, 0 0 0 #fde1d3",
             ],
           }}
@@ -161,11 +161,11 @@ const GTMHeroVisualDynamicIntro = () => {
             initial={{ opacity: 0, scale: 0.4 }}
             animate={{
               opacity: 1,
-              scale: hoveredIdx === idx ? 1.12 : 1,
-              filter: hoveredIdx === idx ? "blur(0px) brightness(1.13)" : "blur(0px)",
+              scale: hoveredIdx === idx ? 1.15 : 1,
+              filter: hoveredIdx === idx ? "blur(0px) brightness(1.15)" : "blur(0px)",
               boxShadow: hoveredIdx === idx
-                ? "0 7px 24px 1px #ffc5e5, 0 0 11px #fde1d3"
-                : "0 3px 13px 2px #fed7e2b2",
+                ? "0 8px 28px 3px #ffc5e5, 0 0 14px #fde1d3"
+                : "0 3px 15px 2px #fed7e2b2",
             }}
             transition={{
               delay: 0.33 + idx * 0.14,
@@ -181,7 +181,7 @@ const GTMHeroVisualDynamicIntro = () => {
                 w-full h-full flex flex-col justify-center items-center 
                 border border-pink-100 bg-white/95 backdrop-blur-lg
                 shadow-lg rounded-xl transition-shadow
-                ${hoveredIdx === idx ? "ring-2 ring-gtm-pink/70" : ""}
+                ${hoveredIdx === idx ? "ring-2 ring-gtm-pink/80" : ""}
               `}
               style={{
                 transform: "rotate(-" + item.position.angle + "deg)", // Counter-rotate the content
@@ -211,9 +211,15 @@ const GTMHeroVisualDynamicIntro = () => {
       <svg className="absolute inset-0 w-full h-full z-1 pointer-events-none">
         <defs>
           <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(255,107,157,0.3)" />
-            <stop offset="100%" stopColor="rgba(255,107,157,0.1)" />
+            <stop offset="0%" stopColor="rgba(255,107,157,0.5)" />
+            <stop offset="100%" stopColor="rgba(255,107,157,0.15)" />
           </linearGradient>
+          
+          {/* Add glow filter for lines */}
+          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="2" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
         </defs>
         
         {moduleItems.map((item, idx) => {
@@ -231,12 +237,13 @@ const GTMHeroVisualDynamicIntro = () => {
               x2={targetX}
               y2={targetY}
               stroke="url(#lineGradient)"
-              strokeWidth="1.5"
+              strokeWidth="1.8"
               strokeDasharray="3,3"
+              filter="url(#glow)"
               initial={{ opacity: 0 }}
               animate={{ 
-                opacity: [0.6, 0.8, 0.6],
-                strokeWidth: ["1.5px", "2px", "1.5px"]
+                opacity: [0.7, 0.9, 0.7],
+                strokeWidth: ["1.8px", "2.2px", "1.8px"]
               }}
               transition={{ 
                 delay: 0.5 + idx * 0.1, 
