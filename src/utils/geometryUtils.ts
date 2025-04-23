@@ -7,13 +7,11 @@ export function getPos(angle: number, radius: number) {
   };
 }
 
-// Increased visualSize for more space
-export const visualSize = 460;
+// Optimized measurements for better visual balance
+export const visualSize = 580; // Slightly increased for better proportions
 export const center = visualSize / 2;
-// Increased module radius for better spacing
-export const moduleRadius = 165;
-// Slightly larger center tile
-export const centerTileSize = 130;
-// Slightly larger module cards
-export const moduleCardW = 118;
-export const moduleCardH = 72;
+export const moduleRadius = 210; // Increased for better spacing
+export const centerTileSize = 146; // Keep center dominant but balanced
+export const moduleCardW = 132; // Slightly wider cards
+export const moduleCardH = 82; // Slightly taller for better text display
+
