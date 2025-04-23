@@ -1,4 +1,3 @@
-
 import { cn } from '@/lib/utils';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { motion } from 'framer-motion';
@@ -10,7 +9,7 @@ interface ExpertCardProps {
   role: string;
   expertise: string[];
   imageSrc?: string;
-  presentTag: string; // changed from `company`
+  presentTag: string;
   bio?: string;
   linkedIn?: string;
   className?: string;
@@ -26,6 +25,22 @@ const ExpertCard = ({
   linkedIn,
   className
 }: ExpertCardProps) => {
+  // Function to map specific names to their new tags
+  const getCustomTag = (name: string) => {
+    switch(name) {
+      case 'Aditi Agarwal':
+        return 'Founder of GTM Unbound';
+      case 'Manik Mehta':
+        return 'Founder of Omnify';
+      case 'Anil Advani':
+        return 'Founder and Managing Partner, Inventus Law & Avatar Advisors';
+      default:
+        return presentTag;
+    }
+  };
+
+  const customTag = getCustomTag(name);
+
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
@@ -80,7 +95,7 @@ const ExpertCard = ({
                     wordBreak: 'break-word'
                   }}
                 >
-                  {presentTag}
+                  {customTag}
                 </span>
               </div>
             </div>
