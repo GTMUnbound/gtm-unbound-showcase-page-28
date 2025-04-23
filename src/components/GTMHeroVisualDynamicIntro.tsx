@@ -1,24 +1,40 @@
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Focus } from "lucide-react";
 
-const ORBIT_PANELS = [
+// Define module items
+const moduleItems = [
   {
-    label: "Matched Expert Assigned",
-    desc: "Expert matched to your GTM stage.",
+    label: "Channels",
+    description: "Figure out what actually converts",
+    position: { angle: -45 },
+    icon: "📢"
   },
   {
-    label: "Strategy Sprint in Progress",
-    desc: "Live execution with clear goals.",
+    label: "Events",
+    description: "Founder circles, mixers & more",
+    position: { angle: 45 },
+    icon: "📅"
   },
   {
-    label: "Channel Breakdown:\nSEO + Paid",
-    desc: "Growth channels mapped, tracked.",
+    label: "Playbooks",
+    description: "Startup-proven GTM strategies",
+    position: { angle: -135 },
+    icon: "📘"
   },
   {
-    label: "Launch Checklist Ready",
-    desc: "Your GTM roadmap, step by step.",
+    label: "Execution",
+    description: "Move from plan to traction",
+    position: { angle: 135 },
+    icon: "🔧"
   },
+  {
+    label: "Experts",
+    description: "Benefit from GTM wisdom",
+    position: { angle: -225 },
+    icon: "👨‍💼"
+  }
 ];
 
 // Used for circular positioning
@@ -43,23 +59,30 @@ const GTMHeroVisualDynamicIntro = () => {
     window.addEventListener("resize", handler);
     return () => window.removeEventListener("resize", handler);
   }, []);
-  const ORBIT_RADIUS = sm ? 90 : 120;
-  const CENTER_SIZE = sm ? 90 : 136;
-  const PANEL_W = sm ? 118 : 146;
-  const PANEL_H = sm ? 62 : 72;
-
-  const ORBIT_Z = 4;
-  const PANEL_ANGLE_OFFSETS = [-60, 20, 100, 180]; // Tighter, perfect arc spacing
+  
+  const ORBIT_RADIUS = sm ? 110 : 180;
+  const CENTER_SIZE = sm ? 100 : 146;
+  const PANEL_W = sm ? 120 : 140;
+  const PANEL_H = sm ? 70 : 80;
 
   return (
     <div
-      className={`
-        relative w-[340px] h-[340px] md:w-[420px] md:h-[420px]
-        flex items-center 
-        ${sm ? "justify-center" : "justify-end md:justify-center"} 
-        select-none mx-auto md:mx-0
-      `}
+      className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center select-none mx-auto"
     >
+      {/* The uploaded hero image in background */}
+      <motion.div
+        className="absolute inset-0 z-0 opacity-90"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.9 }}
+        transition={{ duration: 0.8 }}
+      >
+        <img 
+          src="/lovable-uploads/83527572-0b9f-4931-b06b-a722a6340c68.png" 
+          alt="GTM Unbound Hub Diagram" 
+          className="w-full h-full object-contain"
+        />
+      </motion.div>
+
       {/* Soft background orbital glow */}
       <motion.div
         className="absolute rounded-full glass-morphism bg-white/10 border-[2.5px] border-pink-100 shadow-[0_0_64px_2px_rgba(255,180,194,0.22)]"
@@ -67,32 +90,8 @@ const GTMHeroVisualDynamicIntro = () => {
         animate={{ scale: 1, opacity: 1, filter: "blur(0.7px)" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         style={{
-          width: sm ? 200 : 285,
-          height: sm ? 200 : 285,
-        }}
-      />
-
-      {/* Animated glass "orbit" ring */}
-      <motion.div
-        className="absolute rounded-full border border-pink-200/20 pointer-events-none"
-        style={{
-          width: sm ? 240 : 314,
-          height: sm ? 240 : 314,
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-          boxShadow:
-            "0 0 32px 4px #ffdcec45, 0 0 0 32px #fde1d309",
-          zIndex: 1,
-        }}
-        animate={{
-          opacity: [0.15, 0.3, 0.2],
-          filter: ["blur(1.5px)", "blur(2px)", "blur(1.5px)"],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
+          width: sm ? 300 : 400,
+          height: sm ? 300 : 400,
         }}
       />
 
@@ -137,29 +136,26 @@ const GTMHeroVisualDynamicIntro = () => {
             <Focus className="w-8 h-8 md:w-10 md:h-10 text-gtm-pink border-2 border-pink-200 rounded-full bg-white/40 shadow-[0_0_18px_3px_#ffdcec]" />
           </motion.div>
           <span className="block font-bold text-base md:text-lg text-gtm-dark opacity-90">
-            GTM OS
+            GTM Unbound
+          </span>
+          <span className="block text-xs text-gray-500">
+            Systems. Strategy. Execution
           </span>
         </motion.div>
       </motion.div>
-      {/* Orbiting panels with improved angular distribution and entry animation */}
-      {ORBIT_PANELS.map((panel, idx) => {
-        // 360 deg divided evenly, starting top (use tighter offset for better fit)
-        const total = ORBIT_PANELS.length;
-        const angle =
-          (360 / total) * idx - 45; // Start -45 deg for a top-right leading orbit, more symmetric
-        const { x, y } = getOrbitPosition(ORBIT_RADIUS, angle);
+
+      {/* Orbiting modules with better spacing */}
+      {moduleItems.map((item, idx) => {
+        const { x, y } = getOrbitPosition(ORBIT_RADIUS, item.position.angle);
 
         return (
           <motion.div
-            key={panel.label}
+            key={item.label}
             className={`
               absolute flex flex-col items-center justify-center
               cursor-pointer drop-shadow-lg
-              will-change-transform
               transition-all
-              ${hoveredIdx === idx
-                ? "z-20 scale-110 shadow-xl"
-                : "z-10"}
+              ${hoveredIdx === idx ? "z-20" : "z-10"}
             `}
             style={{
               left: `calc(50% + ${x}px)`,
@@ -173,14 +169,13 @@ const GTMHeroVisualDynamicIntro = () => {
               scale: 0.4,
               x: 0,
               y: 0,
-              filter: "blur(8px)",
             }}
             animate={{
               opacity: 1,
               scale: hoveredIdx === idx ? 1.12 : 1,
               filter: hoveredIdx === idx
-                ? "blur(0.5px) brightness(1.13)"
-                : "blur(0.5px)",
+                ? "blur(0px) brightness(1.13)"
+                : "blur(0px)",
               boxShadow: hoveredIdx === idx
                 ? "0 7px 24px 1px #ffc5e5, 0 0 11px #fde1d3"
                 : "0 3px 13px 2px #fed7e2b2",
@@ -190,47 +185,73 @@ const GTMHeroVisualDynamicIntro = () => {
               type: "spring",
               stiffness: 170,
               damping: 19,
-              duration: 0.77,
             }}
             onMouseEnter={() => setHoveredIdx(idx)}
             onMouseLeave={() => setHoveredIdx(null)}
           >
             <div
               className={`
-                w-full h-full flex flex-col justify-center items-center glass-morphism
-                border border-pink-100 bg-white/80 backdrop-blur-lg
-                shadow-lg rounded-2xl transition-shadow
+                w-full h-full flex flex-col justify-center items-center 
+                border border-pink-100 bg-white/95 backdrop-blur-lg
+                shadow-lg rounded-xl transition-shadow
                 ${hoveredIdx === idx ? "ring-2 ring-gtm-pink/70" : ""}
               `}
             >
-              <span
-                className="block text-[15px] md:text-base font-semibold text-gtm-dark drop-shadow-pink text-center whitespace-pre-line"
-                style={{
-                  textShadow:
-                    hoveredIdx === idx
-                      ? "0 0 13px #ffdde1"
-                      : "0 0 2px #fde1d3",
-                }}
-              >
-                {panel.label}
+              <div className="text-2xl mb-1">{item.icon}</div>
+              <span className="block text-base font-semibold text-gtm-dark text-center">
+                {item.label}
               </span>
               <motion.span
-                className="block text-xs text-pink-400 pt-1 px-1 font-medium"
+                className="block text-xs text-gray-600 pt-1 px-2 font-medium text-center"
                 initial={false}
                 animate={{
                   opacity: hoveredIdx === idx ? 1 : 0,
-                  height: hoveredIdx === idx ? "1.3em" : 0,
-                  filter: hoveredIdx === idx ? "blur(0px)" : "blur(1.5px)",
+                  height: hoveredIdx === idx ? "auto" : "0",
                 }}
                 transition={{ duration: 0.28 }}
-                aria-hidden={hoveredIdx !== idx}
               >
-                {panel.desc}
+                {item.description}
               </motion.span>
             </div>
           </motion.div>
         );
       })}
+
+      {/* SVG for connector lines */}
+      <svg className="absolute inset-0 w-full h-full z-1 pointer-events-none">
+        <defs>
+          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="rgba(255,107,157,0.4)" />
+            <stop offset="100%" stopColor="rgba(255,107,157,0.1)" />
+          </linearGradient>
+        </defs>
+        
+        {moduleItems.map((item, idx) => {
+          const { x: moduleX, y: moduleY } = getOrbitPosition(ORBIT_RADIUS, item.position.angle);
+          // Start position (center)
+          const centerX = "50%";
+          const centerY = "50%";
+          // Target position (module)
+          const targetX = `calc(50% + ${moduleX}px)`;
+          const targetY = `calc(50% + ${moduleY}px)`;
+          
+          return (
+            <motion.line
+              key={`line-${idx}`}
+              x1={centerX}
+              y1={centerY}
+              x2={targetX}
+              y2={targetY}
+              stroke="url(#lineGradient)"
+              strokeWidth="1.5"
+              strokeDasharray="3,3"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.6 }}
+              transition={{ delay: 0.5 + idx * 0.1, duration: 0.8 }}
+            />
+          );
+        })}
+      </svg>
     </div>
   );
 };
