@@ -3,41 +3,41 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Focus } from "lucide-react";
 
-// Define module items - removed duplicates and adjusted positions
+// Define module items with even angular spacing (360° / 5 = 72° between each item)
 const moduleItems = [
+  {
+    label: "Playbooks",
+    description: "Startup-proven GTM strategies",
+    position: { angle: 0 }, // Top
+    icon: "📘"
+  },
   {
     label: "Channels",
     description: "Figure out what actually converts",
-    position: { angle: 0 },
+    position: { angle: 72 }, // Top right
     icon: "📢"
   },
   {
     label: "Events",
     description: "Founder circles, mixers & more",
-    position: { angle: 72 },
+    position: { angle: 144 }, // Bottom right
     icon: "📅"
-  },
-  {
-    label: "Playbooks",
-    description: "Startup-proven GTM strategies",
-    position: { angle: 144 },
-    icon: "📘"
   },
   {
     label: "Execution",
     description: "Move from plan to traction",
-    position: { angle: 216 },
+    position: { angle: 216 }, // Bottom left
     icon: "🔧"
   },
   {
     label: "Experts",
     description: "Benefit from GTM wisdom",
-    position: { angle: 288 },
+    position: { angle: 288 }, // Top left
     icon: "👨‍💼"
   }
 ];
 
-// Used for circular positioning
+// Enhanced orbit position calculation with rotation
 function getOrbitPosition(radius: number, angleDeg: number) {
   const angle = (angleDeg * Math.PI) / 180;
   return {
@@ -48,8 +48,8 @@ function getOrbitPosition(radius: number, angleDeg: number) {
 
 const GTMHeroVisualDynamicIntro = () => {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
-
-  // Responsive orbit radii
+  
+  // Responsive sizes
   const [sm, setSm] = useState(false);
   React.useEffect(() => {
     const handler = () => setSm(window.innerWidth < 640);
@@ -57,8 +57,8 @@ const GTMHeroVisualDynamicIntro = () => {
     window.addEventListener("resize", handler);
     return () => window.removeEventListener("resize", handler);
   }, []);
-  
-  // Adjusted sizes for better visual hierarchy
+
+  // Optimized sizes for better proportions
   const ORBIT_RADIUS = sm ? 130 : 200;
   const CENTER_SIZE = sm ? 120 : 160;
   const PANEL_W = sm ? 110 : 130;
@@ -66,19 +66,27 @@ const GTMHeroVisualDynamicIntro = () => {
 
   return (
     <div className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center select-none mx-auto">
-      {/* Soft background orbital glow */}
+      {/* Enhanced orbital glow */}
       <motion.div
-        className="absolute rounded-full glass-morphism bg-white/10 border-[2.5px] border-pink-100 shadow-[0_0_64px_2px_rgba(255,180,194,0.22)]"
+        className="absolute rounded-full glass-morphism bg-white/10 border-[2.5px] border-pink-100"
         initial={{ scale: 0.8, opacity: 0.7 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        animate={{ 
+          scale: [1, 1.02, 1],
+          opacity: [1, 0.9, 1],
+          boxShadow: [
+            "0 0 64px 2px rgba(255,180,194,0.22)",
+            "0 0 74px 4px rgba(255,180,194,0.28)",
+            "0 0 64px 2px rgba(255,180,194,0.22)"
+          ]
+        }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         style={{
           width: sm ? 340 : 460,
           height: sm ? 340 : 460,
         }}
       />
 
-      {/* Center GTM OS - made more prominent */}
+      {/* Centered GTM Unbound with enhanced animation */}
       <motion.div
         className="absolute inset-0 flex items-center justify-center z-20"
         initial={{ scale: 0.7, opacity: 0 }}
@@ -96,7 +104,7 @@ const GTMHeroVisualDynamicIntro = () => {
             scale: [1, 1.05, 1],
             boxShadow: [
               "0 0 12px 3px #ffd5e7, 0 0 0 #fde1d3",
-              "0 0 22px 8px #ffb4c270,0 0 3px #fde1d3",
+              "0 0 22px 8px #ffb4c270, 0 0 3px #fde1d3",
               "0 0 12px 3px #ffe8ed, 0 0 0 #fde1d3",
             ],
           }}
@@ -130,7 +138,7 @@ const GTMHeroVisualDynamicIntro = () => {
         </motion.div>
       </motion.div>
 
-      {/* Orbiting modules with evenly distributed spacing */}
+      {/* Orbiting modules with enhanced hover effects */}
       {moduleItems.map((item, idx) => {
         const { x, y } = getOrbitPosition(ORBIT_RADIUS, item.position.angle);
 
@@ -154,9 +162,7 @@ const GTMHeroVisualDynamicIntro = () => {
             animate={{
               opacity: 1,
               scale: hoveredIdx === idx ? 1.12 : 1,
-              filter: hoveredIdx === idx
-                ? "blur(0px) brightness(1.13)"
-                : "blur(0px)",
+              filter: hoveredIdx === idx ? "blur(0px) brightness(1.13)" : "blur(0px)",
               boxShadow: hoveredIdx === idx
                 ? "0 7px 24px 1px #ffc5e5, 0 0 11px #fde1d3"
                 : "0 3px 13px 2px #fed7e2b2",
@@ -198,7 +204,7 @@ const GTMHeroVisualDynamicIntro = () => {
         );
       })}
 
-      {/* Connector lines with improved visibility */}
+      {/* Enhanced connector lines with pulsing effect */}
       <svg className="absolute inset-0 w-full h-full z-1 pointer-events-none">
         <defs>
           <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -225,8 +231,16 @@ const GTMHeroVisualDynamicIntro = () => {
               strokeWidth="1.5"
               strokeDasharray="3,3"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
-              transition={{ delay: 0.5 + idx * 0.1, duration: 0.8 }}
+              animate={{ 
+                opacity: [0.6, 0.8, 0.6],
+                strokeWidth: ["1.5px", "2px", "1.5px"]
+              }}
+              transition={{ 
+                delay: 0.5 + idx * 0.1, 
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
             />
           );
         })}
