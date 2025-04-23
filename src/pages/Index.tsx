@@ -1,6 +1,8 @@
-import React, { useState, useRef } from 'react';
+
+import React, { useState, useRef, useEffect } from 'react';
 import Section from '@/components/Section';
-import Navbar from '@/components/Navbar';
+import AnimatedSection from '@/components/AnimatedSection';
+import AnimatedNavbar from '@/components/AnimatedNavbar';
 import SectionHeader from '@/components/SectionHeader';
 import TestimonialCard from '@/components/TestimonialCard';
 import FeatureCard from '@/components/FeatureCard';
@@ -43,6 +45,7 @@ import StartupsSection from "@/components/StartupsSection";
 import FounderTestimonialsSection from "@/components/FounderTestimonialsSection";
 import GTMJourneyModal from '@/components/GTMJourneyModal';
 import AnimatedJourneySteps from '@/components/AnimatedJourneySteps';
+import { fadeUpVariants, staggerContainer, softScaleVariants } from '@/utils/AnimationUtils';
 
 const Index = () => {
   const offeringsRef = useRef<HTMLDivElement>(null);
@@ -53,6 +56,34 @@ const Index = () => {
 
   const [email, setEmail] = useState('');
   const [newsletterEmail, setNewsletterEmail] = useState('');
+
+  // Create a ref for scroll tracking
+  const [activeSection, setActiveSection] = useState('home');
+  
+  // Track scroll position for active section highlighting
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 150; // Add offset for better UX
+      
+      // Get all section elements
+      const sections = document.querySelectorAll('section[id]');
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          setActiveSection(section.id);
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -233,7 +264,7 @@ const Index = () => {
     {
       name: "Aditi Agarwal",
       role: "Founder",
-      presentTag: "GTM Unbound – Founder",
+      presentTag: "Founder of GTM Unbound",
       expertise: ["SaaS GTM", "Market Expansion", "AI Go-to-Market"],
       imageSrc: "/lovable-uploads/e3a794e3-a086-4777-a3d6-bc8d1b6913a4.png",
       bio: "Founded GTM Unbound to help SaaS startups scale internationally. Previously led market expansion at leading tech companies, helping B2B SaaS companies enter new markets and achieve 3x growth. Specializes in US-India corridor strategies and GTM for AI products.",
@@ -242,7 +273,7 @@ const Index = () => {
     {
       name: "Manik Mehta",
       role: "Founder",
-      presentTag: "GTM Unbound – GTM Advisor",
+      presentTag: "Founder of Omnify",
       expertise: ["AI/ML GTM", "Product Strategy", "Enterprise Sales"],
       imageSrc: "/lovable-uploads/125c2005-34c0-40c4-bb26-e6bb24548b88.png",
       bio: "Founder at Omnify with extensive experience in product-led growth. Scaled multiple products from $0 to $50M ARR through innovative GTM strategies and market positioning. Deep expertise in enterprise positioning, technical product marketing, and AI/ML implementation.",
@@ -251,7 +282,7 @@ const Index = () => {
     {
       name: "Anil Advani",
       role: "Founder and Managing Partner",
-      presentTag: "Legal Partner @ GTM Unbound",
+      presentTag: "Founder and Managing Partner, Inventus Law & Avatar Advisors",
       expertise: ["Legal GTM", "Startup Law", "International Markets"],
       imageSrc: "/lovable-uploads/d698be72-374a-4b64-bc65-8ac84270c1de.png",
       bio: "Managing Partner at Inventus Law and Avatar Advisor. Helps startups navigate complex legal aspects of GTM strategy across global markets. Over 20 years of experience in US-India cross-border business strategy, startup formation, and international expansion.",
@@ -358,32 +389,6 @@ const Index = () => {
     }
   ];
 
-  // Update the experts section description
-  const ExpertsSection = () => (
-    <Section id="experts" className="py-20 sm:py-24">
-      <SectionHeader 
-        title="You Don't Know Who Can Guide You?"
-        subtitle="No advisors. No guesswork. Just proven GTM builders who know what moves the needle."
-        centered
-      />
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10 max-w-7xl mx-auto px-4">
-        {experts.map((expert, index) => (
-          <ExpertCard 
-            key={index}
-            name={expert.name}
-            role={expert.role}
-            expertise={expert.expertise}
-            imageSrc={expert.imageSrc}
-            presentTag={expert.presentTag}
-            bio={expert.bio}
-            linkedIn={expert.linkedIn}
-          />
-        ))}
-      </div>
-    </Section>
-  );
-
   // Modal state for pricing
   const [pricingModalOpen, setPricingModalOpen] = useState(false);
   const [activePlan, setActivePlan] = useState<"membership" | "plus" | "pro" | null>(null);
@@ -416,53 +421,88 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-[#F4F5F7]">
-      <Navbar sections={sections} />
+      {/* Use our new animated navbar */}
+      <AnimatedNavbar sections={sections} />
+
       {/* Hero Section */}
-      <Section id="home" className="pt-24 pb-14 bg-white">
+      <AnimatedSection id="home" className="pt-24 pb-14 bg-white" animation="fadeIn">
         <div className="container mx-auto px-4 md:px-6 relative">
           {/* Refined HERO: Two columns, right column perfectly centered, with matching GTMDashboard */}
           <div className="relative flex flex-col md:flex-row items-start md:items-center gap-12">
-            <div className="w-full md:w-3/5">
+            <motion.div 
+              className="w-full md:w-3/5"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+            >
               <motion.h1 
                 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gtm-dark mb-4 leading-tight"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                variants={fadeUpVariants}
+                initial="hidden"
+                animate="visible"
+                custom={0.1}
               >
                 Go-To-Market, Without Guesswork
               </motion.h1>
               <motion.p 
                 className="text-lg md:text-xl text-gray-600 mb-7 max-w-2xl font-normal"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                variants={fadeUpVariants}
+                initial="hidden"
+                animate="visible"
+                custom={0.3}
               >
                 The complete GTM layer for startups — strategy, execution, and expertise in one place.
               </motion.p>
-              <div className="mb-8">
+              <motion.div
+                className="mb-8"
+                variants={fadeUpVariants}
+                initial="hidden"
+                animate="visible"
+                custom={0.5}
+              >
                 <GTMStructuredMessage />
-              </div>
+              </motion.div>
               <motion.div 
                 className="flex flex-wrap gap-4 mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1.2 }}
+                variants={fadeUpVariants}
+                initial="hidden"
+                animate="visible"
+                custom={0.7}
               >
-                <button 
+                <motion.button 
                   onClick={scrollToOfferings}
-                  className="px-6 py-3 rounded-2xl bg-gradient-to-r from-gtm-pink to-pink-400 text-white font-semibold shadow-pink-100 shadow-md hover:shadow-gtm-pink/40 transition-shadow border-0"
+                  className="px-6 py-3 rounded-2xl bg-gradient-to-r from-gtm-pink to-pink-400 text-white font-semibold shadow-pink-100 shadow-md hover:shadow-gtm-pink/40 transition-shadow border-0 relative overflow-hidden"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
                 >
-                  See How It Works
-                </button>
+                  <span className="relative z-10">See How It Works</span>
+                  <motion.div 
+                    className="absolute inset-0 bg-white/10"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '100%' }}
+                    transition={{ duration: 0.8, ease: 'easeInOut' }}
+                  />
+                </motion.button>
               </motion.div>
-            </div>
-            {/* Polished, centered GTMDashboard */}
-            <div className="w-full md:w-2/5 flex justify-center items-center md:items-center">
+            </motion.div>
+            
+            {/* Polished, centered GTMDashboard with animation */}
+            <motion.div 
+              className="w-full md:w-2/5 flex justify-center items-center md:items-center"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ 
+                duration: 0.8,
+                type: "spring",
+                stiffness: 100,
+                damping: 15
+              }}
+            >
               <GTMDashboard />
-            </div>
+            </motion.div>
           </div>
         </div>
-      </Section>
+      </AnimatedSection>
 
       {/* Anchor sections for GTMDashboard navigation */}
       <span id="playbooks" />
@@ -471,15 +511,15 @@ const Index = () => {
       <span id="execution" />
       <span id="experts" />
 
-      <Section ref={offeringsRef} id="offerings" className="bg-white pt-0 pb-14">
+      <AnimatedSection ref={offeringsRef} id="offerings" className="bg-white pt-0 pb-14" animation="fadeUp" delay={0.1}>
         <SectionHeader 
           title="Systems. Strategy. Execution."
           centered
         />
         <OfferingCards />
-      </Section>
+      </AnimatedSection>
 
-      <Section id="how-we-help" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16">
+      <AnimatedSection id="how-we-help" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16" animation="fadeUp" delay={0.2}>
         <SectionHeader
           title="From Signal to Strategy"
           centered
@@ -488,58 +528,86 @@ const Index = () => {
           Startups begin with a diagnostic. We match them to GTM experts, launch sprints, and drive clarity.
         </div>
         <AnimatedJourneySteps />
-      </Section>
+      </AnimatedSection>
 
-      <Section id="experts" className="py-14 md:py-20">
+      <AnimatedSection id="experts" className="py-14 md:py-20" animation="fadeUp" delay={0.2}>
         <SectionHeader 
-          title="Work With Operators Who’ve Done It"
+          title="Work With Operators Who've Done It"
           subtitle="Not advisors. Not theory. Just proven specialists with execution credibility."
           centered
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-9 max-w-7xl mx-auto px-4">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-9 max-w-7xl mx-auto px-4"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {experts.map((expert, index) => (
-            <ExpertCard 
+            <motion.div
               key={index}
-              name={expert.name}
-              role={expert.role}
-              expertise={expert.expertise}
-              imageSrc={expert.imageSrc}
-              presentTag={expert.presentTag}
-              bio={expert.bio}
-              linkedIn={expert.linkedIn}
-            />
+              variants={softScaleVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <ExpertCard 
+                name={expert.name}
+                role={expert.role}
+                expertise={expert.expertise}
+                imageSrc={expert.imageSrc}
+                presentTag={expert.presentTag}
+                bio={expert.bio}
+                linkedIn={expert.linkedIn}
+              />
+            </motion.div>
           ))}
-        </div>
-      </Section>
+        </motion.div>
+      </AnimatedSection>
 
-      <Section id="community" className="bg-pink-50 pt-14 pb-14 md:pt-16 md:pb-16">
+      <AnimatedSection id="community" className="bg-pink-50 pt-14 pb-14 md:pt-16 md:pb-16" animation="fadeUp" delay={0.3}>
         <SectionHeader 
           title="Events That Move Conversations — and Founders — Forward"
           subtitle="High-signal, zero-fluff environments for operators to connect, sharpen, and grow."
           centered
         />
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {eventTypes.map((eventType, index) => (
-              <EventTypeCard
+              <motion.div
                 key={index}
-                title={eventType.title}
-                description={eventType.description}
-                bullets={eventType.bullets}
-                images={eventType.images}
-                highlightColor={eventType.highlightColor}
-                icon={eventType.icon}
-                label={eventType.label}
-              />
+                variants={softScaleVariants}
+                whileHover="hover"
+              >
+                <EventTypeCard
+                  title={eventType.title}
+                  description={eventType.description}
+                  bullets={eventType.bullets}
+                  images={eventType.images}
+                  highlightColor={eventType.highlightColor}
+                  icon={eventType.icon}
+                  label={eventType.label}
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
           <div className="flex justify-center">
-            <GradientButton>See Upcoming Events</GradientButton>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <GradientButton>See Upcoming Events</GradientButton>
+            </motion.div>
           </div>
         </div>
-      </Section>
+      </AnimatedSection>
       
-      <Section id="pricing" className="bg-white pt-14 pb-14 md:pt-20 md:pb-20">
+      <AnimatedSection id="pricing" className="bg-white pt-14 pb-14 md:pt-20 md:pb-20" animation="fadeUp" delay={0.2}>
         <SectionHeader 
           title="Outcome-Based Pricing That Scales With You"
           centered
@@ -561,62 +629,117 @@ const Index = () => {
           open={talkToTeamOpen}
           onOpenChange={setTalkToTeamOpen}
         />
-      </Section>
+      </AnimatedSection>
 
       {/* 🚀 Startups We've Worked With */}
-      <StartupsSection />
+      <AnimatedSection className="bg-gray-50 py-16" animation="fadeUp" delay={0.3}>
+        <StartupsSection />
+      </AnimatedSection>
 
       {/* 🗣️ Founder Testimonials */}
-      <FounderTestimonialsSection />
+      <AnimatedSection className="bg-white" animation="fadeUp" delay={0.2}>
+        <FounderTestimonialsSection />
+      </AnimatedSection>
 
-      <Section id="why-gtm" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16">
+      <AnimatedSection id="why-gtm" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16" animation="fadeUp" delay={0.3}>
         <SectionHeader 
           title="Not Advice. Not Fluff. Real GTM Infrastructure."
           centered
         />
         <div className="max-w-3xl mx-auto px-4">
           <p className="text-center text-lg text-gray-600 mb-8">
-            You’ve seen the threads. The PDFs. The panels.<br />
+            You've seen the threads. The PDFs. The panels.<br />
             Now get the GTM system that founders stick with:
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-8">
-            <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover-card">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-8"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <motion.div 
+              className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover-card"
+              variants={softScaleVariants}
+              whileHover="hover"
+            >
               <span className="text-2xl mb-4">🔄</span>
               <div className="font-semibold">Systems <span className="text-gray-400">&rarr;</span> not noise</div>
-            </div>
-            <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover-card">
+            </motion.div>
+            <motion.div 
+              className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover-card"
+              variants={softScaleVariants}
+              whileHover="hover"
+            >
               <span className="text-2xl mb-4">👥</span>
               <div className="font-semibold">Operators <span className="text-gray-400">&rarr;</span> not theory</div>
-            </div>
-            <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover-card">
+            </motion.div>
+            <motion.div 
+              className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover-card"
+              variants={softScaleVariants}
+              whileHover="hover"
+            >
               <span className="text-2xl mb-4">🚀</span>
               <div className="font-semibold">Execution <span className="text-gray-400">&rarr;</span> not guesswork</div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           <div className="flex justify-center mt-8">
-            <GradientButton>Start Building &rarr;</GradientButton>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <GradientButton>Start Building &rarr;</GradientButton>
+            </motion.div>
           </div>
         </div>
-      </Section>
+      </AnimatedSection>
 
-      <Section id="cta" className="bg-gradient-to-r from-gtm-coral to-gtm-pink text-white pt-14 pb-14 md:pt-16 md:pb-16">
+      <AnimatedSection id="cta" className="bg-gradient-to-r from-gtm-coral to-gtm-pink text-white pt-14 pb-14 md:pt-16 md:pb-16" animation="fadeIn" delay={0.1}>
         <div className="max-w-3xl mx-auto text-center px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">
-            Let’s Unblock Your GTM
-          </h2>
-          <div className="flex flex-wrap justify-center gap-4 mb-10">
-            <button className="px-6 py-3 bg-white text-gtm-pink font-medium rounded-xl hover:bg-gray-100 transition-colors">
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Let's Unblock Your GTM
+          </motion.h2>
+          <motion.div 
+            className="flex flex-wrap justify-center gap-4 mb-10"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <motion.button 
+              className="px-6 py-3 bg-white text-gtm-pink font-medium rounded-xl hover:bg-gray-100 transition-colors"
+              variants={softScaleVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
               Join GTM Unbound
-            </button>
-            <button className="px-6 py-3 bg-transparent border-2 border-white text-white font-medium rounded-xl hover:bg-white/10 transition-colors">
+            </motion.button>
+            <motion.button 
+              className="px-6 py-3 bg-transparent border-2 border-white text-white font-medium rounded-xl hover:bg-white/10 transition-colors"
+              variants={softScaleVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
               Book a Call
-            </button>
-          </div>
-          <p className="text-xl">
+            </motion.button>
+          </motion.div>
+          <motion.p 
+            className="text-xl"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+          >
             Real traction starts with real GTM help.
-          </p>
+          </motion.p>
         </div>
-      </Section>
+      </AnimatedSection>
 
       <Footer />
     </div>

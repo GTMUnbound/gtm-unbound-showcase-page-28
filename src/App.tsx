@@ -9,27 +9,30 @@ import NotFound from "./pages/NotFound";
 import { AnimationProvider } from "./contexts/AnimationContext";
 import ScrollProgressBar from "./components/ScrollProgressBar";
 import CustomCursor from "./components/CustomCursor";
+import { LazyMotion, domAnimation } from "framer-motion";
 
 const queryClient = new QueryClient();
 
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <AnimationProvider>
-          <Toaster />
-          <Sonner />
-          <ScrollProgressBar />
-          <CustomCursor />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </AnimationProvider>
-      </TooltipProvider>
+      <LazyMotion features={domAnimation}>
+        <TooltipProvider>
+          <AnimationProvider>
+            <Toaster />
+            <Sonner />
+            <ScrollProgressBar />
+            <CustomCursor />
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </AnimationProvider>
+        </TooltipProvider>
+      </LazyMotion>
     </QueryClientProvider>
   );
 };
