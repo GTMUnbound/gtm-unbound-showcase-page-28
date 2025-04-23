@@ -719,20 +719,6 @@ const Index = () => {
         </div>
       </AnimatedSection>
 
-      {/* Still not sure? Section - Updated CTA text */}
-      <AnimatedSection className="bg-white py-16" animation="fadeUp" delay={0.2}>
-        <div className="max-w-3xl mx-auto text-center px-4">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">Still not sure?</h2>
-          <p className="text-lg text-gray-600 mb-8">Book a 15-min GTM Clarity Call</p>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <GradientButton>Talk to Our Team</GradientButton>
-          </motion.div>
-        </div>
-      </AnimatedSection>
-
       <Footer />
     </div>
   );

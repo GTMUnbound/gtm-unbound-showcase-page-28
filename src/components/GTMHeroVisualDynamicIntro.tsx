@@ -3,36 +3,36 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Focus } from "lucide-react";
 
-// Define module items
+// Define module items - removed duplicates and adjusted positions
 const moduleItems = [
   {
     label: "Channels",
     description: "Figure out what actually converts",
-    position: { angle: -45 },
+    position: { angle: 0 },
     icon: "📢"
   },
   {
     label: "Events",
     description: "Founder circles, mixers & more",
-    position: { angle: 45 },
+    position: { angle: 72 },
     icon: "📅"
   },
   {
     label: "Playbooks",
     description: "Startup-proven GTM strategies",
-    position: { angle: -135 },
+    position: { angle: 144 },
     icon: "📘"
   },
   {
     label: "Execution",
     description: "Move from plan to traction",
-    position: { angle: 135 },
+    position: { angle: 216 },
     icon: "🔧"
   },
   {
     label: "Experts",
     description: "Benefit from GTM wisdom",
-    position: { angle: -225 },
+    position: { angle: 288 },
     icon: "👨‍💼"
   }
 ];
@@ -47,11 +47,9 @@ function getOrbitPosition(radius: number, angleDeg: number) {
 }
 
 const GTMHeroVisualDynamicIntro = () => {
-  // For hover state
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   // Responsive orbit radii
-  // Use window.matchMedia for ssr safety
   const [sm, setSm] = useState(false);
   React.useEffect(() => {
     const handler = () => setSm(window.innerWidth < 640);
@@ -60,54 +58,42 @@ const GTMHeroVisualDynamicIntro = () => {
     return () => window.removeEventListener("resize", handler);
   }, []);
   
-  const ORBIT_RADIUS = sm ? 110 : 180;
-  const CENTER_SIZE = sm ? 100 : 146;
-  const PANEL_W = sm ? 120 : 140;
-  const PANEL_H = sm ? 70 : 80;
+  // Adjusted sizes for better visual hierarchy
+  const ORBIT_RADIUS = sm ? 130 : 200;
+  const CENTER_SIZE = sm ? 120 : 160;
+  const PANEL_W = sm ? 110 : 130;
+  const PANEL_H = sm ? 65 : 75;
 
   return (
-    <div
-      className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center select-none mx-auto"
-    >
-      {/* The uploaded hero image in background */}
-      <motion.div
-        className="absolute inset-0 z-0 opacity-90"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.9 }}
-        transition={{ duration: 0.8 }}
-      >
-        <img 
-          src="/lovable-uploads/83527572-0b9f-4931-b06b-a722a6340c68.png" 
-          alt="GTM Unbound Hub Diagram" 
-          className="w-full h-full object-contain"
-        />
-      </motion.div>
-
+    <div className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center select-none mx-auto">
       {/* Soft background orbital glow */}
       <motion.div
         className="absolute rounded-full glass-morphism bg-white/10 border-[2.5px] border-pink-100 shadow-[0_0_64px_2px_rgba(255,180,194,0.22)]"
-        initial={{ scale: 0.8, opacity: 0.7, filter: "blur(1.5px)" }}
-        animate={{ scale: 1, opacity: 1, filter: "blur(0.7px)" }}
+        initial={{ scale: 0.8, opacity: 0.7 }}
+        animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         style={{
-          width: sm ? 300 : 400,
-          height: sm ? 300 : 400,
+          width: sm ? 340 : 460,
+          height: sm ? 340 : 460,
         }}
       />
 
-      {/* Center GTM OS */}
+      {/* Center GTM OS - made more prominent */}
       <motion.div
-        className="absolute inset-0 flex items-center justify-center z-10"
+        className="absolute inset-0 flex items-center justify-center z-20"
         initial={{ scale: 0.7, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{
-          type: "spring", delay: 0.22, stiffness: 100, damping: 18,
+          type: "spring",
+          delay: 0.22,
+          stiffness: 100,
+          damping: 18,
         }}
       >
         <motion.div
           className="relative flex flex-col items-center justify-center shadow-[0_2px_24px_2px_#ffe1ee7e] backdrop-blur-md"
           animate={{
-            scale: [1, 1.07, 1],
+            scale: [1, 1.05, 1],
             boxShadow: [
               "0 0 12px 3px #ffd5e7, 0 0 0 #fde1d3",
               "0 0 22px 8px #ffb4c270,0 0 3px #fde1d3",
@@ -115,7 +101,9 @@ const GTMHeroVisualDynamicIntro = () => {
             ],
           }}
           transition={{
-            repeat: Infinity, duration: 3.5, ease: "easeInOut",
+            repeat: Infinity,
+            duration: 3.5,
+            ease: "easeInOut",
           }}
           style={{
             width: CENTER_SIZE,
@@ -124,27 +112,25 @@ const GTMHeroVisualDynamicIntro = () => {
             background: "linear-gradient(135deg, #fff7f9 68%, #fde5e1 100%)",
             boxShadow: "0 2px 32px 7px #ffd4e52c, 0 0 40px #fde1d39a inset",
             border: "2.5px solid #ffd9e7bb",
-            filter: "blur(0.12px)",
           }}
         >
-          {/* GTM Unbound Icon in center */}
           <motion.div
-            className="flex items-center justify-center mb-1"
+            className="flex items-center justify-center mb-2"
             animate={{ rotate: [0, 18, -18, 0] }}
             transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
           >
-            <Focus className="w-8 h-8 md:w-10 md:h-10 text-gtm-pink border-2 border-pink-200 rounded-full bg-white/40 shadow-[0_0_18px_3px_#ffdcec]" />
+            <Focus className="w-10 h-10 md:w-12 md:h-12 text-gtm-pink border-2 border-pink-200 rounded-full bg-white/40 shadow-[0_0_18px_3px_#ffdcec]" />
           </motion.div>
-          <span className="block font-bold text-base md:text-lg text-gtm-dark opacity-90">
+          <span className="block font-bold text-lg md:text-xl text-gtm-dark opacity-90">
             GTM Unbound
           </span>
-          <span className="block text-xs text-gray-500">
+          <span className="block text-sm text-gray-500">
             Systems. Strategy. Execution
           </span>
         </motion.div>
       </motion.div>
 
-      {/* Orbiting modules with better spacing */}
+      {/* Orbiting modules with evenly distributed spacing */}
       {moduleItems.map((item, idx) => {
         const { x, y } = getOrbitPosition(ORBIT_RADIUS, item.position.angle);
 
@@ -154,7 +140,7 @@ const GTMHeroVisualDynamicIntro = () => {
             className={`
               absolute flex flex-col items-center justify-center
               cursor-pointer drop-shadow-lg
-              transition-all
+              transition-all duration-300
               ${hoveredIdx === idx ? "z-20" : "z-10"}
             `}
             style={{
@@ -164,12 +150,7 @@ const GTMHeroVisualDynamicIntro = () => {
               height: PANEL_H,
               transform: "translate(-50%, -50%)",
             }}
-            initial={{
-              opacity: 0,
-              scale: 0.4,
-              x: 0,
-              y: 0,
-            }}
+            initial={{ opacity: 0, scale: 0.4 }}
             animate={{
               opacity: 1,
               scale: hoveredIdx === idx ? 1.12 : 1,
@@ -198,7 +179,7 @@ const GTMHeroVisualDynamicIntro = () => {
               `}
             >
               <div className="text-2xl mb-1">{item.icon}</div>
-              <span className="block text-base font-semibold text-gtm-dark text-center">
+              <span className="block text-sm font-semibold text-gtm-dark text-center">
                 {item.label}
               </span>
               <motion.span
@@ -217,21 +198,19 @@ const GTMHeroVisualDynamicIntro = () => {
         );
       })}
 
-      {/* SVG for connector lines */}
+      {/* Connector lines with improved visibility */}
       <svg className="absolute inset-0 w-full h-full z-1 pointer-events-none">
         <defs>
           <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(255,107,157,0.4)" />
+            <stop offset="0%" stopColor="rgba(255,107,157,0.3)" />
             <stop offset="100%" stopColor="rgba(255,107,157,0.1)" />
           </linearGradient>
         </defs>
         
         {moduleItems.map((item, idx) => {
           const { x: moduleX, y: moduleY } = getOrbitPosition(ORBIT_RADIUS, item.position.angle);
-          // Start position (center)
           const centerX = "50%";
           const centerY = "50%";
-          // Target position (module)
           const targetX = `calc(50% + ${moduleX}px)`;
           const targetY = `calc(50% + ${moduleY}px)`;
           
