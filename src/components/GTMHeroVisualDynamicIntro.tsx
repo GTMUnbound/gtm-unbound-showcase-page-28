@@ -36,8 +36,6 @@ const moduleItems = [
   }
 ];
 
-// Keep existing getOrbitPosition function
-
 function getOrbitPosition(radius: number, angleDeg: number) {
   const angle = (angleDeg * Math.PI) / 180;
   return {
@@ -49,7 +47,6 @@ function getOrbitPosition(radius: number, angleDeg: number) {
 const GTMHeroVisualDynamicIntro = () => {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   
-  // Keep existing responsive setup
   const [sm, setSm] = useState(false);
   React.useEffect(() => {
     const handler = () => setSm(window.innerWidth < 640);
@@ -99,32 +96,31 @@ const GTMHeroVisualDynamicIntro = () => {
         }}
       >
         <motion.div
-          className="relative flex flex-col items-center justify-center bg-white/95 backdrop-blur-sm"
+          className="relative flex flex-col items-center justify-center bg-white rounded-full p-6"
           style={{
             width: CENTER_SIZE,
             height: CENTER_SIZE,
-            borderRadius: "50%",
-            border: "1.5px solid rgba(255,220,236,0.4)",
-            boxShadow: "0 4px 24px rgba(255,220,236,0.25), 0 0 12px rgba(255,192,203,0.1) inset"
+            boxShadow: "0 4px 24px rgba(255,220,236,0.25), 0 0 12px rgba(255,192,203,0.1) inset",
+            border: "1px solid rgba(255,192,203,0.2)"
           }}
         >
-          <motion.div
-            className="flex items-center justify-center mb-2"
+          <motion.img
+            src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
+            alt="GTM Unbound"
+            className="w-14 h-14 md:w-16 md:h-16 mb-2"
             animate={{ rotate: [0, 15, -15, 0] }}
             transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Focus className="w-12 h-12 md:w-14 md:h-14 text-gtm-pink" />
-          </motion.div>
-          <span className="block font-bold text-xl text-gtm-dark opacity-90">
+          />
+          <span className="text-lg md:text-xl font-bold text-gray-800">
             GTM Unbound
           </span>
-          <span className="block text-sm text-gray-500 mt-0.5">
+          <span className="text-xs md:text-sm text-gray-500 mt-1">
             Systems. Strategy. Execution.
           </span>
         </motion.div>
       </motion.div>
 
-      {/* Orbiting modules */}
+      {/* Rest of the component */}
       {moduleItems.map((item, idx) => {
         const { x, y } = getOrbitPosition(ORBIT_RADIUS, item.position.angle);
 
