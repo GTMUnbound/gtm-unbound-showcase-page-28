@@ -10,21 +10,21 @@ interface ExpertCardProps {
   role: string;
   expertise: string[];
   imageSrc?: string;
-  company: string;
+  presentTag: string; // changed from `company`
   bio?: string;
   linkedIn?: string;
   className?: string;
 }
 
-const ExpertCard = ({ 
-  name, 
-  role, 
-  expertise, 
-  imageSrc, 
-  company, 
-  bio, 
+const ExpertCard = ({
+  name,
+  role,
+  expertise,
+  imageSrc,
+  presentTag,
+  bio,
   linkedIn,
-  className 
+  className
 }: ExpertCardProps) => {
   return (
     <HoverCard>
@@ -34,8 +34,8 @@ const ExpertCard = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
-          whileHover={{ 
-            y: -10, 
+          whileHover={{
+            y: -10,
             filter: 'brightness(1.05)',
             boxShadow: '0 20px 40px rgba(0,0,0,0.15)'
           }}
@@ -56,37 +56,41 @@ const ExpertCard = ({
                 </AvatarFallback>
               </Avatar>
             </motion.div>
-            
             <div className="space-y-2">
-              <motion.h3 
+              <motion.h3
                 className="text-xl font-bold text-gtm-dark"
                 whileHover={{ scale: 1.05 }}
               >
                 {name}
               </motion.h3>
-              <motion.p 
+              <motion.p
                 className="text-gray-600 text-sm mb-1"
                 initial={{ opacity: 0.8 }}
                 whileHover={{ opacity: 1 }}
               >
                 {role}
               </motion.p>
-              <motion.p 
-                className="text-gray-500 text-xs"
-                initial={{ opacity: 0.7 }}
-                whileHover={{ opacity: 1 }}
-              >
-                Ex-{company}
-              </motion.p>
+              <div className="flex justify-center">
+                <span
+                  className="inline-block bg-yellow-200 text-gray-800 rounded-md px-3 py-1 text-xs font-medium mt-1 mb-1 transition-all duration-200"
+                  style={{
+                    minWidth: 0,
+                    fontSize: '0.85rem',
+                    whiteSpace: 'pre-line',
+                    wordBreak: 'break-word'
+                  }}
+                >
+                  {presentTag}
+                </span>
+              </div>
             </div>
-            
             <div className="flex flex-wrap gap-2 justify-center">
               {expertise.map((tag, index) => (
-                <motion.span 
+                <motion.span
                   key={index}
                   initial={{ opacity: 0.8 }}
-                  whileHover={{ 
-                    scale: 1.1, 
+                  whileHover={{
+                    scale: 1.1,
                     opacity: 1,
                     backgroundColor: "white",
                     boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
@@ -97,17 +101,16 @@ const ExpertCard = ({
                 </motion.span>
               ))}
             </div>
-            
             {linkedIn && (
-              <motion.a 
-                href={linkedIn} 
-                target="_blank" 
+              <motion.a
+                href={linkedIn}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 transition-colors p-2 rounded-full"
                 onClick={(e) => e.stopPropagation()}
-                whileHover={{ 
-                  scale: 1.2, 
-                  backgroundColor: "rgba(59, 130, 246, 0.1)" 
+                whileHover={{
+                  scale: 1.2,
+                  backgroundColor: "rgba(59, 130, 246, 0.1)"
                 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -127,7 +130,7 @@ const ExpertCard = ({
               </Avatar>
               <div>
                 <h4 className="text-sm font-semibold">{name}</h4>
-                <p className="text-xs text-muted-foreground">Ex-{company}</p>
+                <p className="text-xs text-muted-foreground">{presentTag}</p>
               </div>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">{bio}</p>

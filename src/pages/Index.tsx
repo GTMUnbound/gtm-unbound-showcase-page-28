@@ -226,12 +226,13 @@ const Index = () => {
     }
   ];
 
-  // Updated experts array with fixed image paths and company format
+  // Define experts array with updated presentTag (yellow label text)
+  // DO NOT use "Ex-" anywhere. Just present association.
   const experts = [
     {
       name: "Aditi Agarwal",
       role: "Founder",
-      company: "GTM Unbound",
+      presentTag: "GTM Unbound – Founder",
       expertise: ["SaaS GTM", "Market Expansion", "AI Go-to-Market"],
       imageSrc: "/lovable-uploads/e3a794e3-a086-4777-a3d6-bc8d1b6913a4.png",
       bio: "Founded GTM Unbound to help SaaS startups scale internationally. Previously led market expansion at leading tech companies, helping B2B SaaS companies enter new markets and achieve 3x growth. Specializes in US-India corridor strategies and GTM for AI products.",
@@ -240,18 +241,18 @@ const Index = () => {
     {
       name: "Manik Mehta",
       role: "Founder",
-      company: "Omnify",
+      presentTag: "GTM Unbound – GTM Advisor",
       expertise: ["AI/ML GTM", "Product Strategy", "Enterprise Sales"],
-      imageSrc: "/lovable-uploads/125c2005-34c0-40c4-bb26-e6bb24548b88.png", // Updated to first photo
+      imageSrc: "/lovable-uploads/125c2005-34c0-40c4-bb26-e6bb24548b88.png",
       bio: "Founder at Omnify with extensive experience in product-led growth. Scaled multiple products from $0 to $50M ARR through innovative GTM strategies and market positioning. Deep expertise in enterprise positioning, technical product marketing, and AI/ML implementation.",
       linkedIn: "https://www.linkedin.com/in/manikm/"
     },
     {
       name: "Anil Advani",
       role: "Founder and Managing Partner",
-      company: "Inventus Law and Avatar Advisor",
+      presentTag: "Legal Partner @ GTM Unbound",
       expertise: ["Legal GTM", "Startup Law", "International Markets"],
-      imageSrc: "/lovable-uploads/d698be72-374a-4b64-bc65-8ac84270c1de.png", // Updated to second photo
+      imageSrc: "/lovable-uploads/d698be72-374a-4b64-bc65-8ac84270c1de.png",
       bio: "Managing Partner at Inventus Law and Avatar Advisor. Helps startups navigate complex legal aspects of GTM strategy across global markets. Over 20 years of experience in US-India cross-border business strategy, startup formation, and international expansion.",
       linkedIn: "https://www.linkedin.com/in/aniladvani/"
     }
@@ -373,7 +374,7 @@ const Index = () => {
             role={expert.role}
             expertise={expert.expertise}
             imageSrc={expert.imageSrc}
-            company={expert.company}
+            presentTag={expert.presentTag}
             bio={expert.bio}
             linkedIn={expert.linkedIn}
           />
@@ -523,8 +524,7 @@ const Index = () => {
               role={expert.role}
               expertise={expert.expertise}
               imageSrc={expert.imageSrc}
-              // Just display `company` as written (should be "GTM Unbound", "Omnify", etc)
-              company={expert.company}
+              presentTag={expert.presentTag}
               bio={expert.bio}
               linkedIn={expert.linkedIn}
             />
