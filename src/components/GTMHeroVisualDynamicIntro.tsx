@@ -2,40 +2,26 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Focus } from "lucide-react";
 
-// Define module items with precise angular positions based on the screenshot
-const moduleItems = [
+const ORBIT_PANELS = [
   {
-    label: "Playbooks",
-    description: "Startup-proven GTM strategies",
-    position: { angle: 270 }, // Top
-    icon: "📘"
+    label: "Matched Expert Assigned",
+    desc: "Expert matched to your GTM stage.",
   },
   {
-    label: "Channels",
-    description: "Figure out what actually converts",
-    position: { angle: 342 }, // Top right
-    icon: "🌐"
+    label: "Strategy Sprint in Progress",
+    desc: "Live execution with clear goals.",
   },
   {
-    label: "Events",
-    description: "Founder circles, mixers & more",
-    position: { angle: 54 }, // Right
-    icon: "📅"
+    label: "Channel Breakdown:\nSEO + Paid",
+    desc: "Growth channels mapped, tracked.",
   },
   {
-    label: "Execution",
-    description: "Move from plan to traction",
-    position: { angle: 126 }, // Bottom right
-    icon: "🔧"
+    label: "Launch Checklist Ready",
+    desc: "Your GTM roadmap, step by step.",
   },
-  {
-    label: "Experts",
-    description: "Access vetted GTM minds",
-    position: { angle: 198 }, // Bottom left
-    icon: "👨‍💼"
-  }
 ];
 
+// Used for circular positioning
 function getOrbitPosition(radius: number, angleDeg: number) {
   const angle = (angleDeg * Math.PI) / 180;
   return {
@@ -45,8 +31,11 @@ function getOrbitPosition(radius: number, angleDeg: number) {
 }
 
 const GTMHeroVisualDynamicIntro = () => {
+  // For hover state
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
-  
+
+  // Responsive orbit radii
+  // Use window.matchMedia for ssr safety
   const [sm, setSm] = useState(false);
   React.useEffect(() => {
     const handler = () => setSm(window.innerWidth < 640);
@@ -54,189 +43,194 @@ const GTMHeroVisualDynamicIntro = () => {
     window.addEventListener("resize", handler);
     return () => window.removeEventListener("resize", handler);
   }, []);
+  const ORBIT_RADIUS = sm ? 90 : 120;
+  const CENTER_SIZE = sm ? 90 : 136;
+  const PANEL_W = sm ? 118 : 146;
+  const PANEL_H = sm ? 62 : 72;
 
-  // Adjusted sizes to match the screenshot
-  const ORBIT_RADIUS = sm ? 140 : 220;
-  const CENTER_SIZE = sm ? 130 : 180;
-  const PANEL_W = sm ? 120 : 140;
-  const PANEL_H = sm ? 70 : 85;
+  const ORBIT_Z = 4;
+  const PANEL_ANGLE_OFFSETS = [-60, 20, 100, 180]; // Tighter, perfect arc spacing
 
   return (
-    <div className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center select-none mx-auto">
-      {/* Orbital ring with subtle glow */}
+    <div
+      className={`
+        relative w-[340px] h-[340px] md:w-[420px] md:h-[420px]
+        flex items-center 
+        ${sm ? "justify-center" : "justify-end md:justify-center"} 
+        select-none mx-auto md:mx-0
+      `}
+    >
+      {/* Soft background orbital glow */}
       <motion.div
-        className="absolute rounded-full glass-morphism bg-white/5 border border-pink-100/30"
-        initial={{ scale: 0.9, opacity: 0.5 }}
-        animate={{ 
-          scale: [1, 1.02, 1],
-          opacity: [0.8, 0.9, 0.8],
-          boxShadow: [
-            "0 0 40px 0px rgba(255,180,194,0.15)",
-            "0 0 50px 2px rgba(255,180,194,0.2)",
-            "0 0 40px 0px rgba(255,180,194,0.15)"
-          ]
-        }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute rounded-full glass-morphism bg-white/10 border-[2.5px] border-pink-100 shadow-[0_0_64px_2px_rgba(255,180,194,0.22)]"
+        initial={{ scale: 0.8, opacity: 0.7, filter: "blur(1.5px)" }}
+        animate={{ scale: 1, opacity: 1, filter: "blur(0.7px)" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         style={{
-          width: sm ? 360 : 500,
-          height: sm ? 360 : 500,
+          width: sm ? 200 : 285,
+          height: sm ? 200 : 285,
         }}
       />
 
-      {/* GTM Unbound center logo */}
+      {/* Animated glass "orbit" ring */}
       <motion.div
-        className="absolute inset-0 flex items-center justify-center z-20"
-        initial={{ scale: 0.8, opacity: 0 }}
+        className="absolute rounded-full border border-pink-200/20 pointer-events-none"
+        style={{
+          width: sm ? 240 : 314,
+          height: sm ? 240 : 314,
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+          boxShadow:
+            "0 0 32px 4px #ffdcec45, 0 0 0 32px #fde1d309",
+          zIndex: 1,
+        }}
+        animate={{
+          opacity: [0.15, 0.3, 0.2],
+          filter: ["blur(1.5px)", "blur(2px)", "blur(1.5px)"],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Center GTM OS */}
+      <motion.div
+        className="absolute inset-0 flex items-center justify-center z-10"
+        initial={{ scale: 0.7, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{
-          type: "spring",
-          delay: 0.2,
-          stiffness: 100,
-          damping: 20,
+          type: "spring", delay: 0.22, stiffness: 100, damping: 18,
         }}
       >
         <motion.div
-          className="relative flex flex-col items-center justify-center bg-white rounded-full p-6"
+          className="relative flex flex-col items-center justify-center shadow-[0_2px_24px_2px_#ffe1ee7e] backdrop-blur-md"
+          animate={{
+            scale: [1, 1.07, 1],
+            boxShadow: [
+              "0 0 12px 3px #ffd5e7, 0 0 0 #fde1d3",
+              "0 0 22px 8px #ffb4c270,0 0 3px #fde1d3",
+              "0 0 12px 3px #ffe8ed, 0 0 0 #fde1d3",
+            ],
+          }}
+          transition={{
+            repeat: Infinity, duration: 3.5, ease: "easeInOut",
+          }}
           style={{
             width: CENTER_SIZE,
             height: CENTER_SIZE,
-            boxShadow: "0 4px 24px rgba(255,220,236,0.25), 0 0 12px rgba(255,192,203,0.1) inset",
-            border: "1px solid rgba(255,192,203,0.2)"
+            borderRadius: "50%",
+            background: "linear-gradient(135deg, #fff7f9 68%, #fde5e1 100%)",
+            boxShadow: "0 2px 32px 7px #ffd4e52c, 0 0 40px #fde1d39a inset",
+            border: "2.5px solid #ffd9e7bb",
+            filter: "blur(0.12px)",
           }}
         >
-          <motion.img
-            src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
-            alt="GTM Unbound"
-            className="w-14 h-14 md:w-16 md:h-16 mb-2"
-            animate={{ rotate: [0, 15, -15, 0] }}
-            transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <span className="text-lg md:text-xl font-bold text-gray-800">
-            GTM Unbound
-          </span>
-          <span className="text-xs md:text-sm text-gray-500 mt-1">
-            Systems. Strategy. Execution.
+          {/* GTM Unbound Icon in center */}
+          <motion.div
+            className="flex items-center justify-center mb-1"
+            animate={{ rotate: [0, 18, -18, 0] }}
+            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Focus className="w-8 h-8 md:w-10 md:h-10 text-gtm-pink border-2 border-pink-200 rounded-full bg-white/40 shadow-[0_0_18px_3px_#ffdcec]" />
+          </motion.div>
+          <span className="block font-bold text-base md:text-lg text-gtm-dark opacity-90">
+            GTM OS
           </span>
         </motion.div>
       </motion.div>
-
-      {/* Rest of the component */}
-      {moduleItems.map((item, idx) => {
-        const { x, y } = getOrbitPosition(ORBIT_RADIUS, item.position.angle);
+      {/* Orbiting panels with improved angular distribution and entry animation */}
+      {ORBIT_PANELS.map((panel, idx) => {
+        // 360 deg divided evenly, starting top (use tighter offset for better fit)
+        const total = ORBIT_PANELS.length;
+        const angle =
+          (360 / total) * idx - 45; // Start -45 deg for a top-right leading orbit, more symmetric
+        const { x, y } = getOrbitPosition(ORBIT_RADIUS, angle);
 
         return (
           <motion.div
-            key={item.label}
+            key={panel.label}
             className={`
               absolute flex flex-col items-center justify-center
               cursor-pointer drop-shadow-lg
-              transition-all duration-300
-              ${hoveredIdx === idx ? "z-20" : "z-10"}
+              will-change-transform
+              transition-all
+              ${hoveredIdx === idx
+                ? "z-20 scale-110 shadow-xl"
+                : "z-10"}
             `}
             style={{
               left: `calc(50% + ${x}px)`,
               top: `calc(50% + ${y}px)`,
               width: PANEL_W,
               height: PANEL_H,
-              transform: "translate(-50%, -50%) rotate(" + item.position.angle + "deg)",
+              transform: "translate(-50%, -50%)",
             }}
-            initial={{ opacity: 0, scale: 0.4 }}
+            initial={{
+              opacity: 0,
+              scale: 0.4,
+              x: 0,
+              y: 0,
+              filter: "blur(8px)",
+            }}
             animate={{
               opacity: 1,
-              scale: hoveredIdx === idx ? 1.15 : 1,
-              filter: hoveredIdx === idx ? "blur(0px) brightness(1.15)" : "blur(0px)",
+              scale: hoveredIdx === idx ? 1.12 : 1,
+              filter: hoveredIdx === idx
+                ? "blur(0.5px) brightness(1.13)"
+                : "blur(0.5px)",
               boxShadow: hoveredIdx === idx
-                ? "0 8px 28px 3px #ffc5e5, 0 0 14px #fde1d3"
-                : "0 3px 15px 2px #fed7e2b2",
+                ? "0 7px 24px 1px #ffc5e5, 0 0 11px #fde1d3"
+                : "0 3px 13px 2px #fed7e2b2",
             }}
             transition={{
               delay: 0.33 + idx * 0.14,
               type: "spring",
               stiffness: 170,
               damping: 19,
+              duration: 0.77,
             }}
             onMouseEnter={() => setHoveredIdx(idx)}
             onMouseLeave={() => setHoveredIdx(null)}
           >
             <div
               className={`
-                w-full h-full flex flex-col justify-center items-center 
-                border border-pink-100 bg-white/95 backdrop-blur-lg
-                shadow-lg rounded-xl transition-shadow
-                ${hoveredIdx === idx ? "ring-2 ring-gtm-pink/80" : ""}
+                w-full h-full flex flex-col justify-center items-center glass-morphism
+                border border-pink-100 bg-white/80 backdrop-blur-lg
+                shadow-lg rounded-2xl transition-shadow
+                ${hoveredIdx === idx ? "ring-2 ring-gtm-pink/70" : ""}
               `}
-              style={{
-                transform: "rotate(-" + item.position.angle + "deg)", // Counter-rotate the content
-              }}
             >
-              <div className="text-2xl mb-1">{item.icon}</div>
-              <span className="block text-sm font-semibold text-gtm-dark text-center">
-                {item.label}
+              <span
+                className="block text-[15px] md:text-base font-semibold text-gtm-dark drop-shadow-pink text-center whitespace-pre-line"
+                style={{
+                  textShadow:
+                    hoveredIdx === idx
+                      ? "0 0 13px #ffdde1"
+                      : "0 0 2px #fde1d3",
+                }}
+              >
+                {panel.label}
               </span>
               <motion.span
-                className="block text-xs text-gray-600 pt-1 px-2 font-medium text-center"
+                className="block text-xs text-pink-400 pt-1 px-1 font-medium"
                 initial={false}
                 animate={{
                   opacity: hoveredIdx === idx ? 1 : 0,
-                  height: hoveredIdx === idx ? "auto" : "0",
+                  height: hoveredIdx === idx ? "1.3em" : 0,
+                  filter: hoveredIdx === idx ? "blur(0px)" : "blur(1.5px)",
                 }}
                 transition={{ duration: 0.28 }}
+                aria-hidden={hoveredIdx !== idx}
               >
-                {item.description}
+                {panel.desc}
               </motion.span>
             </div>
           </motion.div>
         );
       })}
-
-      {/* Connector lines */}
-      <svg className="absolute inset-0 w-full h-full z-1 pointer-events-none">
-        <defs>
-          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(255,107,157,0.5)" />
-            <stop offset="100%" stopColor="rgba(255,107,157,0.15)" />
-          </linearGradient>
-          
-          {/* Add glow filter for lines */}
-          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="2" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-        </defs>
-        
-        {moduleItems.map((item, idx) => {
-          const { x: moduleX, y: moduleY } = getOrbitPosition(ORBIT_RADIUS, item.position.angle);
-          const centerX = "50%";
-          const centerY = "50%";
-          const targetX = `calc(50% + ${moduleX}px)`;
-          const targetY = `calc(50% + ${moduleY}px)`;
-          
-          return (
-            <motion.line
-              key={`line-${idx}`}
-              x1={centerX}
-              y1={centerY}
-              x2={targetX}
-              y2={targetY}
-              stroke="url(#lineGradient)"
-              strokeWidth="1.8"
-              strokeDasharray="3,3"
-              filter="url(#glow)"
-              initial={{ opacity: 0 }}
-              animate={{ 
-                opacity: [0.7, 0.9, 0.7],
-                strokeWidth: ["1.8px", "2.2px", "1.8px"]
-              }}
-              transition={{ 
-                delay: 0.5 + idx * 0.1, 
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-          );
-        })}
-      </svg>
     </div>
   );
 };

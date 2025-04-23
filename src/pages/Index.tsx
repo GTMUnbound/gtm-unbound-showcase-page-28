@@ -44,9 +44,7 @@ import StartupsSection from "@/components/StartupsSection";
 import FounderTestimonialsSection from "@/components/FounderTestimonialsSection";
 import GTMJourneyModal from '@/components/GTMJourneyModal';
 import AnimatedJourneySteps from '@/components/AnimatedJourneySteps';
-import ClickToRevealSteps from '@/components/ClickToRevealSteps';
 import { fadeUpVariants, staggerContainer, softScaleVariants } from '@/utils/AnimationUtils';
-import GTMHeroVisualDynamicIntro from '@/components/GTMHeroVisualDynamicIntro';
 
 const Index = () => {
   const offeringsRef = useRef<HTMLDivElement>(null);
@@ -427,10 +425,10 @@ const Index = () => {
       {/* Use our new animated navbar */}
       <AnimatedNavbar sections={sections} />
 
-      {/* Hero Section - UPDATED with new visual */}
+      {/* Hero Section */}
       <AnimatedSection id="home" className="pt-24 pb-14 bg-white" animation="fadeIn">
         <div className="container mx-auto px-4 md:px-6 relative">
-          {/* Refined HERO: Two columns, right column with GTM visual */}
+          {/* Refined HERO: Two columns, right column perfectly centered, with matching GTMDashboard */}
           <div className="relative flex flex-col md:flex-row items-start md:items-center gap-12">
             <motion.div 
               className="w-full md:w-3/5"
@@ -489,7 +487,7 @@ const Index = () => {
               </motion.div>
             </motion.div>
             
-            {/* Updated hero visual with uploaded diagram */}
+            {/* Polished, centered GTMDashboard with animation */}
             <motion.div 
               className="w-full md:w-2/5 flex justify-center items-center md:items-center"
               initial={{ opacity: 0, scale: 0.9 }}
@@ -501,7 +499,7 @@ const Index = () => {
                 damping: 15
               }}
             >
-              <GTMHeroVisualDynamicIntro />
+              <GTMDashboard />
             </motion.div>
           </div>
         </div>
@@ -523,7 +521,6 @@ const Index = () => {
         <OfferingCards />
       </AnimatedSection>
 
-      {/* Updated "From Signal to Strategy" section with ClickToReveal cards */}
       <AnimatedSection id="how-we-help" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16" animation="fadeUp" delay={0.2}>
         <SectionHeader
           title="From Signal to Strategy"
@@ -532,10 +529,9 @@ const Index = () => {
         <div className="text-center text-lg text-gray-600 mb-7 max-w-3xl mx-auto">
           Startups begin with a diagnostic. We match them to GTM experts, launch sprints, and drive clarity.
         </div>
-        <ClickToRevealSteps />
+        <AnimatedJourneySteps />
       </AnimatedSection>
 
-      {/* Rest of the sections remain unchanged */}
       <AnimatedSection id="experts" className="py-14 md:py-20" animation="fadeUp" delay={0.2}>
         <SectionHeader 
           title="Work With Operators Who've Done It"
@@ -647,7 +643,6 @@ const Index = () => {
         <FounderTestimonialsSection />
       </AnimatedSection>
 
-      {/* UPDATED: Not Advice. Not Fluff. section with CTAs removed */}
       <AnimatedSection id="why-gtm" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16" animation="fadeUp" delay={0.3}>
         <SectionHeader 
           title="Not Advice. Not Fluff. Real GTM Infrastructure."
@@ -690,11 +685,17 @@ const Index = () => {
               <div className="font-semibold">Execution <span className="text-gray-400">&rarr;</span> not guesswork</div>
             </motion.div>
           </motion.div>
-          {/* CTA button removed as requested */}
+          <div className="flex justify-center mt-8">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <GradientButton>Start Building &rarr;</GradientButton>
+            </motion.div>
+          </div>
         </div>
       </AnimatedSection>
 
-      {/* UPDATED: CTA section with CTAs removed */}
       <AnimatedSection id="cta" className="bg-gradient-to-r from-gtm-coral to-gtm-pink text-white pt-14 pb-14 md:pt-16 md:pb-16" animation="fadeIn" delay={0.1}>
         <div className="max-w-3xl mx-auto text-center px-4">
           <motion.h2 
@@ -706,7 +707,30 @@ const Index = () => {
           >
             Let's Unblock Your GTM
           </motion.h2>
-          {/* CTA buttons removed as requested */}
+          <motion.div 
+            className="flex flex-wrap justify-center gap-4 mb-10"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <motion.button 
+              className="px-6 py-3 bg-white text-gtm-pink font-medium rounded-xl hover:bg-gray-100 transition-colors"
+              variants={softScaleVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              Join GTM Unbound
+            </motion.button>
+            <motion.button 
+              className="px-6 py-3 bg-transparent border-2 border-white text-white font-medium rounded-xl hover:bg-white/10 transition-colors"
+              variants={softScaleVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              Book a Call
+            </motion.button>
+          </motion.div>
           <motion.p 
             className="text-xl"
             initial={{ opacity: 0 }}
