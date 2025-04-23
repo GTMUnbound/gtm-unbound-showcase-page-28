@@ -395,8 +395,7 @@ const Index = () => {
   const [activePlan, setActivePlan] = useState<"membership" | "plus" | "pro" | null>(null);
   const [talkToTeamOpen, setTalkToTeamOpen] = useState(false);
   
-  const [selectedJourneyStep, setSelectedJourneyStep] = useState<number | null>(null);
-
+  // Simplified journeySteps without full descriptions
   const journeySteps = [
     {
       icon: "📍",
@@ -419,6 +418,8 @@ const Index = () => {
       description: "Your expert doesn't disappear after one call. We work together to co-own your GTM roadmap — updating it with insights from tests, evolving positioning, and driving traction over time."
     }
   ];
+
+  const [selectedJourneyStep, setSelectedJourneyStep] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen bg-[#F4F5F7]">
@@ -643,59 +644,6 @@ const Index = () => {
         <FounderTestimonialsSection />
       </AnimatedSection>
 
-      <AnimatedSection id="why-gtm" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16" animation="fadeUp" delay={0.3}>
-        <SectionHeader 
-          title="Not Advice. Not Fluff. Real GTM Infrastructure."
-          centered
-        />
-        <div className="max-w-3xl mx-auto px-4">
-          <p className="text-center text-lg text-gray-600 mb-8">
-            You've seen the threads. The PDFs. The panels.<br />
-            Now get the GTM system that founders stick with:
-          </p>
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-8"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover-card"
-              variants={softScaleVariants}
-              whileHover="hover"
-            >
-              <span className="text-2xl mb-4">🔄</span>
-              <div className="font-semibold">Systems <span className="text-gray-400">&rarr;</span> not noise</div>
-            </motion.div>
-            <motion.div 
-              className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover-card"
-              variants={softScaleVariants}
-              whileHover="hover"
-            >
-              <span className="text-2xl mb-4">👥</span>
-              <div className="font-semibold">Operators <span className="text-gray-400">&rarr;</span> not theory</div>
-            </motion.div>
-            <motion.div 
-              className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover-card"
-              variants={softScaleVariants}
-              whileHover="hover"
-            >
-              <span className="text-2xl mb-4">🚀</span>
-              <div className="font-semibold">Execution <span className="text-gray-400">&rarr;</span> not guesswork</div>
-            </motion.div>
-          </motion.div>
-          <div className="flex justify-center mt-8">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <GradientButton>Start Building &rarr;</GradientButton>
-            </motion.div>
-          </div>
-        </div>
-      </AnimatedSection>
-
       <AnimatedSection id="cta" className="bg-gradient-to-r from-gtm-coral to-gtm-pink text-white pt-14 pb-14 md:pt-16 md:pb-16" animation="fadeIn" delay={0.1}>
         <div className="max-w-3xl mx-auto text-center px-4">
           <motion.h2 
@@ -707,30 +655,6 @@ const Index = () => {
           >
             Let's Unblock Your GTM
           </motion.h2>
-          <motion.div 
-            className="flex flex-wrap justify-center gap-4 mb-10"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <motion.button 
-              className="px-6 py-3 bg-white text-gtm-pink font-medium rounded-xl hover:bg-gray-100 transition-colors"
-              variants={softScaleVariants}
-              whileHover="hover"
-              whileTap="tap"
-            >
-              Join GTM Unbound
-            </motion.button>
-            <motion.button 
-              className="px-6 py-3 bg-transparent border-2 border-white text-white font-medium rounded-xl hover:bg-white/10 transition-colors"
-              variants={softScaleVariants}
-              whileHover="hover"
-              whileTap="tap"
-            >
-              Book a Call
-            </motion.button>
-          </motion.div>
           <motion.p 
             className="text-xl"
             initial={{ opacity: 0 }}
@@ -744,6 +668,17 @@ const Index = () => {
       </AnimatedSection>
 
       <Footer />
+
+      {/* Add Journey Step Modal */}
+      {selectedJourneyStep !== null && (
+        <GTMJourneyModal
+          open={selectedJourneyStep !== null}
+          onOpenChange={() => setSelectedJourneyStep(null)}
+          icon={journeySteps[selectedJourneyStep].icon}
+          title={journeySteps[selectedJourneyStep].title}
+          description={journeySteps[selectedJourneyStep].description}
+        />
+      )}
     </div>
   );
 };
