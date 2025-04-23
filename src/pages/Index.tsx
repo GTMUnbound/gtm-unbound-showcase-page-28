@@ -42,6 +42,7 @@ import GTMStructuredMessage from '@/components/GTMStructuredMessage';
 import StartupsSection from "@/components/StartupsSection";
 import FounderTestimonialsSection from "@/components/FounderTestimonialsSection";
 import GTMJourneyModal from '@/components/GTMJourneyModal';
+import AnimatedJourneySteps from '@/components/AnimatedJourneySteps';
 
 const Index = () => {
   const offeringsRef = useRef<HTMLDivElement>(null);
@@ -479,35 +480,14 @@ const Index = () => {
       </Section>
 
       <Section id="how-we-help" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16">
-        <SectionHeader 
+        <SectionHeader
           title="From Signal to Strategy"
           centered
         />
         <div className="text-center text-lg text-gray-600 mb-7 max-w-3xl mx-auto">
           Startups begin with a diagnostic. We match them to GTM experts, launch sprints, and drive clarity.
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-8">
-          {journeySteps.map((step, index) => (
-            <div 
-              key={index}
-              onClick={() => setSelectedJourneyStep(index)}
-              className="bg-white rounded-xl p-6 flex flex-col items-center shadow hover:shadow-lg transition cursor-pointer"
-            >
-              <div className="text-3xl mb-3">{step.icon}</div>
-              <div className="font-semibold text-gtm-dark mb-1">{step.title}</div>
-            </div>
-          ))}
-        </div>
-        <GTMJourneyModal 
-          open={selectedJourneyStep !== null}
-          onOpenChange={() => setSelectedJourneyStep(null)}
-          title={selectedJourneyStep !== null ? journeySteps[selectedJourneyStep].title : ""}
-          icon={selectedJourneyStep !== null ? journeySteps[selectedJourneyStep].icon : ""}
-          description={selectedJourneyStep !== null ? journeySteps[selectedJourneyStep].description : ""}
-        />
-        <div className="flex justify-center">
-          <GradientButton>Start With Your GTM Match &rarr;</GradientButton>
-        </div>
+        <AnimatedJourneySteps />
       </Section>
 
       <Section id="experts" className="py-14 md:py-20">
