@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Focus } from "lucide-react";
 
-// Define module items with even angular spacing (360° / 5 = 72° between each item)
+// Define module items with perfect 72° spacing (360° / 5 = 72° between each item)
 const moduleItems = [
   {
     label: "Playbooks",
@@ -156,7 +156,7 @@ const GTMHeroVisualDynamicIntro = () => {
               top: `calc(50% + ${y}px)`,
               width: PANEL_W,
               height: PANEL_H,
-              transform: "translate(-50%, -50%)",
+              transform: "translate(-50%, -50%) rotate(" + item.position.angle + "deg)",
             }}
             initial={{ opacity: 0, scale: 0.4 }}
             animate={{
@@ -183,6 +183,9 @@ const GTMHeroVisualDynamicIntro = () => {
                 shadow-lg rounded-xl transition-shadow
                 ${hoveredIdx === idx ? "ring-2 ring-gtm-pink/70" : ""}
               `}
+              style={{
+                transform: "rotate(-" + item.position.angle + "deg)", // Counter-rotate the content
+              }}
             >
               <div className="text-2xl mb-1">{item.icon}</div>
               <span className="block text-sm font-semibold text-gtm-dark text-center">
