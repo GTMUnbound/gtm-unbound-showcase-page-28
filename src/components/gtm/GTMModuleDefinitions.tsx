@@ -1,8 +1,10 @@
 
+import React from 'react';
+
 // Define orbit modules with precise angular positioning
 export const moduleDefs = [
   {
-    icon: (
+    icon: () => (
       <span className="text-[1.45rem] md:text-2xl" aria-label="Playbooks" role="img">📘</span>
     ),
     label: "Playbooks",
@@ -12,7 +14,7 @@ export const moduleDefs = [
     anchor: "playbooks"
   },
   {
-    icon: (
+    icon: () => (
       <span className="text-[1.45rem] md:text-2xl" aria-label="Channels" role="img">🌐</span>
     ),
     label: "Channels",
@@ -22,7 +24,7 @@ export const moduleDefs = [
     anchor: "channels"
   },
   {
-    icon: (
+    icon: () => (
       <span className="text-[1.45rem] md:text-2xl" aria-label="Events" role="img">📆</span>
     ),
     label: "Events",
@@ -32,7 +34,7 @@ export const moduleDefs = [
     anchor: "events"
   },
   {
-    icon: (
+    icon: () => (
       <span className="text-[1.45rem] md:text-2xl" aria-label="Execution" role="img">🛠️</span>
     ),
     label: "Execution",
@@ -42,7 +44,7 @@ export const moduleDefs = [
     anchor: "execution"
   },
   {
-    icon: (
+    icon: () => (
       <span className="text-[1.45rem] md:text-2xl" aria-label="Experts" role="img">🧑‍💼</span>
     ),
     label: "Experts",
