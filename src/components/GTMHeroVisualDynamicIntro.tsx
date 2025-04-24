@@ -52,14 +52,7 @@ const GTMHeroVisualDynamicIntro = () => {
   const PANEL_ANGLE_OFFSETS = [-60, 20, 100, 180]; // Tighter, perfect arc spacing
 
   return (
-    <div
-      className={`
-        relative w-[340px] h-[340px] md:w-[420px] md:h-[420px]
-        flex items-center 
-        ${sm ? "justify-center" : "justify-end md:justify-center"} 
-        select-none mx-auto md:mx-0
-      `}
-    >
+    <div className="relative w-[340px] h-[340px] md:w-[420px] md:h-[420px] flex items-center justify-center select-none mx-auto md:mx-0">
       {/* Soft background orbital glow */}
       <motion.div
         className="absolute rounded-full glass-morphism bg-white/10 border-[2.5px] border-pink-100 shadow-[0_0_64px_2px_rgba(255,180,194,0.22)]"
@@ -106,7 +99,7 @@ const GTMHeroVisualDynamicIntro = () => {
         }}
       >
         <motion.div
-          className="relative flex flex-col items-center justify-center shadow-[0_2px_24px_2px_#ffe1ee7e] backdrop-blur-md"
+          className="absolute rounded-full glass-morphism bg-white/95 flex flex-col items-center justify-center"
           animate={{
             scale: [1, 1.07, 1],
             boxShadow: [
@@ -121,19 +114,15 @@ const GTMHeroVisualDynamicIntro = () => {
           style={{
             width: CENTER_SIZE,
             height: CENTER_SIZE,
-            borderRadius: "50%",
             background: "linear-gradient(135deg, #fff7f9 68%, #fde5e1 100%)",
-            boxShadow: "0 2px 32px 7px #ffd4e52c, 0 0 40px #fde1d39a inset",
+            boxShadow: "0 8px 32px rgba(255, 220, 236, 0.3), 0 0 0 1px rgba(255, 220, 236, 0.5)",
             border: "2.5px solid #ffd9e7bb",
             filter: "blur(0.12px)",
-            // Position exactly in center with absolute positioning
-            position: 'absolute',
-            left: '50%',
-            top: '50%',
-            transform: 'translate(-50%, -50%)'
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)"
           }}
         >
-          {/* GTM Unbound Icon in center */}
           <motion.div
             className="flex items-center justify-center mb-1"
             animate={{ rotate: [0, 18, -18, 0] }}
@@ -141,9 +130,7 @@ const GTMHeroVisualDynamicIntro = () => {
           >
             <Focus className="w-8 h-8 md:w-10 md:h-10 text-gtm-pink border-2 border-pink-200 rounded-full bg-white/40 shadow-[0_0_18px_3px_#ffdcec]" />
           </motion.div>
-          <span className="block font-bold text-base md:text-lg text-gtm-dark opacity-90">
-            GTM OS
-          </span>
+          <span className="block font-bold text-base md:text-lg text-gtm-dark opacity-90">GTM OS</span>
         </motion.div>
       </motion.div>
 

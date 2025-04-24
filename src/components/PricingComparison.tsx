@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Check, ArrowRight, HelpCircle } from "lucide-react";
 import GradientButton from "./GradientButton";
@@ -195,6 +194,11 @@ const PricingComparison: React.FC<PricingComparisonProps> = ({
         </button>
       </div>
 
+      {/* Add pricing note */}
+      <p className="text-center text-gray-500 italic text-sm mb-6">
+        Note: Access to Plus and Pro plans requires an active Membership subscription.
+      </p>
+
       {/* 3-column Cards */}
       <div className="w-full grid gap-6 grid-cols-1 md:grid-cols-3 mb-12 justify-center max-w-5xl mx-auto">
         {plans.map((plan, idx) => (
@@ -370,7 +374,7 @@ const PricingComparison: React.FC<PricingComparisonProps> = ({
           onClick={onTalkToTeam}
           className="px-6 py-3 bg-gtm-pink text-white rounded-lg hover:bg-gtm-pink/90 transition-colors font-medium"
         >
-          Talk to an Expert
+          Talk to Our Team
         </button>
       </div>
     </div>

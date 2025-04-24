@@ -17,14 +17,10 @@ const Footer = () => {
               />
               <span className="ml-3 text-xl font-semibold">GTM Unbound</span>
             </div>
-            <a href="https://wa.me/919876543210" className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors">
-              <MessageSquare size={20} className="text-[#FDE1D3]" />
-              Chat with us on WhatsApp
-            </a>
+            <p className="text-sm text-gray-600">Systems. Strategy. Execution.</p>
             <div className="space-y-2 text-gray-700">
               <p>Email: hello@gtmunbound.com</p>
               <p>Support: support@gtmunbound.com</p>
-              <p>Phone: +91-9876543210</p>
             </div>
           </div>
 
@@ -32,9 +28,9 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-semibold text-lg">Offerings</h3>
             <div className="space-y-2">
-              <a href="#" className="block text-gray-700 hover:text-gray-900 transition-colors">DIY GTM Support</a>
-              <a href="#" className="block text-gray-700 hover:text-gray-900 transition-colors">Done-for-You Execution</a>
-              <a href="#" className="block text-gray-700 hover:text-gray-900 transition-colors">Expert-Led Strategy</a>
+              <a href="#diy-tools" className="block text-gray-700 hover:text-gray-900 transition-colors">DIY GTM Support</a>
+              <a href="#dfy-support" className="block text-gray-700 hover:text-gray-900 transition-colors">Done-for-You Execution</a>
+              <a href="#expert-guidance" className="block text-gray-700 hover:text-gray-900 transition-colors">Expert-Led Strategy</a>
             </div>
           </div>
 
@@ -42,11 +38,11 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-semibold text-lg">Company</h3>
             <div className="space-y-2">
-              <a href="#" className="block text-gray-700 hover:text-gray-900 transition-colors">About</a>
-              <a href="#" className="block text-gray-700 hover:text-gray-900 transition-colors">Events</a>
-              <a href="#" className="block text-gray-700 hover:text-gray-900 transition-colors">Blog</a>
-              <a href="#" className="block text-gray-700 hover:text-gray-900 transition-colors">Careers</a>
-              <a href="#" className="block text-gray-700 hover:text-gray-900 transition-colors">Terms & Privacy</a>
+              <a href="#home" className="block text-gray-700 hover:text-gray-900 transition-colors">About</a>
+              <a href="#events" className="block text-gray-700 hover:text-gray-900 transition-colors">Events</a>
+              <span className="block text-gray-700">Blog</span>
+              <a href="https://www.linkedin.com/company/gtm-unbound/jobs/" target="_blank" rel="noopener noreferrer" className="block text-gray-700 hover:text-gray-900 transition-colors">Careers</a>
+              <a href="#terms" className="block text-gray-700 hover:text-gray-900 transition-colors">Terms & Privacy</a>
             </div>
           </div>
 
@@ -54,10 +50,10 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-semibold text-lg">Resources</h3>
             <div className="space-y-2">
-              <a href="#" className="block text-gray-700 hover:text-gray-900 transition-colors">Templates Library</a>
-              <a href="#" className="block text-gray-700 hover:text-gray-900 transition-colors">Newsletter</a>
-              <a href="#" className="block text-gray-700 hover:text-gray-900 transition-colors">GTM Playbooks</a>
-              <a href="#" className="block text-gray-700 hover:text-gray-900 transition-colors">Partner Program</a>
+              <a href="#templates-library" className="block text-gray-700 hover:text-gray-900 transition-colors">Templates Library</a>
+              <a href="#newsletter" className="block text-gray-700 hover:text-gray-900 transition-colors">Newsletter</a>
+              <a href="#playbooks" className="block text-gray-700 hover:text-gray-900 transition-colors">GTM Playbooks</a>
+              <a href="#partner-program" className="block text-gray-700 hover:text-gray-900 transition-colors">Partner Program</a>
             </div>
           </div>
         </div>
@@ -68,7 +64,7 @@ const Footer = () => {
           <p className="text-gray-700">© 2025 GTM Unbound. Built by Operators, for Founders.</p>
         </div>
 
-        {/* Social Media icons - new row, small and pinkish */}
+        {/* Social Media icons */}
         <div className="mt-4 flex justify-center gap-5">
           <a
             href="https://www.linkedin.com/company/gtm-unbound/"
