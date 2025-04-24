@@ -126,6 +126,11 @@ const GTMHeroVisualDynamicIntro = () => {
             boxShadow: "0 2px 32px 7px #ffd4e52c, 0 0 40px #fde1d39a inset",
             border: "2.5px solid #ffd9e7bb",
             filter: "blur(0.12px)",
+            // Position exactly in center with absolute positioning
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)'
           }}
         >
           {/* GTM Unbound Icon in center */}
@@ -141,6 +146,7 @@ const GTMHeroVisualDynamicIntro = () => {
           </span>
         </motion.div>
       </motion.div>
+
       {/* Orbiting panels with improved angular distribution and entry animation */}
       {ORBIT_PANELS.map((panel, idx) => {
         // 360 deg divided evenly, starting top (use tighter offset for better fit)
