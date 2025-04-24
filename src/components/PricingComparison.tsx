@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
-import { ArrowRight, HelpCircle } from "lucide-react";
+import { Check, ArrowRight, HelpCircle } from "lucide-react";  // Re-added Check icon
 import { cn } from "@/lib/utils";
 import { 
   Table,
