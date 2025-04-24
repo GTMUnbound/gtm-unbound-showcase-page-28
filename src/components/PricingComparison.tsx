@@ -1,8 +1,8 @@
+
+import React, { useState } from 'react';
 import { motion } from "framer-motion";
-import { Check, ArrowRight, HelpCircle } from "lucide-react";
-import GradientButton from "./GradientButton";
+import { ArrowRight, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
 import { 
   Table,
   TableBody,
@@ -359,6 +359,13 @@ const PricingComparison: React.FC<PricingComparisonProps> = ({
                   ))}
                 </TableBody>
               </Table>
+              
+              {/* New note section at the end of the comparison table */}
+              {showComparison && (
+                <div className="p-4 bg-gray-50 text-center text-xs italic text-gray-500">
+                  Note: Access to Plus and Pro plans requires an active Membership subscription.
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>
@@ -382,3 +389,4 @@ const PricingComparison: React.FC<PricingComparisonProps> = ({
 };
 
 export default PricingComparison;
+
