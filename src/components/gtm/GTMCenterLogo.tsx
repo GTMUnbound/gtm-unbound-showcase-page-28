@@ -49,4 +49,3 @@ const GTMCenterLogo = () => {
 };
 
 export default GTMCenterLogo;
-

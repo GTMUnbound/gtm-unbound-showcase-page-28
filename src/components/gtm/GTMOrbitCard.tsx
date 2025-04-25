@@ -51,4 +51,3 @@ const GTMOrbitCard = ({ icon, label, description, x, y, index, anchor }: GTMOrbi
 };
 
 export default GTMOrbitCard;
-
