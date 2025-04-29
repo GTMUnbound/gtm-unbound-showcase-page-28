@@ -30,8 +30,7 @@ const GTMCenterLogo = () => {
         }}
         whileHover={{ scale: 1.04, transition: { duration: 0.2 } }}
       >
-        {/* Removed the absolute positioning from this container and made it a flex container */}
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center w-full h-full">
           <motion.img
             src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
             alt="GTM Unbound Logo"
