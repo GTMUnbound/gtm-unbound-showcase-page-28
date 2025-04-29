@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { getPos, center, moduleCardW, moduleCardH } from '@/utils/geometryUtils';
+import { getOrbitPosition, center, moduleCardW, moduleCardH } from '@/utils/geometryUtils';
 
 interface GTMModuleCardProps {
   icon: React.ReactNode;
@@ -13,7 +13,7 @@ interface GTMModuleCardProps {
 }
 
 const GTMModuleCard = ({ icon, label, description, angle, color, radius }: GTMModuleCardProps) => {
-  const { x, y } = getPos(angle, radius);
+  const { x, y } = getOrbitPosition(angle, radius);
   
   return (
     <motion.div
