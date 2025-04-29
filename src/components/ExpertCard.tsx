@@ -32,8 +32,8 @@ const ExpertCard = ({
         return 'Founder of GTM Unbound';
       case 'Manik Mehta':
         return 'Founder of Omnify';
-      case 'Anil Advani':
-        return 'Founder and Managing Partner, Inventus Law & Avatar Advisors';
+      case 'Saurabh':
+        return 'Founder and Managing Partner, Urban Piper';
       default:
         return presentTag;
     }
