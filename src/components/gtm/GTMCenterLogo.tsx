@@ -38,7 +38,7 @@ const GTMCenterLogo = () => {
           ease: "easeInOut"
         }} />
           <span className="text-sm font-extrabold text-gray-800">GTM Unbound</span>
-          <span className="text-xs text-gray-400 -mt-0.5 text-center">Systems. Strategy. Execution.</span>
+          <span className="text-gray-400 -mt-0.5 text-center text-xs">Systems. Strategy. Execution.</span>
         </div>
       </motion.div>
     </motion.div>;
