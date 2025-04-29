@@ -10,7 +10,7 @@ import GTMCenterLogo from './GTMCenterLogo';
 const GTMDashboard = () => {
   return (
     <div
-      className="relative mx-auto transition-all duration-300"
+      className="relative mx-auto transition-all duration-300 flex items-center justify-center"
       style={{ 
         width: visualSize,
         height: visualSize,

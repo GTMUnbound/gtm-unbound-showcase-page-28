@@ -30,19 +30,21 @@ const GTMCenterLogo = () => {
         }}
         whileHover={{ scale: 1.04, transition: { duration: 0.2 } }}
       >
-        <motion.img
-          src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
-          alt="GTM Unbound Logo"
-          className="h-12 w-12 rounded-full bg-white/80 shadow-sm rotate-[-6deg]"
-          animate={{ rotate: [0, 12, -12, 0] }}
-          transition={{
-            duration: 16,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <span className="text-sm font-extrabold text-gray-800 mt-2">GTM Unbound</span>
-        <span className="text-xs text-gray-400 -mt-0.5">Systems. Strategy. Execution.</span>
+        <div className="flex flex-col items-center justify-center absolute inset-0">
+          <motion.img
+            src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png"
+            alt="GTM Unbound Logo"
+            className="h-12 w-12 rounded-full bg-white/80 shadow-sm rotate-[-6deg] mb-2"
+            animate={{ rotate: [0, 12, -12, 0] }}
+            transition={{
+              duration: 16,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+          <span className="text-sm font-extrabold text-gray-800">GTM Unbound</span>
+          <span className="text-xs text-gray-400 -mt-0.5">Systems. Strategy. Execution.</span>
+        </div>
       </motion.div>
     </motion.div>
   );
