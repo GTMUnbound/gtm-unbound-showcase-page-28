@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import Section from '@/components/Section';
 import AnimatedSection from '@/components/AnimatedSection';
@@ -23,7 +22,7 @@ import {
   MessageCircle, Puzzle, Target, Tent, Trophy, TwitterIcon, 
   Users, RefreshCw, Rocket, TrendingUp, Award, Calendar,
   ArrowRight, MessageSquare, Globe, Check as CheckIcon, AlertTriangle, HelpCircle,
-  FlaskConical, HandshakeIcon // Use flask-conical icon which exists in lucide-react
+  FlaskConical, HandshakeIcon 
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -35,7 +34,7 @@ import GTMSplitView from '@/components/GTMSplitView';
 import Footer from '@/components/Footer';
 
 import GTMOSVisual from "@/components/GTMOSVisual";
-import OfferingCards from "@/components/OfferingCards";
+import OfferingCards from "@/components/OfferingCards';
 import PricingModal from "@/components/PricingModal";
 import TalkToTeamModal from "@/components/TalkToTeamModal";
 import PricingComparison from "@/components/PricingComparison";
@@ -48,6 +47,7 @@ import AnimatedJourneySteps from '@/components/AnimatedJourneySteps';
 import { fadeUpVariants, staggerContainer, softScaleVariants } from '@/utils/AnimationUtils';
 
 const Index = () => {
+  
   const offeringsRef = useRef<HTMLDivElement>(null);
   const howWeHelpRef = useRef<HTMLDivElement>(null);
   
@@ -154,7 +154,6 @@ const Index = () => {
     [
       { text: "But GTM still feels messy.", icon: <AlertTriangle className="h-4 w-4 text-amber-500" /> },
     ],
-    // REMOVED Question block as requested (was: [Which channel? ...])
     [
       { text: "You don't have to figure it out alone.", icon: <Brain className="h-4 w-4 text-gtm-pink" /> },
       { text: "GTM Unbound brings structure, people, and execution — all under one roof.", icon: <Rocket className="h-4 w-4 text-gtm-pink" /> }
@@ -189,7 +188,6 @@ const Index = () => {
     }
   ];
 
-  // Update the stats content
   const stats = [
     {
       value: "20+",
@@ -321,7 +319,6 @@ const Index = () => {
     }
   ];
 
-  // Updated eventTypes with the new structure as per the prompt
   const eventTypes = [
     {
       title: "Founder Hikes",
@@ -478,7 +475,7 @@ const Index = () => {
                 custom={0.7}
               >
                 <motion.button 
-                  onClick={scrollToHowWeHelp} {/* Changed from scrollToOfferings to scrollToHowWeHelp */}
+                  onClick={scrollToHowWeHelp}
                   className="px-6 py-3 rounded-2xl bg-gradient-to-r from-gtm-pink to-pink-400 text-white font-semibold shadow-pink-100 shadow-md hover:shadow-gtm-pink/40 transition-shadow border-0 relative overflow-hidden"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
