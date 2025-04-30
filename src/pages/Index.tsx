@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import Section from '@/components/Section';
 import AnimatedSection from '@/components/AnimatedSection';
@@ -607,7 +606,9 @@ const Index = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <GradientButton>See Upcoming Events</GradientButton>
+              <a href="https://lu.ma/lqudzwfl" target="_blank" rel="noopener noreferrer">
+                <GradientButton>See Upcoming Events</GradientButton>
+              </a>
             </motion.div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 
-import { MessageSquare, Linkedin, Instagram, Youtube, Twitter } from 'lucide-react';
+import { MessageSquare, Linkedin, Instagram, Youtube, X } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
+import { Phone } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -11,7 +12,7 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center">
               <img 
-                src="/lovable-uploads/2c2392be-5ec4-4204-9c57-678ce83d78a5.png" 
+                src="/lovable-uploads/306d5c25-dcd9-4ff3-a535-5b74ab4cfe31.png" 
                 alt="GTM Unbound Logo" 
                 className="h-10 w-auto"
               />
@@ -19,8 +20,11 @@ const Footer = () => {
             </div>
             <p className="text-sm text-gray-600">Systems. Strategy. Execution.</p>
             <div className="space-y-2 text-gray-700">
-              <p>Email: hello@gtmunbound.com</p>
-              <p>Support: support@gtmunbound.com</p>
+              <p>Email: prabhu@gtmunbound.com</p>
+              <p className="flex items-center gap-2">
+                <Phone size={14} className="text-gray-700" />
+                6386059477
+              </p>
             </div>
           </div>
 
@@ -79,10 +83,10 @@ const Footer = () => {
             href="https://x.com/gtmunbound?t=fmTUUK_ObzUPTOy6V4_BFA&s=08"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Twitter"
+            aria-label="X (formerly Twitter)"
             className="transition-transform hover:scale-110"
           >
-            <Twitter size={22} strokeWidth={2.2} className="text-[#FF6B9D]" />
+            <X size={22} strokeWidth={2.2} className="text-[#FF6B9D]" />
           </a>
           <a
             href="https://www.youtube.com/channel/GTMUnbound"

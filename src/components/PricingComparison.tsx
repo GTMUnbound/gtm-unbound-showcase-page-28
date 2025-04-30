@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
-import { Check, ArrowRight, HelpCircle } from "lucide-react";  // Re-added Check icon
+import { Check, ArrowRight, HelpCircle } from "lucide-react";  
 import { cn } from "@/lib/utils";
 import { 
   Table,
@@ -184,16 +184,6 @@ const PricingComparison: React.FC<PricingComparisonProps> = ({
 
   return (
     <div className="w-full flex flex-col items-center">
-      <div className="w-full flex justify-end mb-6">
-        <button 
-          onClick={toggleComparison}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg text-gtm-dark hover:bg-gray-100 transition-colors"
-        >
-          <span>Compare Plans</span>
-          <ArrowRight size={16} />
-        </button>
-      </div>
-
       {/* Add pricing note */}
       <p className="text-center text-gray-500 italic text-sm mb-6">
         Note: Access to Plus and Pro plans requires an active Membership subscription.
@@ -289,6 +279,17 @@ const PricingComparison: React.FC<PricingComparisonProps> = ({
             </div>
           </motion.div>
         ))}
+      </div>
+
+      {/* Moved Compare Plans button here */}
+      <div className="w-full flex justify-center mb-10">
+        <button 
+          onClick={toggleComparison}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-gtm-dark hover:bg-gray-100 transition-colors border border-gray-200"
+        >
+          <span>Compare Our Plans</span>
+          <ArrowRight size={16} />
+        </button>
       </div>
 
       {/* Comparison Table */}
@@ -389,4 +390,3 @@ const PricingComparison: React.FC<PricingComparisonProps> = ({
 };
 
 export default PricingComparison;
-
