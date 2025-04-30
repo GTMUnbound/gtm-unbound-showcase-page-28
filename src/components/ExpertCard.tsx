@@ -1,3 +1,4 @@
+
 import { cn } from '@/lib/utils';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { motion } from 'framer-motion';
@@ -63,10 +64,11 @@ const ExpertCard = ({
             <motion.div
               whileHover={{ scale: 1.08, rotate: 3 }}
               transition={{ type: "spring", stiffness: 300, damping: 10 }}
+              className="flex items-center justify-center" // Added for better centering
             >
-              <Avatar className="h-28 w-28 ring-2 ring-[#E0E0E0] shadow-md">
+              <Avatar className="h-28 w-28 ring-2 ring-[#E0E0E0] shadow-md flex items-center justify-center">
                 <AvatarImage src={imageSrc} alt={name} className="object-cover" />
-                <AvatarFallback className="bg-gradient-to-r from-gtm-pink to-pink-600 text-white text-3xl">
+                <AvatarFallback className="bg-gradient-to-r from-gtm-pink to-pink-600 text-white text-3xl flex items-center justify-center">
                   {name.charAt(0)}
                 </AvatarFallback>
               </Avatar>
@@ -121,7 +123,7 @@ const ExpertCard = ({
                 href={linkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 transition-colors p-2 rounded-full"
+                className="text-blue-600 hover:text-blue-800 transition-colors p-2 rounded-full flex items-center justify-center" // Added flex for centering
                 onClick={(e) => e.stopPropagation()}
                 whileHover={{
                   scale: 1.2,
@@ -139,9 +141,9 @@ const ExpertCard = ({
         <HoverCardContent className="w-80 bg-white/95 backdrop-blur-sm p-6 shadow-xl border border-gray-100">
           <div className="space-y-3">
             <div className="flex items-center gap-3">
-              <Avatar className="h-10 w-10">
-                <AvatarImage src={imageSrc} alt={name} />
-                <AvatarFallback>{name.charAt(0)}</AvatarFallback>
+              <Avatar className="h-10 w-10 flex items-center justify-center">
+                <AvatarImage src={imageSrc} alt={name} className="object-cover" />
+                <AvatarFallback className="flex items-center justify-center">{name.charAt(0)}</AvatarFallback>
               </Avatar>
               <div>
                 <h4 className="text-sm font-semibold">{name}</h4>

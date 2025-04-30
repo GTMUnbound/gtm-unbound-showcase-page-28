@@ -35,13 +35,16 @@ const AnimatedNavbar = ({ sections }: NavbarProps) => {
       const sectionIds = sections.map(section => section.id);
       const sectionElements = sectionIds.map(id => document.getElementById(id));
       
-      const currentScrollPosition = window.scrollY + 150; // Offset for better UX
+      // Get viewport height for better calculations
+      const viewportHeight = window.innerHeight;
+      const currentScrollPosition = window.scrollY + (viewportHeight / 3); // Adjust offset for better detection
       
-      // Find the current active section
+      // Find the current active section (last visible section that starts before current position)
       let newActiveSection = 'home';
       
+      // Iterate through elements and find the last one that starts before our current position
       sectionElements.forEach((element, index) => {
-        if (element && currentScrollPosition >= element.offsetTop) {
+        if (element && element.offsetTop <= currentScrollPosition) {
           newActiveSection = sectionIds[index];
         }
       });

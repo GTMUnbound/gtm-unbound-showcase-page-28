@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import Section from '@/components/Section';
 import AnimatedSection from '@/components/AnimatedSection';
@@ -48,9 +49,14 @@ import { fadeUpVariants, staggerContainer, softScaleVariants } from '@/utils/Ani
 
 const Index = () => {
   const offeringsRef = useRef<HTMLDivElement>(null);
+  const howWeHelpRef = useRef<HTMLDivElement>(null);
   
   const scrollToOfferings = () => {
     offeringsRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+  
+  const scrollToHowWeHelp = () => {
+    howWeHelpRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const [email, setEmail] = useState('');
@@ -472,7 +478,7 @@ const Index = () => {
                 custom={0.7}
               >
                 <motion.button 
-                  onClick={scrollToOfferings}
+                  onClick={scrollToHowWeHelp} {/* Changed from scrollToOfferings to scrollToHowWeHelp */}
                   className="px-6 py-3 rounded-2xl bg-gradient-to-r from-gtm-pink to-pink-400 text-white font-semibold shadow-pink-100 shadow-md hover:shadow-gtm-pink/40 transition-shadow border-0 relative overflow-hidden"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
@@ -511,10 +517,9 @@ const Index = () => {
       <span id="channels" />
       <span id="events" />
       <span id="execution" />
-      <span id="experts" />
 
       {/* Fix the ref by using id instead of direct ref */}
-      <AnimatedSection id="offerings" className="bg-white pt-0 pb-14" animation="fadeUp" delay={0.1}>
+      <AnimatedSection id="offerings" ref={offeringsRef} className="bg-white pt-0 pb-14" animation="fadeUp" delay={0.1}>
         <SectionHeader 
           title="Systems. Strategy. Execution."
           centered
@@ -522,7 +527,7 @@ const Index = () => {
         <OfferingCards />
       </AnimatedSection>
 
-      <AnimatedSection id="how-we-help" className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16" animation="fadeUp" delay={0.2}>
+      <AnimatedSection id="how-we-help" ref={howWeHelpRef} className="bg-gray-50 pt-14 pb-14 md:pt-16 md:pb-16" animation="fadeUp" delay={0.2}>
         <SectionHeader
           title="From Signal to Strategy"
           centered

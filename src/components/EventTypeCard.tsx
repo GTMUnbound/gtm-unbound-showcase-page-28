@@ -32,6 +32,12 @@ const EventTypeCard = ({
 }: EventTypeCardProps) => {
   const [expanded, setExpanded] = useState(false);
 
+  // Create a separate click handler for the carousel navigation buttons
+  const handleCarouselButtonClick = (e: React.MouseEvent) => {
+    // Prevent the click from bubbling up to the card container
+    e.stopPropagation();
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -83,8 +89,9 @@ const EventTypeCard = ({
         }}
         transition={{ duration: 0.3 }}
         className="overflow-hidden"
+        style={{ display: expanded ? 'block' : 'none' }} 
       >
-        <Carousel className="w-full">
+        <Carousel className="w-full" onClick={(e) => e.stopPropagation()}>
           <CarouselContent>
             {images.map((image, index) => (
               <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/2">
@@ -98,7 +105,7 @@ const EventTypeCard = ({
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="flex justify-end mt-2 gap-2">
+          <div className="flex justify-end mt-2 gap-2" onClick={handleCarouselButtonClick}>
             <CarouselPrevious className="static translate-y-0 h-8 w-8" />
             <CarouselNext className="static translate-y-0 h-8 w-8" />
           </div>

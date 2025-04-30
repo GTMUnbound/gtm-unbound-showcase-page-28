@@ -50,7 +50,8 @@ const StartupsSection = () => (
             <motion.img
               src={logo.src}
               alt={logo.alt}
-              className="h-16 w-36 object-contain filter grayscale group-hover:grayscale-0 group-hover:scale-105 group-hover:shadow-pink-100 transition-all duration-300"
+              className="h-16 w-36 object-contain transition-all duration-300" 
+              // Removed: filter grayscale group-hover:grayscale-0 group-hover:scale-105 group-hover:shadow-pink-100
               draggable={false}
               style={{ maxHeight: "64px" }}
             />
