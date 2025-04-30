@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import Section from '@/components/Section';
 import AnimatedSection from '@/components/AnimatedSection';
@@ -34,7 +35,7 @@ import GTMSplitView from '@/components/GTMSplitView';
 import Footer from '@/components/Footer';
 
 import GTMOSVisual from "@/components/GTMOSVisual";
-import OfferingCards from "@/components/OfferingCards';
+import OfferingCards from "@/components/OfferingCards";
 import PricingModal from "@/components/PricingModal";
 import TalkToTeamModal from "@/components/TalkToTeamModal";
 import PricingComparison from "@/components/PricingComparison";
